@@ -101,13 +101,25 @@ a {
 }
 
 .nav-item:first-child {
-  color: #F9804B
+  color: #F9804B;
+  cursor: default;
 }
 
-.nav-item:not(:first-child):hover {
+.nav-item:first-child:hover a{
+  cursor: default;
+}
+
+.logo:hover {
+  transform: scale(1.02);
+}
+
+.nav-item:not(:first-child):hover,
+.design:hover {
   cursor: pointer;
+  transform: scale(1.1);
 }
 
+.nav-item:active,
 .design:active {
   color: #F9804B;
 }
