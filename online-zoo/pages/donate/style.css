@@ -1,0 +1,128 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url("../../assets/fonts/Roboto-Bold.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url("../../assets/fonts/Roboto-Medium.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url("../../assets/fonts/Roboto-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url("../../assets/fonts/Roboto-Light.ttf");
+  font-weight: 300;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.header {
+  font-weight: 500;
+  color: #FFFFFF;
+  background-color: #000000;
+}
+
+.header-content {
+  display: grid;
+  grid-template-columns: 82px 1fr 105px;
+  align-items: center;
+  /* column-gap: 63px; */
+  margin: auto auto;
+  padding: 14px 0;
+  line-height: 140%;
+}
+
+.logo {
+  position: relative;
+  outline: 1px solid #FFFFFF;
+  outline-offset: -1px;
+  border-radius: 2px;
+  padding: 5px 5px 1px;
+}
+
+.logo-image {
+  position: absolute;
+  top: 46%;
+  left: 13%;
+}
+
+.logo-text {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 120%;
+}
+
+.nav-list {
+  display: flex;
+  gap: 58px;
+  margin-left: 63px;
+}
+
+.nav-item:nth-child(4) {
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-image: linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
+  /* color: #F9804B; */
+  cursor: default;
+}
+
+.nav-item:nth-child(4):hover a{
+  cursor: default;
+}
+
+.logo:hover {
+  transform: scale(1.02);
+}
+
+.nav-item:not(:nth-child(4)):hover,
+.design:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.nav-item:active,
+.design:active {
+  color: #F9804B;
+}

@@ -67,13 +67,13 @@ a {
   /* column-gap: 63px; */
   margin: auto auto;
   padding: 14px 0;
+  line-height: 140%;
 }
 
 .logo {
   position: relative;
   outline: 1px solid #FFFFFF;
   outline-offset: -1px;
-
   border-radius: 2px;
   padding: 5px 5px 1px;
 }
@@ -95,13 +95,16 @@ a {
 
 .nav-list {
   display: flex;
-  /* justify-content: space-between; */
   gap: 58px;
   margin-left: 63px;
 }
 
 .nav-item:first-child {
-  color: #F9804B;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-image: linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
+  /* color: #F9804B; */
   cursor: default;
 }
 
