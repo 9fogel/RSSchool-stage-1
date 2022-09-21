@@ -214,11 +214,25 @@ a {
 }
 
 .backstage {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 465px;
   gap: 87px;
   margin: 140px auto;
   color: #333B41;
+}
+
+.backstage::after {
+  display: block;
+  position: absolute;
+  top: -32%;
+  right: -26.5%;
+  z-index: 1;
+  height: 605px;
+  width: 293px;
+  content: '';
+  background-image: url(../../assets/images/plant-backstage.png);
+  background-repeat: no-repeat;
 }
 
 .section-title {
