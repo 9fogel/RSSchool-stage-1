@@ -293,6 +293,51 @@ a {
   background-repeat: no-repeat;
 }
 
+.slider-controls {
+  position: absolute;
+  top: 38.5%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: auto auto;
+}
+
+.arrows {
+  display: flex;
+  justify-content: space-between;
+  width: 1324px;
+}
+
+.arrow-left {
+  display: inline-block;
+  margin-right: auto;
+  width: 62px;
+  height: 62px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  /* background-color: red; */
+  background: url(../../assets/icons/arrow-left.svg),
+              linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  border-radius: 50%;
+}
+
+.arrow-right {
+  display: inline-block;
+  justify-self:end;
+  /* margin-right: auto; */
+  width: 62px;
+  height: 62px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  /* background-color: red; */
+  background: url(../../assets/icons/arrow-right.svg),
+              linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  border-radius: 50%;
+}
+
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 366px);
