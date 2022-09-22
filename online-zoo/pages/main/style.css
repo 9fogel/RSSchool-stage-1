@@ -322,6 +322,24 @@ a {
   border-radius: 50%;
 }
 
+.arrow-left:hover {
+  cursor: pointer;
+  background: url(../../assets/icons/arrow-left.svg),
+              #E47209;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  border-radius: 50%;
+}
+
+.arrow-left:active {
+  cursor: pointer;
+  background: url(../../assets/icons/arrow-left.svg),
+              #4B9200;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  border-radius: 50%;
+}
+
 .arrow-right {
   display: inline-block;
   justify-self:end;
@@ -333,6 +351,24 @@ a {
   /* background-color: red; */
   background: url(../../assets/icons/arrow-right.svg),
               linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  border-radius: 50%;
+}
+
+.arrow-right:hover {
+  cursor: pointer;
+  background: url(../../assets/icons/arrow-right.svg),
+              #E47209;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  border-radius: 50%;
+}
+
+.arrow-right:active {
+  cursor: pointer;
+  background: url(../../assets/icons/arrow-right.svg),
+              #4B9200;
   background-repeat: no-repeat;
   background-position: 50% 50%;
   border-radius: 50%;
@@ -381,6 +417,12 @@ a {
 .card-image {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+}
+
+.card-image:hover {
+  cursor: pointer;
+  border-radius: 5px;
+  transform: scale(1.10);
 }
 
 .card-text {
