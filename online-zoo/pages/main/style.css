@@ -601,4 +601,6 @@ a {
   margin: 0 auto;
   padding-right: 72px;
   padding-left: 77px;
+  max-width: 300px;
+  /* width: 299px; */
 }
