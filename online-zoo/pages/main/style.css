@@ -35,6 +35,7 @@ body {
   min-width: 320px;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
+  font-size: 16px;
 }
 
 ul {
@@ -235,7 +236,7 @@ a {
   background-repeat: no-repeat;
 }
 
-.section-title {
+.section-big-title {
   margin-bottom: 22px;
   font-size: 48px;
   font-weight: 400;
@@ -528,7 +529,7 @@ a {
   text-align: center;
 }
 
-.payment-title {
+.section-title {
   font-weight: 400;
   font-size: 36px;
   line-height: 130%;
@@ -602,5 +603,152 @@ a {
   padding-right: 72px;
   padding-left: 77px;
   max-width: 300px;
-  /* width: 299px; */
+}
+
+.testimonials {
+  position: relative;
+  padding-top: 140px;
+  padding-bottom: 180px;
+  text-align: center;
+}
+
+.testimonials::after {
+  display: block;
+  position: absolute;
+  bottom: -3%;
+  right: -3%;
+  z-index: 1;
+  height: 301px;
+  width: 295px;
+  content: '';
+  background-image: url(../../assets/images/plant-leav-testimonial.png);
+  background-repeat: no-repeat;
+}
+
+.testimonials-list {
+  display: grid;
+  grid-template-columns: repeat(4, 264px);
+  grid-template-rows: 387px;
+  gap: 34px;
+  margin: 49px 2px 24px;
+  /* margin-top: 49px;
+  margin-bottom: 22px;
+  margin */
+}
+
+.testimonials-item {
+  position: relative;
+  padding: 13px 13px 17px 14px;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  background-color: #F1F3F2;
+  border-radius: 20px;
+}
+
+.testimonials-item::before {
+  display: block;
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 268px;
+  height: 391px;
+  z-index: -1;
+  content: '';
+  background: linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%),
+              linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%);
+  border-radius: 20px;
+}
+
+.author {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.author-name {
+  display: block;
+  line-height: 120%;
+  color: #000000;
+}
+
+.author-destination,
+.author-date {
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 120%;
+  color: #BDBDBD;
+}
+
+.author-destination {
+  position: relative;
+  padding-right: 16px;
+}
+
+.author-destination::after {
+  display: block;
+  position: absolute;
+  top: 45%;
+  right: 4%;
+  width: 3px;
+  height: 3px;
+  z-index: 1;
+  content: '';
+  background-color: #BDBDBD;;
+  /* background: linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%); */
+  border-radius: 50px;
+}
+
+.testimonials-text {
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 120%;
+  color: #767474;
+}
+
+.progress-bar {
+  position: relative;
+  width: 598px;
+  height: 6px;
+  margin: 0 auto 32px;
+  background-color: #F5F7F6;
+  border-radius: 5px;
+}
+
+.progress-bar::before {
+  display: block;
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 600px;
+  height: 8px;
+  z-index: -1;
+  content: '';
+  background: linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%),
+              linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%);
+  border-radius: 5px;
+}
+
+.button-rectangle {
+  margin-left: 0;
+  border-radius: 5px;
+  padding-right: 85px;
+  padding-left: 85px;
+}
+
+.progress-bar:hover {
+  cursor: pointer;
+  transform: scaleY(1.05);
+}
+
+.progress-state {
+  width: 19%;
+  height: 100%;
+  background-color: #FE9013;
+  border-radius: 5px;
+}
+
+.progress-state:hover {
+  transform: scaleY(1.05);
+  background-color: #E47209;
 }
