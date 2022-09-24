@@ -71,7 +71,6 @@ a {
   display: grid;
   grid-template-columns: 82px 1fr 105px;
   align-items: center;
-  /* column-gap: 63px; */
   margin: auto auto;
   padding: 14px 0;
   line-height: 140%;
@@ -125,8 +124,6 @@ a {
 .nav-item:first-child:hover a{
   cursor: default;
 }
-
-
 
 .nav-item:not(:first-child):hover,
 .design:hover {

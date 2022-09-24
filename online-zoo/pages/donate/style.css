@@ -22,6 +22,12 @@
   font-weight: 300;
 }
 
+@font-face {
+  font-family: 'Roboto';
+  src: url("../../assets/fonts/Roboto-Thin.ttf");
+  font-weight: 100;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -35,6 +41,7 @@ body {
   min-width: 320px;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
+  font-size: 16px;
 }
 
 ul {
@@ -64,7 +71,6 @@ a {
   display: grid;
   grid-template-columns: 82px 1fr 105px;
   align-items: center;
-  /* column-gap: 63px; */
   margin: auto auto;
   padding: 14px 0;
   line-height: 140%;
@@ -76,6 +82,13 @@ a {
   outline-offset: -1px;
   border-radius: 2px;
   padding: 5px 5px 1px;
+  max-width: 82px;
+  max-height: 52px;
+}
+
+.logo:hover {
+  cursor: pointer;
+  transform: scale(1.02);
 }
 
 .logo-image {
@@ -125,4 +138,49 @@ a {
 .nav-item:active,
 .design:active {
   color: #F9804B;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.intro {
+  height: 386px;
+  background-image: url(../../assets/images/donate-bg.jpg);
+  background-size: 100%;
+  background-position: 50% -4px;
+}
+
+.donation {
+  color: #FFFFFF;
+  background: linear-gradient(315.75deg, rgba(254, 210, 144, 0.7) 30.06%, #FEBDAB 100.95%, rgba(254, 210, 144, 0.7) 106.36%), linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%), linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%);
+}
+
+.section-title {
+  padding-top: 40px;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 130%;
+  color: #FE9013;
+}
+
+.donation-title {
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+
+.donation-text {
+  padding-bottom: 6px;
+  font-weight: 500;
+  line-height: 140%;
 }
