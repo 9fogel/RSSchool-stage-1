@@ -798,7 +798,6 @@ a {
   padding-left: 50px;
   max-width: 298px;
   max-height: 54px;
-  /* margin-left: 0; */
 }
 
 .socials-list {
@@ -810,12 +809,6 @@ a {
   gap: 10px;
   line-height: 140%;
 }
-
-/* .socials-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-} */
 
 .socials-link {
   display: flex;
