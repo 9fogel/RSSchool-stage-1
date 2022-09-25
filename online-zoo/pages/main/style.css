@@ -431,7 +431,7 @@ a {
   border-top-right-radius: 5px;
 }
 
-.card-image:hover {
+.card:hover .card-image {
   cursor: pointer;
   border-radius: 5px;
   transform: scale(1.10);
@@ -452,6 +452,23 @@ a {
 .card:nth-child(6) .card-text {
   background-image: url(../../assets/icons/pet-meet-fish.svg);
   background-position: 101% 48%;
+}
+
+.card:hover .card-text {
+  /* padding-left: 20px;
+  padding-right: 30px; */
+  cursor: pointer;
+  color: #FFFFFF;
+  background-color: #000000;
+  background-image: none;
+  opacity: 0.8;
+  transform: scale(1.10);
+  transform: translateY(-100%);
+  transition: ease-in-out 0.3s;
+}
+
+.card:hover::after{
+  display: none
 }
 
 .card-title {
