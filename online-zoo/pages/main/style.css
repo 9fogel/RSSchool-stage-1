@@ -229,7 +229,6 @@ a {
 }
 
 .backstage-content {
-
   display: grid;
   grid-template-columns: 1fr 465px;
   gap: 87px;

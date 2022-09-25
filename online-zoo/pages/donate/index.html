@@ -68,6 +68,16 @@
           <div class="donation-amount">
             <h5 class="amount-title">Amount</h5>
             <div class="amout-progress-bar">
+              <ul class="progress-bar-dots-list">
+                <li class="progress-bar-dot-item"></li>
+                <li class="progress-bar-dot-item"></li>
+                <li class="progress-bar-dot-item"></li>
+                <li class="progress-bar-dot-item"></li>
+                <li class="progress-bar-dot-item"></li>
+                <li class="progress-bar-dot-item"></li>
+                <li class="progress-bar-dot-item"></li>
+                <li class="progress-bar-dot-item"></li>
+              </ul>
               <input class="progress-input" type="range" name="progress-input" id="progress-input">
             </div>
             <ol class="progress-amounts-list">
@@ -80,20 +90,22 @@
               <li class="amount-item">$50</li>
               <li class="amount-item">$25</li>
             </ol>
-            <input class="another-amount" type="number" placeholder="Another amount" name="another-amount" id="">
+            <input class="another-amount" type="number" placeholder="Another amount" name="another-amount" id="another-amount" onkeypress="this.value=this.value.substring(0,3);">
             <div class="radiobuttons">
-              <input class="period" type="radio" name="monthly" id="monthly-radio">Monthly
-              <input class="period" type="radio" name="once" id="once-radio">Once
+              <div class="monthly-radio">
+                <input class="custom-radio" type="radio" name="period" id="monthly">
+                <label for="monthly">Monthly</label>
+              </div>
+              <div class="once-radio">
+                <input class="custom-radio checked" type="radio" name="period" id="once" checked>
+                <label for="once">Once</label>
+              </div>
             </div>
             <button class="button button-round feed-btn" type="submit">Feed a friend now</button>
             <p class="amount-text">Share with your friends on social networks</p>
-
           </div>
-
         </section>
       </div>
-
-
     </section>
   </main>
 
