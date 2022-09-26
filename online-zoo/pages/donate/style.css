@@ -626,24 +626,17 @@ label:hover {
   color: #BDBDBD;
 }
 
-.subscribe-input:focus {
+.subscribe-input:focus:valid {
   color: #BDBDBD;
-  border-color: #4B9200;
   outline: 0;
+  border-color: #4B9200;
 }
 
-/* .subscribe-input::before {
-  display: block;
-  position: absolute;
-  top: -1px;
-  right: -1px;
-  width: 228px;
-  height: 42px;
-  z-index: 5;
-  content: 'AAAAAAAAAAAAAAAAAA';
-  background: linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
-  border-radius: 2px;
-} */
+.subscribe-input:focus:invalid {
+  color: #D31414;
+  outline: 0;
+  border-color: #D31414;
+}
 
 .subscribe-btn {
   padding: 9px 38px;
@@ -652,6 +645,34 @@ label:hover {
   color: #D31414;
   background: #F1F3F2;
   border: 1px solid #D31414;
+}
+
+.subscribe-btn:hover {
+  font-weight: 500;
+  background-color: #F1F3F2;
+  transform: scale(1.02);
+}
+
+.subscribe-input:invalid+.subscribe-btn {
+  color: #D31414;
+  border: 1px solid #D31414;
+}
+
+.subscribe-input:valid+.subscribe-btn {
+  color: #4B9200;
+  border-color: #4B9200;
+}
+
+/* .subscribe-input:invalid+.subscribe-btn:active {
+  color: #D31414;
+  background: #F1F3F2;
+  border: 1px solid #D31414;
+} */
+
+.subscribe-input:valid+.subscribe-btn:active {
+  color: #FFFFFF;
+  background: #4B9200;;
+  border-color: #4B9200;
 }
 
 .display-none {
