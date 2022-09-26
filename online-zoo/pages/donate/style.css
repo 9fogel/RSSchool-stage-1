@@ -350,6 +350,7 @@ a {
   outline: 2px solid transparent;
   outline-offset: 6px;
   outline-color: #FE9013;
+  -moz-outline-radius: 50px
 }
 
 .progress-input {
@@ -362,6 +363,14 @@ a {
 
 .progress-input::-webkit-slider-thumb {
   -webkit-appearance: none;
+}
+
+.progress-input::-moz-range-thumb {
+  opacity: 0;
+}
+
+.progress-input::-moz-range-track {
+  background: transparent;
 }
 
 .progress-amounts-list {
