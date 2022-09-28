@@ -482,8 +482,8 @@ label:hover {
 }
 
 .custom-radio:checked+label::before {
-  border-color: #FE9013;
-  background-color: #FE9013;
+  border-color: #4B9200;
+  background-color: #4B9200;
 }
 
 .button {
@@ -729,4 +729,123 @@ label:hover {
 .footer-design-link {
   display: block;
   text-align: left;
+}
+
+
+@media (max-width: 1240px) {
+  .container {
+    max-width: 940px;
+  }
+
+  .nav-list {
+    gap: 48px;
+  }
+
+  .intro {
+    height: 390px;
+    background-image: url(../../assets/images/donate-bg.jpg);
+    background-size: 160%;
+    background-position: 29%;
+  }
+
+  .donation {
+    padding-bottom: 30px;
+  }
+
+  .donation-title {
+    margin-right: 190px;
+    padding-top: 41px;
+    padding-bottom: 30px;
+  }
+
+  .feed-content {
+    margin-top: 38px;
+    padding-bottom: 45px;
+  }
+
+  .feed-title {
+    margin-bottom: 12px;
+    padding-top: 20px;
+  }
+
+  .feed-article {
+    padding: 0 47px;
+  }
+
+  .donation-amount {
+    padding: 0 18px;
+  }
+
+  .amount-title {
+    padding-left: 0;
+  }
+
+  .amout-progress-bar {
+    overflow: hidden;
+  }
+
+  .amout-progress-bar::after {
+    width: 785px;
+    left: 15px;
+  }
+
+  .progress-bar-dots-list {
+    padding-left: 11px;
+    padding-right: 9px;
+  }
+
+  .desktop {
+    display: none;
+  }
+
+  .amount-item {
+    text-align: right;
+  }
+
+  .amount-item:nth-child(2) {
+    padding-right: 10px;
+  }
+
+  .amount-item:nth-child(4) {
+    padding-left: 0;
+    padding-right: 4px;
+  }
+
+  .amount-item:nth-child(n+6) {
+    padding-left: 28px;
+  }
+
+  .amount-item:last-child {
+    padding-left: 36px;
+  }
+
+  .footer-content {
+    grid-template-columns: 298px 338px 1fr;
+    column-gap: 0;
+    /* padding-left: 13px; */
+  }
+
+  .subscribe {
+    grid-column-start: unset;
+    grid-column-end: 4;
+    width: 366px;
+    justify-self: end;
+    margin-left: -94px;
+    margin-right:auto;
+    /* padding-right: 45px; */
+  }
+
+  .subscribe-form {
+    width: 366px;
+  }
+
+  .footer-designed {
+    grid-column-start: unset;
+    grid-column-end: 4;
+  }
+
+  .nav-list-footer {
+    margin-left: 6px;
+  }
+
 }
