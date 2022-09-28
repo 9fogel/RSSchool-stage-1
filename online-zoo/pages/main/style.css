@@ -238,6 +238,10 @@ a {
   display: none;
 }
 
+.tablet {
+  display: none;
+}
+
 .backstage::after {
   display: block;
   position: absolute;
@@ -1146,7 +1150,7 @@ a {
     grid-template-columns: repeat(3, 1fr);
     /* grid-template-columns: repeat(3, 291px); */
     grid-template-rows: 387px;
-    column-gap: 34px;
+    column-gap: 32px;
     row-gap: 2px;
     /* margin-top: 30px; */
     padding-top: 2px;
@@ -1156,6 +1160,10 @@ a {
     overflow-y: hidden;
     /* overflow-x:hidden; */
     margin: 30px 0 4px;
+  }
+
+  .testimonials-item {
+    width: 290px;
   }
 
   .testimonials-item::before {
@@ -1212,6 +1220,134 @@ a {
 
   .nav-list-footer {
     margin-left: -6px;
+  }
+
+
+@media (max-width: 640px) {
+  .container {
+    max-width: 600px;
+  }
+
+  .header-content {
+    display: block;
+    padding: 2px 0 3px;
+  }
+
+  .burger {
+    display: block;
+    position: absolute;
+    top: 11px;
+    right: 0;
+    margin-right: 20px;
+    width: 18px;
+    height: 10px;
+    background-color: transparent;
+    background-image: url(../../assets/icons/burger.svg);
+    background-repeat: no-repeat;
+    border: none;
+  }
+
+  .nav-close {
+    display: block;
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    width: 14px;
+    height: 14px;
+    background-color: transparent;
+    background-image: url(../../assets/icons/close.svg);
+    background-repeat: no-repeat;
+    border: none;
+  }
+
+  .navigation {
+    position: fixed;
+    flex-direction: column;
+    justify-content: flex-start;
+    z-index: 5;
+    padding-right: 16px;
+    top: 0;
+    right: -320px;
+    /* width: 100%; */
+    width: 640px;
+    /* font-size: 16px; */
+    font-weight: 400;
+    color: #333B41;
+    background-color: #FFFFFF;
+    /* border: 1px solid red; */
+    transition: transform 0.6s ease-in-out;
+  }
+
+  .navigation-active {
+    transform: translateX(-640px);
+    transition: transform 0.6s ease-in-out;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 0;
+    padding-top: 82px;
+    padding-bottom: 40px;
+    padding-left: 10px;
+    gap: 15px;
+  }
+
+  .tablet-hidden {
+    display: none;
+  }
+
+  .logo {
+    outline: none;
+    padding: 0;
+    max-width: 47px;
+    max-height: 29px;
+  }
+
+  .logo-text {
+    /* display: inline-block;
+    text-align: center;
+    vertical-align: middle; */
+    font-size: 12.29px;
+  }
+
+  .logo-image {
+    top: 46%;
+    left: 8%;
+    height: 45%;
+  }
+
+  .watch-online {
+    padding-top: 48px;
+    padding-bottom: 40px;
+    background-position: 50% -34px;
+  }
+
+  .watch-online-content {
+    display: block;
+    max-width: 100%;
+    margin-right: 0;
+
+  }
+
+  .watch-online-content::before {
+    top: -15%;
+    left: 51.5%;
+    height: 238px;
+    width: 238px;
+  }
+
+  .slogan {
+    /* align-self: flex-end; */
+    margin-left: auto;
+    padding-left: 6px;
+    width: 256px;
+    font-size: 54.29px;
+  }
+
+  .watch-btn {
+    margin-top: -7px;
+    margin-left: 1px;
   }
 
 
