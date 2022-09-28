@@ -638,11 +638,15 @@ a {
 .testimonials::after {
   display: block;
   position: absolute;
-  bottom: -3%;
-  right: -3%;
+  /* bottom: -3%;
+  right: -3%; */
+  bottom: 0;
+  right: 0;
   z-index: 1;
-  height: 301px;
-  width: 295px;
+  width: 247px;
+  height: 275px;
+  /* height: 301px;
+  width: 295px; */
   content: '';
   background-image: url(../../assets/images/plant-leav-testimonial.png);
   background-repeat: no-repeat;
@@ -926,12 +930,6 @@ a {
   border-color: #4B9200;
 }
 
-/* .subscribe-input:invalid+.subscribe-btn:active {
-  color: #D31414;
-  background: #F1F3F2;
-  border: 1px solid #D31414;
-} */
-
 .subscribe-input:valid+.subscribe-btn:active {
   color: #FFFFFF;
   background: #4B9200;;
@@ -981,7 +979,7 @@ a {
 }
 
 
-@media (max-width: 1000px) {
+@media (max-width: 1240px) {
   .container {
     max-width: 940px;
   }
@@ -1019,6 +1017,11 @@ a {
     width: 400px;
     font-size: 85px;
     line-height: 75%;
+  }
+
+  .watch-btn {
+    padding-right: 91px;
+    padding-left: 91px;
   }
 
   .backstage {
@@ -1172,6 +1175,43 @@ a {
 
   .progress-bar::before {
     width: 390px;
+  }
+
+  .testimonials::after {
+    bottom: 0;
+    right: 0;
+    width: 196px;
+    height: 238px;
+    background-image: url(../../assets/images/plant-leav-testimonial-small-desktop.png);
+  }
+
+  .footer-content {
+    grid-template-columns: 298px 326px 1fr;
+    column-gap: 0;
+    padding-left: 13px;
+  }
+
+  .subscribe {
+    grid-column-start: unset;
+    grid-column-end: 4;
+    width: 366px;
+    justify-self: end;
+    margin-left: -84px;
+    margin-right:auto;
+    /* padding-right: 45px; */
+  }
+
+  .subscribe-form {
+    width: 366px;
+  }
+
+  .footer-designed {
+    grid-column-start: unset;
+    grid-column-end: 4;
+  }
+
+  .nav-list-footer {
+    margin-left: -6px;
   }
 
 
