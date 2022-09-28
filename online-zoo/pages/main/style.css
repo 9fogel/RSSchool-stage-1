@@ -1267,7 +1267,7 @@ a {
     z-index: 5;
     padding-right: 16px;
     top: 0;
-    right: -321px;
+    right: -342px;
     /* width: 100%; */
     width: 640px;
     /* font-size: 16px; */
@@ -1398,6 +1398,89 @@ a {
     margin-left: -4px;
   }
 
+  .pets {
+    padding-top: 39px;
+    padding-bottom: 100px;
+  }
 
+  .pets::before {
+    width: 134px;
+    height: 202px;
+    background-image: url(../../assets/images/plant-palm-pets-tablet.png);
+  }
+
+  .pets::after {
+    width: 175px;
+    height: 131px;
+    background-image: url(../../assets/images/plant-strelitzia-pets-small-tablet.png);
+  }
+
+  .slider-controls {
+    top: 41.5%;
+    left: 37.5%;
+  }
+
+  .arrows {
+    justify-content: center;
+    gap: 30px;
+    padding-left: 3px;
+    padding-right: 5px;
+    width: 164px;
+  }
+
+  .arrow-left {
+    margin-right: 0;
+  }
+
+  .cards {
+    grid-template-columns: repeat(4, 285px);
+    grid-template-rows: 332px 332px;
+    overflow-x: hidden;
+    column-gap: 29px;
+    row-gap: 92px;
+    margin-bottom: 58px;
+    padding-top: 1px;
+    padding-left: 2px;
+  }
+
+  .card {
+    width: 283px;
+    height: 330px;
+    border-radius: 3.89671px;
+  }
+
+  .card::after {
+    width: 285px;
+    height: 332px;
+    border-radius: 3.89671px;
+  }
+
+  .card-image {
+    border-top-left-radius: 3.89671px;
+    border-top-right-radius: 3.89671px;
+  }
+
+  .card-text {
+    padding-top: 2px;
+    padding-left: 12px;
+    padding-bottom: 11px;
+    background-image: url(../../assets/icons/pet-banana-bamboo-tablet.svg);
+  }
+
+  .card:nth-child(2) .card-text,
+  .card:nth-child(5) .card-text,
+  .card:nth-child(6) .card-text {
+    background-image: url(../../assets/icons/pet-meet-fish-tablet.svg);
+    background-position: 102% 30%;
+  }
+
+  .card-title {
+    padding-bottom: 2px;
+    font-size: 12.4695px;
+  }
+
+  .pet-desc {
+    font-size: 11.6901px;
+  }
 
 }
