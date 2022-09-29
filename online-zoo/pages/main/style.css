@@ -1266,7 +1266,7 @@ a {
     z-index: 5;
     padding-right: 16px;
     top: 0;
-    right: -342px;
+    right: -640px;
     /* width: 100%; */
     width: 640px;
     /* font-size: 16px; */
@@ -1624,6 +1624,84 @@ a {
     width: 116px;
     height: 135px;
     background-image: url(../../assets/images/plant-leav-testimonial-tablet.png);
+  }
+
+  .footer {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .footer-content {
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 199px 53px;
+    gap: 4px;
+    padding-left: 0;
+  }
+
+  .footer-logo {
+    grid-column-start: 1;
+    grid-row-start: 1;
+    outline: 1px solid #FFFFFF;
+    outline-offset: -1px;
+    border-radius: 2px;
+    padding: 5px 5px 1px;
+    max-width: 82px;
+    max-height: 52px;
+  }
+
+  .footer-logo-image {
+    top: 46%;
+    left: 13%;
+    /* height: 100%; */
+  }
+
+  .footer-logo-text {
+    font-size: 19px;
+  }
+
+  .donate-btn {
+    grid-column-start: 1;
+    grid-row-end: 2;
+    align-self: center;
+    margin-top: 24px;
+  }
+
+  .socials-list {
+    grid-column-start: unset;
+    grid-column-end: 3;
+    grid-row: 1 / 2;
+    justify-self: end;
+    align-self: flex-start;
+    gap: 20px;
+  }
+
+  .socials-link span {
+    display: none;
+  }
+
+  .subscribe {
+    display: none;
+  }
+
+  .navigation-footer {
+    grid-column-start: 1;
+    grid-row-start: unset;
+    grid-row-end: 3;
+  }
+
+  .nav-list.nav-list-footer {
+    flex-direction: row;
+    gap: 37px;
+    padding-left: 0;
+    padding-bottom: 0;
+  }
+
+  .footer-designed {
+    grid-column: 2 / 3;
+    grid-row-start: unset;
+    grid-row-end: 3;
+    align-self: initial;
+    line-height: 180%;
   }
 
 }
