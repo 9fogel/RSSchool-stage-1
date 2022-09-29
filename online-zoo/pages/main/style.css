@@ -1220,9 +1220,10 @@ a {
   .nav-list-footer {
     margin-left: -6px;
   }
+}
 
 
-@media (max-width: 640px) {
+@media (max-width: 980px) {
   .container {
     max-width: 600px;
   }
@@ -1308,9 +1309,6 @@ a {
   }
 
   .logo-text {
-    /* display: inline-block;
-    text-align: center;
-    vertical-align: middle; */
     font-size: 12.29px;
   }
 
@@ -1411,7 +1409,7 @@ a {
   .pets::after {
     width: 175px;
     height: 131px;
-    background-image: url(../../assets/images/plant-strelitzia-pets-small-tablet.png);
+    background-image: url(../../assets/images/plant-strelitzia-pets-tablet.png);
   }
 
   .slider-controls {
@@ -1499,7 +1497,6 @@ a {
     backdrop-filter: blur(2px);
     border-radius: 20px;
     }
-  }
 
   .feed-title {
     padding-top: 10px;
