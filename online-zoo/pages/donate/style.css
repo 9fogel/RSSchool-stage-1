@@ -1142,3 +1142,55 @@ label:hover {
   }
 
 }
+
+@media (max-width: 600px) {
+  .container {
+    max-width: 300px;
+  }
+
+  .header-content {
+    padding-top: 3px;
+    padding-bottom: 2px;
+  }
+
+  .burger {
+    top: 12px;
+  }
+
+  .intro {
+    height: 187px;
+    background-size: 240%;
+    background-position: 33%;
+  }
+
+  .donation-text {
+    line-height: 138%;
+  }
+
+  .section-title {
+    font-size: 24px;
+    line-height: 120%;
+  }
+
+  .feed-content {
+    margin-top: 30px;
+    /* padding-bottom: 22px; */
+  }
+
+  .feed-title {
+    margin-bottom: 10px;
+    padding-top: 20px;
+    font-size: 24px;
+    line-height: 120%;
+  }
+
+  .feed-article {
+    padding-top: 0;
+  }
+
+  .section-subtitle {
+    font-size: 16px;
+    line-height: 140%;
+  }
+
+}
