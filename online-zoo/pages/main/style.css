@@ -1899,12 +1899,48 @@ a {
 
   .step-icon.second-step:after {
     top: 198px;
-    /* transform: translateY(-14%); */
     right: -63px;
     width: 89px;
     height: 29px;
   }
 
+  .testimonials {
+    padding-top: 30px;
+    padding-bottom: 60px;
+  }
 
+  .testimonials::after {
+    bottom: 0;
+    right: 0;
+    width: 51px;
+    height: 65px;
+    background-image: url(../../assets/images/plant-leav-testimonial-mobile.png);
+}
+
+  .testimonials-list {
+    margin-top: 20px;
+    margin-bottom: 29px;
+  }
+
+  .testimonials-item {
+    padding: 8px 27px 10px 10px;
+    width: 296px;
+  }
+
+  .testimonials-item::before {
+    width: 300px;
+  }
+
+  .author-details {
+    padding-top: 1px;
+  }
+
+  .author {
+    gap: 6px;
+  }
+
+  .author-destination {
+    padding-right: 13px;
+  }
 
 }
