@@ -1228,7 +1228,14 @@ a {
     max-width: 600px;
   }
 
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 6;
+  }
+
   .header-content {
+    position: relative;
     display: block;
     padding: 2px 0 3px;
   }

@@ -862,8 +862,15 @@ label:hover {
     max-width: 600px;
   }
 
+  .header {
+    position: sticky;
+    top: 0;
+  }
+
   .header-content {
+    position: relative;
     display: block;
+    z-index: 6;
     padding: 2px 0 3px;
   }
 
@@ -980,6 +987,7 @@ label:hover {
   .feed-content {
     margin-top: 28px;
     padding-bottom: 22px;
+    backdrop-filter: unset;
   }
 
   .feed-title {
