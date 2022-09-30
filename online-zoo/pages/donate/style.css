@@ -993,68 +993,145 @@ label:hover {
 
   .feed-article {
     padding: 8px 0;
-}
+  }
 
-.animal-widget {
-  margin-top: 50px;
-  margin-bottom: 41px;
-}
+  .animal-widget {
+    margin-top: 50px;
+    margin-bottom: 41px;
+  }
 
-.donation-amount {
-  padding: 0 0;
-}
+  .donation-amount {
+    padding: 0 0;
+  }
 
-.amount-title {
-  padding-left: 10px;
-  padding-bottom: 1px;
-}
+  .amount-title {
+    padding-left: 10px;
+    padding-bottom: 1px;
+  }
 
-.amout-progress-bar {
-  margin-bottom: 5px;
-}
+  .amout-progress-bar {
+    margin-bottom: 5px;
+  }
 
-.amout-progress-bar::after {
-  width: 524px;
-  left: 41px;
-}
+  .amout-progress-bar::after {
+    width: 524px;
+    left: 41px;
+  }
 
-.progress-bar-dots-list {
-  padding-left: 35px;
-  padding-right: 35px;
-  /* padding-bottom: 2px; */
-}
+  .progress-bar-dots-list {
+    padding-left: 35px;
+    padding-right: 35px;
+  }
 
-.amount-item:nth-child(n+5) {
-  text-align: center;
-}
+  .amount-item:nth-child(n+5) {
+    text-align: center;
+  }
 
-.amount-item:nth-child(n+6) {
-  padding-left: 0;
-}
+  .amount-item:nth-child(n+6) {
+    padding-left: 0;
+  }
 
-.amount-item:nth-child(n+7) {
-  padding-right: 8px;
-}
+  .amount-item:nth-child(n+7) {
+    padding-right: 8px;
+  }
 
-.another-amount {
-  margin-bottom: 31px;
-  max-width: 180px;
-  max-height: 42px;
-  padding: 11px 10px 15px 6px;
-  background-position: 95% 50%;
-}
+  .another-amount {
+    margin-bottom: 31px;
+    max-width: 180px;
+    max-height: 42px;
+    padding: 11px 10px 15px 6px;
+    background-position: 95% 50%;
+  }
 
-.radiobuttons {
-  margin-bottom: 30px;
-  min-width: 218px;
-}
+  .radiobuttons {
+    margin-bottom: 30px;
+    min-width: 218px;
+  }
 
-.monthly-radio {
-  margin-left: 2px;
-}
+  .monthly-radio {
+    margin-left: 2px;
+  }
 
-.once-radio {
-  margin-left: 3px;
-}
+  .once-radio {
+    margin-left: 3px;
+  }
+
+  .footer {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .footer-content {
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 199px 53px;
+    gap: 4px;
+    padding-left: 0;
+  }
+
+  .footer-logo {
+    grid-column-start: 1;
+    grid-row-start: 1;
+    outline: 1px solid #FFFFFF;
+    outline-offset: -1px;
+    border-radius: 2px;
+    padding: 5px 5px 1px;
+    max-width: 82px;
+    max-height: 52px;
+  }
+
+  .footer-logo-image {
+    top: 46%;
+    left: 13%;
+    /* height: 100%; */
+  }
+
+  .footer-logo-text {
+    font-size: 19px;
+  }
+
+  .donate-btn {
+    grid-column-start: 1;
+    grid-row-end: 2;
+    align-self: center;
+    margin-top: 24px;
+  }
+
+  .socials-list {
+    grid-column-start: unset;
+    grid-column-end: 3;
+    grid-row: 1 / 2;
+    justify-self: end;
+    align-self: flex-start;
+    gap: 20px;
+  }
+
+  .socials-link span {
+    display: none;
+  }
+
+  .subscribe {
+    display: none;
+  }
+
+  .navigation-footer {
+    grid-column-start: 1;
+    grid-row-start: unset;
+    grid-row-end: 3;
+  }
+
+  .nav-list.nav-list-footer {
+    flex-direction: row;
+    gap: 37px;
+    padding-left: 0;
+    padding-bottom: 0;
+  }
+
+  .footer-designed {
+    grid-column: 2 / 3;
+    grid-row-start: unset;
+    grid-row-end: 3;
+    align-self: initial;
+    line-height: 180%;
+  }
 
 }
