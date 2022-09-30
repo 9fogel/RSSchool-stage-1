@@ -296,9 +296,10 @@ a {
   display: block;
   position: absolute;
   top: 50%;
+  transform: translateY(-50%);
   left: 31px;
   z-index: 0;
-  height: 1px;
+  height: 2px;
   width: 915px;
   content: '';
   background-color: #72828E;
@@ -363,6 +364,7 @@ a {
   width: 100%;
   height: 27px;
   background-color: #404950;
+  border-radius: 2px;
 }
 
 .progress-input::-webkit-slider-thumb {
@@ -952,7 +954,107 @@ label:hover {
 
   .intro {
     height: 335px;
+    background-size: 215%;
+    background-position: 37%;
   }
 
+  .donation {
+    padding-bottom: 46px;
+  }
+
+  .section-title {
+    padding-top: 30px;
+  }
+
+  .donation-title {
+    margin-right: 0;
+    padding-bottom: 20px;
+    font-size: 24px;
+    line-height: 120%;
+  }
+
+  .donation-text {
+    padding-bottom: 0;
+  }
+
+  .feed-content {
+    margin-top: 28px;
+    padding-bottom: 22px;
+  }
+
+  .feed-title {
+    margin-right: 0;
+    padding-top: 30px;
+  }
+
+  .section-subtitle {
+    text-align: center;
+  }
+
+  .feed-article {
+    padding: 8px 0;
+}
+
+.animal-widget {
+  margin-top: 50px;
+  margin-bottom: 41px;
+}
+
+.donation-amount {
+  padding: 0 0;
+}
+
+.amount-title {
+  padding-left: 10px;
+  padding-bottom: 1px;
+}
+
+.amout-progress-bar {
+  margin-bottom: 5px;
+}
+
+.amout-progress-bar::after {
+  width: 524px;
+  left: 41px;
+}
+
+.progress-bar-dots-list {
+  padding-left: 35px;
+  padding-right: 35px;
+  /* padding-bottom: 2px; */
+}
+
+.amount-item:nth-child(n+5) {
+  text-align: center;
+}
+
+.amount-item:nth-child(n+6) {
+  padding-left: 0;
+}
+
+.amount-item:nth-child(n+7) {
+  padding-right: 8px;
+}
+
+.another-amount {
+  margin-bottom: 31px;
+  max-width: 180px;
+  max-height: 42px;
+  padding: 11px 10px 15px 6px;
+  background-position: 95% 50%;
+}
+
+.radiobuttons {
+  margin-bottom: 30px;
+  min-width: 218px;
+}
+
+.monthly-radio {
+  margin-left: 2px;
+}
+
+.once-radio {
+  margin-left: 3px;
+}
 
 }
