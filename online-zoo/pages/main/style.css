@@ -242,6 +242,10 @@ a {
   display: none;
 }
 
+.mobile {
+  display: none;
+}
+
 .backstage::after {
   display: block;
   position: absolute;
@@ -1245,7 +1249,6 @@ a {
     position: absolute;
     top: 11px;
     right: 0;
-    margin-right: 20px;
     width: 18px;
     height: 10px;
     background-color: transparent;
@@ -1707,5 +1710,201 @@ a {
     align-self: initial;
     line-height: 180%;
   }
+
+}
+
+@media (max-width: 320px) {
+  .container {
+    max-width: 300px;
+  }
+
+  .header-content {
+    padding-top: 3px;
+    padding-bottom: 2px;
+  }
+
+  .burger {
+    top: 12px;
+  }
+
+  .watch-online {
+    padding-top: 41px;
+    padding-bottom: 41px;
+    /* background-size: 120%; */
+    background-position: 50% 0;
+  }
+
+  .watch-online-content {
+    margin-right: 2px;
+    max-width: 128px;
+  }
+
+  .watch-online-content::before {
+    top: -18%;
+    left: -13%;
+    width: 119px;
+    height: 119px;
+  }
+
+  .slogan {
+    padding-left: 2px;
+    width: 128px;
+    font-size: 28px;
+  }
+
+  .watch-btn {
+    display: none;
+  }
+
+  .backstage {
+    margin: 27px auto;
+  }
+
+  .backstage::after {
+    top: 4%;
+    width: 36px;
+    height: 217px;
+    background-image: url(../../assets/images/plant-backstage-mobile.png);
+  }
+
+  .mobile {
+    display: block;
+  }
+
+  .backstage-article {
+    padding-left: 0;
+  }
+
+  .section-big-title {
+    margin-top: 31px;
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
+
+  .backstage-text {
+    margin-left: 2px;
+    margin-bottom: 21px;
+  }
+
+  .section-subtitle {
+    margin-left: 2px;
+    margin-bottom: 9px;
+  }
+
+  .backstage-subtext {
+    margin-left: 0;
+    line-height: 137%;
+  }
+
+  .pets {
+    padding-top: 14px;
+    padding-bottom: 59px;
+  }
+
+  .pets::before {
+    width: 58px;
+    height: 72px;
+    z-index: -1;
+    background-image: url(../../assets/images/plant-palm-pets-mobile.png);
+  }
+
+  .pets::after {
+    width: 68px;
+    height: 67px;
+    z-index: -1;
+    background-image: url(../../assets/images/plant-strelitzia-pets-mobile.png);
+}
+
+  .slider-controls {
+    display: none;
+  }
+
+  .cards {
+    grid-template-columns: 283px;
+    grid-template-rows: repeat(4, 330px);
+    column-gap: 0;
+    row-gap: 22px;
+    grid-auto-rows: 0;
+    overflow-y: hidden;
+    margin-bottom: 20px;
+    max-height: 1388px;
+  }
+
+  .card-text {
+    padding-top: 3px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+  }
+
+  .feed-content.container {
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 40px;
+    max-width: 300px;
+  }
+
+  .feed-title {
+    margin-top: 0;
+    padding-top: 21px;
+  }
+
+  .feed-subtitle {
+    margin-left: -2px;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .feed-bold-text,
+  .feed-text {
+    display: none;
+  }
+
+  .payment-scheme {
+    margin-top: 22px;
+    margin-bottom: 39px;
+  }
+
+  .section-title {
+    font-size: 24px;
+    line-height: 120%;
+  }
+
+  .feed-steps-list {
+    flex-direction: column;
+    gap: 30px;
+    /* margin: 20px auto; */
+    max-width: 168px;
+  }
+
+  .feed-step-item:first-child {
+    padding-bottom: 14px;
+  }
+
+  .step-icon {
+    margin-bottom: 10px;
+  }
+
+  .step-icon:not(.last-step)::after {
+    top: 190px;
+    /* transform: translateY(-14%); */
+    right: -63px;
+    width: 89px;
+    height: 29px;
+    -webkit-transform: rotate(85deg);
+    -moz-transform: rotate(85deg);
+    -ms-transform: rotate(85deg);
+    -o-transform: rotate(85deg);
+    transform: rotate(85deg);
+  }
+
+  .step-icon.second-step:after {
+    top: 198px;
+    /* transform: translateY(-14%); */
+    right: -63px;
+    width: 89px;
+    height: 29px;
+  }
+
+
 
 }
