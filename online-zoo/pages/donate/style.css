@@ -1343,6 +1343,72 @@ label:hover {
 
   .footer {
     margin-top: 1px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, auto);
+    gap: 30px;
+    padding-left: 0;
+  }
+
+  .footer-logo {
+    /* grid-column-start: 1;
+    grid-row-start: 1; */
+    margin: 0 auto;
+    outline: none;
+    padding: 0;
+    max-width: 128px;
+    max-height: 23px;
+  }
+
+  .footer-logo-image {
+    top: -12%;
+    left: 56.5%;
+    height: 90%;
+  }
+
+  .socials-list {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row: 2 / 3;
+    flex-direction: row;
+    justify-self: center;
+    gap: 30px;
+  }
+
+  .donate-btn {
+    grid-column-start: 1;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    margin-top: -1px;
+  }
+
+  .navigation-footer {
+    grid-column-start: 1;
+    grid-row-start: 5;
+    grid-row-end: 6;
+    align-self: flex-start;
+  }
+
+  .nav-list.nav-list-footer {
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 0;
+  }
+
+  .footer-designed {
+    grid-column: 1 / 2;
+    grid-row-start: 4;
+    grid-row-end: 5;
+    margin-top: -4px;
+    margin-bottom: -4px;
+    font-size: 15px;
+    line-height: 190%;
+    /* vertical-align: text-top; */
   }
 
 
