@@ -234,14 +234,26 @@ a {
   gap: 87px;
 }
 
+.small-desktop {
+  display: none;
+}
+
+.tablet {
+  display: none;
+}
+
+.mobile {
+  display: none;
+}
+
 .backstage::after {
   display: block;
   position: absolute;
   top: -32%;
   right: 0;
   z-index: 1;
-  height: 605px;
   width: 199px;
+  height: 605px;
   content: '';
   background-image: url(../../assets/images/plant-backstage.png);
   background-repeat: no-repeat;
@@ -283,10 +295,8 @@ a {
   bottom: 0;
   left: 0;
   z-index: 1;
-  width: 880px;
+  width: 267px;
   height: 460px;
-  /* height: 605px;
-  width: 293px; */
   content: '';
   background-image: url(../../assets/images/plant-palm-pets.png);
   background-repeat: no-repeat;
@@ -398,14 +408,7 @@ a {
   position: relative;
   width: 364px;
   height: 424px;
-  /* z-index: 5; */
-  /* border: 1px solid transparent; */
-  /* border-image: linear-gradient(113.96deg, #FA6F32 1.49%, #FE9013 101.44%); */
-  /* border-image-width: 1px; */
-  /* border-image-slice: 1; */
-  /* border: 1px solid #000000; */
   border-radius: 5px;
-  /* clip-path: inset(0 round 5px); */
 }
 
 .card::after {
@@ -499,7 +502,6 @@ a {
 }
 
 .feed-content {
-  /* padding: 41px 59px 59px 99px; */
   padding-bottom: 59px;
   color: #333B41;
   background: rgba(253, 253, 255, 0.52);
@@ -512,8 +514,6 @@ a {
 }
 
 .feed-title {
-  /* position: relative; */
-  /* left: calc(50% - 463px/2 + 1.5px); */
   margin-bottom: 30px;
   padding-top: 41px;
   text-align: center;
@@ -614,7 +614,6 @@ a {
   content: '';
   background-image: url(../../assets/icons/feed-arrow.svg);
   background-repeat: no-repeat;
-
 }
 
 .feed-step-item:first-child div{
@@ -637,7 +636,6 @@ a {
   position: relative;
   padding-top: 140px;
   padding-bottom: 180px;
-
 }
 
 .testimonials-title {
@@ -647,11 +645,15 @@ a {
 .testimonials::after {
   display: block;
   position: absolute;
-  bottom: -3%;
-  right: -3%;
+  /* bottom: -3%;
+  right: -3%; */
+  bottom: 0;
+  right: 0;
   z-index: 1;
-  height: 301px;
-  width: 295px;
+  width: 247px;
+  height: 275px;
+  /* height: 301px;
+  width: 295px; */
   content: '';
   background-image: url(../../assets/images/plant-leav-testimonial.png);
   background-repeat: no-repeat;
@@ -663,9 +665,6 @@ a {
   grid-template-rows: 387px;
   gap: 34px;
   margin: 49px 2px 24px;
-  /* margin-top: 49px;
-  margin-bottom: 22px;
-  margin */
 }
 
 .testimonials-item {
@@ -938,12 +937,6 @@ a {
   border-color: #4B9200;
 }
 
-/* .subscribe-input:invalid+.subscribe-btn:active {
-  color: #D31414;
-  background: #F1F3F2;
-  border: 1px solid #D31414;
-} */
-
 .subscribe-input:valid+.subscribe-btn:active {
   color: #FFFFFF;
   background: #4B9200;;
@@ -990,4 +983,1032 @@ a {
 .footer-design-link {
   display: block;
   text-align: left;
+}
+
+
+@media (max-width: 1240px) {
+  .container {
+    max-width: 940px;
+  }
+
+  .header {
+    position: relative;
+    z-index: 5;
+  }
+
+  .nav-list {
+    gap: 48px;
+  }
+
+  .watch-online {
+    padding-top: 43px;
+    padding-bottom: 47px;
+    background-size: 120%;
+  }
+
+  .watch-online-content {
+    max-width: 400px;
+    gap: 41px;
+    margin-right: 56px;
+  }
+
+  .watch-online-content::before {
+    top: -54px;
+    left: -58px;
+    height: 367px;
+    width: 367px;
+    z-index: -1;
+  }
+
+  .slogan {
+    width: 400px;
+    font-size: 85px;
+    line-height: 75%;
+  }
+
+  .watch-btn {
+    padding-right: 91px;
+    padding-left: 91px;
+  }
+
+  .backstage {
+    margin: 100px auto;
+  }
+
+  .backstage-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 31px;
+  }
+
+  .desktop {
+    display: none;
+  }
+
+  .backstage-image {
+    padding-top: 9px;
+    /* padding-bottom: 10px; */
+  }
+
+  .small-desktop {
+    display: block;
+  }
+
+  .backstage::after {
+    display: none;
+  }
+
+  .pets {
+    padding-top: 40px;
+    padding-bottom: 140px;
+  }
+
+  .pets::before {
+    width: 194px;
+    height: 202px;
+    background-image: url(../../assets/images/plant-palm-pets-small-desktop.png);
+  }
+
+  .pets::after {
+    width: 241px;
+    height: 180px;
+    background-image: url(../../assets/images/plant-strelitzia-pets-small-desktop.png);
+  }
+
+  .slider-controls {
+    top: 40%;
+    left: 35%;
+    transform: translateX(-50px);
+    transform: translateY(-60%);
+    margin: auto auto;
+  }
+
+  .arrows {
+    justify-content: center;
+    padding-left: 3px;
+    width: 298px;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 31px;
+    row-gap: 94px;
+    margin-bottom: 82px;
+  }
+
+  .card {
+    width: 292px;
+    height: 352px;
+  }
+
+  .card::after {
+    top: -1px;
+    right: -1px;
+    width: 294px;
+    height: 354px;
+  }
+
+  .card-image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .card-text {
+    padding-bottom: 14px;
+  }
+
+  .pick-and-feed {
+    padding-top: 30px;
+    padding-bottom: 50px;
+  }
+
+  .feed-title {
+    margin-bottom: 20px;
+    padding-top: 30px;
+  }
+
+  .feed-content {
+    padding-bottom: 50px;
+  }
+
+  .feed-article {
+    padding: 0 49px 0 48px;
+  }
+
+  .feed-subtitle {
+    margin-bottom: 21px;
+  }
+
+  .payment-scheme {
+    margin-top: 42px;
+    margin-bottom: 72px;
+  }
+
+  .testimonials {
+    padding-top: 100px;
+    padding-bottom: 140px;
+  }
+
+  .testimonials-list {
+    grid-template-columns: repeat(3, 1fr);
+    /* grid-template-columns: repeat(3, 291px); */
+    grid-template-rows: 387px;
+    column-gap: 32px;
+    row-gap: 2px;
+    /* margin-top: 30px; */
+    padding-top: 2px;
+    padding-left: 2px;
+    padding-bottom: 2px;
+    grid-auto-rows: 0; /* set height to 0 for autogenerated grid rows */
+    overflow-y: hidden;
+    /* overflow-x:hidden; */
+    margin: 30px 0 4px;
+  }
+
+  .testimonials-item {
+    width: 290px;
+  }
+
+  .testimonials-item::before {
+    width: 294px;
+    height: 391px;
+  }
+
+  .testimonials-list::-webkit-scrollbar {
+    width: 0;
+  }
+
+  .progress-bar {
+    margin-bottom: 53px;
+    width: 388px;
+    height: 6px;
+  }
+
+  .progress-bar::before {
+    width: 390px;
+  }
+
+  .testimonials::after {
+    bottom: 0;
+    right: 0;
+    width: 196px;
+    height: 238px;
+    background-image: url(../../assets/images/plant-leav-testimonial-small-desktop.png);
+  }
+
+  .footer-content {
+    grid-template-columns: 298px 326px 1fr;
+    column-gap: 0;
+    padding-left: 13px;
+  }
+
+  .subscribe {
+    grid-column-start: unset;
+    grid-column-end: 4;
+    width: 366px;
+    justify-self: end;
+    margin-left: -84px;
+    margin-right:auto;
+    /* padding-right: 45px; */
+  }
+
+  .subscribe-form {
+    width: 366px;
+  }
+
+  .footer-designed {
+    grid-column-start: unset;
+    grid-column-end: 4;
+  }
+
+  .nav-list-footer {
+    margin-left: -6px;
+  }
+}
+
+
+@media (max-width: 980px) {
+  .container {
+    max-width: 600px;
+  }
+
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 6;
+  }
+
+  .header-content {
+    position: relative;
+    display: block;
+    padding: 2px 0 3px;
+  }
+
+  .burger {
+    display: block;
+    position: absolute;
+    top: 11px;
+    right: 0;
+    width: 18px;
+    height: 10px;
+    background-color: transparent;
+    background-image: url(../../assets/icons/burger.svg);
+    background-repeat: no-repeat;
+    border: none;
+  }
+
+  .nav-close {
+    display: block;
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    width: 14px;
+    height: 14px;
+    background-color: transparent;
+    background-image: url(../../assets/icons/close.svg);
+    background-repeat: no-repeat;
+    border: none;
+  }
+
+  .navigation {
+    position: fixed;
+    flex-direction: column;
+    justify-content: flex-start;
+    z-index: 5;
+    padding-right: 16px;
+    top: 0;
+    right: -640px;
+    /* width: 100%; */
+    width: 640px;
+    /* font-size: 16px; */
+    font-weight: 400;
+    color: #333B41;
+    background-color: #FFFFFF;
+    /* border: 1px solid red; */
+    transition: transform 0.6s ease-in-out;
+  }
+
+  .navigation-active {
+    transform: translateX(-640px);
+    transition: transform 0.6s ease-in-out;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 0;
+    padding-top: 82px;
+    padding-bottom: 40px;
+    padding-left: 10px;
+    gap: 15px;
+  }
+
+  .tablet {
+    display: block;
+  }
+
+  .tablet-hidden {
+    display: none;
+  }
+
+  .logo {
+    outline: none;
+    padding: 0;
+    max-width: 47px;
+    max-height: 29px;
+  }
+
+  .logo-text {
+    font-size: 12.29px;
+  }
+
+  .logo-image {
+    top: 46%;
+    left: 8%;
+    height: 45%;
+  }
+
+  .watch-online {
+    padding-top: 48px;
+    padding-bottom: 40px;
+    background-position: 50% -34px;
+  }
+
+  .watch-online-content {
+    display: block;
+    max-width: 100%;
+    margin-right: 0;
+  }
+
+  .watch-online-content::before {
+    top: -15%;
+    left: 51.5%;
+    height: 238px;
+    width: 238px;
+  }
+
+  .slogan {
+    /* align-self: flex-end; */
+    margin-left: auto;
+    padding-left: 6px;
+    width: 256px;
+    font-size: 54.29px;
+  }
+
+  .watch-btn {
+    margin-top: -7px;
+    margin-left: 1px;
+  }
+
+  .backstage {
+    margin-top: 60px;
+    margin-bottom: 39px;
+  }
+
+  .backstage::after {
+    display: block;
+    position: absolute;
+    top: -18%;
+    right: 0;
+    z-index: 1;
+    width: 128px;
+    height: 476px;
+    content: '';
+    background-image: url(../../assets/images/plant-backstage-tablet.png);
+    background-repeat: no-repeat;
+  }
+
+  .backstage-image {
+    display: none;
+  }
+
+  .backstage-content {
+    display: block;
+  }
+
+  .backstage-article {
+    padding-left: 4px;
+    max-width: 495px;
+  }
+
+  .backstage-text {
+    margin-left: -4px;
+    margin-bottom: 30px;
+  }
+
+  .section-subtitle {
+    margin-bottom: 20px;
+  }
+
+  .backstage-subtext {
+    margin-left: -4px;
+  }
+
+  .pets {
+    padding-top: 39px;
+    padding-bottom: 100px;
+  }
+
+  .pets::before {
+    width: 134px;
+    height: 202px;
+    background-image: url(../../assets/images/plant-palm-pets-tablet.png);
+  }
+
+  .pets::after {
+    width: 175px;
+    height: 131px;
+    background-image: url(../../assets/images/plant-strelitzia-pets-tablet.png);
+  }
+
+  .slider-controls {
+    top: 41.5%;
+    left: 37.5%;
+  }
+
+  .arrows {
+    justify-content: center;
+    gap: 30px;
+    padding-left: 3px;
+    padding-right: 5px;
+    width: 164px;
+  }
+
+  .arrow-left {
+    margin-right: 0;
+  }
+
+  .cards {
+    grid-template-columns: repeat(4, 285px);
+    grid-template-rows: 332px 332px;
+    overflow-x: hidden;
+    column-gap: 29px;
+    row-gap: 92px;
+    margin-bottom: 58px;
+    padding-top: 1px;
+    padding-left: 2px;
+  }
+
+  .card {
+    width: 283px;
+    height: 330px;
+    border-radius: 3.89671px;
+  }
+
+  .card::after {
+    width: 285px;
+    height: 332px;
+    border-radius: 3.89671px;
+  }
+
+  .card-image {
+    border-top-left-radius: 3.89671px;
+    border-top-right-radius: 3.89671px;
+  }
+
+  .card-text {
+    padding-top: 2px;
+    padding-left: 12px;
+    padding-bottom: 11px;
+    background-image: url(../../assets/icons/pet-banana-bamboo-tablet.svg);
+  }
+
+  .card:nth-child(2) .card-text,
+  .card:nth-child(5) .card-text,
+  .card:nth-child(6) .card-text {
+    background-image: url(../../assets/icons/pet-meet-fish-tablet.svg);
+    background-position: 102% 30%;
+  }
+
+  .card-title {
+    padding-bottom: 2px;
+    font-size: 12.4695px;
+  }
+
+  .pet-desc {
+    font-size: 11.6901px;
+  }
+
+  .pick-and-feed {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .feed-content {
+    padding-bottom: 60px;
+  }
+
+  .feed-content.container {
+    padding-left: 20px;
+    padding-right: 20px;
+    max-width: 640px;
+    background: rgba(253, 253, 255, 0.52);
+    backdrop-filter: blur(2px);
+    border-radius: 20px;
+    }
+
+  .feed-title {
+    padding-top: 10px;
+    font-size: 42px;
+  }
+
+  .feed-article {
+    padding: 0;
+  }
+
+  .feed-subtitle {
+    font-size: 22px;
+  }
+
+  .feed-bold-text {
+    margin-bottom: 10px;
+  }
+
+  .feed-text {
+    line-height: 130%;
+  }
+
+  .payment-scheme {
+    margin-top: 30px;
+    margin-bottom: 40px;
+  }
+
+  .feed-steps-list {
+    gap: 44px;
+    margin: 20px auto;
+  }
+
+  .step-icon {
+    margin-bottom: 33px;
+  }
+
+  .step-icon:not(.last-step)::after {
+    display: block;
+    position: absolute;
+    top: 5%;
+    transform: translateY(-14%);
+    right: -83%;
+    width: 168px;
+    height: 168px;
+    z-index: 5;
+    content: '';
+    background-image: url(../../assets/icons/feed-arrow-tablet.svg);
+    background-repeat: no-repeat;
+  }
+
+  .testimonials {
+    padding-top: 60px;
+    padding-bottom: 80px;
+    text-align: center;
+  }
+
+  .testimonials-list {
+    grid-template-columns: 1fr;
+    grid-template-rows: 105px 105px 105px;
+    gap: 19px;
+    margin-bottom: 40px;
+    /* padding-top: 2px;
+    padding-left: 2px; */
+  }
+
+  .testimonials-item {
+    padding: 13px 27px 4px 10px;
+    width: 596px;
+  }
+
+  .testimonials-item::before {
+    display: block;
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 600px;
+    height: 109px;
+    z-index: -1;
+    content: '';
+    background: linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%),
+                linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%);
+    border-radius: 20px;
+  }
+
+  /* .testimonials-text:first-child {
+    max-height: 38px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  } */
+
+  .testimonials-text:nth-child(2) {
+    margin-left: 6px;
+    max-height: 38px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .testimonials-text:nth-child(n+3) {
+    display: none;
+  }
+
+  .progress-bar {
+    display: none;
+  }
+
+  .feedback-btn {
+    padding-left: 56px;
+    padding-right: 56px;
+    /* margin-right: auto;
+    margin-left: auto; */
+  }
+
+  .testimonials::after {
+    bottom: 0;
+    right: 0;
+    width: 116px;
+    height: 135px;
+    background-image: url(../../assets/images/plant-leav-testimonial-tablet.png);
+  }
+
+  .footer {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .footer-content {
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 199px 53px;
+    gap: 4px;
+    padding-left: 0;
+  }
+
+  .footer-logo {
+    grid-column-start: 1;
+    grid-row-start: 1;
+    outline: 1px solid #FFFFFF;
+    outline-offset: -1px;
+    border-radius: 2px;
+    padding: 5px 5px 1px;
+    max-width: 82px;
+    max-height: 52px;
+  }
+
+  .footer-logo-image {
+    top: 46%;
+    left: 13%;
+    /* height: 100%; */
+  }
+
+  .footer-logo-text {
+    font-size: 19px;
+  }
+
+  .donate-btn {
+    grid-column-start: 1;
+    grid-row-end: 2;
+    align-self: center;
+    margin-top: 24px;
+  }
+
+  .socials-list {
+    grid-column-start: unset;
+    grid-column-end: 3;
+    grid-row: 1 / 2;
+    justify-self: end;
+    align-self: flex-start;
+    gap: 20px;
+  }
+
+  .socials-link span {
+    display: none;
+  }
+
+  .subscribe {
+    display: none;
+  }
+
+  .navigation-footer {
+    grid-column-start: 1;
+    grid-row-start: unset;
+    grid-row-end: 3;
+  }
+
+  .nav-list.nav-list-footer {
+    flex-direction: row;
+    gap: 37px;
+    padding-left: 0;
+    padding-bottom: 0;
+  }
+
+  .footer-designed {
+    grid-column: 2 / 3;
+    grid-row-start: unset;
+    grid-row-end: 3;
+    align-self: initial;
+    line-height: 180%;
+  }
+
+}
+
+@media (max-width: 600px) {
+  .container {
+    max-width: 300px;
+  }
+
+  .header-content {
+    padding-top: 3px;
+    padding-bottom: 2px;
+  }
+
+  .burger {
+    top: 12px;
+  }
+
+  .watch-online {
+    padding-top: 41px;
+    padding-bottom: 41px;
+    /* background-size: 120%; */
+    background-position: 50% 0;
+  }
+
+  .watch-online-content {
+    margin-right: 2px;
+    max-width: 128px;
+  }
+
+  .watch-online-content::before {
+    top: -18%;
+    left: -13%;
+    width: 119px;
+    height: 119px;
+  }
+
+  .slogan {
+    padding-left: 2px;
+    width: 128px;
+    font-size: 28px;
+  }
+
+  .watch-btn {
+    display: none;
+  }
+
+  .backstage {
+    margin: 27px auto;
+  }
+
+  .backstage::after {
+    top: 4%;
+    width: 36px;
+    height: 217px;
+    background-image: url(../../assets/images/plant-backstage-mobile.png);
+  }
+
+  .mobile {
+    display: block;
+  }
+
+  .backstage-article {
+    padding-left: 0;
+  }
+
+  .section-big-title {
+    margin-top: 31px;
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
+
+  .backstage-text {
+    margin-left: 2px;
+    margin-bottom: 21px;
+  }
+
+  .section-subtitle {
+    margin-left: 2px;
+    margin-bottom: 9px;
+  }
+
+  .backstage-subtext {
+    margin-left: 0;
+    line-height: 137%;
+  }
+
+  .pets {
+    padding-top: 14px;
+    padding-bottom: 59px;
+  }
+
+  .pets::before {
+    width: 58px;
+    height: 72px;
+    z-index: -1;
+    background-image: url(../../assets/images/plant-palm-pets-mobile.png);
+  }
+
+  .pets::after {
+    width: 68px;
+    height: 67px;
+    z-index: -1;
+    background-image: url(../../assets/images/plant-strelitzia-pets-mobile.png);
+}
+
+  .slider-controls {
+    display: none;
+  }
+
+  .cards {
+    grid-template-columns: 283px;
+    grid-template-rows: repeat(4, 330px);
+    column-gap: 0;
+    row-gap: 22px;
+    grid-auto-rows: 0;
+    overflow-y: hidden;
+    margin-bottom: 20px;
+    max-height: 1388px;
+  }
+
+  .card-text {
+    padding-top: 3px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+  }
+
+  .feed-content.container {
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 40px;
+    max-width: 300px;
+  }
+
+  .feed-title {
+    margin-top: 0;
+    padding-top: 21px;
+  }
+
+  .feed-subtitle {
+    margin-left: -2px;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .feed-bold-text,
+  .feed-text {
+    display: none;
+  }
+
+  .payment-scheme {
+    margin-top: 22px;
+    margin-bottom: 39px;
+  }
+
+  .section-title {
+    font-size: 24px;
+    line-height: 120%;
+  }
+
+  .feed-steps-list {
+    flex-direction: column;
+    gap: 30px;
+    /* margin: 20px auto; */
+    max-width: 168px;
+  }
+
+  .feed-step-item:first-child {
+    padding-bottom: 14px;
+  }
+
+  .step-icon {
+    margin-bottom: 10px;
+  }
+
+  .step-icon:not(.last-step)::after {
+    top: 190px;
+    /* transform: translateY(-14%); */
+    right: -63px;
+    width: 89px;
+    height: 29px;
+    -webkit-transform: rotate(85deg);
+    -moz-transform: rotate(85deg);
+    -ms-transform: rotate(85deg);
+    -o-transform: rotate(85deg);
+    transform: rotate(85deg);
+  }
+
+  .step-icon.second-step:after {
+    top: 198px;
+    right: -63px;
+    width: 89px;
+    height: 29px;
+  }
+
+  .testimonials {
+    padding-top: 30px;
+    padding-bottom: 60px;
+  }
+
+  .testimonials::after {
+    bottom: 0;
+    right: 0;
+    width: 51px;
+    height: 65px;
+    background-image: url(../../assets/images/plant-leav-testimonial-mobile.png);
+}
+
+  .testimonials-list {
+    margin-top: 20px;
+    margin-bottom: 29px;
+  }
+
+  .testimonials-item {
+    padding: 8px 27px 10px 10px;
+    width: 296px;
+  }
+
+  .testimonials-item::before {
+    width: 300px;
+  }
+
+  .author-details {
+    padding-top: 1px;
+  }
+
+  .author {
+    gap: 6px;
+  }
+
+  .author-destination {
+    padding-right: 13px;
+  }
+
+  .footer {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, auto);
+    gap: 30px;
+    padding-left: 0;
+  }
+
+  .footer-logo {
+    /* grid-column-start: 1;
+    grid-row-start: 1; */
+    margin: 0 auto;
+    outline: none;
+    padding: 0;
+    max-width: 128px;
+    max-height: 23px;
+  }
+
+  .footer-logo-image {
+    top: -12%;
+    left: 56.5%;
+    height: 90%;
+  }
+
+  .socials-list {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row: 2 / 3;
+    flex-direction: row;
+    justify-self: center;
+    gap: 30px;
+  }
+
+  .donate-btn {
+    grid-column-start: 1;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    margin-top: 1px;
+  }
+
+  .navigation-footer {
+    grid-column-start: 1;
+    grid-row-start: 5;
+    grid-row-end: 6;
+    align-self: flex-start;
+  }
+
+  .nav-list.nav-list-footer {
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 0;
+  }
+
+  .footer-designed {
+    grid-column: 1 / 2;
+    grid-row-start: 4;
+    grid-row-end: 5;
+    margin-top: -4px;
+    margin-bottom: -4px;
+    font-size: 15px;
+    line-height: 190%;
+    /* vertical-align: text-top; */
+  }
+
 }
