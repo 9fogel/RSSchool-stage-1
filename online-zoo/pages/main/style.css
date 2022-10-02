@@ -1769,6 +1769,11 @@ a {
   .watch-online {
     background-size: 130%;
   }
+
+  .feed-steps-list {
+    gap: 30px;
+    justify-content: space-between;
+  }
 }
 
 @media (max-width: 600px) {
