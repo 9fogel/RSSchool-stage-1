@@ -137,7 +137,7 @@ a {
   margin-left: 63px;
 }
 
-.nav-item:nth-child(5):not(.footer-nav-item) {
+.nav-item:nth-child(4):not(.footer-nav-item) {
   color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
@@ -976,7 +976,7 @@ label:hover {
     cursor: default;
   }
 
-  .nav-item:nth-child(5):not(.footer-nav-item) {
+  .nav-item:nth-child(4):not(.footer-nav-item) {
     color: inherit;
     background-image: none;
     cursor: default;
