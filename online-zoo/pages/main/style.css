@@ -61,6 +61,22 @@ a {
   margin: 0 auto;
 }
 
+.wrapper {
+  visibility: hidden;
+}
+
+.wrapper-active {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0, 0.8);
+  transition: all 0.6s ease-in-out;
+  visibility: visible;
+}
+
 .header {
   font-weight: 500;
   color: #FFFFFF;
@@ -104,6 +120,11 @@ a {
   font-size: 19px;
   font-weight: 400;
   line-height: 120%;
+}
+
+.logo-nav {
+  display: none;
+  color: #FE9013;
 }
 
 .nav-list {
@@ -689,6 +710,26 @@ a {
   background: linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%),
               linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%);
   border-radius: 20px;
+}
+
+.review-wrapper {
+  visibility: hidden;
+}
+
+.review-wrapper-active {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0, 0.8);
+  transition: all 0.6s ease-in-out;
+  visibility: visible;
+}
+
+.review {
+  display: none;
 }
 
 .author {
@@ -1310,6 +1351,11 @@ a {
     border: none;
   }
 
+  .burger:hover {
+    cursor: pointer;
+    /* color: #E47209; */
+  }
+
   .nav-close {
     display: block;
     position: absolute;
@@ -1323,6 +1369,10 @@ a {
     border: none;
   }
 
+  .nav-close:hover {
+    cursor: pointer;
+  }
+
   .navigation {
     position: fixed;
     flex-direction: column;
@@ -1330,9 +1380,9 @@ a {
     z-index: 5;
     padding-right: 16px;
     top: 0;
-    right: -640px;
-    /* width: 100%; */
-    width: 640px;
+    right: -980px;
+    width: 100%;
+    /* width: 640px; */
     /* font-size: 16px; */
     font-weight: 400;
     color: #333B41;
@@ -1342,7 +1392,8 @@ a {
   }
 
   .navigation-active {
-    transform: translateX(-640px);
+    z-index: 10;
+    transform: translateX(-980px);
     transition: transform 0.6s ease-in-out;
   }
 
@@ -1351,9 +1402,15 @@ a {
     align-items: flex-start;
     margin-left: 0;
     padding-top: 82px;
-    padding-bottom: 40px;
+    padding-bottom: 37px;
     padding-left: 10px;
     gap: 15px;
+  }
+
+  .nav-item:first-child:not(.footer-nav-item) {
+    color: inherit;
+    background-image: none;
+    cursor: default;
   }
 
   .tablet {
@@ -1379,6 +1436,33 @@ a {
     top: 46%;
     left: 8%;
     height: 45%;
+  }
+
+  .logo-nav {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: block;
+    padding: 3px 4px;
+    max-width: 66px;
+    max-height: 42px;
+    outline: 0.8px solid #FE9013;
+    border-radius: 2px;
+  }
+
+  .logo-nav:hover {
+    transform: none;
+  }
+
+  .logo-nav .logo-image {
+    left: 12%;
+    height: 40%;
+  }
+
+  .logo-nav .logo-text {
+    font-weight: 400;
+    font-size: 15.2116px;
+    line-height: 120%;
   }
 
   .watch-online {
@@ -1614,6 +1698,7 @@ a {
   }
 
   .testimonials {
+    position: relative;
     padding-top: 60px;
     padding-bottom: 80px;
     text-align: center;
@@ -1669,6 +1754,82 @@ a {
   .testimonials-text:nth-child(n+3) {
     display: none;
   }
+
+  .review-visible {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    /* transform: translateY(-50%); */
+    z-index: 15;
+    display: block;
+    width: 320px;
+    height: 428px;
+    padding: 20px 36px 17px 17px;
+    background-color: #F5F7F6;
+    transition: all 0.6s ease-in-out;
+  }
+
+  .empty-review {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    padding: 16px 14px 19px 16px;
+    border: 2px solid orange;
+    border-radius: 20px;
+    background: #F5F7F6;
+  }
+
+  /* .empty-review::before {
+    display: block;
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 267px;
+    height: 391px;
+    z-index: -1;
+    content: '';
+    background: linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%),
+                linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%);
+    border-radius: 20px;
+  } */
+
+  .review-author-name {
+    text-align: left;
+  }
+
+  .review-testimonials-text {
+    text-align: left;
+  }
+
+  .empty-review .review-testimonials-text {
+    display: block;
+    margin-left: 6px;
+    max-height: unset;
+    overflow: unset;
+    text-overflow: unset;
+    /* display: -webkit-box;
+    -webkit-line-clamp: 9;
+    -webkit-box-orient: vertical; */
+  }
+
+  .empty-review .review-testimonials-text:last-child {
+    max-height: 146px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 8;
+  }
+
+  /* .empty-review .review-testimonials-text {
+    margin-left: 6px;
+    max-height: 309px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 9;
+    -webkit-box-orient: vertical;
+  } */
 
   .progress-bar {
     display: none;

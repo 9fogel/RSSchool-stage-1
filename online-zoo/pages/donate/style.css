@@ -61,6 +61,22 @@ a {
   margin: 0 auto;
 }
 
+.wrapper {
+  visibility: hidden;
+}
+
+.wrapper-active {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0, 0.8);
+  transition: all 0.6s ease-in-out;
+  visibility: visible;
+}
+
 .header {
   font-weight: 500;
   color: #FFFFFF;
@@ -106,6 +122,11 @@ a {
   line-height: 120%;
 }
 
+.logo-nav {
+  display: none;
+  color: #FE9013;
+}
+
 .tablet {
   display: none;
 }
@@ -116,7 +137,7 @@ a {
   margin-left: 63px;
 }
 
-.nav-item:nth-child(5):not(.footer-nav-item) {
+.nav-item:nth-child(4):not(.footer-nav-item) {
   color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
@@ -893,6 +914,11 @@ label:hover {
     border: none;
   }
 
+  .burger:hover {
+    cursor: pointer;
+    /* color: #E47209; */
+  }
+
   .nav-close {
     display: block;
     position: absolute;
@@ -906,6 +932,10 @@ label:hover {
     border: none;
   }
 
+  .nav-close:hover {
+    cursor: pointer;
+  }
+
   .navigation {
     position: fixed;
     flex-direction: column;
@@ -913,9 +943,9 @@ label:hover {
     z-index: 5;
     padding-right: 16px;
     top: 0;
-    right: -640px;
-    /* width: 100%; */
-    width: 640px;
+    right: -980px;
+    width: 100%;
+    /* width: 640px; */
     /* font-size: 16px; */
     font-weight: 400;
     color: #333B41;
@@ -925,7 +955,8 @@ label:hover {
   }
 
   .navigation-active {
-    transform: translateX(-640px);
+    z-index: 10;
+    transform: translateX(-980px);
     transition: transform 0.6s ease-in-out;
   }
 
@@ -934,9 +965,21 @@ label:hover {
     align-items: flex-start;
     margin-left: 0;
     padding-top: 82px;
-    padding-bottom: 40px;
+    padding-bottom: 37px;
     padding-left: 10px;
     gap: 15px;
+  }
+
+  .nav-item:first-child {
+    color: inherit;
+    background-image: none;
+    cursor: default;
+  }
+
+  .nav-item:nth-child(4):not(.footer-nav-item) {
+    color: inherit;
+    background-image: none;
+    cursor: default;
   }
 
   .tablet {
@@ -962,6 +1005,33 @@ label:hover {
     top: 46%;
     left: 8%;
     height: 45%;
+  }
+
+  .logo-nav {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: block;
+    padding: 3px 4px;
+    max-width: 66px;
+    max-height: 42px;
+    outline: 0.8px solid #FE9013;
+    border-radius: 2px;
+  }
+
+  .logo-nav:hover {
+    transform: none;
+  }
+
+  .logo-nav .logo-image {
+    left: 12%;
+    height: 40%;
+  }
+
+  .logo-nav .logo-text {
+    font-weight: 400;
+    font-size: 15.2116px;
+    line-height: 120%;
   }
 
   .intro {
