@@ -417,6 +417,39 @@ a {
   border-radius: 50%;
 }
 
+.carousel-wrapper {
+  overflow: hidden;
+  padding-left: 3px;
+  padding-top: 3px;
+}
+
+.carousel {
+  position: relative;
+  left: -1162px;
+  display: flex;
+  gap: 4px;
+}
+
+@keyframes move-left {
+  from {left: -1162px}
+  to {left: 0px}
+}
+
+.transition-left {
+  animation-name: move-left;
+  animation-duration: 5s;
+}
+
+@keyframes move-right {
+  from {left: -1162px}
+  to {left: -2324px}
+}
+
+.transition-right {
+  animation-name: move-right;
+  animation-duration: 5s;
+}
+
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 366px);
@@ -1064,6 +1097,7 @@ a {
   }
 
   .slider-controls {
+    z-index: 2;
     top: 39%;
   }
 
@@ -1167,11 +1201,43 @@ a {
     background-image: url(../../assets/images/plant-strelitzia-pets-small-desktop.png);
   }
 
+  .carousel-wrapper {
+    overflow: hidden;
+    padding-left: 1.5px;
+    padding-top: 1px;
+  }
+
+  .carousel {
+    left: -942px;
+    gap: 3px;
+  }
+
+  @keyframes move-left {
+    from {left: -938px}
+    to {left: 0px}
+  }
+
+  .transition-left {
+    animation-name: move-left;
+    animation-duration: 5s;
+  }
+
+  @keyframes move-right {
+    from {left: -938px}
+    to {left: -1876px}
+  }
+
+  .transition-right {
+    animation-name: move-right;
+    animation-duration: 5s;
+  }
+
   .slider-controls {
     top: 40%;
     left: 0;
     transform: translateX(50%);
     transform: translateY(-60%);
+    z-index: 2;
     margin: auto auto;
     width: 100%;
   }
@@ -1558,6 +1624,31 @@ a {
     background-image: url(../../assets/images/plant-strelitzia-pets-tablet.png);
   }
 
+  .carousel {
+    left: -606px;
+    gap: 3px;
+  }
+
+  @keyframes move-left {
+    from {left: -606px}
+    to {left: 0px}
+  }
+
+  .transition-left {
+    animation-name: move-left;
+    animation-duration: 5s;
+  }
+
+  @keyframes move-right {
+    from {left: -606px}
+    to {left: -1212px}
+  }
+
+  .transition-right {
+    animation-name: move-right;
+    animation-duration: 5s;
+  }
+
   .slider-controls {
     top: 41.5%;
     /* left: 37.5%; */
@@ -1576,9 +1667,9 @@ a {
   }
 
   .cards {
-    grid-template-columns: repeat(4, 285px);
+    grid-template-columns: repeat(2, 285px);
     grid-template-rows: 332px 332px;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     column-gap: 29px;
     row-gap: 92px;
     margin-bottom: 58px;
@@ -1999,6 +2090,10 @@ a {
     display: block;
   }
 
+  .mobile-hidden {
+    display: none;
+  }
+
   .backstage-article {
     padding-left: 0;
   }
@@ -2047,13 +2142,23 @@ a {
     display: none;
   }
 
+  .carousel-wrapper {
+    overflow: hidden;
+    padding-left: 0;
+    padding-top: 0;
+  }
+
+  .carousel {
+    left: 0;
+  }
+
   .cards {
     grid-template-columns: 283px;
     grid-template-rows: repeat(4, 330px);
     column-gap: 0;
     row-gap: 22px;
     grid-auto-rows: 0;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
