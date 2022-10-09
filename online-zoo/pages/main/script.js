@@ -187,13 +187,24 @@ function getRandomIntInclusive(min, max) {
 let randomNumArr = [];
 function fillArr (start, end, total) {
   while (randomNumArr.length < total) {
-    arrElem = getRandomIntInclusive(start, end);
+    let randomEl = getRandomIntInclusive(start, end);
+    arrElem = randomEl;
     if (!randomNumArr.includes(arrElem)) {
       randomNumArr.push(arrElem);
     }
   }
   return randomNumArr;
 }
+
+// function fillArr (start, end, total) {
+//   while (randomNumArr.length < total) {
+//     arrElem = getRandomIntInclusive(start, end);
+//     if (!randomNumArr.includes(arrElem)) {
+//       randomNumArr.push(arrElem);
+//     }
+//   }
+//   return randomNumArr;
+// }
 
 // if (window.innerWidth > 980) {
 //   window.addEventListener('load', fillArr(0, 14, 6));
@@ -245,16 +256,11 @@ const moveRight = () => {
   rightArrow.removeEventListener('click', moveRight);
 }
 
-leftArrow.addEventListener('click', moveLeft, getRandomIntInclusive, fillArr(0, 14, 6));
-rightArrow.addEventListener('click', moveRight);
+leftArrow.addEventListener('click', moveLeft, fillArr(0, 14, 6));
+rightArrow.addEventListener('click', moveRight, fillArr(0, 14, 6));
 
 carousel.addEventListener('animationend', (animationEvent) => {
   console.log(animationEvent);
-
-  // if (window.innerWidth > 980) {
-  //   fillArr(0, 14, 6);
-  //   console.log(randomNumArr);
-  // }
 
   if (animationEvent.animationName === 'move-left') {
     carousel.classList.remove('transition-left');
@@ -263,22 +269,22 @@ carousel.addEventListener('animationend', (animationEvent) => {
 
     cardsLeft.innerHTML = '';
 
-    const cardAdded = createCardTemplate(randomNumArr[0]);
+    let cardAdded = createCardTemplate(randomNumArr[0]);
     cardsLeft.appendChild(cardAdded);
 
-    const cardAdded2 = createCardTemplate(randomNumArr[1]);
+    let cardAdded2 = createCardTemplate(randomNumArr[1]);
     cardsLeft.appendChild(cardAdded2);
 
-    const cardAdded3 = createCardTemplate(randomNumArr[2]);
+    let cardAdded3 = createCardTemplate(randomNumArr[2]);
     cardsLeft.appendChild(cardAdded3);
 
-    const cardAdded4 = createCardTemplate(randomNumArr[3]);
+    let cardAdded4 = createCardTemplate(randomNumArr[3]);
     cardsLeft.appendChild(cardAdded4);
 
-    const cardAdded5 = createCardTemplate(randomNumArr[4]);
+    let cardAdded5 = createCardTemplate(randomNumArr[4]);
     cardsLeft.appendChild(cardAdded5);
 
-    const cardAdded6 = createCardTemplate(randomNumArr[5]);
+    let cardAdded6 = createCardTemplate(randomNumArr[5]);
     cardsLeft.appendChild(cardAdded6);
 
     // for (let i = 0; i < randomNumArr; i++) {
@@ -301,12 +307,32 @@ carousel.addEventListener('animationend', (animationEvent) => {
     const rightCards = cardsRight.innerHTML;//new
     document.querySelector('.cards-active').innerHTML = rightCards;//new
 
+    cardsRight.innerHTML = '';
+
+    const cardAdded = createCardTemplate(randomNumArr[0]);
+    cardsRight.appendChild(cardAdded);
+
+    const cardAdded2 = createCardTemplate(randomNumArr[1]);
+    cardsRight.appendChild(cardAdded2);
+
+    const cardAdded3 = createCardTemplate(randomNumArr[2]);
+    cardsRight.appendChild(cardAdded3);
+
+    const cardAdded4 = createCardTemplate(randomNumArr[3]);
+    cardsRight.appendChild(cardAdded4);
+
+    const cardAdded5 = createCardTemplate(randomNumArr[4]);
+    cardsRight.appendChild(cardAdded5);
+
+    const cardAdded6 = createCardTemplate(randomNumArr[5]);
+    cardsRight.appendChild(cardAdded6);
+
     // const card1 = createCardTemplate();//new
     // card1.innerHTML = Math.floor(Math.random()*8);//new
 
     // cardsRight.innerHTML = '';//new
     // cardsRight.appendChild(card1);//new
   }
-  leftArrow.addEventListener('click', moveLeft);
-  rightArrow.addEventListener('click', moveRight);
+  leftArrow.addEventListener('click', moveLeft, fillArr(0, 14, 6));
+  rightArrow.addEventListener('click', moveRight, fillArr(0, 14, 6));
 });
