@@ -1,3 +1,5 @@
+console.log('Выполнены следующие части задания:\n\n1) Landing & Donate - бургер меню для ширины экрана 640px и менее (+10)\n2) Landing - Карусель в блоке Pets для ширины экрана 1600px, 1000px и 640px (+30)\n3) Попап при нажатии на отзыв в блоке Testimonials для ширины экрана 640px и 320px (+10)\n\nP.s. При изменении ширины экрана нужно перезагрузить страницу ');
+
 //burger menu
 const navigation = document.querySelector('.navigation');
 const burgerMenu = document.querySelector('.burger');
@@ -54,12 +56,10 @@ function fillReview(index) {
   reviewAvatar.setAttribute('src', `../../assets/images/author-avatar${index + 1}.svg`);
   reviewTexts[0].innerHTML = textsArr[index*2].textContent;
   reviewTexts[1].innerHTML = textsArr[index*2 + 1].textContent;
-  console.log(namesArr);
-  console.log(reviewName);
   showHideReview();
 }
 
-if (window.innerWidth < 980) {
+if (window.innerWidth <= 980) {
   reviewsArr.forEach((reviewItem, index) => {
     reviewItem.addEventListener('click', (event) => {
       fillReview(index);
@@ -67,9 +67,11 @@ if (window.innerWidth < 980) {
   });
 }
 
-reviewWrapper.onclick = function () {
+if (window.innerWidth <= 980) {
+  reviewWrapper.onclick = function () {
   reviewPopup.classList.toggle('review-visible');
   reviewWrapper.classList.toggle('review-wrapper-active');
+  }
 }
 
 //pets carousel
@@ -221,8 +223,8 @@ const createCardTemplate = (animalNum) => {
 const leftArrow = document.querySelector('.arrow-left');
 const rightArrow = document.querySelector('.arrow-right');
 const carousel = document.querySelector('.carousel');
-const cardsLeft = document.querySelector('.cards-left');//new
-const cardsRight = document.querySelector('.cards-right');//new
+const cardsLeft = document.querySelector('.cards-left');
+const cardsRight = document.querySelector('.cards-right');
 const leftArrowSmall = document.querySelector('.arrow-left-small');
 const rightArrowSmall = document.querySelector('.arrow-right-small');
 
@@ -316,19 +318,11 @@ carousel.addEventListener('animationend', (animationEvent) => {
       let cardAdded6 = createCardTemplate(randomNumArr[5]);
       cardsLeft.appendChild(cardAdded6);
     }
-
-
-    // const leftCards = cardsLeft.innerHTML;
-    // document.querySelector('.cards-active').innerHTML = leftCards;
-
-    // cardsLeft.innerHTML = '';//new
-    // cardsLeft.appendChild(card);//new
-
     clearArr();
   } else {
     carousel.classList.remove('transition-right');
-    const rightCards = cardsRight.innerHTML;//new
-    document.querySelector('.cards-active').innerHTML = rightCards;//new
+    const rightCards = cardsRight.innerHTML;
+    document.querySelector('.cards-active').innerHTML = rightCards;
 
     cardsRight.innerHTML = '';
 
@@ -351,11 +345,6 @@ carousel.addEventListener('animationend', (animationEvent) => {
       const cardAdded6 = createCardTemplate(randomNumArr[5]);
       cardsRight.appendChild(cardAdded6);
     }
-    // const card1 = createCardTemplate();//new
-    // card1.innerHTML = Math.floor(Math.random()*8);//new
-
-    // cardsRight.innerHTML = '';//new
-    // cardsRight.appendChild(card1);//new
     clearArr();
   }
   leftArrow.addEventListener('click', moveLeft);
