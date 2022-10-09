@@ -1201,11 +1201,43 @@ a {
     background-image: url(../../assets/images/plant-strelitzia-pets-small-desktop.png);
   }
 
+  .carousel-wrapper {
+    overflow: hidden;
+    padding-left: 1.5px;
+    padding-top: 1px;
+  }
+
+  .carousel {
+    left: -942px;
+    gap: 3px;
+  }
+
+  @keyframes move-left {
+    from {left: -938px}
+    to {left: 0px}
+  }
+
+  .transition-left {
+    animation-name: move-left;
+    animation-duration: 5s;
+  }
+
+  @keyframes move-right {
+    from {left: -938px}
+    to {left: -1876px}
+  }
+
+  .transition-right {
+    animation-name: move-right;
+    animation-duration: 5s;
+  }
+
   .slider-controls {
     top: 40%;
     left: 0;
     transform: translateX(50%);
     transform: translateY(-60%);
+    z-index: 2;
     margin: auto auto;
     width: 100%;
   }

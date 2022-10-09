@@ -171,11 +171,11 @@ console.log(animals);
 console.log(animals[13].image);
 
 
-const leftArrow = document.querySelector('.arrow-left');
-const rightArrow = document.querySelector('.arrow-right');
-const carousel = document.querySelector('.carousel');
-const cardsLeft = document.querySelector('.cards-left');//new
-const cardsRight = document.querySelector('.cards-right');//new
+// const leftArrow = document.querySelector('.arrow-left');
+// const rightArrow = document.querySelector('.arrow-right');
+// const carousel = document.querySelector('.carousel');
+// const cardsLeft = document.querySelector('.cards-left');//new
+// const cardsRight = document.querySelector('.cards-right');//new
 
 
 function getRandomIntInclusive(min, max) {
@@ -244,20 +244,34 @@ const createCardTemplate = (animalNum) => {
 //   createCardTemplate(num);
 // });
 
+const leftArrow = document.querySelector('.arrow-left');
+const rightArrow = document.querySelector('.arrow-right');
+const carousel = document.querySelector('.carousel');
+const cardsLeft = document.querySelector('.cards-left');//new
+const cardsRight = document.querySelector('.cards-right');//new
+const leftArrowSmall = document.querySelector('.arrow-left-small');
+const rightArrowSmall = document.querySelector('.arrow-right-small');
+
 const moveLeft = () => {
   carousel.classList.add('transition-left');
   leftArrow.removeEventListener('click', moveLeft);
   rightArrow.removeEventListener('click', moveRight);
+  leftArrowSmall.removeEventListener('click', moveLeft);
+  rightArrowSmall.removeEventListener('click', moveRight);
 }
 
 const moveRight = () => {
   carousel.classList.add('transition-right');
   leftArrow.removeEventListener('click', moveLeft);
   rightArrow.removeEventListener('click', moveRight);
+  leftArrowSmall.removeEventListener('click', moveLeft);
+  rightArrowSmall.removeEventListener('click', moveRight);
 }
 
 leftArrow.addEventListener('click', moveLeft, fillArr(0, 14, 6));
 rightArrow.addEventListener('click', moveRight, fillArr(0, 14, 6));
+leftArrowSmall.addEventListener('click', moveLeft, fillArr(0, 14, 6));
+rightArrowSmall.addEventListener('click', moveRight, fillArr(0, 14, 6));
 
 carousel.addEventListener('animationend', (animationEvent) => {
   console.log(animationEvent);
@@ -335,4 +349,6 @@ carousel.addEventListener('animationend', (animationEvent) => {
   }
   leftArrow.addEventListener('click', moveLeft, fillArr(0, 14, 6));
   rightArrow.addEventListener('click', moveRight, fillArr(0, 14, 6));
+  leftArrowSmall.addEventListener('click', moveLeft, fillArr(0, 14, 6));
+  rightArrowSmall.addEventListener('click', moveRight, fillArr(0, 14, 6));
 });
