@@ -417,6 +417,39 @@ a {
   border-radius: 50%;
 }
 
+.carousel-wrapper {
+  overflow: hidden;
+  padding-left: 3px;
+  padding-top: 3px;
+}
+
+.carousel {
+  position: relative;
+  left: -1162px;
+  display: flex;
+  gap: 4px;
+}
+
+@keyframes move-left {
+  from {left: -1162px}
+  to {left: 0px}
+}
+
+.transition-left {
+  animation-name: move-left;
+  animation-duration: 5s;
+}
+
+@keyframes move-right {
+  from {left: -1162px}
+  to {left: -2324px}
+}
+
+.transition-right {
+  animation-name: move-right;
+  animation-duration: 5s;
+}
+
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 366px);
