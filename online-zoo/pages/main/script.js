@@ -168,15 +168,6 @@ const json = [{
 
 const animals = JSON.parse(JSON.stringify(json));
 console.log(animals);
-console.log(animals[13].image);
-
-
-// const leftArrow = document.querySelector('.arrow-left');
-// const rightArrow = document.querySelector('.arrow-right');
-// const carousel = document.querySelector('.carousel');
-// const cardsLeft = document.querySelector('.cards-left');//new
-// const cardsRight = document.querySelector('.cards-right');//new
-
 
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
@@ -196,21 +187,9 @@ function fillArr (start, end, total) {
   return randomNumArr;
 }
 
-// function fillArr (start, end, total) {
-//   while (randomNumArr.length < total) {
-//     arrElem = getRandomIntInclusive(start, end);
-//     if (!randomNumArr.includes(arrElem)) {
-//       randomNumArr.push(arrElem);
-//     }
-//   }
-//   return randomNumArr;
-// }
-
-// if (window.innerWidth > 980) {
-//   window.addEventListener('load', fillArr(0, 14, 6));
-//   console.log(randomNumArr);
-//   console.log(animals);
-// }
+function clearArr () {
+  randomNumArr.length = 0;
+}
 
 const createCardTemplate = (animalNum) => {
 
@@ -238,11 +217,7 @@ const createCardTemplate = (animalNum) => {
   petDesc.textContent = animals[animalNum].location;
   figcaption.appendChild(petDesc);
   return card;
-}//new
-
-// randomNumArr.forEach(num => {
-//   createCardTemplate(num);
-// });
+}
 
 const leftArrow = document.querySelector('.arrow-left');
 const rightArrow = document.querySelector('.arrow-right');
@@ -252,12 +227,41 @@ const cardsRight = document.querySelector('.cards-right');//new
 const leftArrowSmall = document.querySelector('.arrow-left-small');
 const rightArrowSmall = document.querySelector('.arrow-right-small');
 
+function createLeftElements(number) {
+  fillArr(0, 14, number);
+  cardsLeft.innerHTML = '';
+
+  for (let i = 0; i < number; i++) {
+    let cardAdded = createCardTemplate(randomNumArr[i]);
+    cardsLeft.appendChild(cardAdded);
+  }
+
+  clearArr();
+}
+
+function createRightElements(number) {
+  fillArr(0, 14, number);
+  cardsRight.innerHTML = '';
+
+  for (let i = 0; i < number; i++) {
+    let cardAdded = createCardTemplate(randomNumArr[i]);
+    cardsRight.appendChild(cardAdded);
+  }
+
+  clearArr();
+}
+
+window.addEventListener('load', createLeftElements(6));
+window.addEventListener('load', createRightElements(6));
+
 const moveLeft = () => {
   carousel.classList.add('transition-left');
   leftArrow.removeEventListener('click', moveLeft);
   rightArrow.removeEventListener('click', moveRight);
   leftArrowSmall.removeEventListener('click', moveLeft);
   rightArrowSmall.removeEventListener('click', moveRight);
+  fillArr(0, 14, 6);
+  console.log(`Номера животных - ${randomNumArr}`);
 }
 
 const moveRight = () => {
@@ -266,20 +270,21 @@ const moveRight = () => {
   rightArrow.removeEventListener('click', moveRight);
   leftArrowSmall.removeEventListener('click', moveLeft);
   rightArrowSmall.removeEventListener('click', moveRight);
+  fillArr(0, 14, 6);
+  console.log(`Номера животных - ${randomNumArr}`);
 }
 
-leftArrow.addEventListener('click', moveLeft, fillArr(0, 14, 6));
-rightArrow.addEventListener('click', moveRight, fillArr(0, 14, 6));
-leftArrowSmall.addEventListener('click', moveLeft, fillArr(0, 14, 6));
-rightArrowSmall.addEventListener('click', moveRight, fillArr(0, 14, 6));
+leftArrow.addEventListener('click', moveLeft);
+rightArrow.addEventListener('click', moveRight);
+leftArrowSmall.addEventListener('click', moveLeft);
+rightArrowSmall.addEventListener('click', moveRight);
 
 carousel.addEventListener('animationend', (animationEvent) => {
-  console.log(animationEvent);
 
   if (animationEvent.animationName === 'move-left') {
     carousel.classList.remove('transition-left');
-    const leftCards = cardsLeft.innerHTML;//new
-    document.querySelector('.cards-active').innerHTML = leftCards;//new
+    const leftCards = cardsLeft.innerHTML;
+    document.querySelector('.cards-active').innerHTML = leftCards;
 
     cardsLeft.innerHTML = '';
 
@@ -301,21 +306,13 @@ carousel.addEventListener('animationend', (animationEvent) => {
     let cardAdded6 = createCardTemplate(randomNumArr[5]);
     cardsLeft.appendChild(cardAdded6);
 
-    // for (let i = 0; i < randomNumArr; i++) {
-    //   const cardAdded = createCardTemplate(randomNumArr[i]);
-    //   cardsLeft.appendChild(cardAdded);
-    // }
-
-    // randomNumArr.forEach(num => {
-    //   const cardAdded = createCardTemplate(num);
-    //   cardsLeft.innerHTML = '';
-    //   cardsLeft.appendChild(cardAdded);//new
-    // });
-    // const card1 = createCardTemplate();//new
-    // card1.innerHTML = Math.floor(Math.random()*8);//new
+    // const leftCards = cardsLeft.innerHTML;
+    // document.querySelector('.cards-active').innerHTML = leftCards;
 
     // cardsLeft.innerHTML = '';//new
     // cardsLeft.appendChild(card);//new
+
+    clearArr();
   } else {
     carousel.classList.remove('transition-right');
     const rightCards = cardsRight.innerHTML;//new
@@ -346,9 +343,10 @@ carousel.addEventListener('animationend', (animationEvent) => {
 
     // cardsRight.innerHTML = '';//new
     // cardsRight.appendChild(card1);//new
+    clearArr();
   }
-  leftArrow.addEventListener('click', moveLeft, fillArr(0, 14, 6));
-  rightArrow.addEventListener('click', moveRight, fillArr(0, 14, 6));
-  leftArrowSmall.addEventListener('click', moveLeft, fillArr(0, 14, 6));
-  rightArrowSmall.addEventListener('click', moveRight, fillArr(0, 14, 6));
+  leftArrow.addEventListener('click', moveLeft);
+  rightArrow.addEventListener('click', moveRight);
+  leftArrowSmall.addEventListener('click', moveLeft);
+  rightArrowSmall.addEventListener('click', moveRight);
 });

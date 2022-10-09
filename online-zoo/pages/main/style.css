@@ -1624,6 +1624,31 @@ a {
     background-image: url(../../assets/images/plant-strelitzia-pets-tablet.png);
   }
 
+  .carousel {
+    left: -200px;
+    gap: 3px;
+  }
+
+  @keyframes move-left {
+    from {left: -938px}
+    to {left: 0px}
+  }
+
+  .transition-left {
+    animation-name: move-left;
+    animation-duration: 5s;
+  }
+
+  @keyframes move-right {
+    from {left: -938px}
+    to {left: -1876px}
+  }
+
+  .transition-right {
+    animation-name: move-right;
+    animation-duration: 5s;
+  }
+
   .slider-controls {
     top: 41.5%;
     /* left: 37.5%; */
@@ -1644,7 +1669,7 @@ a {
   .cards {
     grid-template-columns: repeat(4, 285px);
     grid-template-rows: 332px 332px;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     column-gap: 29px;
     row-gap: 92px;
     margin-bottom: 58px;
@@ -1657,6 +1682,11 @@ a {
     height: 330px;
     border-radius: 3.89671px;
   }
+
+  /* .card:last-child,
+  .card:nth-child(n-1) {
+    display: none;
+  } */
 
   .card::after {
     width: 285px;
