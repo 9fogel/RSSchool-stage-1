@@ -60,7 +60,6 @@ function fillReview(index) {
 }
 
 if (window.innerWidth < 980) {
-  console.log(reviewsArr);
   reviewsArr.forEach((reviewItem, index) => {
     reviewItem.addEventListener('click', (event) => {
       fillReview(index);
@@ -230,29 +229,31 @@ const rightArrowSmall = document.querySelector('.arrow-right-small');
 function createLeftElements(number) {
   fillArr(0, 14, number);
   cardsLeft.innerHTML = '';
-
   for (let i = 0; i < number; i++) {
     let cardAdded = createCardTemplate(randomNumArr[i]);
     cardsLeft.appendChild(cardAdded);
   }
-
   clearArr();
 }
 
 function createRightElements(number) {
   fillArr(0, 14, number);
   cardsRight.innerHTML = '';
-
   for (let i = 0; i < number; i++) {
     let cardAdded = createCardTemplate(randomNumArr[i]);
     cardsRight.appendChild(cardAdded);
   }
-
   clearArr();
 }
 
-window.addEventListener('load', createLeftElements(6));
-window.addEventListener('load', createRightElements(6));
+if (window.innerWidth > 980) {
+  window.addEventListener('load', createLeftElements(6));
+  window.addEventListener('load', createRightElements(6));
+} else if (window.innerWidth <= 980 && window.innerWidth > 600) {
+  window.addEventListener('load', createLeftElements(4));
+  window.addEventListener('load', createRightElements(4));
+}
+
 
 const moveLeft = () => {
   carousel.classList.add('transition-left');
@@ -260,7 +261,11 @@ const moveLeft = () => {
   rightArrow.removeEventListener('click', moveRight);
   leftArrowSmall.removeEventListener('click', moveLeft);
   rightArrowSmall.removeEventListener('click', moveRight);
-  fillArr(0, 14, 6);
+  if (window.innerWidth > 980) {
+    fillArr(0, 14, 6);
+  } else if (window.innerWidth <= 980 && window.innerWidth > 600) {
+    fillArr(0, 14, 4);
+  }
   console.log(`Номера животных - ${randomNumArr}`);
 }
 
@@ -270,7 +275,11 @@ const moveRight = () => {
   rightArrow.removeEventListener('click', moveRight);
   leftArrowSmall.removeEventListener('click', moveLeft);
   rightArrowSmall.removeEventListener('click', moveRight);
-  fillArr(0, 14, 6);
+  if (window.innerWidth > 980) {
+    fillArr(0, 14, 6);
+  } else if (window.innerWidth <= 980 && window.innerWidth > 600) {
+    fillArr(0, 14, 4);
+  }
   console.log(`Номера животных - ${randomNumArr}`);
 }
 
@@ -300,11 +309,14 @@ carousel.addEventListener('animationend', (animationEvent) => {
     let cardAdded4 = createCardTemplate(randomNumArr[3]);
     cardsLeft.appendChild(cardAdded4);
 
-    let cardAdded5 = createCardTemplate(randomNumArr[4]);
-    cardsLeft.appendChild(cardAdded5);
+    if (window.innerWidth > 980) {
+      let cardAdded5 = createCardTemplate(randomNumArr[4]);
+      cardsLeft.appendChild(cardAdded5);
 
-    let cardAdded6 = createCardTemplate(randomNumArr[5]);
-    cardsLeft.appendChild(cardAdded6);
+      let cardAdded6 = createCardTemplate(randomNumArr[5]);
+      cardsLeft.appendChild(cardAdded6);
+    }
+
 
     // const leftCards = cardsLeft.innerHTML;
     // document.querySelector('.cards-active').innerHTML = leftCards;
@@ -332,12 +344,13 @@ carousel.addEventListener('animationend', (animationEvent) => {
     const cardAdded4 = createCardTemplate(randomNumArr[3]);
     cardsRight.appendChild(cardAdded4);
 
-    const cardAdded5 = createCardTemplate(randomNumArr[4]);
-    cardsRight.appendChild(cardAdded5);
+    if (window.innerWidth > 980) {
+      const cardAdded5 = createCardTemplate(randomNumArr[4]);
+      cardsRight.appendChild(cardAdded5);
 
-    const cardAdded6 = createCardTemplate(randomNumArr[5]);
-    cardsRight.appendChild(cardAdded6);
-
+      const cardAdded6 = createCardTemplate(randomNumArr[5]);
+      cardsRight.appendChild(cardAdded6);
+    }
     // const card1 = createCardTemplate();//new
     // card1.innerHTML = Math.floor(Math.random()*8);//new
 
