@@ -368,6 +368,17 @@ a {
   border-radius: 50%;
 }
 
+.active-dot::after {
+  top: -6.5px;
+  left: -6.5px;
+  z-index: 2;
+  border: 2px solid #FE9013;
+  outline: 2px solid transparent;
+  outline-offset: 6px;
+  outline-color: #FE9013;
+  -moz-outline-radius: 50px
+}
+
 .progress-bar-dot-item:hover::after {
   cursor: pointer;
   top: -6.5px;
@@ -416,6 +427,11 @@ a {
   text-align: left;
 }
 
+.amount-item:hover {
+  cursor: pointer;
+  color: #FE9013;
+}
+
 .amount-item:nth-child(n+3) {
   padding-left: 4px;
 }
@@ -424,7 +440,7 @@ a {
   padding-left: 8px;
 }
 
-.amount-item:nth-child(3) {
+.active-amount {
   color: #FE9013;
 }
 
@@ -439,6 +455,7 @@ a {
   width: 268px;
   height: 54px;
   line-height: 140%;
+  color: #929699;
   background-color: transparent;
   background-image: url(../../assets/icons/dollar-icon.svg);
   background-position: 97% 50%;
@@ -448,6 +465,7 @@ a {
 }
 
 .another-amount:focus {
+  color: #4B9200;
   background-image: url(../../assets/icons/dollar-icon-active.svg);
   border-color: #4B9200;
   outline: 0;
@@ -1359,6 +1377,16 @@ label:hover {
   outline-offset: 3px;
   outline-color: #FE9013;
   -moz-outline-radius: 50px;
+  }
+
+  .active-dot::after {
+    top: -3.7px;
+   left: -4px;
+    border: 1px solid #FE9013;
+    outline: 1px solid transparent;
+    outline-offset: 3px;
+    outline-color: #FE9013;
+    -moz-outline-radius: 50px;
   }
 
   .progress-bar-dots-list {
