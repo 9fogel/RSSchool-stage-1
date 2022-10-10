@@ -81,12 +81,12 @@
             <h5 class="amount-title">Amount</h5>
             <div class="amout-progress-bar">
               <ul class="progress-bar-dots-list">
-                <li class="progress-bar-dot-item tablet-hidden"></li>
+                <li class="progress-bar-dot-item desktop"></li>
                 <li class="progress-bar-dot-item tablet-hidden"></li>
                 <li class="progress-bar-dot-item tablet-hidden"></li>
                 <li class="progress-bar-dot-item"></li>
                 <li class="progress-bar-dot-item"></li>
-                <li class="progress-bar-dot-item"></li>
+                <li class="progress-bar-dot-item active-dot"></li>
                 <li class="progress-bar-dot-item"></li>
                 <li class="progress-bar-dot-item"></li>
               </ul>
@@ -98,11 +98,11 @@
               <li class="amount-item tablet-hidden">$1000</li>
               <li class="amount-item">$500</li>
               <li class="amount-item">$250</li>
-              <li class="amount-item">$100</li>
+              <li class="amount-item active-amount">$100</li>
               <li class="amount-item">$50</li>
               <li class="amount-item">$25</li>
             </ol>
-            <input class="another-amount" type="number" placeholder="Another amount" name="another-amount" id="another-amount" onkeypress="this.value=this.value.substring(0,3);">
+            <input class="another-amount" type="number" placeholder="Another amount" name="another-amount" id="another-amount" value="100" onkeypress="this.value=this.value.substring(0,3);">
             <div class="radiobuttons">
               <div class="monthly-radio">
                 <input class="custom-radio" type="radio" name="period" id="monthly">
