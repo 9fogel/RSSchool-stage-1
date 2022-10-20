@@ -121,6 +121,19 @@ function clearArr () {
   randomNumArr.length = 0;
 }
 
+function whatSize() {
+  let size = 4;
+  inputs.forEach((input, index) => {
+    if(input.firstChild.checked) {
+      size = index + 3;
+    }
+  });
+  return size;
+}
+
 buttonShuf.addEventListener('click', () => {
-  console.log('I want to restart the game!');
+  clearCells();
+  let size = whatSize();
+  console.log(size);
+  drawCells(size);
 });
