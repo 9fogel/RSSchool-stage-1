@@ -43,6 +43,7 @@ function setDefaultSize () {
   let defaultId = document.querySelector('.size4').id
   let label = document.querySelector(`[for=${defaultId}]`).textContent;
   frameSize.textContent = frameSize.textContent + ' ' + label;
+  clearCells();
   drawCells(4);
   return defaultSize;
 }
@@ -65,16 +66,30 @@ function setSize(index) {
   return size;
 }
 
+// function drawCells(size) {
+//   let cellsNumber = size * size;
+//   for (let i = 0; i < cellsNumber; i++) {
+//     let cell = createEl('div', 'cell', `cell${i+1}`, playField, `${i+1}` );
+//     cell.style.width = `${playField.offsetWidth/size - 5}px`;
+//     cell.style.height = `${playField.offsetWidth/size - 5}px`;
+//   }
+//   let emptyCell = document.querySelectorAll('.cell')[cellsNumber-1]
+//   emptyCell.classList.add('empty-cell');
+// }
+
 function drawCells(size) {
   let cellsNumber = size * size;
-  for (let i = 0; i < cellsNumber; i++) {
-    let cell = createEl('div', 'cell', `cell${i+1}`, playField, `${i+1}` );
+  let randomArr = fillArr(1, cellsNumber, cellsNumber)
+  for (let i = 0; i < randomArr.length; i++) {
+    let cell = createEl('div', 'cell', `cell${randomArr[i]}`, playField, `${randomArr[i]}` );
     cell.style.width = `${playField.offsetWidth/size - 5}px`;
     cell.style.height = `${playField.offsetWidth/size - 5}px`;
   }
-  let emptyCell = document.querySelectorAll('.cell')[cellsNumber-1]
+  let emptyCell = document.querySelector(`.cell${cellsNumber}`);
   emptyCell.classList.add('empty-cell');
+  clearArr ();
 }
+
 
 function clearCells() {
   let cells = document.querySelectorAll('.cell');
@@ -82,3 +97,30 @@ function clearCells() {
     cell.remove();
   })
 }
+
+//random
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
+}
+
+let randomNumArr = [];
+function fillArr (start, end, total) {
+  while (randomNumArr.length < total) {
+    let randomEl = getRandomIntInclusive(start, end);
+    arrElem = randomEl;
+    if (!randomNumArr.includes(arrElem)) {
+      randomNumArr.push(arrElem);
+    }
+  }
+  return randomNumArr;
+}
+
+function clearArr () {
+  randomNumArr.length = 0;
+}
+
+buttonShuf.addEventListener('click', () => {
+  console.log('I want to restart the game!');
+});
