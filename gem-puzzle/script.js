@@ -82,11 +82,31 @@ function drawCells(size) {
   let randomArr = fillArr(1, cellsNumber, cellsNumber)
   for (let i = 0; i < randomArr.length; i++) {
     let cell = createEl('div', 'cell', `cell${randomArr[i]}`, playField, `${randomArr[i]}` );
-    cell.style.width = `${playField.offsetWidth/size - 5}px`;
-    cell.style.height = `${playField.offsetWidth/size - 5}px`;
+    // cell.style.width = `${playField.offsetWidth/size - 5}px`;
+    // cell.style.height = `${playField.offsetWidth/size - 5}px`;
+    cell.style.width = `${playField.offsetWidth/size - (size - 1)}px`;
+    cell.style.height = `${playField.offsetWidth/size - (size - 1)}px`;
   }
   let emptyCell = document.querySelector(`.cell${cellsNumber}`);
   emptyCell.classList.add('empty-cell');
+  let emptyIndex = randomArr.indexOf(+emptyCell.textContent);
+  console.log(emptyIndex);
+  let allCells = playField.childNodes;
+  allCells.forEach((cell, index) => {
+    if ((emptyIndex + 1) % size === 0) {
+      if(index === emptyIndex - 1 || index === emptyIndex + size || index === emptyIndex - size) {
+        cell.classList.add('clickable');
+      }
+    } else if (emptyIndex % size === 0) {
+      if(index === emptyIndex + 1 || index === emptyIndex + size || index === emptyIndex - size) {
+        cell.classList.add('clickable');
+        }
+    } else {
+      if(index === emptyIndex - 1 || index === emptyIndex + 1 || index === emptyIndex + size || index === emptyIndex - size) {
+      cell.classList.add('clickable');
+      }
+    }
+  });
   clearArr ();
 }
 
@@ -137,3 +157,43 @@ buttonShuf.addEventListener('click', () => {
   console.log(size);
   drawCells(size);
 });
+
+const moveLeft = (event) => {
+  event.target.classList.add('transition-left');
+}
+
+const moveRight = () => {
+  cell.classList.add('transition-right');
+}
+
+const moveUp = () => {
+  cell.classList.add('transition-up');
+}
+
+const moveDown = () => {
+  cell.classList.add('transition-down');
+}
+
+playField.addEventListener('click', (event) => {
+  console.log(event.target);
+});
+
+function setClickableFields(size) {
+
+
+}
+
+
+// const moveLeft = () => {
+//   carousel.classList.add('transition-left');
+//   leftArrow.removeEventListener('click', moveLeft);
+//   rightArrow.removeEventListener('click', moveRight);
+//   leftArrowSmall.removeEventListener('click', moveLeft);
+//   rightArrowSmall.removeEventListener('click', moveRight);
+//   if (window.innerWidth > 980) {
+//     fillArr(0, 14, 6);
+//   } else if (window.innerWidth <= 980 && window.innerWidth > 600) {
+//     fillArr(0, 14, 4);
+//   }
+//   console.log(`Номера животных - ${randomNumArr}`);
+// }

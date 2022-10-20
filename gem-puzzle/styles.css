@@ -61,6 +61,7 @@ body {
 }
 
 .cell {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,9 +69,53 @@ body {
   border: 1px solid #000000;
 }
 
+@keyframes move-right4 {
+  from {left: 0px}
+  to {left: 150px}
+}
+
+.transition-right {
+  animation-name: move-right4;
+  animation-duration: 3s;
+}
+
+@keyframes move-left4 {
+  from {left: 0px}
+  to {left: -150px}
+}
+
+.transition-left {
+  animation-name: move-left4;
+  animation-duration: 3s;
+}
+
+@keyframes move-down4 {
+  from {top: 0px}
+  to {top: 150px}
+}
+
+.transition-down {
+  animation-name: move-down4;
+  animation-duration: 3s;
+}
+
+@keyframes move-up4 {
+  from {top: 0px}
+  to {top: -150px}
+}
+
+.transition-up {
+  animation-name: move-up4;
+  animation-duration: 3s;
+}
+
 .empty-cell {
   background-color: transparent;
   border: none;
+}
+
+.clickable {
+  background-color: yellow;
 }
 
 .footer {
@@ -119,6 +164,11 @@ body {
     width: 100%;
     height: 350px;
     background-color: pink;
+  }
+
+  .play-field {
+    width: 280px;
+    height: 280px;
   }
 
   .wrapper {
