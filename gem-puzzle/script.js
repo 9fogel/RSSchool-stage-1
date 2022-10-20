@@ -1,9 +1,4 @@
-// const header = document.createElement('header');
-// header.classList.add('header');
-// header.classList.add('container');
-// document.body.append(header);
-// console.log(header);
-
+//create Field
 function createEl (tag, class1, class2, parent, content = '',) {
   const elem = document.createElement(`${tag}`);
   elem.classList.add(`${class1}`);
@@ -24,12 +19,13 @@ let main = createEl ('main', 'main', 'container', document.body);
 let info = createEl ('div', 'info-wrapper', 'info', main);
 let moves = createEl ('div', 'info-moves', 'moves', info, 'Moves: ');
 let time = createEl ('div', 'info-time', 'time', info, 'Time: ');
+let playField = createEl ('div', 'play-field', 'play', main);
 
 let footer = createEl ('footer', 'footer', 'container', document.body);
 let frameSize = createEl ('div', 'frame-size-wrapper', 'wrapper', footer, 'Frame size:');
 let otherframes = createEl ('div', 'other-frames-wrapper', 'wrapper', footer, 'Other sizes:');
 
-
+//field size controls + default state
 for (let i = 0; i < 6; i++) {
   let inputWrapper = createEl ('div', `inputWrapper`, 'inputDiv', otherframes);
   let input = createEl ('input', `size${3+i}`, 'sizeInput', inputWrapper);
@@ -38,7 +34,6 @@ for (let i = 0; i < 6; i++) {
   input.value = 3+i;
   input.id = input.name + input.value;
   let label = createEl ('label', `label${3+i}`, 'label', inputWrapper, `${3+i}x${3+i}`);
-  // label.for = input.name + input.value;
   label.setAttribute('for', input.name + input.value)
 }
 
@@ -48,21 +43,42 @@ function setDefaultSize () {
   let defaultId = document.querySelector('.size4').id
   let label = document.querySelector(`[for=${defaultId}]`).textContent;
   frameSize.textContent = frameSize.textContent + ' ' + label;
+  drawCells(4);
   return defaultSize;
 }
 
 window.addEventListener('load', setDefaultSize);
 
+//change size and draw playField
 let inputs = document.querySelectorAll('.inputDiv');
 inputs.forEach((input, index) => {
   input.addEventListener('click', () => {
-    changeSize(index);
+    clearCells();
+    let size = setSize(index);
+    drawCells(size);
   })
-})
+});
 
-function changeSize(index) {
-  console.log(inputs);
-  console.log('change size');
+function setSize(index) {
   let size = index + 3;
   frameSize.textContent = 'Frame size: ' + `${size} x ${size}`;
+  return size;
+}
+
+function drawCells(size) {
+  let cellsNumber = size * size;
+  for (let i = 0; i < cellsNumber; i++) {
+    let cell = createEl('div', 'cell', `cell${i+1}`, playField, `${i+1}` );
+    cell.style.width = `${playField.offsetWidth/size - 5}px`;
+    cell.style.height = `${playField.offsetWidth/size - 5}px`;
+  }
+  let emptyCell = document.querySelectorAll('.cell')[cellsNumber-1]
+  emptyCell.classList.add('empty-cell');
+}
+
+function clearCells() {
+  let cells = document.querySelectorAll('.cell');
+  cells.forEach((cell) => {
+    cell.remove();
+  })
 }
