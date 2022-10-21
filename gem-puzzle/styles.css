@@ -73,6 +73,7 @@ body {
   border: 1px solid #000000;
 }
 
+/* size 3 */
 @keyframes move-right3 {
   from {left: 0px}
   to {left: 200px}
@@ -151,6 +152,165 @@ body {
 
 .transition-up4 {
   animation-name: move-up4;
+  animation-duration: 1s;
+}
+
+/* size 5 */
+@keyframes move-right5 {
+  from {left: 0px}
+  to {left: 120px}
+}
+
+.transition-right5 {
+  animation-name: move-right5;
+  animation-duration: 1s;
+}
+
+@keyframes move-left5 {
+  from {left: 0px}
+  to {left: -120px}
+}
+
+.transition-left5 {
+  animation-name: move-left5;
+  animation-duration: 1s;
+}
+
+@keyframes move-down5 {
+  from {top: 0px}
+  to {top: 120px}
+}
+
+.transition-down5 {
+  animation-name: move-down5;
+  animation-duration: 1s;
+}
+
+@keyframes move-up5 {
+  from {top: 0px}
+  to {top: -120px}
+}
+
+.transition-up5 {
+  animation-name: move-up5;
+  animation-duration: 1s;
+}
+
+/* size 6 */
+@keyframes move-right6 {
+  from {left: 0px}
+  to {left: 100px}
+}
+
+.transition-right6 {
+  animation-name: move-right6;
+  animation-duration: 1s;
+}
+
+@keyframes move-left6 {
+  from {left: 0px}
+  to {left: -100px}
+}
+
+.transition-left6 {
+  animation-name: move-left6;
+  animation-duration: 1s;
+}
+
+@keyframes move-down6 {
+  from {top: 0px}
+  to {top: 100px}
+}
+
+.transition-down6 {
+  animation-name: move-down6;
+  animation-duration: 1s;
+}
+
+@keyframes move-up6 {
+  from {top: 0px}
+  to {top: -100px}
+}
+
+.transition-up6 {
+  animation-name: move-up6;
+  animation-duration: 1s;
+}
+
+/* size 7 */
+@keyframes move-right7 {
+  from {left: 0px}
+  to {left: 84px}
+}
+
+.transition-right7 {
+  animation-name: move-right7;
+  animation-duration: 1s;
+}
+
+@keyframes move-left7 {
+  from {left: 0px}
+  to {left: -84px}
+}
+
+.transition-left7 {
+  animation-name: move-left7;
+  animation-duration: 1s;
+}
+
+@keyframes move-down7 {
+  from {top: 0px}
+  to {top: 84px}
+}
+
+.transition-down7 {
+  animation-name: move-down7;
+  animation-duration: 1s;
+}
+
+@keyframes move-up7 {
+  from {top: 0px}
+  to {top: -84px}
+}
+
+/* size 8 */
+@keyframes move-right8 {
+  from {left: 0px}
+  to {left: 75px}
+}
+
+.transition-right8 {
+  animation-name: move-right8;
+  animation-duration: 1s;
+}
+
+@keyframes move-left8 {
+  from {left: 0px}
+  to {left: -75px}
+}
+
+.transition-left8 {
+  animation-name: move-left8;
+  animation-duration: 1s;
+}
+
+@keyframes move-down8 {
+  from {top: 0px}
+  to {top: 75px}
+}
+
+.transition-down8 {
+  animation-name: move-down8;
+  animation-duration: 1s;
+}
+
+@keyframes move-up8 {
+  from {top: 0px}
+  to {top: -75px}
+}
+
+.transition-up8 {
+  animation-name: move-up8;
   animation-duration: 1s;
 }
 

@@ -168,6 +168,13 @@ buttonShuf.addEventListener('click', () => {
   moves.textContent = 'Moves: ';
 });
 
+//moves
+let counter = 0;
+function countMoves() {
+  counter++;
+  moves.textContent = `Moves: ${counter}`
+}
+
 const moveCell = (event) => {
   playField.removeEventListener('click', moveCell);
   let cell = event.target;
@@ -193,12 +200,9 @@ const moveCell = (event) => {
   }
 }
 
-let counter = 0;
-function countMoves() {
-  counter++;
-  moves.textContent = `Moves: ${counter}`
-}
 
+
+//move by clicking
 playField.addEventListener('click', moveCell);
 
 playField.addEventListener('animationend', (animationEvent) => {
