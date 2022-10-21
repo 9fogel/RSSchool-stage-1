@@ -95,6 +95,23 @@ function drawCells(size) {
   clearArr ();
 }
 
+//resize window with the same field/game without reload
+window.addEventListener('resize', () => {
+  let size = whatSize();
+  if (window.innerWidth > 768) {
+    allCells.forEach((cell) => {
+    cell.style.width = `${playField.offsetWidth/size - (size - 1)}px`;
+    cell.style.height = `${playField.offsetWidth/size - (size - 1)}px`;
+    });
+  }
+  if (window.innerWidth <= 768) {
+    allCells.forEach((cell) => {
+      cell.style.width = `${playField.offsetWidth/size - size/2}px`;
+      cell.style.height = `${playField.offsetWidth/size - size/2}px`;
+    });
+  }
+});
+
 function clearCells() {
   let cells = document.querySelectorAll('.cell');
   cells.forEach((cell) => {
