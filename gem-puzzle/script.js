@@ -13,14 +13,17 @@ let buttonShuf = createEl ('button', 'button', 'shuffle-btn', header, 'Shuffle a
 let buttonStop = createEl ('button', 'button', 'stop-btn', header, 'Stop');
 let buttonSave = createEl ('button', 'button', 'save-btn', header, 'Save');
 let buttonResults = createEl ('button', 'button', 'results-btn', header, 'Results');
+let buttonMute = createEl ('button', 'button', 'mute-btn', header, 'Sound: ON ');
 
 
 let main = createEl ('main', 'main', 'container', document.body);
 let info = createEl ('div', 'info-wrapper', 'info', main);
 let moves = createEl ('div', 'info-moves', 'moves', info, 'Moves: 0');
 let time = createEl ('div', 'info-time', 'time', info, 'Time: 00:00');
-let playField = createEl ('div', 'play-field', 'play', main);
 
+const audio = new Audio('cell-move-sound.mp3');
+
+let playField = createEl ('div', 'play-field', 'play', main);
 let allCells = playField.childNodes;
 let emptyIndex;
 
@@ -190,6 +193,18 @@ buttonShuf.addEventListener('click', () => {
   timeInSec = 0;
 });
 
+buttonMute.addEventListener('click', () => {
+  if (buttonMute.classList.contains('no-sound')) {
+    buttonMute.textContent = 'Sound: ON ';
+    buttonMute.classList.remove('no-sound');
+  } else {
+    buttonMute.textContent = 'Sound: OFF';
+    buttonMute.classList.add('no-sound');
+    audio.pause();
+  }
+
+});
+
 //moves count
 let counter = 0;
 function countMoves() {
@@ -230,15 +245,27 @@ const moveCell = (event) => {
 
   if (cellIndex === emptyIndex - size) {
     cell.classList.add(`transition-down${size}`);
+    if (!buttonMute.classList.contains('no-sound')) {
+      audio.play();
+    }
   }
   if (cellIndex === emptyIndex + size) {
     cell.classList.add(`transition-up${size}`);
+    if (!buttonMute.classList.contains('no-sound')) {
+      audio.play();
+    }
   }
   if (cellIndex === emptyIndex + 1) {
     cell.classList.add(`transition-left${size}`);
+    if (!buttonMute.classList.contains('no-sound')) {
+      audio.play();
+    }
   }
   if (cellIndex === emptyIndex - 1) {
     cell.classList.add(`transition-right${size}`);
+    if (!buttonMute.classList.contains('no-sound')) {
+      audio.play();
+    }
   }
   if(!cell.classList.contains('clickable')) {
     playField.addEventListener('click', moveCell);
