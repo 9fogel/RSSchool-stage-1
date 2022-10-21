@@ -17,8 +17,8 @@ let buttonResults = createEl ('button', 'button', 'results-btn', header, 'Result
 
 let main = createEl ('main', 'main', 'container', document.body);
 let info = createEl ('div', 'info-wrapper', 'info', main);
-let moves = createEl ('div', 'info-moves', 'moves', info, 'Moves: ');
-let time = createEl ('div', 'info-time', 'time', info, 'Time: ');
+let moves = createEl ('div', 'info-moves', 'moves', info, 'Moves: 0');
+let time = createEl ('div', 'info-time', 'time', info, 'Time: 00:00');
 let playField = createEl ('div', 'play-field', 'play', main);
 
 let allCells = playField.childNodes;
@@ -61,7 +61,8 @@ inputs.forEach((input, index) => {
     let size = setSize(index);
     drawCells(size);
     counter = 0;
-    moves.textContent = 'Moves: ';
+    moves.textContent = 'Moves: 0';
+    timeInSec = 0;
   })
 });
 
@@ -76,8 +77,6 @@ function drawCells(size) {
   let randomArr = fillArr(1, cellsNumber, cellsNumber)
   for (let i = 0; i < randomArr.length; i++) {
     let cell = createEl('div', 'cell', `cell${randomArr[i]}`, playField, `${randomArr[i]}` );
-    // cell.style.width = `${playField.offsetWidth/size - 5}px`;
-    // cell.style.height = `${playField.offsetWidth/size - 5}px`;
     cell.style.width = `${playField.offsetWidth/size - (size - 1)}px`;
     cell.style.height = `${playField.offsetWidth/size - (size - 1)}px`;
     if (window.innerWidth <= 768) {
@@ -169,7 +168,9 @@ buttonShuf.addEventListener('click', () => {
   console.log(size);
   drawCells(size);
   counter = 0;
-  moves.textContent = 'Moves: ';
+  moves.textContent = 'Moves: 0';
+  // clearInterval(timer);
+  timeInSec = 0;
 });
 
 //moves
@@ -179,8 +180,41 @@ function countMoves() {
   moves.textContent = `Moves: ${counter}`
 }
 
+//timer
+let timer;
+let timeInSec = 1;
+timer = function startTime() {
+  setInterval(() => {
+    let min = 0;
+    let sec;
+    if (timeInSec > 59) {
+      min = Math.floor(timeInSec / 60);
+      sec = timeInSec % 60;
+    } else {
+      sec = timeInSec;
+    }
+    timeInSec++;
+    time.textContent = `Time: ${String(min).padStart(2, 0)}:${String(sec).padStart(2, 0)}`
+  }, 1000);
+}
+// timer = setInterval(() => {
+//   let min = 0;
+//   let sec;
+//   if (timeInSec > 59) {
+//     min = Math.floor(timeInSec / 60);
+//     sec = timeInSec % 60;
+//   } else {
+//     sec = timeInSec;
+//   }
+//   timeInSec++;
+//   time.textContent = `Time: ${String(min).padStart(2, 0)}:${String(sec).padStart(2, 0)}`
+// }, 1000);
+
+
+//move by clicking
 const moveCell = (event) => {
   playField.removeEventListener('click', moveCell);
+  playField.removeEventListener('click', timer);
   let cell = event.target;
   let cellArr = [];
   allCells.forEach((cell, index) => {
@@ -204,9 +238,7 @@ const moveCell = (event) => {
   }
 }
 
-
-
-//move by clicking
+playField.addEventListener('click', timer);
 playField.addEventListener('click', moveCell);
 
 playField.addEventListener('animationend', (animationEvent) => {
