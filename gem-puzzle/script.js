@@ -21,6 +21,9 @@ let moves = createEl ('div', 'info-moves', 'moves', info, 'Moves: ');
 let time = createEl ('div', 'info-time', 'time', info, 'Time: ');
 let playField = createEl ('div', 'play-field', 'play', main);
 
+let allCells = playField.childNodes;
+let emptyIndex;
+
 let footer = createEl ('footer', 'footer', 'container', document.body);
 let frameSize = createEl ('div', 'frame-size-wrapper', 'wrapper', footer, 'Frame size:');
 let otherframes = createEl ('div', 'other-frames-wrapper', 'wrapper', footer, 'Other sizes:');
@@ -57,6 +60,8 @@ inputs.forEach((input, index) => {
     clearCells();
     let size = setSize(index);
     drawCells(size);
+    counter = 0;
+    moves.textContent = 'Moves: ';
   })
 });
 
@@ -65,17 +70,6 @@ function setSize(index) {
   frameSize.textContent = 'Frame size: ' + `${size} x ${size}`;
   return size;
 }
-
-// function drawCells(size) {
-//   let cellsNumber = size * size;
-//   for (let i = 0; i < cellsNumber; i++) {
-//     let cell = createEl('div', 'cell', `cell${i+1}`, playField, `${i+1}` );
-//     cell.style.width = `${playField.offsetWidth/size - 5}px`;
-//     cell.style.height = `${playField.offsetWidth/size - 5}px`;
-//   }
-//   let emptyCell = document.querySelectorAll('.cell')[cellsNumber-1]
-//   emptyCell.classList.add('empty-cell');
-// }
 
 function drawCells(size) {
   let cellsNumber = size * size;
@@ -88,10 +82,25 @@ function drawCells(size) {
     cell.style.height = `${playField.offsetWidth/size - (size - 1)}px`;
   }
   let emptyCell = document.querySelector(`.cell${cellsNumber}`);
+  console.log('empty cell', emptyCell);
   emptyCell.classList.add('empty-cell');
-  let emptyIndex = randomArr.indexOf(+emptyCell.textContent);
-  console.log(emptyIndex);
-  let allCells = playField.childNodes;
+  // emptyIndex = randomArr.indexOf(+emptyCell.textContent);
+  emptyIndex = Array.from(allCells).indexOf(emptyCell);
+  emptyCell.innerHTML = '';
+  console.log('eI', emptyIndex);
+  setClickable();
+  clearArr ();
+}
+
+function clearCells() {
+  let cells = document.querySelectorAll('.cell');
+  cells.forEach((cell) => {
+    cell.remove();
+  })
+}
+
+function setClickable() {
+  let size = whatSize();
   allCells.forEach((cell, index) => {
     if ((emptyIndex + 1) % size === 0) {
       if(index === emptyIndex - 1 || index === emptyIndex + size || index === emptyIndex - size) {
@@ -107,15 +116,14 @@ function drawCells(size) {
       }
     }
   });
-  clearArr ();
 }
 
-
-function clearCells() {
-  let cells = document.querySelectorAll('.cell');
-  cells.forEach((cell) => {
-    cell.remove();
-  })
+function removeClickable() {
+  allCells.forEach((cell, index) => {
+    if(cell.classList.contains('clickable')) {
+      cell.classList.remove('clickable');
+    }
+  });
 }
 
 //random
@@ -156,44 +164,97 @@ buttonShuf.addEventListener('click', () => {
   let size = whatSize();
   console.log(size);
   drawCells(size);
+  counter = 0;
+  moves.textContent = 'Moves: ';
 });
 
-const moveLeft = (event) => {
-  event.target.classList.add('transition-left');
+const moveCell = (event) => {
+  playField.removeEventListener('click', moveCell);
+  let cell = event.target;
+  let cellArr = [];
+  allCells.forEach((cell, index) => {
+    cellArr.push(+cell.textContent);
+  });
+
+  let cellIndex = cellArr.indexOf(+cell.textContent);
+  let size = whatSize();
+
+  if (cellIndex === emptyIndex - size) {
+    cell.classList.add(`transition-down${size}`);
+  }
+  if (cellIndex === emptyIndex + size) {
+    cell.classList.add(`transition-up${size}`);
+  }
+  if (cellIndex === emptyIndex + 1) {
+    cell.classList.add(`transition-left${size}`);
+  }
+  if (cellIndex === emptyIndex - 1) {
+    cell.classList.add(`transition-right${size}`);
+  }
 }
 
-const moveRight = () => {
-  cell.classList.add('transition-right');
+let counter = 0;
+function countMoves() {
+  counter++;
+  moves.textContent = `Moves: ${counter}`
 }
 
-const moveUp = () => {
-  cell.classList.add('transition-up');
-}
+playField.addEventListener('click', moveCell);
 
-const moveDown = () => {
-  cell.classList.add('transition-down');
-}
+playField.addEventListener('animationend', (animationEvent) => {
+  let cell = animationEvent.target;
+  let size = whatSize();
+  console.log(animationEvent.animationName);
+    if (animationEvent.animationName === `move-down${size}`) {
+      cell.classList.remove(`transition-down${size}`);
+      switchCells(cell);
+      emptyIndex = emptyIndex - size;
+      console.log('emptyIndex', emptyIndex);
+      removeClickable();
+      setClickable();
+      countMoves();
+    }
+    if (animationEvent.animationName === `move-up${size}`) {
+      cell.classList.remove(`transition-up${size}`);
+      switchCells(cell);
+      emptyIndex = emptyIndex + size;
+      console.log('emptyIndex', emptyIndex);
+      removeClickable();
+      setClickable();
+      countMoves();
+    }
+    if (animationEvent.animationName === `move-right${size}`) {
+      cell.classList.remove(`transition-right${size}`);
+      switchCells(cell);
+      emptyIndex -= 1;
+      console.log('emptyIndex', emptyIndex);
+      removeClickable();
+      setClickable();
+      countMoves();
+    }
+    if (animationEvent.animationName === `move-left${size}`) {
+      cell.classList.remove(`transition-left${size}`);
+      switchCells(cell);
+      emptyIndex += 1;
+      console.log('emptyIndex', emptyIndex);
+      removeClickable();
+      setClickable();
+      countMoves();
+    }
+    playField.addEventListener('click', moveCell);
 
-playField.addEventListener('click', (event) => {
-  console.log(event.target);
+    function switchCells(cell) {
+      let size = whatSize();
+      //тут происходит замена содержимого пустой клетки и той, что подвинули
+      let tempCell = cell.innerHTML;
+      allCells[emptyIndex].classList.remove('empty-cell');
+      allCells[emptyIndex].classList.remove(`cell${size*size}`);
+      allCells[emptyIndex].classList.add(`cell${tempCell}`);
+      allCells[emptyIndex].innerHTML = tempCell;
+      cell.innerHTML = '';
+      cell.classList.add('empty-cell');
+      cell.classList.add(`cell${size*size}`);
+      cell.classList.remove(`cell${tempCell}`);
+      cell.classList.remove('clickable');
+    }
 });
-
-function setClickableFields(size) {
-
-
-}
-
-
-// const moveLeft = () => {
-//   carousel.classList.add('transition-left');
-//   leftArrow.removeEventListener('click', moveLeft);
-//   rightArrow.removeEventListener('click', moveRight);
-//   leftArrowSmall.removeEventListener('click', moveLeft);
-//   rightArrowSmall.removeEventListener('click', moveRight);
-//   if (window.innerWidth > 980) {
-//     fillArr(0, 14, 6);
-//   } else if (window.innerWidth <= 980 && window.innerWidth > 600) {
-//     fillArr(0, 14, 4);
-//   }
-//   console.log(`Номера животных - ${randomNumArr}`);
-// }
