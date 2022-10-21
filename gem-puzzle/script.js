@@ -173,7 +173,7 @@ buttonShuf.addEventListener('click', () => {
   timeInSec = 0;
 });
 
-//moves
+//moves count
 let counter = 0;
 function countMoves() {
   counter++;
@@ -182,7 +182,7 @@ function countMoves() {
 
 //timer
 let timer;
-let timeInSec = 1;
+let timeInSec = 0;
 timer = function startTime() {
   setInterval(() => {
     let min = 0;
@@ -197,19 +197,6 @@ timer = function startTime() {
     time.textContent = `Time: ${String(min).padStart(2, 0)}:${String(sec).padStart(2, 0)}`
   }, 1000);
 }
-// timer = setInterval(() => {
-//   let min = 0;
-//   let sec;
-//   if (timeInSec > 59) {
-//     min = Math.floor(timeInSec / 60);
-//     sec = timeInSec % 60;
-//   } else {
-//     sec = timeInSec;
-//   }
-//   timeInSec++;
-//   time.textContent = `Time: ${String(min).padStart(2, 0)}:${String(sec).padStart(2, 0)}`
-// }, 1000);
-
 
 //move by clicking
 const moveCell = (event) => {
@@ -235,6 +222,9 @@ const moveCell = (event) => {
   }
   if (cellIndex === emptyIndex - 1) {
     cell.classList.add(`transition-right${size}`);
+  }
+  if(!cell.classList.contains('clickable')) {
+    playField.addEventListener('click', moveCell);
   }
 }
 
