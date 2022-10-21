@@ -80,6 +80,10 @@ function drawCells(size) {
     // cell.style.height = `${playField.offsetWidth/size - 5}px`;
     cell.style.width = `${playField.offsetWidth/size - (size - 1)}px`;
     cell.style.height = `${playField.offsetWidth/size - (size - 1)}px`;
+    if (window.innerWidth <= 768) {
+      cell.style.width = `${playField.offsetWidth/size - size/2}px`;
+      cell.style.height = `${playField.offsetWidth/size - size/2}px`;
+    }
   }
   let emptyCell = document.querySelector(`.cell${cellsNumber}`);
   console.log('empty cell', emptyCell);

@@ -47,6 +47,7 @@ body {
   justify-content: center;
   gap: 60px;
   padding-top: 20px;
+  padding-bottom: 8px;
 }
 
 .play-field {
@@ -383,10 +384,255 @@ input+label:hover {
     background-color: pink;
   }
 
+  .info {
+    gap: 20px;
+  }
+
   .play-field {
     width: 280px;
     height: 280px;
   }
+
+  /* size 3 */
+@keyframes move-right3 {
+  from {left: 0px}
+  to {left: 92px}
+}
+
+.transition-right3 {
+  animation-name: move-right3;
+  animation-duration: 1s;
+}
+
+@keyframes move-left3 {
+  from {left: 0px}
+  to {left: -92px}
+}
+
+.transition-left3 {
+  animation-name: move-left3;
+  animation-duration: 1s;
+}
+
+@keyframes move-down3 {
+  from {top: 0px}
+  to {top: 92px}
+}
+
+.transition-down3 {
+  animation-name: move-down3;
+  animation-duration: 1s;
+}
+
+@keyframes move-up3 {
+  from {top: 0px}
+  to {top: -92px}
+}
+
+.transition-up3 {
+  animation-name: move-up3;
+  animation-duration: 1s;
+}
+
+/* size 4 */
+@keyframes move-right4 {
+  from {left: 0px}
+  to {left: 69px}
+}
+
+.transition-right4 {
+  animation-name: move-right4;
+  animation-duration: 1s;
+}
+
+@keyframes move-left4 {
+  from {left: 0px}
+  to {left: -69px}
+}
+
+.transition-left4 {
+  animation-name: move-left4;
+  animation-duration: 1s;
+}
+
+@keyframes move-down4 {
+  from {top: 0px}
+  to {top: 69px}
+}
+
+.transition-down4 {
+  animation-name: move-down4;
+  animation-duration: 1s;
+}
+
+@keyframes move-up4 {
+  from {top: 0px}
+  to {top: -69px}
+}
+
+.transition-up4 {
+  animation-name: move-up4;
+  animation-duration: 1s;
+}
+
+/* size 5 */
+@keyframes move-right5 {
+  from {left: 0px}
+  to {left: 55.5px}
+}
+
+.transition-right5 {
+  animation-name: move-right5;
+  animation-duration: 1s;
+}
+
+@keyframes move-left5 {
+  from {left: 0px}
+  to {left: -55.5px}
+}
+
+.transition-left5 {
+  animation-name: move-left5;
+  animation-duration: 1s;
+}
+
+@keyframes move-down5 {
+  from {top: 0px}
+  to {top: 55.5px}
+}
+
+.transition-down5 {
+  animation-name: move-down5;
+  animation-duration: 1s;
+}
+
+@keyframes move-up5 {
+  from {top: 0px}
+  to {top: -55.5px}
+}
+
+.transition-up5 {
+  animation-name: move-up5;
+  animation-duration: 1s;
+}
+
+/* size 6 */
+@keyframes move-right6 {
+  from {left: 0px}
+  to {left: 46.5px}
+}
+
+.transition-right6 {
+  animation-name: move-right6;
+  animation-duration: 1s;
+}
+
+@keyframes move-left6 {
+  from {left: 0px}
+  to {left: -46.5px}
+}
+
+.transition-left6 {
+  animation-name: move-left6;
+  animation-duration: 1s;
+}
+
+@keyframes move-down6 {
+  from {top: 0px}
+  to {top: 46.5px}
+}
+
+.transition-down6 {
+  animation-name: move-down6;
+  animation-duration: 1s;
+}
+
+@keyframes move-up6 {
+  from {top: 0px}
+  to {top: -46.5px}
+}
+
+.transition-up6 {
+  animation-name: move-up6;
+  animation-duration: 1s;
+}
+
+/* size 7 */
+@keyframes move-right7 {
+  from {left: 0px}
+  to {left: 39px}
+}
+
+.transition-right7 {
+  animation-name: move-right7;
+  animation-duration: 1s;
+}
+
+@keyframes move-left7 {
+  from {left: 0px}
+  to {left: -39px}
+}
+
+.transition-left7 {
+  animation-name: move-left7;
+  animation-duration: 1s;
+}
+
+@keyframes move-down7 {
+  from {top: 0px}
+  to {top: 39px}
+}
+
+.transition-down7 {
+  animation-name: move-down7;
+  animation-duration: 1s;
+}
+
+@keyframes move-up7 {
+  from {top: 0px}
+  to {top: -39px}
+}
+
+/* size 8 */
+@keyframes move-right8 {
+  from {left: 0px}
+  to {left: 34.5px}
+}
+
+.transition-right8 {
+  animation-name: move-right8;
+  animation-duration: 1s;
+}
+
+@keyframes move-left8 {
+  from {left: 0px}
+  to {left: -34.5px}
+}
+
+.transition-left8 {
+  animation-name: move-left8;
+  animation-duration: 1s;
+}
+
+@keyframes move-down8 {
+  from {top: 0px}
+  to {top: 34.5px}
+}
+
+.transition-down8 {
+  animation-name: move-down8;
+  animation-duration: 1s;
+}
+
+@keyframes move-up8 {
+  from {top: 0px}
+  to {top: -34.5px}
+}
+
+.transition-up8 {
+  animation-name: move-up8;
+  animation-duration: 1s;
+}
 
   .wrapper {
     display: flex;
