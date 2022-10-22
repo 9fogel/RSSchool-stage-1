@@ -70,6 +70,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 32px;
   background-color: #ffffff;
   border: 1px solid #000000;
 }
@@ -437,6 +438,10 @@ input+label:hover {
   .play-field {
     width: 280px;
     height: 280px;
+  }
+
+  .cell {
+    font-size: 20px;
   }
 
   /* size 3 */

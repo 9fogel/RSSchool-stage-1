@@ -65,8 +65,8 @@ inputs.forEach((input, index) => {
     drawCells(size);
     counter = 0;
     moves.textContent = 'Moves: 0';
-    timeInSec = 0;
-  })
+    timeInSec = 1;
+  });
 });
 
 function setSize(index) {
@@ -189,7 +189,6 @@ buttonShuf.addEventListener('click', () => {
   drawCells(size);
   counter = 0;
   moves.textContent = 'Moves: 0';
-  // clearInterval(timer);
   timeInSec = 0;
 });
 
@@ -214,9 +213,10 @@ function countMoves() {
 
 //timer
 let timer;
-let timeInSec = 0;
+let newTimer;
+let timeInSec = 1;
 timer = function startTime() {
-  setInterval(() => {
+  newTimer = setInterval(() => {
     let min = 0;
     let sec;
     if (timeInSec > 59) {
@@ -274,7 +274,6 @@ const moveCell = (event) => {
 
 playField.addEventListener('click', timer);
 playField.addEventListener('click', moveCell);
-// playField.addEventListener('click', isWinning);
 
 playField.addEventListener('animationend', (animationEvent) => {
   let cell = animationEvent.target;
@@ -354,10 +353,7 @@ function isWinning() {
     }
   }
   showWinMessage();
-  clearInterval(timer);
-  // alert(`Hooray! You solved the puzzle in ${time.textContent.slice(6)} and ${counter-1} moves!`)
-  // console.log(true);
-  // return true;
+  clearInterval(newTimer);
 }
 
 function showWinMessage() {
@@ -367,5 +363,12 @@ function showWinMessage() {
   winWrapper.onclick = function () {
     winWrapper.classList.toggle('win-wrapper-hidden');
     winPopup.classList.toggle('win-wrapper-hidden');
+    timer();
+    clearCells();
+    let size = whatSize();
+    drawCells(size);
+    counter = 0;
+    moves.textContent = 'Moves: 0';
+    timeInSec = 0;
   }
 }
