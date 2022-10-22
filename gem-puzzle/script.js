@@ -274,6 +274,7 @@ const moveCell = (event) => {
 
 playField.addEventListener('click', timer);
 playField.addEventListener('click', moveCell);
+// playField.addEventListener('click', isWinning);
 
 playField.addEventListener('animationend', (animationEvent) => {
   let cell = animationEvent.target;
@@ -331,4 +332,40 @@ playField.addEventListener('animationend', (animationEvent) => {
       cell.classList.remove(`cell${tempCell}`);
       cell.classList.remove('clickable');
     }
+    isWinning();
 });
+
+function isWinning() {
+  let size = whatSize();
+  let winArr = [];
+  let playArr = Array.from(playField.childNodes);
+  playArr = playArr.map((item) => item.textContent);
+  for (let i = 0; i < size*size; i++) {
+    winArr.push(String(i+1));
+  }
+  winArr.pop();
+  winArr.push('');
+  console.log('play', playArr);
+  console.log('win', winArr);
+
+  for (let i = 0; i < size*size; i++) {
+    if(winArr[i] !== playArr[i]) {
+      return false;
+    }
+  }
+  showWinMessage();
+  clearInterval(timer);
+  // alert(`Hooray! You solved the puzzle in ${time.textContent.slice(6)} and ${counter-1} moves!`)
+  // console.log(true);
+  // return true;
+}
+
+function showWinMessage() {
+  let winWrapper = createEl ('div', 'win-wrapper', '.win', document.body);
+  let winPopup = createEl ('div', 'win-popup', 'popup', document.body, `Hooray! You solved the puzzle in ${time.textContent.slice(6)} and ${counter} moves!`);
+
+  winWrapper.onclick = function () {
+    winWrapper.classList.toggle('win-wrapper-hidden');
+    winPopup.classList.toggle('win-wrapper-hidden');
+  }
+}
