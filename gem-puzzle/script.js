@@ -15,6 +15,9 @@ let buttonSave = createEl ('button', 'button', 'save-btn', header, 'Save');
 let buttonResults = createEl ('button', 'button', 'results-btn', header, 'Results');
 let buttonMute = createEl ('button', 'button', 'mute-btn', header, 'Sound: ON ');
 
+buttonStop.setAttribute('disabled', 'disabled');
+buttonSave.setAttribute('disabled', 'disabled');
+buttonResults.setAttribute('disabled', 'disabled');
 
 let main = createEl ('main', 'main', 'container', document.body);
 let info = createEl ('div', 'info-wrapper', 'info', main);
@@ -410,3 +413,5 @@ function showWinMessage() {
     timeInSec = 0;
   }
 }
+
+console.log('Привет, играть можно сразу, как загрузилась страница.\nТаймер включается после первого клика по карточкам.\nМожно начать игру заново, нажав Shuffle and start\nПосле нажатия Shuffle and start или изменения размера поля, игра начинается автоматически (в том числе запускается таймер)\nВсе показанные комбинации можно решить(есть проверка на решабельность)\n\nНе выполнены пункты ТЗ про сохранение в localStorage и реализацию Drag&Drop\nВсё остальное сделано\n\nЕсли есть вопросы - мой ник в Дискорде Vera K(@9fogel)')

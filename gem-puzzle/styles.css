@@ -32,7 +32,8 @@ body {
   padding: 10px 20px;
 }
 
-.button:hover {
+.shuffle-btn:hover,
+.mute-btn:hover {
   cursor: pointer;
 }
 
