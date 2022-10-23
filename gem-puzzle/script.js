@@ -78,6 +78,23 @@ function setSize(index) {
 function drawCells(size) {
   let cellsNumber = size * size;
   let randomArr = fillArr(1, cellsNumber, cellsNumber)
+  //проверка решабельности
+  let playArr = [...randomArr];
+  let blankRow = Math.floor((playArr.indexOf(cellsNumber)) / size);
+  playArr.splice(playArr.indexOf(cellsNumber), 1);
+  let inversions = countInversions(playArr);
+
+  while (!canBeSolved(inversions, size, blankRow)) {
+    clearArr ();
+    cellsNumber = size * size;
+    randomArr = fillArr(1, cellsNumber, cellsNumber);
+    playArr = [...randomArr];
+    blankRow = Math.floor((playArr.indexOf(cellsNumber)) / size);
+    playArr.splice(playArr.indexOf(cellsNumber), 1);
+    inversions = countInversions(playArr);
+    canBeSolved(inversions, size, blankRow);
+  }
+  //рисуем клетки
   for (let i = 0; i < randomArr.length; i++) {
     let cell = createEl('div', 'cell', `cell${randomArr[i]}`, playField, `${randomArr[i]}` );
     cell.style.width = `${playField.offsetWidth/size - (size - 1)}px`;
@@ -88,14 +105,42 @@ function drawCells(size) {
     }
   }
   let emptyCell = document.querySelector(`.cell${cellsNumber}`);
-  console.log('empty cell', emptyCell);
   emptyCell.classList.add('empty-cell');
-  // emptyIndex = randomArr.indexOf(+emptyCell.textContent);
   emptyIndex = Array.from(allCells).indexOf(emptyCell);
   emptyCell.innerHTML = '';
-  console.log('eI', emptyIndex);
   setClickable();
   clearArr ();
+}
+
+function countInversions(arr) {
+  let invCounter = 0;
+  for (let i = 0; i < arr.length - 1; i++) {
+    for (let k = i + 1; k < arr.length; k++) {
+      if (arr[k] && arr[i] && arr[i] > arr[k])
+        invCounter++;
+    }
+  }
+  return invCounter;
+}
+
+function canBeSolved(inv, size, blR) {
+  if (size % 2 !== 0) {
+    if (inv % 2 === 0) {
+      // console.log('puzzle can be solved');
+      return true;
+    } else {
+      // console.log('puzzle NOT solved');
+      return false;
+      }
+  } else {
+      if ((inv + blR) % 2 !== 0) {
+      // console.log('puzzle can be solved');
+      return true;
+      } else {
+        // console.log('puzzle NOT solved');
+        return false;
+      }
+  }
 }
 
 //resize window with the same field/game without reload
@@ -185,7 +230,6 @@ function whatSize() {
 buttonShuf.addEventListener('click', () => {
   clearCells();
   let size = whatSize();
-  console.log(size);
   drawCells(size);
   counter = 0;
   moves.textContent = 'Moves: 0';
@@ -278,12 +322,11 @@ playField.addEventListener('click', moveCell);
 playField.addEventListener('animationend', (animationEvent) => {
   let cell = animationEvent.target;
   let size = whatSize();
-  console.log(animationEvent.animationName);
+  // console.log(animationEvent.animationName);
     if (animationEvent.animationName === `move-down${size}`) {
       cell.classList.remove(`transition-down${size}`);
       switchCells(cell);
       emptyIndex = emptyIndex - size;
-      console.log('emptyIndex', emptyIndex);
       removeClickable();
       setClickable();
       countMoves();
@@ -292,7 +335,6 @@ playField.addEventListener('animationend', (animationEvent) => {
       cell.classList.remove(`transition-up${size}`);
       switchCells(cell);
       emptyIndex = emptyIndex + size;
-      console.log('emptyIndex', emptyIndex);
       removeClickable();
       setClickable();
       countMoves();
@@ -301,7 +343,6 @@ playField.addEventListener('animationend', (animationEvent) => {
       cell.classList.remove(`transition-right${size}`);
       switchCells(cell);
       emptyIndex -= 1;
-      console.log('emptyIndex', emptyIndex);
       removeClickable();
       setClickable();
       countMoves();
@@ -310,7 +351,6 @@ playField.addEventListener('animationend', (animationEvent) => {
       cell.classList.remove(`transition-left${size}`);
       switchCells(cell);
       emptyIndex += 1;
-      console.log('emptyIndex', emptyIndex);
       removeClickable();
       setClickable();
       countMoves();
@@ -344,8 +384,6 @@ function isWinning() {
   }
   winArr.pop();
   winArr.push('');
-  console.log('play', playArr);
-  console.log('win', winArr);
 
   for (let i = 0; i < size*size; i++) {
     if(winArr[i] !== playArr[i]) {
