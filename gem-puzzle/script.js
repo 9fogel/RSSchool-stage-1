@@ -123,7 +123,6 @@ function allowDrop(event) {
 }
 
 function drag(event) {
-  console.log(event.target);
   let size = whatSize();
   event.dataTransfer.setData('cell', event.target.innerHTML);
 }
