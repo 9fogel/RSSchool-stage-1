@@ -106,13 +106,55 @@ function drawCells(size) {
       cell.style.width = `${playField.offsetWidth/size - size/2}px`;
       cell.style.height = `${playField.offsetWidth/size - size/2}px`;
     }
+    cell.ondragstart = drag;
   }
   let emptyCell = document.querySelector(`.cell${cellsNumber}`);
   emptyCell.classList.add('empty-cell');
   emptyIndex = Array.from(allCells).indexOf(emptyCell);
   emptyCell.innerHTML = '';
+  emptyCell.ondragover = allowDrop;
+  emptyCell.ondrop = drop;
   setClickable();
   clearArr ();
+}
+
+function allowDrop(event) {
+  event.preventDefault();
+}
+
+function drag(event) {
+  console.log(event.target);
+  let size = whatSize();
+  event.dataTransfer.setData('cell', event.target.innerHTML);
+}
+
+function drop(event) {
+  playField.removeEventListener('mousedown', timer);
+  playField.removeEventListener('click', timer);
+  let tempCell = event.dataTransfer.getData('cell');
+  let tempIndex = Array.from(allCells).map((item) => item.innerHTML).indexOf(tempCell);
+  let size = whatSize();
+  //превращаем пустую клетку в нормальную
+  allCells[emptyIndex].classList.remove('empty-cell');
+  allCells[emptyIndex].classList.remove(`cell${size*size}`);
+  allCells[emptyIndex].classList.add(`cell${tempCell}`);
+  allCells[emptyIndex].innerHTML = tempCell;
+  emptyIndex = tempIndex;
+  allCells[emptyIndex].innerHTML = '';
+  allCells[emptyIndex].classList.add('empty-cell');
+  allCells[emptyIndex].classList.add(`cell${size*size}`);
+  allCells[emptyIndex].classList.remove(`cell${tempCell}`);
+  allCells[emptyIndex].classList.remove('clickable');
+  allCells[emptyIndex].ondragover = allowDrop;
+  allCells[emptyIndex].ondrop = drop;
+  // timer();
+  if (!buttonMute.classList.contains('no-sound')) {
+    audio.play();
+  }
+  removeClickable();
+  setClickable();
+  countMoves();
+  isWinning();
 }
 
 function countInversions(arr) {
@@ -176,14 +218,17 @@ function setClickable() {
     if ((emptyIndex + 1) % size === 0) {
       if(index === emptyIndex - 1 || index === emptyIndex + size || index === emptyIndex - size) {
         cell.classList.add('clickable');
+        cell.setAttribute('draggable', 'true');
       }
     } else if (emptyIndex % size === 0) {
       if(index === emptyIndex + 1 || index === emptyIndex + size || index === emptyIndex - size) {
         cell.classList.add('clickable');
+        cell.setAttribute('draggable', 'true');
         }
     } else {
       if(index === emptyIndex - 1 || index === emptyIndex + 1 || index === emptyIndex + size || index === emptyIndex - size) {
       cell.classList.add('clickable');
+      cell.setAttribute('draggable', 'true');
       }
     }
   });
@@ -193,6 +238,9 @@ function removeClickable() {
   allCells.forEach((cell, index) => {
     if(cell.classList.contains('clickable')) {
       cell.classList.remove('clickable');
+    }
+    if(cell.hasAttribute('draggable')) {
+      cell.removeAttribute('draggable');
     }
   });
 }
@@ -280,7 +328,7 @@ timer = function startTime() {
 //move by clicking
 const moveCell = (event) => {
   playField.removeEventListener('click', moveCell);
-  playField.removeEventListener('click', timer);
+  playField.removeEventListener('mousedown', timer);
   let cell = event.target;
   let cellArr = [];
   allCells.forEach((cell, index) => {
@@ -319,7 +367,8 @@ const moveCell = (event) => {
   }
 }
 
-playField.addEventListener('click', timer);
+// playField.addEventListener('click', timer);
+playField.addEventListener('mousedown', timer);
 playField.addEventListener('click', moveCell);
 
 playField.addEventListener('animationend', (animationEvent) => {
@@ -373,6 +422,8 @@ playField.addEventListener('animationend', (animationEvent) => {
       cell.classList.add(`cell${size*size}`);
       cell.classList.remove(`cell${tempCell}`);
       cell.classList.remove('clickable');
+      cell.ondragover = allowDrop;
+      cell.ondrop = drop;
     }
     isWinning();
 });
@@ -414,4 +465,4 @@ function showWinMessage() {
   }
 }
 
-console.log('Привет, играть можно сразу, как загрузилась страница.\nТаймер включается после первого клика по карточкам.\nМожно начать игру заново, нажав Shuffle and start\nПосле нажатия Shuffle and start или изменения размера поля, игра начинается автоматически (в том числе запускается таймер)\nВсе показанные комбинации можно решить(есть проверка на решабельность)\n\nНе выполнены пункты ТЗ про сохранение в localStorage и реализацию Drag&Drop\nВсё остальное сделано\n\nЕсли есть вопросы - мой ник в Дискорде Vera K(@9fogel)')
+console.log('Привет, играть можно сразу, как загрузилась страница.\nТаймер включается после первого клика/касания по карточкам.\nМожно начать игру заново, нажав Shuffle and start\nПосле нажатия Shuffle and start или изменения размера поля, игра начинается автоматически (в том числе запускается таймер)\nВсе показанные комбинации можно решить(есть проверка на решабельность)\n\nНе выполнен пункт ТЗ про сохранение в localStorage\nВсё остальное сделано\n\nЕсли есть вопросы - мой ник в Дискорде Vera K(@9fogel)')
