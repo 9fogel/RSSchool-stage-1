@@ -72,6 +72,7 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 32px;
+  user-select: none;
   background-color: #ffffff;
   border: 1px solid #000000;
 }
@@ -370,6 +371,10 @@ input+label:hover {
   left: 0;
   background-color: rgba(0,0,0, 0.8);
   transition: all 0.3s ease-in-out;
+}
+
+.win-wrapper:hover {
+  cursor: pointer;
 }
 
 .win-wrapper-hidden {
