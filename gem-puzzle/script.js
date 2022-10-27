@@ -337,25 +337,25 @@ const moveCell = (event) => {
   let cellIndex = cellArr.indexOf(+cell.textContent);
   let size = whatSize();
 
-  if (cellIndex === emptyIndex - size) {
+  if (cellIndex === emptyIndex - size && cell.classList.contains('clickable')) {
     cell.classList.add(`transition-down${size}`);
     if (!buttonMute.classList.contains('no-sound')) {
       audio.play();
     }
   }
-  if (cellIndex === emptyIndex + size) {
+  if (cellIndex === emptyIndex + size && cell.classList.contains('clickable')) {
     cell.classList.add(`transition-up${size}`);
     if (!buttonMute.classList.contains('no-sound')) {
       audio.play();
     }
   }
-  if (cellIndex === emptyIndex + 1) {
+  if (cellIndex === emptyIndex + 1 && cell.classList.contains('clickable')) {
     cell.classList.add(`transition-left${size}`);
     if (!buttonMute.classList.contains('no-sound')) {
       audio.play();
     }
   }
-  if (cellIndex === emptyIndex - 1) {
+  if (cellIndex === emptyIndex - 1 && cell.classList.contains('clickable')) {
     cell.classList.add(`transition-right${size}`);
     if (!buttonMute.classList.contains('no-sound')) {
       audio.play();
