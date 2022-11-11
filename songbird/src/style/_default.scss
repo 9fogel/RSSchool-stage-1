@@ -1,0 +1,62 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 360px;
+  font-family: 'Noto Serif', serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: $light-green;
+  background-image: url(img/songbird-bg.jpg);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  cursor: pointer;
+  padding: 0;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+.tablet {
+  display: none;
+}
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.button {
+  padding: 12px 107px;
+  font-size: 20px;
+  line-height: 28px;
+  color: $white;
+  background-color: $orange;
+  border: none;
+  border-radius: $border-radius;
+}

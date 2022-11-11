@@ -1,13 +1,16 @@
 //for images: background-image: url('img/brock-wegner.jpg');//path relating index.scss
-body {
-  font-family: 'Noto Serif', serif;
-  background-color: $back;
-  color: $text;
-}
+// body {
+//   font-family: 'Noto Serif', serif;
+// }
 
 .logo-text {
   font-family: 'Merriweather', serif;
   font-weight: bold;
+  color: $orange;
+}
+
+.selected {
+  color: $yellow;
 }
 
 
