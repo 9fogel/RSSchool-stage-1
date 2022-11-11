@@ -1,12 +1,19 @@
+//for images: background-image: url('img/brock-wegner.jpg');//path relating index.scss
 body {
-  font-family: 'Montserrat';
+  font-family: 'Noto Serif', serif;
   background-color: $back;
   color: $text;
 }
 
-.image {
-  width: 300px;
-  height: 500px;
-  background-size: cover;
-  background-image: url('img/brock-wegner.jpg');//path relating index.scss
+.logo-text {
+  font-family: 'Merriweather', serif;
+  font-weight: bold;
 }
+
+
+// .image {
+//   width: 300px;
+//   height: 500px;
+//   background-size: cover;
+//   background-image: url('img/brock-wegner.jpg');//path relating index.scss
+// }
