@@ -35,7 +35,7 @@
   </header>
 
   <main class="main">
-    <section class="about-page">
+    <section class="about-page hidden">
       <div class="intro container">
         <div class="intro-content">
           <h1 class="intro-title">Любите птиц?</h1>
@@ -45,91 +45,112 @@
         </div>
       </div>
     </section>
-    <section class="quiz-page container hidden">
-      <div class="score">Ваши очки: 10</div>
+    <section class="quiz-page container">
+      <div class="score-wrapper">
+        <span class="score">Ваши очки: 10</span>
+      </div>
       <ul class="level-list">
-        <li class="level item">Разминка</li>
-        <li class="level item">Воробьиные</li>
-        <li class="level item">Лесные птицы</li>
-        <li class="level item">Певчие птицы</li>
-        <li class="level item">Хищные птицы</li>
-        <li class="level item">Морские птицы</li>
+        <li class="level-item level-active">Разминка</li>
+        <li class="level-item">Воробьиные</li>
+        <li class="level-item">Лесные птицы</li>
+        <li class="level-item">Певчие птицы</li>
+        <li class="level-item">Хищные птицы</li>
+        <li class="level-item">Морские птицы</li>
       </ul>
 
       <div class="question">
         <div class="bird-image"></div>
         <div class="bird-wrapper">
-          <span class="bird-name">Ястреб</span>
+          <p class="bird-name">Ястреб</p>
           <div class="player">
             <!-- <audio class="audio" src="assets/sounds/Aqua Caelestis.mp3"></audio> -->
             <div class="player-controls">
-              <button class="play-icon"></button>
-              <input type="range" name="player" id="player">
-              <div class="player-duration">
-                <span class="current-duration">00:00</span>
-                <span class="total-duration">02:00</span>
-              </div>
-              <div class="sound-control">
-                <button class="sound-on"></button>
-                <input type="range" name="sound-level" id="sound-level">
+              <button class="play-icon">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 64 64">
+                  <title>play2</title>
+                  <path fill="currentColor" d="M32 0c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32zM32 58c-14.359 0-26-11.641-26-26s11.641-26 26-26 26 11.641 26 26-11.641 26-26 26zM24 18l24 14-24 14z"></path>
+                </svg>
+              </button>
+              <div class="play-range-wrapper">
+                <input class="play-range" type="range" name="player" id="player">
+                <div class="player-duration">
+                  <span class="current-duration">00:00</span>
+                  <span class="total-duration">02:00</span>
+                </div>
               </div>
             </div>
-
+            <div class="sound-control">
+              <div class="sound-on"></div>
+              <input class="sound-range" type="range" name="sound-level" id="sound-level">
+            </div>
           </div>
         </div>
       </div>
 
-      <ul class="answer-list">
-        <li class="answer-item">
-          <div class="answer-circle"></div>
-          <span class="answer-text">Ястреб</span>
-        </li>
-        <li class="answer-item">
-          <div class="answer-circle correct-answer"></div>
-          <span class="answer-text">Ястреб</span>
-        </li>
-        <li class="answer-item">
-          <div class="answer-circle wrong-answer"></div>
-          <span class="answer-text">Ястреб</span>
-        </li>
-        <li class="answer-item">
-          <div class="answer-circle correct-answer"></div>
-          <span class="answer-text">Ястреб</span>
-        </li>
-        <li class="answer-item">
-          <div class="answer-circle correct-answer"></div>
-          <span class="answer-text">Ястреб</span>
-        </li>
-        <li class="answer-item">
-          <div class="answer-circle correct-answer"></div>
-          <span class="answer-text">Ястреб</span>
-        </li>
-      </ul>
+      <div class="answer-wrapper">
+        <ul class="answer-list">
+          <li class="answer-item">
+            <div class="answer-circle"></div>
+            <span class="answer-text">Ястреб</span>
+          </li>
+          <li class="answer-item">
+            <div class="answer-circle correct-answer"></div>
+            <span class="answer-text">Ястреб</span>
+          </li>
+          <li class="answer-item">
+            <div class="answer-circle wrong-answer"></div>
+            <span class="answer-text">Ястреб</span>
+          </li>
+          <li class="answer-item">
+            <div class="answer-circle"></div>
+            <span class="answer-text">Ястреб</span>
+          </li>
+          <li class="answer-item">
+            <div class="answer-circle"></div>
+            <span class="answer-text">Ястреб</span>
+          </li>
+          <li class="answer-item">
+            <div class="answer-circle"></div>
+            <span class="answer-text">Ястреб</span>
+          </li>
+        </ul>
 
-      <div class="info">
-        <div class="bird-image"></div>
-        <div class="bird-wrapper">
-          <span class="bird-name">Ястреб</span>
-          <span class="bird-name-latin">Accipiter gentilis</span>
-          <div class="player">
-            <!-- <audio class="audio" src="assets/sounds/Aqua Caelestis.mp3"></audio> -->
-            <div class="player-controls">
-              <button class="play-icon"></button>
-              <input type="range" name="player" id="player-info">
-              <div class="player-duration">
-                <span class="current-duration">00:00</span>
-                <span class="total-duration">02:00</span>
-              </div>
-              <div class="sound-control">
-                <button class="sound-on"></button>
-                <input type="range" name="sound-level" id="sound-level-info">
+        <div class="info">
+          <div class="info-wrapper">
+            <div class="bird-image"></div>
+            <div class="bird-wrapper">
+              <p class="bird-name">Ястреб</p>
+              <p class="bird-name-latin">Accipiter gentilis</p>
+              <div class="player">
+                <!-- <audio class="audio" src="assets/sounds/Aqua Caelestis.mp3"></audio> -->
+                <div class="player-controls">
+                  <button class="play-icon">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 64 64">
+                      <title>play2</title>
+                      <path fill="currentColor" d="M32 0c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32zM32 58c-14.359 0-26-11.641-26-26s11.641-26 26-26 26 11.641 26 26-11.641 26-26 26zM24 18l24 14-24 14z"></path>
+                    </svg>
+                  </button>
+                  <div class="play-range-wrapper">
+                    <input class="play-range" type="range" name="player" id="player-info">
+                    <div class="player-duration">
+                      <span class="current-duration">00:00</span>
+                      <span class="total-duration">02:00</span>
+                    </div>
+                  </div>
+                  <div class="sound-control">
+                    <button class="sound-on"></button>
+                    <input class="sound-range" type="range" name="sound-level" id="sound-level-info">
+                  </div>
+                </div>
               </div>
             </div>
-
           </div>
-          <p class="bird-desc"></p>
+
+          <p class="bird-desc">Для всех ястребов характерны широкие и короткие крылья. Ещё один отличительный признак - белые «брови» над глазами. Славянские дружинники размещали изображение ястреба на своих знаменах, как символ отваги, мощи и безжалостности к врагам.</p>
         </div>
       </div>
+
+
 
       <button class="button next-button" disabled>Следующий уровень</button>
     </section>

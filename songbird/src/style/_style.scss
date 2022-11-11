@@ -41,7 +41,7 @@
 
 .nav-link:hover,
 .link-active {
-  color: $orange;
+  color: $yellow;
   transition: ease-in-out .3s;
 }
 
@@ -115,23 +115,278 @@
   margin-top: 22px;
 }
 
-// .image {
-//   width: 300px;
-//   height: 500px;
-//   background-size: cover;
-//   background-image: url('img/brock-wegner.jpg');//path relating index.scss
-// }
+//quiz-page
+.score-wrapper {
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.score {
+  margin-left: auto;
+  padding-right: 24px;
+  font-size: 40px;
+  line-height: 52px;
+  text-align: right;
+}
+
+.level-list {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  padding: 0 0;
+  text-align: center;
+  color: $white;
+  background-color: $orange;
+  box-shadow: $shadow;
+  border-radius: $border-radius;
+}
+
+.level-item {
+  padding-top: 11px;
+  padding-bottom: 11px;
+  width: calc((100% - 24px*5) / 6);
+  align-self: auto;
+  // font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.level-item:first-child {
+  border-radius: $border-radius 0 0 $border-radius;
+}
+
+.level-item:last-child {
+  border-radius: 0 $border-radius $border-radius 0;
+}
+
+.level-active {
+  background-color: $yellow;
+}
+
+.question {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 28px;
+  padding: 16px 24px 16px 16px;
+  background-color: $green-frosted;
+  box-shadow: $shadow;
+  border-radius: $border-radius;
+}
+
+.bird-image {
+  width: 216px;
+  height: 160px;
+  // background-color: $gray;
+  background-image: url('img/guess-bird-bg.jpg');
+  border-radius: $border-radius;
+}
+
+.bird-wrapper {
+  width: calc(100% - 256px);
+}
+
+.bird-name {
+  position: relative;
+  margin-bottom: 32px;
+  width: 100%;
+  font-size: 40px;
+  line-height: 54px;
+}
+
+.bird-name::after {
+  position: absolute;
+  bottom: -16px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  z-index: 0;
+  content: '';
+  background: $light-green;
+  border-radius: $border-radius;
+  // box-shadow: $shadow;
+}
+
+.player-controls {
+  display: flex;
+  gap: 16px;
+}
+
+.play-icon {
+  width: 40px;
+  height: 40px;
+  color: $orange;
+  // background-image: url('img/play.svg');
+  // background-size: 40px 40px;
+  // background-position: center center;
+  // background-repeat: no-repeat;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+}
+
+.play-icon:hover {
+  cursor: pointer;
+  color: $yellow;
+  background-color: transparent;
+  transition: ease-in-out .3s;
+}
+
+.play-icon:active {
+  color: $yellow;
+  background-color: transparent;
+}
+
+.play-range-wrapper {
+  align-self: flex-end;
+  width: calc(100% - 40px - 16px);
+}
+
+.play-range {
+  width: 100%;
+  height: 4px;
+}
+
+.player-duration {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.sound-control {
+  display: flex;
+  gap: 16px;
+}
+
+.sound-on {
+  width: 40px;
+  height: 40px;
+  color: $orange;
+  background-image: url('img/sound-on-icon.svg');
+  background-size: 24px 24px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+}
+
+.sound-range {
+  align-self: center;
+  height: 4px;
+}
+
+.answer-wrapper {
+  display: grid;
+  grid-template-columns: 2fr 4fr;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.answer-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px 24px 16px 16px;
+  background-color: $green-frosted;
+  border-radius: $border-radius;
+  box-shadow: $shadow;
+}
+
+.answer-item {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  line-height: 22px;
+}
+
+.answer-item:hover {
+  cursor: pointer;
+  color: $yellow;
+  transition: ease-in-out .3s;
+}
+
+.answer-item:hover .answer-circle {
+  background-color: $yellow;
+  transition: ease-in-out .3s;
+}
+
+.answer-item:not(:last-child):after {
+  position: absolute;
+  bottom: -16px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  z-index: 0;
+  content: '';
+  background: $light-green;
+  // box-shadow: $shadow;
+}
+
+.answer-circle {
+  width: 8px;
+  height: 8px;
+  background-color: $light-green;
+  border-radius: 50%;
+}
+
+.correct-answer {
+  background-color: $correct;
+}
+
+.wrong-answer {
+  background-color: $wrong;
+}
+
+.info {
+  padding: 16px 24px 16px 16px;
+  background-color: $green-frosted;
+  border-radius: $border-radius;
+  box-shadow: $shadow;
+}
+
+.info-wrapper {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 16px;
+
+  & .bird-name {
+    margin-bottom: 8px;
+  }
+
+  & .bird-name::after {
+    bottom: -46px;
+  }
+
+  & .bird-name-latin {
+    margin-bottom: 40px;
+  }
+
+  & .sound-control {
+    display: none;
+  }
+}
+
+.bird-desc {
+  height: 116px;
+  line-height: 22px;
+}
+
+.next-button {
+  margin-bottom: 48px;
+  width: 100%;
+}
+
 
 //footer
-
 .footer-content {
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 8px 24px;
-  // padding-top: 12px;
-  // padding-bottom: 8px;
   width: 100%;
   color: $white;
 }
