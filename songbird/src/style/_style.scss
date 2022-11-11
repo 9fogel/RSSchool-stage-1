@@ -3,6 +3,7 @@
 //   font-family: 'Noto Serif', serif;
 // }
 
+//header
 .header-content {
   display: flex;
   justify-content: space-between;
@@ -41,6 +42,11 @@
 .nav-link:hover,
 .link-active {
   color: $orange;
+  transition: ease-in-out .3s;
+}
+
+.nav-link:active {
+  color: $yellow;
 }
 
 .link-active {
@@ -48,6 +54,7 @@
   border-bottom: 2px solid $orange;
 }
 
+//intro
 .intro {
   position: relative;
   height: 100%;
@@ -68,7 +75,7 @@
 
 .intro::before {
   position: absolute;
-  bottom: -51%;
+  bottom: -15%;
   left: -9%;
   width: 392px;
   height: 392px;
@@ -81,7 +88,7 @@
 
 .intro-content {
   // margin: 33% auto 10%;
-  margin: 363px auto 10%;
+  margin: 320px auto 10%;
   padding: 18px 36px 56px;
   width: 66%;
   text-align: center;
@@ -114,3 +121,156 @@
 //   background-size: cover;
 //   background-image: url('img/brock-wegner.jpg');//path relating index.scss
 // }
+
+//footer
+
+.footer-content {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 24px;
+  // padding-top: 12px;
+  // padding-bottom: 8px;
+  width: 100%;
+  color: $white;
+}
+
+.settings {
+  width: 40px;
+  height: 40px;
+  background-size: 40px 40px;
+  background-image: url('img/settings.svg');
+  opacity: 0.8;
+}
+
+.settings:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+  transition: ease-in-out .3s;
+  opacity: 1;
+}
+
+.settings-menu {
+  position: absolute;
+  bottom: 54px;
+  left: 25px;
+  padding: 16px;
+  width: 240px;
+  /* height: 100px; */
+  z-index: 2;
+  background-color: $light-frosted;
+  color: $green;
+  border-radius: $border-radius;
+  // visibility: hidden;
+}
+
+.settings-menu-visible {
+  visibility: visible;
+  transition: ease-in-out .3s;
+}
+
+.settings-arrow {
+  position:absolute;
+  bottom: -32px;
+  left: 13px;
+  display: block;
+  width: 0;
+  height: 0;
+  margin: 0 auto 20px;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-top: 6px solid $light-frosted;
+  background-color: transparent;
+}
+
+.settings-title {
+  font-size: 18px;
+  text-align: center;
+}
+
+label:hover{
+  cursor: pointer;
+}
+
+.language-choise {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 16px;
+  padding-top: 12px;
+  font-size: 14px;
+}
+
+.custom-radio {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+.custom-radio+label {
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+}
+
+.custom-radio+label::before {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  flex-grow: 0;
+  border: 1px solid $green;
+  border-radius: 50%;
+  margin-right: 0.5em;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 50% 50%;
+}
+
+.custom-radio:checked+label::before {
+  border-color: $orange;
+  background-color: $orange;
+}
+
+.footer-icons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.footer-link {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+}
+
+.footer-link:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+  transition: ease-in-out .3s;
+  opacity: 0.8;
+}
+
+.year {
+  opacity: 0.5;
+}
+
+.designed {
+  opacity: 0.8;
+}
+
+.designed:hover {
+  color: $green;
+  transform: scale(1.03);
+  transition: ease-in-out .3s;
+  opacity: 1;
+}
