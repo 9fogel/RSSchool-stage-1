@@ -3,14 +3,49 @@
 //   font-family: 'Noto Serif', serif;
 // }
 
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 4px;
+  padding-bottom: 8px;
+}
+
 .logo-text {
   font-family: 'Merriweather', serif;
   font-weight: bold;
+  font-size: 64px;
   color: $orange;
 }
 
 .selected {
   color: $yellow;
+}
+
+.navigation {
+  align-self: flex-end;
+  padding-bottom: 14px;
+  padding-right: 18px;
+}
+
+.nav-list {
+  display: flex;
+  gap: 24px;
+  font-weight: 700;
+}
+
+.nav-link {
+  padding: 4px 6px 2px;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-link:hover,
+.link-active {
+  color: $orange;
+}
+
+.link-active {
+  color: $orange;
+  border-bottom: 2px solid $orange;
 }
 
 
