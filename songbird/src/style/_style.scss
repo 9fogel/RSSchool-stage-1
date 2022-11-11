@@ -48,6 +48,65 @@
   border-bottom: 2px solid $orange;
 }
 
+.intro {
+  position: relative;
+  height: 100%;
+}
+
+.intro::after {
+  position: absolute;
+  top: -91%;
+  left: 10.5%;
+  width: 200px;
+  height: 200px;
+  z-index: -1;
+  content: '';
+  background: radial-gradient(50% 50% at 50% 50%, $orange 0%, $yellow 100%);
+  border-radius: 50%;
+  box-shadow: $shadow;
+}
+
+.intro::before {
+  position: absolute;
+  bottom: -51%;
+  left: -9%;
+  width: 392px;
+  height: 392px;
+  z-index: -1;
+  content: '';
+  background: radial-gradient(50% 50% at 50% 50%, #D5482A 0%, $orange 100%);
+  border-radius: 50%;
+  box-shadow: $shadow;
+}
+
+.intro-content {
+  // margin: 33% auto 10%;
+  margin: 363px auto 10%;
+  padding: 18px 36px 56px;
+  width: 66%;
+  text-align: center;
+  color: $green;
+  background-color: $light-frosted;
+  border-radius: $border-radius;
+  backdrop-filter: $blur-white;
+}
+
+.intro-title {
+  padding-bottom: 24px;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 54px;
+}
+
+.intro-text {
+  padding-bottom: 16px;
+  font-size: 24px;
+  line-height: 33px;
+}
+
+.intro-button {
+  margin-top: 22px;
+}
 
 // .image {
 //   width: 300px;

@@ -15,7 +15,9 @@ body {
   font-size: 16px;
   color: $light-green;
   background-image: url(img/songbird-bg.jpg);
-  background-size: cover;
+  // background-size: 120%;
+  // background-position-y: -50px;
+  background-size: 100%;
 }
 
 ul {
@@ -38,6 +40,22 @@ img {
 button {
   cursor: pointer;
   padding: 0;
+  box-shadow: $shadow;
+}
+
+button:hover {
+  background-color: $yellow;
+}
+
+button:disabled {
+  cursor: default;
+  background-color: $gray;
+  box-shadow: none;
+}
+
+button:active {
+  background-color: $yellow;
+  box-shadow: none;
 }
 
 h1, h2, h3, p {
