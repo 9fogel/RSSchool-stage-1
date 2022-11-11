@@ -19,7 +19,7 @@ module.exports = {
   entry: ['@babel/polyfill', path.resolve(__dirname, 'src', 'index.js')],
   // entry: [path.resolve(__dirname, 'src', 'index.js')],
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist', 'songbird'),
     clean: true,//clear dist folder every time
     // clean: {
     //   keep: /\.git/,//output.clean: true будет затирать внутри папки информацию о том что это worktree (файл .git) и возникнут проблемы.
