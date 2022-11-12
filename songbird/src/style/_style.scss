@@ -71,6 +71,18 @@
   background: radial-gradient(50% 50% at 50% 50%, $orange 0%, $yellow 100%);
   border-radius: 50%;
   box-shadow: $shadow;
+  animation: scale1 10s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes scale1 {
+  50% {
+    transform: scale(0.6);
+    // transform: rotateZ(60deg) translate(1em, -9em);
+  }
+  50% {
+    transform: scale(1.4);
+  }
 }
 
 .intro::before {
@@ -84,6 +96,17 @@
   background: radial-gradient(50% 50% at 50% 50%, #D5482A 0%, $orange 100%);
   border-radius: 50%;
   box-shadow: $shadow;
+  animation: scale2 10s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes scale2 {
+  50% {
+    transform: scale(1.4);
+  }
+  50% {
+    transform: scale(0.6);
+  }
 }
 
 .intro-content {
