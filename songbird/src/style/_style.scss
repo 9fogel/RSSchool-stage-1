@@ -50,8 +50,8 @@
 }
 
 .link-active {
-  color: $orange;
-  border-bottom: 2px solid $orange;
+  color: $yellow;
+  border-bottom: 2px solid $yellow;
 }
 
 //intro
@@ -387,7 +387,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 8px 24px;
-  width: 100%;
+  width: 50%;
   color: $white;
 }
 
@@ -396,7 +396,7 @@
   height: 40px;
   background-size: 40px 40px;
   background-image: url('img/settings.svg');
-  opacity: 0.8;
+  opacity: 0.5;
 }
 
 .settings:hover {
@@ -520,7 +520,7 @@ label:hover{
 }
 
 .designed {
-  opacity: 0.8;
+  opacity: 0.5;
 }
 
 .designed:hover {

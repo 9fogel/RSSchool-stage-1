@@ -15,9 +15,7 @@ body {
   font-size: 16px;
   color: $light-green;
   background-image: url('img/songbird-bg.jpg');
-  // background-size: 120%;
-  // background-position-y: -50px;
-  background-size: 100%;
+  background-size: cover;
 }
 
 ul {
