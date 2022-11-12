@@ -1,9 +1,14 @@
 // import "@babel/polyfill";//added to entry point instead
 import './index.html';//watch changes in index.html
 import './index.scss';
-import { changePage, startGame } from './modules/nav';
-import code from './img/code.png';
 
+import birdsDataEn from './modules/birdsEn';
+import birdsDataRu from './modules/birdsRu';
+
+import { changePage, startGame } from './modules/nav';
+import { loadQuestion } from './modules/quiz';
+
+import code from './img/code.png';
 // const imgWrap = document.querySelector('.img');
 // const img = new Image();
 // img.src = code;
@@ -13,3 +18,18 @@ import code from './img/code.png';
 
 changePage();
 startGame();
+
+console.log(birdsDataEn);
+console.log(birdsDataRu);
+
+let birdNames = document.querySelectorAll('.bird-name');
+birdNames.forEach((birdName) => {
+  birdName.innerHTML = birdsDataRu[0][1].name;
+});
+
+let lang = 'ru'
+
+let level = 0;
+let score = 0;
+let points = 6;
+loadQuestion(lang, score);

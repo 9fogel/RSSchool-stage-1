@@ -178,6 +178,7 @@
   height: 160px;
   // background-color: $gray;
   background-image: url('img/guess-bird-bg.jpg');
+  background-size: cover;
   border-radius: $border-radius;
 }
 
@@ -289,6 +290,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 16px 24px 16px 16px;
+  height: 292px;
   background-color: $green-frosted;
   border-radius: $border-radius;
   box-shadow: $shadow;
@@ -341,6 +343,7 @@
 }
 
 .info {
+  height: 292px;
   padding: 16px 24px 16px 16px;
   background-color: $green-frosted;
   border-radius: $border-radius;
