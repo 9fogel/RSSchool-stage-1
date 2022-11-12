@@ -1,8 +1,8 @@
 // import "@babel/polyfill";//added to entry point instead
 import './index.html';//watch changes in index.html
 import './index.scss';
+import { changePage, startGame } from './modules/nav';
 import code from './img/code.png';
-import { mult, sum } from './modules/calc';
 
 // const imgWrap = document.querySelector('.img');
 // const img = new Image();
@@ -10,5 +10,6 @@ import { mult, sum } from './modules/calc';
 // img.width = 700;
 // imgWrap.append(img);
 
-console.log(mult(3, 4));
-console.log(sum(3, 4));
+
+changePage();
+startGame();
