@@ -6,7 +6,7 @@ import birdsDataEn from './modules/birdsEn';
 import birdsDataRu from './modules/birdsRu';
 
 import { changePage, startGame } from './modules/nav';
-import { loadQuestion } from './modules/quiz';
+import { loadQuestion, handleClick, score } from './modules/quiz';
 
 import code from './img/code.png';
 // const imgWrap = document.querySelector('.img');
@@ -27,9 +27,7 @@ birdNames.forEach((birdName) => {
   birdName.innerHTML = birdsDataRu[0][1].name;
 });
 
-let lang = 'ru'
-
-let level = 0;
-let score = 0;
-let points = 6;
-loadQuestion(lang, score);
+// let score = 0;
+// let points = 6;
+loadQuestion(score);
+handleClick();

@@ -357,13 +357,15 @@
   line-height: 22px;
 }
 
-.answer-item:hover {
+// .answer-item:hover,
+.item-hovered {
   cursor: pointer;
   color: $yellow;
   transition: ease-in-out .3s;
 }
 
-.answer-item:hover .answer-circle {
+// .answer-item:hover .answer-circle {
+.item-hovered .answer-circle {
   background-color: $yellow;
   transition: ease-in-out .3s;
 }
