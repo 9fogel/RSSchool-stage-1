@@ -11,6 +11,7 @@ let level = 0;
 score = 0;
 let points = 5;
 let scoreWrap = document.querySelector('.score');
+let levelNavItems = document.querySelectorAll('.level-item');
 let nextBtn = document.querySelector('.next-button');
 
 // let birds;
@@ -26,12 +27,11 @@ let correctAnswer = birds[level][randomArr[level]].name;
 
 let answerState = false;
 
-export function loadQuestion(score) {
+export function loadGame(score) {
   console.log(randomArr);
   setDefaultState(score);
   createAnswersList(level);
   setCorrectAnswer();
-  // handleClick();
 }
 
 function createAnswersList(level) {
@@ -41,12 +41,23 @@ function createAnswersList(level) {
 }
 
 function setDefaultState(score) {
+  correctAnswer = birds[level][randomArr[level]].name;
   scoreWrap.textContent = `Ваши очки: ${score}`;
   nextBtn.setAttribute('disabled', 'disabled');
   setDefaultBird();
+  levelNavItems.forEach((levelItem) => {
+    levelItem.classList.remove('level-active');
+  });
+  levelNavItems[level].classList.add('level-active');
+  answerIcons.forEach((answerIcon) => {
+    answerIcon.classList.remove('wrong-answer');
+    answerIcon.classList.remove('correct-answer');
+  });
+  answerState = false;
 }
 
 function setDefaultBird() {
+  birdImgs[0].style.backgroundImage = `url("../assets/images/guess-bird-bg.jpg")`;
   birdNames[0].textContent = '**********';
   birdNames[1].style.display = 'none';
   birdNameLatin.style.display = 'none';
@@ -73,8 +84,6 @@ function createCorrectBirdCard(level) {
 }
 
 function setCorrectAnswer() {
-  // console.log('answers', answers);
-  // console.log('correctAnswer', correctAnswer);
   answers.forEach((answer) => {
     if(answer.textContent === correctAnswer) {
       console.log('correct', answer.textContent);
@@ -102,6 +111,7 @@ export function handleClick() {
     answer.addEventListener('click', () => {
       if(answer.textContent === correctAnswer) {
         console.log('correct!');
+        //TODO: добавить звук правильного ответа
         answerIcons[index].classList.add('correct-answer');
         answerItems[index].classList.remove('item-hovered');
         answerItems[index].style.cursor = 'default';
@@ -109,13 +119,16 @@ export function handleClick() {
         setCorrectGameState();
       } else {
         console.log('wrong!');
-        answerIcons[index].classList.add('wrong-answer');
+        if (!answerState) {
+          answerIcons[index].classList.add('wrong-answer');
+          //TODO: добавить звук неправильного ответа
+        }
         answerItems[index].classList.remove('item-hovered');
         answerItems[index].style.cursor = 'default';
         points--;
       }
       showBirdInfo(index);
-    })
+    });
   });
 }
 
@@ -132,13 +145,19 @@ function showBirdInfo(index) {
 }
 
 function setCorrectGameState() {
-  answerState = true;
-  // let nextBtn = document.querySelector('.next-button');
   nextBtn.removeAttribute('disabled');
-  score += points;
-  scoreWrap.textContent = `Ваши очки: ${score}`;
-  //TODO: сбросить points до 5 и перестать изменять points за последующий клики
+  if (!answerState) {
+    score += points;
+    scoreWrap.textContent = `Ваши очки: ${score}`;
+    points = 5;
+  }
+  answerState = true;
 }
+
+nextBtn.addEventListener('click', () => {
+  level++;
+  loadGame(score);
+});
 
 
 
