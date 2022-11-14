@@ -96,6 +96,7 @@ function setCorrectAnswer() {
 
 export function handleClick() {
   let answerItems = document.querySelectorAll('.answer-item');
+
   answerItems.forEach((answerItem, index) => {
     answerItem.addEventListener('mouseover', () => {
       answerItem.classList.add('item-hovered');
@@ -105,11 +106,9 @@ export function handleClick() {
       answerItem.classList.remove('item-hovered');
       answerItem.style.cursor = 'default';
     });
-  });
 
-  answers.forEach((answer, index) => {
-    answer.addEventListener('click', () => {
-      if(answer.textContent === correctAnswer) {
+    answerItem.addEventListener('click', () => {
+      if(answers[index].textContent === correctAnswer) {
         console.log('correct!');
         //TODO: добавить звук правильного ответа
         answerIcons[index].classList.add('correct-answer');
@@ -122,14 +121,39 @@ export function handleClick() {
         if (!answerState) {
           answerIcons[index].classList.add('wrong-answer');
           //TODO: добавить звук неправильного ответа
+          points--;
         }
         answerItems[index].classList.remove('item-hovered');
         answerItems[index].style.cursor = 'default';
-        points--;
+
       }
       showBirdInfo(index);
     });
   });
+
+  // answers.forEach((answer, index) => {
+  //   answer.addEventListener('click', () => {
+  //     if(answer.textContent === correctAnswer) {
+  //       console.log('correct!');
+  //       //TODO: добавить звук правильного ответа
+  //       answerIcons[index].classList.add('correct-answer');
+  //       answerItems[index].classList.remove('item-hovered');
+  //       answerItems[index].style.cursor = 'default';
+  //       createCorrectBirdCard(level);
+  //       setCorrectGameState();
+  //     } else {
+  //       console.log('wrong!');
+  //       if (!answerState) {
+  //         answerIcons[index].classList.add('wrong-answer');
+  //         //TODO: добавить звук неправильного ответа
+  //       }
+  //       answerItems[index].classList.remove('item-hovered');
+  //       answerItems[index].style.cursor = 'default';
+  //       points--;
+  //     }
+  //     showBirdInfo(index);
+  //   });
+  // });
 }
 
 function showBirdInfo(index) {
