@@ -121,25 +121,29 @@
   backdrop-filter: $blur-white;
 }
 
-.intro-title {
+.intro-title,
+.congrats-text {
   padding-bottom: 24px;
   font-size: 40px;
   font-weight: 400;
   line-height: 54px;
 }
 
-.intro-text {
+.intro-text,
+.results-text {
   padding-bottom: 16px;
   font-size: 24px;
   line-height: 33px;
 }
 
-.intro-button {
+.intro-button,
+.results-button {
   margin-top: 22px;
   animation: shake 3s linear infinite;
 }
 
-.intro-button:hover {
+.intro-button:hover,
+.results-button:hover {
   animation: none;
 }
 
@@ -334,6 +338,7 @@
 .play-range:hover::-webkit-slider-runnable-track,
 .play-range:hover::-webkit-slider-thumb {
   background-color: $yellow;
+  transition: ease-in-out .3s;
 }
 
 .player-duration {
@@ -419,6 +424,7 @@
 .sound-range:hover::-webkit-slider-runnable-track,
 .sound-range:hover::-webkit-slider-thumb {
   background-color: $yellow;
+  transition: ease-in-out .3s;
 }
 
 .answer-wrapper {
@@ -675,4 +681,21 @@ label:hover{
   transform: scale(1.03);
   transition: ease-in-out .3s;
   opacity: 1;
+}
+
+//results
+.results-page {
+  padding-top: 10%;
+  min-height: calc(100vh - 174px);
+}
+
+.results-wrap {
+  margin: 0 auto;
+  padding: 18px 36px 56px;
+  width: 66%;
+  text-align: center;
+  color: $green;
+  background-color: $light-frosted;
+  border-radius: $border-radius;
+  backdrop-filter: $blur-white;
 }

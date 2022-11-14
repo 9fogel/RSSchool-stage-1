@@ -1,6 +1,8 @@
 // export const mult = (a, b) => a * b;
 // export const sum = async(a, b) => a + b;
+import { createElem } from '../../src/index';
 
+let navList = document.querySelector('.nav-list');
 let navLinks = document.querySelectorAll('.nav-link');
 let pages = document.querySelectorAll('.page');
 
@@ -23,11 +25,14 @@ function returnToAboutPage() {
   let logo = document.querySelector('.logo');
   logo.addEventListener('click', () => {
   console.log('logo');
+  navLinks.forEach((link) => {
+    link.classList.remove('link-active');
+  });
   navLinks[0].classList.add('link-active');
-  navLinks[1].classList.remove('link-active');
-  navLinks[2].classList.remove('link-active');
+  pages.forEach((page) => {
+    page.classList.add('hidden');
+  });
   pages[0].classList.remove('hidden');
-  pages[1].classList.add('hidden');
 });
 }
 
@@ -39,4 +44,35 @@ export function startGame() {
     pages[0].classList.add('hidden');
     pages[1].classList.remove('hidden');
   });
+}
+
+let addLinkItem;
+let resultsNavLink;
+export function addResultsNav() {
+  addLinkItem = createElem('li', 'nav-item', navList, '');
+  resultsNavLink = createElem('a', 'nav-link', addLinkItem, 'Результаты');
+  resultsNavLink.setAttribute('href', "#");
+
+  resultsNavLink.addEventListener('click', setResultsPageActive);
+}
+
+export function setResultsPageActive() {
+  document.querySelector('.link-active').classList.remove('link-active');
+  resultsNavLink.classList.add('link-active');
+  pages.forEach((page) => {
+    page.classList.add('hidden');
+  });
+  pages[pages.length-1].classList.remove('hidden');
+}
+
+export function restartGame() {
+    addLinkItem.remove();
+    navLinks.forEach((link) => {
+      link.classList.remove('link-active');
+    });
+    navLinks[1].classList.add('link-active');
+    pages.forEach((page) => {
+      page.classList.add('hidden');
+    });
+    pages[1].classList.remove('hidden');
 }
