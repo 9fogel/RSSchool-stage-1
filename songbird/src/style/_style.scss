@@ -265,7 +265,8 @@
   gap: 16px;
 }
 
-.play-icon {
+.play-icon,
+.pause-icon {
   width: 40px;
   height: 40px;
   color: $orange;
@@ -279,7 +280,8 @@
   box-shadow: none;
 }
 
-.play-icon:hover {
+.play-icon:hover,
+.pause-icon:hover {
   cursor: pointer;
   color: $yellow;
   background-color: transparent;
@@ -297,8 +299,41 @@
 }
 
 .play-range {
+  cursor: pointer;
+  padding: 8px 0;
   width: 100%;
+  background-color: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.play-range::-webkit-slider-runnable-track {
   height: 4px;
+  background-color: $light-green;
+  border: none;
+  border-radius: $border-radius;
+}
+
+.play-range::-webkit-slider-thumb {
+  margin-top: -4px;
+  width: 12px;
+  height: 12px;
+  background-color: $orange;
+  border-radius: 50%;
+  -webkit-appearance: none;
+}
+
+.play-range::-moz-range-thumb {
+  opacity: 0;
+}
+
+.play-range::-moz-range-track {
+  background: transparent;
+}
+
+.play-range:hover::-webkit-slider-runnable-track,
+.play-range:hover::-webkit-slider-thumb {
+  background-color: $yellow;
 }
 
 .player-duration {
@@ -313,22 +348,70 @@
   gap: 16px;
 }
 
-.sound-on {
+.sound-mute {
   width: 40px;
   height: 40px;
   color: $orange;
-  background-image: url('img/sound-on-icon.svg');
   background-size: 24px 24px;
   background-position: center center;
   background-repeat: no-repeat;
   background-color: transparent;
   border: 0;
   outline: 0;
+  box-shadow: none;
+}
+
+.sound-mute:hover {
+  cursor: pointer;
+  background-color: transparent;
+  background-image: url('img/sound-muted-icon.svg');
+  transition: ease-in-out .3s;
+}
+
+.sound-on {
+  background-image: url('img/sound-on-icon.svg');
+}
+
+.sound-off {
+  background-image: url('img/sound-muted-icon.svg');
 }
 
 .sound-range {
+  cursor: pointer;
   align-self: center;
+  padding: 8px 0;
+  background-color: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.sound-range::-webkit-slider-runnable-track {
   height: 4px;
+  background-color: $light-green;
+  border: none;
+  border-radius: $border-radius;
+}
+
+.sound-range::-webkit-slider-thumb {
+  margin-top: -4px;
+  width: 12px;
+  height: 12px;
+  background-color: $orange;
+  border-radius: 50%;
+  -webkit-appearance: none;
+}
+
+.sound-range::-moz-range-thumb {
+  opacity: 0;
+}
+
+.sound-range::-moz-range-track {
+  background: transparent;
+}
+
+.sound-range:hover::-webkit-slider-runnable-track,
+.sound-range:hover::-webkit-slider-thumb {
+  background-color: $yellow;
 }
 
 .answer-wrapper {
@@ -358,14 +441,12 @@
   line-height: 22px;
 }
 
-// .answer-item:hover,
 .item-hovered {
   cursor: pointer;
   color: $yellow;
   transition: ease-in-out .3s;
 }
 
-// .answer-item:hover .answer-circle {
 .item-hovered .answer-circle {
   background-color: $yellow;
   transition: ease-in-out .3s;

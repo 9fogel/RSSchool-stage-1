@@ -71,8 +71,14 @@
                   <path fill="currentColor" d="M32 0c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32zM32 58c-14.359 0-26-11.641-26-26s11.641-26 26-26 26 11.641 26 26-11.641 26-26 26zM24 18l24 14-24 14z"></path>
                 </svg>
               </button>
+              <button class="pause-icon hidden">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 64 64">
+                  <title>pause</title>
+                  <path fill="currentColor" d="M32 0c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32zM32 58c-14.359 0-26-11.641-26-26s11.641-26 26-26 26 11.641 26 26-11.641 26-26 26zM20 20h8v24h-8zM36 20h8v24h-8z"></path>
+                  </svg>
+              </button>
               <div class="play-range-wrapper">
-                <input class="play-range" type="range" name="player" id="player">
+                <input class="play-range" type="range" name="player" id="player" min="0" max="100" value="0">
                 <div class="player-duration">
                   <span class="current-duration">00:00</span>
                   <span class="total-duration">02:00</span>
@@ -80,8 +86,8 @@
               </div>
             </div>
             <div class="sound-control">
-              <div class="sound-on"></div>
-              <input class="sound-range" type="range" name="sound-level" id="sound-level">
+              <button class="sound-mute sound-on"></button>
+              <input class="sound-range" type="range" name="sound-level" id="sound-level" min="0" max="100" value="30">
             </div>
           </div>
         </div>
@@ -130,8 +136,14 @@
                       <path fill="currentColor" d="M32 0c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32zM32 58c-14.359 0-26-11.641-26-26s11.641-26 26-26 26 11.641 26 26-11.641 26-26 26zM24 18l24 14-24 14z"></path>
                     </svg>
                   </button>
+                  <button class="pause-icon hidden">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 64 64">
+                      <title>pause</title>
+                      <path fill="currentColor" d="M32 0c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32zM32 58c-14.359 0-26-11.641-26-26s11.641-26 26-26 26 11.641 26 26-11.641 26-26 26zM20 20h8v24h-8zM36 20h8v24h-8z"></path>
+                      </svg>
+                  </button>
                   <div class="play-range-wrapper">
-                    <input class="play-range" type="range" name="player" id="player-info">
+                    <input class="play-range" type="range" name="player" id="player-info" min="0" max="100" value="0">
                     <div class="player-duration">
                       <span class="current-duration">00:00</span>
                       <span class="total-duration">02:00</span>
@@ -150,12 +162,9 @@
         </div>
       </div>
 
-
-
       <button class="button next-button" disabled>Следующий уровень</button>
     </section>
     <section class="gallery-page page container hidden"></section>
-    <!-- <div class="img"></div> -->
   </main>
 
   <footer class="footer container">
