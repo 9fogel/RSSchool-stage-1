@@ -361,7 +361,7 @@
   box-shadow: none;
 }
 
-.sound-mute:hover {
+.sound-on:hover {
   cursor: pointer;
   background-color: transparent;
   background-image: url('img/sound-muted-icon.svg');
@@ -374,6 +374,13 @@
 
 .sound-off {
   background-image: url('img/sound-muted-icon.svg');
+}
+
+.sound-off:hover {
+  cursor: pointer;
+  background-color: transparent;
+  background-image: url('img/sound-on-icon.svg');
+  transition: ease-in-out .3s;
 }
 
 .sound-range {
