@@ -6,7 +6,7 @@ import birdsDataEn from './modules/birdsEn';
 import birdsDataRu from './modules/birdsRu';
 
 import { changePage, startGame } from './modules/nav';
-import { loadGame, handleClick, score } from './modules/quiz';
+import { loadGame, handleClick, score, soundMainUrl, soundInfoUrl } from './modules/quiz';
 
 import code from './img/code.png';
 // const imgWrap = document.querySelector('.img');
@@ -28,10 +28,6 @@ startGame();
 loadGame(score);
 handleClick();
 
-console.log(birdsDataEn);
-console.log(birdsDataRu);
+// console.log(birdsDataEn);
+// console.log(birdsDataRu);
 
-// let birdNames = document.querySelectorAll('.bird-name');
-// birdNames.forEach((birdName) => {
-//   birdName.innerHTML = birdsDataRu[0][1].name;
-// });

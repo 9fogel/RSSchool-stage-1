@@ -6,9 +6,14 @@ import wrongSound from '../sound/sound-wrong.mp3';
 
 import { birds } from './lang';
 import { getRandomArr } from './random';
+// import { audioMain, audioInfo } from './player';
 import { addResultsNav, setResultsPageActive, restartGame } from './nav';
 
+import { isPlay, initPlayer, initPlayerInfo, playPlayer, pausePlayer } from './player';
+
 export let score;
+export let soundMainUrl;
+export let soundInfoUrl;
 
 let randomArr = getRandomArr();
 let level = 0;
@@ -37,11 +42,13 @@ let answerState = false;
 let gameFinished = false
 
 export function loadGame(score) {
-  console.log(randomArr);
-  console.log('score2', score);
+  // console.log(randomArr);
+  // console.log('score2', score);
   setDefaultState(score);
   createAnswersList(level);
   setCorrectAnswer();
+  initPlayer();
+  playPlayer();
 }
 
 function createAnswersList(level) {
@@ -71,8 +78,11 @@ function setDefaultBird() {
   birdNames[0].textContent = '**********';
   birdNames[1].style.display = 'none';
   birdNameLatin.style.display = 'none';
+
+  // //TODO: add audio - birds[level][randomArr[level]].audio;
+  soundMainUrl = birds[level][randomArr[level]].audio;
+
   birdDesc.innerHTML = '<p>Послушайте плеер.</p><p>Выберите птицу из списка.</p></br><p>За правильный ответ с первой попытки начисляется 6 баллов.</p><p>За каждую последующую попытку на 1 балл меньше.</p>';
-  //TODO: add audio for players[0] - birds[level][randomArr[level]].audio;
   players[1].style.display = 'none';
   birdImgs[1].style.display = 'none';
 }
@@ -83,7 +93,10 @@ function createCorrectBirdCard(level) {
   });
   birdNameLatin.textContent = birds[level][randomArr[level]].species;
   birdDesc.textContent = birds[level][randomArr[level]].description;
-  //TODO: add audio - birds[level][randomArr[level]].audio;
+
+  // //TODO: add audio - birds[level][randomArr[level]].audio;
+  // soundMainUrl = birds[level][randomArr[level]].audio;
+
   birdImgs.forEach((img) => {
     img.style.backgroundImage = `url(${birds[level][randomArr[level]].image})`;
   });
@@ -120,8 +133,8 @@ export function handleClick() {
     answerItem.addEventListener('click', () => {
       if(answers[index].textContent === correctAnswer) {
         console.log('correct!', level);
-        handleClickSound('correct');
-        //TODO: добавить звук правильного ответа
+        handleClickSound('correct', isPlay);
+        pausePlayer();
         answerIcons[index].classList.add('correct-answer');
         answerItems[index].classList.remove('item-hovered');
         answerItems[index].style.cursor = 'default';
@@ -135,7 +148,6 @@ export function handleClick() {
         if (!answerState) {
           answerIcons[index].classList.add('wrong-answer');
           handleClickSound('wrong');
-          //TODO: добавить звук неправильного ответа
           points--;
         }
         answerItems[index].classList.remove('item-hovered');
@@ -151,7 +163,11 @@ function showBirdInfo(index) {
   birdNames[1].textContent = birds[level][index].name;
   birdNameLatin.textContent = birds[level][index].species;
   birdDesc.textContent = birds[level][index].description;
+
   //TODO: add audio - birds[level][index].audio;
+  soundInfoUrl = birds[level][index].audio;
+  initPlayerInfo();
+
   birdNames[1].style.display = 'block';
   birdNameLatin.style.display = 'block';
   players[1].style.display = 'block';
@@ -161,7 +177,7 @@ function showBirdInfo(index) {
 function setCorrectGameState() {
   nextBtn.removeAttribute('disabled');
   if (!answerState) {
-    console.log('score3', score);
+    // console.log('score3', score);
     score += points;
     scoreWrap.textContent = `Ваши очки: ${score}`;
     points = 5;
@@ -172,6 +188,7 @@ function setCorrectGameState() {
 function handleNext() {
   level++;
   loadGame(score);
+  playPlayer();
 }
 
 nextBtn.addEventListener('click', handleNext);
@@ -215,10 +232,8 @@ function handleClickSound(guess) {
   const wrongClickSound = new Audio(wrongSound);
 
   if (guess === 'correct') {
-    console.log('correct sound');
     correctClickSound.play();
   } else {
     wrongClickSound.play();
-    console.log('wrong sound');
   }
 }

@@ -1,6 +1,7 @@
 // export const mult = (a, b) => a * b;
 // export const sum = async(a, b) => a + b;
 import { createElem } from '../../src/index';
+// import { initPlayer } from './player';
 
 let navList = document.querySelector('.nav-list');
 let navLinks = document.querySelectorAll('.nav-link');
@@ -43,6 +44,7 @@ export function startGame() {
     navLinks[1].classList.add('link-active');
     pages[0].classList.add('hidden');
     pages[1].classList.remove('hidden');
+    // initPlayer();
   });
 }
 
