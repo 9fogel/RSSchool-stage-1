@@ -3,6 +3,9 @@ import { soundMainUrl, soundInfoUrl } from './quiz';
 const playBtns = document.querySelectorAll('.play-button');
 const infoPlayBtns = document.querySelectorAll('.info-play-button');
 
+const soundMuteBtn = document.querySelector('.sound-mute');
+const soundRangeInput = document.querySelector('.sound-range');
+
 export let isPlay = false;
 
 let audioMain;
@@ -13,6 +16,9 @@ export function initPlayer() {
   audioMain = new Audio(soundMainUrl);
   console.log('audioMain', audioMain);
 
+  audioMain.volume = localStorage.getItem('volume') || 0.3;
+  soundRangeInput.value = audioMain.volume * 100;
+
   function loadPlayer() {
     audioMain.load();
     console.log(`is Play ${isPlay}`, 'load player1');
@@ -20,6 +26,33 @@ export function initPlayer() {
 
   const nextBtn = document.querySelector('.next-button');
   nextBtn.addEventListener('click', loadPlayer);
+
+//sound level (mute)
+  soundRangeInput.addEventListener('input', () => {
+    let soundValue = soundRangeInput.value;
+    audioMain.volume = soundValue / 100;
+  });
+
+  soundMuteBtn.addEventListener('click', () => {
+    if (audioMain.volume) {//если у аудио есть громкость
+      localStorage.setItem('volume', audioMain.volume);
+      audioMain.volume = 0;
+      if(audioInfo) {
+        audioInfo.volume = 0;
+      }
+      soundMuteBtn.classList.remove('sound-on');
+      soundMuteBtn.classList.add('sound-off');//убрать ховер как с answeritems
+      soundRangeInput.value = 0;
+    } else {
+      audioMain.volume = localStorage.getItem('volume');
+      if(audioInfo) {
+        audioInfo.volume = audioMain.volume;
+      }
+      soundMuteBtn.classList.remove('sound-off');
+      soundMuteBtn.classList.add('sound-on');//TODO: убрать ховер как с answer-items или другой ховер?
+      soundRangeInput.value = audioMain.volume * 100;
+    }
+  });
 }
 
 export function playPlayer() {
@@ -36,7 +69,7 @@ export function playPlayer() {
       isPlay = false;
     }
   }
-  //иконки не работают
+  //TODO: иконки не работают
 
   playBtns.forEach((playBtn) => {
     playBtn.addEventListener('click', play);
@@ -105,3 +138,19 @@ export function initPlayerInfo() {
     playInfoBtn.addEventListener('click', playInfoSound);
   });
 }
+
+// //перенести внутрь инит?
+// soundMuteBtn.addEventListener('click', () => {
+//   console.log(audioMain.volume);
+//   audioInfo.volume = audioMain.volume;
+//   if (audioMain.volume) {//если у аудио есть громкость
+//     // localStorage.setItem('volume', audioMain.volume);
+//     audioMain.volume = 0;
+//     audioInfo.volume = 0;
+//     soundMuteBtn.classList.remove('sound-on');
+//     soundMuteBtn.classList.add('sound-off');
+//     soundRangeInput.value = 0;
+//   } else {
+
+//   }
+// });
