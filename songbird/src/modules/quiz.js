@@ -1,6 +1,9 @@
 import birdsDataEn from './birdsEn';
 import birdsDataRu from './birdsRu';
 
+import correctSound from '../sound/sound-correct.mp3';
+import wrongSound from '../sound/sound-wrong.mp3';
+
 import { birds } from './lang';
 import { getRandomArr } from './random';
 import { addResultsNav, setResultsPageActive, restartGame } from './nav';
@@ -64,7 +67,7 @@ function setDefaultState(score) {
 }
 
 function setDefaultBird() {
-  birdImgs[0].style.backgroundImage = `url("../assets/images/guess-bird-bg.jpg")`;
+  birdImgs[0].style.backgroundImage = `url("./assets/images/guess-bird-bg.jpg")`;
   birdNames[0].textContent = '**********';
   birdNames[1].style.display = 'none';
   birdNameLatin.style.display = 'none';
@@ -117,6 +120,7 @@ export function handleClick() {
     answerItem.addEventListener('click', () => {
       if(answers[index].textContent === correctAnswer) {
         console.log('correct!', level);
+        handleClickSound('correct');
         //TODO: добавить звук правильного ответа
         answerIcons[index].classList.add('correct-answer');
         answerItems[index].classList.remove('item-hovered');
@@ -130,6 +134,7 @@ export function handleClick() {
         console.log('wrong!');
         if (!answerState) {
           answerIcons[index].classList.add('wrong-answer');
+          handleClickSound('wrong');
           //TODO: добавить звук неправильного ответа
           points--;
         }
@@ -205,4 +210,15 @@ function playAgain() {
 
 playAgainBtn.addEventListener('click', playAgain);
 
+function handleClickSound(guess) {
+  const correctClickSound = new Audio(correctSound);
+  const wrongClickSound = new Audio(wrongSound);
 
+  if (guess === 'correct') {
+    console.log('correct sound');
+    correctClickSound.play();
+  } else {
+    wrongClickSound.play();
+    console.log('wrong sound');
+  }
+}

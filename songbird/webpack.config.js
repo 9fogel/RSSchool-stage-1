@@ -67,6 +67,13 @@ module.exports = {
         }
       },
       {
+        test: /\.mp3$/i,//formats of sounds
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/sound/[name][ext]'
+        }
+      },
+      {
         test: /\.(jpe?g|png|webp|gif|svg)$/i,//formats of images
         use: [
           {
