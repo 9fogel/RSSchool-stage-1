@@ -35,6 +35,14 @@ export function initPlayer() {
 
   function loadPlayer() {
     audioMain.load();
+    if(!audioInfo.paused) {
+      audioInfo.pause();
+      // audioInfo.currentTime = 0;
+      isPlay = false;
+      isPlay1 = false;
+      isPlay2 = false;
+      //иконки
+    }
   }
 
   const nextBtn = document.querySelector('.next-button');
@@ -53,6 +61,9 @@ export function initPlayer() {
     } else {
       let soundValue = soundRangeInput.value;
       audioMain.volume = soundValue / 100;
+      if(audioInfo) {
+        audioInfo.volume = audioMain.volume;
+      }
     }
   });
 
@@ -141,6 +152,14 @@ export function initPlayerInfo() {
   playBtnInfo.classList.remove('pause-icon');
 
   function loadPlayerInfo() {
+    if(!audioInfo.paused) {
+      audioInfo.pause();
+      // audioInfo.currentTime = 0;
+      isPlay = false;
+      isPlay1 = false;
+      isPlay2 = false;
+      //иконки
+    }
     audioInfo.load();
   }
 
@@ -150,8 +169,7 @@ export function initPlayerInfo() {
 
 export function playPlayerInfo() {
   function playInfo() {
-
-    // fillTrackTime(audioInfo, currentDurationInfo, totalDurationInfo, playRangeInfo);
+    showTrackProgressInfo();
     if(!isPlay) {//ничего не играет
       audioInfo.play();
       playBtnInfo.classList.toggle('play-icon');
@@ -173,7 +191,7 @@ export function playPlayerInfo() {
         console.log('isPlay2', isPlay2);
       } else if(isPlay2) {
         console.log('выключить 1, включить плеер2');
-        audioInfo.pause();
+        audioInfo.play();
         playBtnInfo.classList.toggle('play-icon');
         playBtnInfo.classList.toggle('pause-icon');
         isPlay = false;
@@ -213,6 +231,18 @@ function showTrackProgress() {
     console.log(progress);
   });
   setTimeout(showTrackProgress, 1000);
+}
+
+
+//TODO: отредактировать под второй плеер
+function showTrackProgressInfo() {
+  audioInfo.addEventListener('timeupdate', fillTrackTime(audioInfo, currentDurationInfo, totalDurationInfo, playRangeInfo));
+playRangeInfo.addEventListener('change', () => {
+  let progress = playRangeInfo.value;
+  audioInfo.currentTime = (progress / 1000) * audioInfo.duration;
+  console.log(progress);
+});
+setTimeout(showTrackProgressInfo, 1000);
 }
 
 function setDefaultTime() {
