@@ -1,7 +1,7 @@
 import { soundMainUrl, soundInfoUrl } from './quiz';
 
-const playBtns = document.querySelectorAll('.play-button');
-const infoPlayBtns = document.querySelectorAll('.info-play-button');
+const playBtn = document.querySelector('.play-button');
+const playBtnInfo = document.querySelector('.info-play-button');
 
 const soundMuteBtn = document.querySelector('.sound-mute');
 const soundRangeInput = document.querySelector('.sound-range');
@@ -14,28 +14,15 @@ const playRange = document.querySelector('.play-range');
 const playRangeInfo = document.querySelector('.info-play-range');
 
 export let isPlay = false;
+let isPlay1 = false;
+let isPlay2 = false;
 
 let audioMain;
 let audioInfo;
 
-function showTrackProgress() {
-    audioMain.addEventListener('timeupdate', fillTrackTime(audioMain, currentDuration, totalDuration, playRange));
-  playRange.addEventListener('change', () => {
-    let progress = playRange.value;
-    audioMain.currentTime = (progress / 1000) * audioMain.duration;
-    console.log(progress);
-  });
-}
-
-function setDefaultTime() {
-  playRange.value = 0;
-  audioMain.currentTime = 0;
-  currentDuration.textContent = '00:00'
-  totalDuration.textContent = '00:00'
-}
 
 export function initPlayer() {
-  // console.log('audioMainURL', soundMainUrl);
+  console.log('init P1', 'isPlay1', isPlay1, 'isPlay2', isPlay2);
   audioMain = new Audio(soundMainUrl);
   console.log('audioMain', audioMain);
 
@@ -45,11 +32,18 @@ export function initPlayer() {
   function loadPlayer() {
     audioMain.load();
     console.log(`is Play ${isPlay}`, 'load player1');
+    isPlay = false;
+    isPlay1 = false;
   }
 
   const nextBtn = document.querySelector('.next-button');
   nextBtn.addEventListener('click', loadPlayer);
   nextBtn.addEventListener('click', setDefaultTime);
+
+  //TODO: когда кнопка посмотреть результаты
+  // if () {
+  //   nextBtn.removeEventListener('click', loadPlayer);
+  // }
 
 //sound level (mute)
   soundRangeInput.addEventListener('input', () => {
@@ -86,106 +80,103 @@ export function initPlayer() {
 
 export function playPlayer() {
 
-  console.log(`is Play ${isPlay}`, 'play player');
   function play() {
     showTrackProgress();
     if(!isPlay) {
       audioMain.play();
-      if(audioInfo) {
-        audioInfo.pause();
-      }
+      playBtn.classList.toggle('play-icon');
+      playBtn.classList.toggle('pause-icon');
       isPlay = true;
+      isPlay1 = true;
+      console.log('isPlay1', isPlay1, 'isPlay2', isPlay2)
     } else {
-      audioMain.pause();
-      isPlay = false;
+      if(isPlay1) {
+        audioMain.pause();
+        playBtn.classList.toggle('play-icon');
+        playBtn.classList.toggle('pause-icon');
+        isPlay = false;
+        isPlay1 = false;
+        console.log('isPlay1', isPlay1);
+      } else if(isPlay2) {
+        audioInfo.pause();
+        playBtnInfo.classList.toggle('play-icon');
+        playBtnInfo.classList.toggle('pause-icon');
+        isPlay2 = false;
+        audioMain.play();
+        playBtn.classList.toggle('play-icon');
+        playBtn.classList.toggle('pause-icon');
+        isPlay = true;
+        isPlay1 = true;
+        console.log('isPlay1', isPlay1);
+      }
     }
   }
-  //TODO: иконки не работают
 
-  playBtns.forEach((playBtn) => {
-    playBtn.addEventListener('click', play);
-  });
+  playBtn.addEventListener('click', play);
 }
-
-// export function playPlayer() {
-//   function play() {
-//     if(!isPlay) {
-//       console.log(`is Play ${isPlay}`, 'включить плеер1');
-//       audioMain.play();
-//       // audioInfo.pause();
-//       playBtns[0].classList.add('hidden');
-//       playBtns[1].classList.remove('hidden');
-
-//       isPlay = true;
-//     } else {
-//       console.log(`is Play ${isPlay}`, 'пауза плеер1');
-//       audioMain.pause();
-//       playBtns[1].classList.add('hidden');
-//       playBtns[0].classList.remove('hidden');
-
-//       isPlay = false;
-//     }
-//   }
-// }
 
 export function pausePlayer() {
   console.log(`is Play ${isPlay}`, 'пауза');
   audioMain.pause();
-  playBtns[1].classList.add('hidden');
-  playBtns[0].classList.remove('hidden');
+  playBtn.classList.toggle('play-icon');
+  playBtn.classList.toggle('pause-icon');
   isPlay = false;
+  isPlay1 = false;
 }
 
+//player2
 export function initPlayerInfo() {
-  // console.log('audioInfoURL', soundInfoUrl);
+  console.log('init P1', 'isPlay1', isPlay1, 'isPlay2', isPlay2);
   audioInfo = new Audio(soundInfoUrl);
   console.log('audioInfo', audioInfo);
 
   function loadPlayerInfo() {
     audioInfo.load();
     console.log('load player2');
+    isPlay = false;
+    isPlay2 = false;
   }
 
   const answerList = document.querySelector('.answer-list');
   answerList.addEventListener('click', loadPlayerInfo);
-
-  function playInfoSound() {
-      console.log('включить плеер2');
-      // fillTrackTime(audioInfo, currentDurationInfo, totalDurationInfo, playRangeInfo);
-      if(!isPlay) {
-        audioInfo.play();
-        audioMain.pause();
-        // infoPlayBtns[0].classList.add('hidden');
-        // infoPlayBtns[1].classList.remove('hidden');
-        isPlay = true;
-      } else {
-        audioInfo.pause();
-        // infoPlayBtns[1].classList.add('hidden');
-        // infoPlayBtns[0].classList.remove('hidden');
-        isPlay = false;
-      }
-    }
-
-  infoPlayBtns.forEach((playInfoBtn) => {
-    playInfoBtn.addEventListener('click', playInfoSound);
-  });
 }
 
-// //перенести внутрь инит?
-// soundMuteBtn.addEventListener('click', () => {
-//   console.log(audioMain.volume);
-//   audioInfo.volume = audioMain.volume;
-//   if (audioMain.volume) {//если у аудио есть громкость
-//     // localStorage.setItem('volume', audioMain.volume);
-//     audioMain.volume = 0;
-//     audioInfo.volume = 0;
-//     soundMuteBtn.classList.remove('sound-on');
-//     soundMuteBtn.classList.add('sound-off');
-//     soundRangeInput.value = 0;
-//   } else {
+export function playPlayerInfo() {
+  function playInfo() {
+    console.log('включить плеер2');
+    // fillTrackTime(audioInfo, currentDurationInfo, totalDurationInfo, playRangeInfo);
+    if(!isPlay) {//ничего не играет
+      audioInfo.play();
+      playBtnInfo.classList.toggle('play-icon');
+      playBtnInfo.classList.toggle('pause-icon');
+      isPlay = true;
+      isPlay2 = true;
+    } else {
+      if(isPlay1) {
+        audioMain.pause();
+        playBtn.classList.toggle('play-icon');
+        playBtn.classList.toggle('pause-icon');
+        isPlay1 = false;
+        audioInfo.play();
+        playBtnInfo.classList.toggle('play-icon');
+        playBtnInfo.classList.toggle('pause-icon');
+        isPlay = true;
+        isPlay2 = true;
+        console.log('isPlay2', isPlay2);
+      } else if(isPlay2) {
+        audioInfo.pause();
+        playBtnInfo.classList.toggle('play-icon');
+        playBtnInfo.classList.toggle('pause-icon');
+        isPlay = false;
+        isPlay2 = false;
+        console.log('isPlay2', isPlay2);
+      }
+    }
+  }
 
-//   }
-// });
+  playBtnInfo.addEventListener('click', playInfo);
+}
+
 
 function fillTrackTime(audio, curDur, totalDur, playR) {
 
@@ -203,4 +194,20 @@ function fillTrackTime(audio, curDur, totalDur, playR) {
 
   curDur.textContent = `${curMin}:${String(curSec).padStart(2, 0)}`;
   totalDur.textContent = `${durMin}:${String(durSec).padStart(2, 0)}`;
+}
+
+function showTrackProgress() {
+    audioMain.addEventListener('timeupdate', fillTrackTime(audioMain, currentDuration, totalDuration, playRange));
+  playRange.addEventListener('change', () => {
+    let progress = playRange.value;
+    audioMain.currentTime = (progress / 1000) * audioMain.duration;
+    console.log(progress);
+  });
+}
+
+function setDefaultTime() {
+  playRange.value = 0;
+  audioMain.currentTime = 0;
+  currentDuration.textContent = '00:00'
+  totalDuration.textContent = '00:00'
 }

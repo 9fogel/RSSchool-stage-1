@@ -9,7 +9,7 @@ import { getRandomArr } from './random';
 // import { audioMain, audioInfo } from './player';
 import { addResultsNav, setResultsPageActive, restartGame } from './nav';
 
-import { isPlay, initPlayer, initPlayerInfo, playPlayer, pausePlayer } from './player';
+import { isPlay, initPlayer, initPlayerInfo, playPlayer, pausePlayer, playPlayerInfo } from './player';
 
 export let score;
 export let soundMainUrl;
@@ -133,7 +133,7 @@ export function handleClick() {
     answerItem.addEventListener('click', () => {
       if(answers[index].textContent === correctAnswer) {
         console.log('correct!', level);
-        handleClickSound('correct', isPlay);
+        handleClickSound('correct');
         pausePlayer();
         answerIcons[index].classList.add('correct-answer');
         answerItems[index].classList.remove('item-hovered');
@@ -167,6 +167,7 @@ function showBirdInfo(index) {
   //TODO: add audio - birds[level][index].audio;
   soundInfoUrl = birds[level][index].audio;
   initPlayerInfo();
+  playPlayerInfo();
 
   birdNames[1].style.display = 'block';
   birdNameLatin.style.display = 'block';
