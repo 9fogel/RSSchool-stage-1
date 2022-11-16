@@ -25,15 +25,16 @@ export function initPlayer() {
   console.log('init P1', 'isPlay1', isPlay1, 'isPlay2', isPlay2);
   audioMain = new Audio(soundMainUrl);
   console.log('audioMain', audioMain);
+  isPlay = false;
+  isPlay1 = false;
+  playBtn.classList.add('play-icon');
+  playBtn.classList.remove('pause-icon');
 
   audioMain.volume = localStorage.getItem('volume') || 0.3;
   soundRangeInput.value = audioMain.volume * 100;
 
   function loadPlayer() {
     audioMain.load();
-    console.log(`is Play ${isPlay}`, 'load player1');
-    isPlay = false;
-    isPlay1 = false;
   }
 
   const nextBtn = document.querySelector('.next-button');
@@ -79,7 +80,6 @@ export function initPlayer() {
 
 
 export function playPlayer() {
-
   function play() {
     showTrackProgress();
     if(!isPlay) {
@@ -88,7 +88,7 @@ export function playPlayer() {
       playBtn.classList.toggle('pause-icon');
       isPlay = true;
       isPlay1 = true;
-      console.log('isPlay1', isPlay1, 'isPlay2', isPlay2)
+      console.log('isPlay1', isPlay1, 'isPlay2', isPlay2);
     } else {
       if(isPlay1) {
         audioMain.pause();
@@ -122,6 +122,12 @@ export function pausePlayer() {
   playBtn.classList.toggle('pause-icon');
   isPlay = false;
   isPlay1 = false;
+  if(audioInfo) {
+    audioInfo.pause();
+    playBtnInfo.classList.toggle('play-icon');
+    playBtnInfo.classList.toggle('pause-icon');
+    isPlay2 = false;
+  }
 }
 
 //player2
@@ -129,12 +135,13 @@ export function initPlayerInfo() {
   console.log('init P1', 'isPlay1', isPlay1, 'isPlay2', isPlay2);
   audioInfo = new Audio(soundInfoUrl);
   console.log('audioInfo', audioInfo);
+  isPlay = false;
+  isPlay2 = false;
+  playBtnInfo.classList.add('play-icon');
+  playBtnInfo.classList.remove('pause-icon');
 
   function loadPlayerInfo() {
     audioInfo.load();
-    console.log('load player2');
-    isPlay = false;
-    isPlay2 = false;
   }
 
   const answerList = document.querySelector('.answer-list');
@@ -143,7 +150,7 @@ export function initPlayerInfo() {
 
 export function playPlayerInfo() {
   function playInfo() {
-    console.log('включить плеер2');
+
     // fillTrackTime(audioInfo, currentDurationInfo, totalDurationInfo, playRangeInfo);
     if(!isPlay) {//ничего не играет
       audioInfo.play();
@@ -153,6 +160,7 @@ export function playPlayerInfo() {
       isPlay2 = true;
     } else {
       if(isPlay1) {
+        console.log('играет плеер1 - выключить!!');
         audioMain.pause();
         playBtn.classList.toggle('play-icon');
         playBtn.classList.toggle('pause-icon');
@@ -164,6 +172,7 @@ export function playPlayerInfo() {
         isPlay2 = true;
         console.log('isPlay2', isPlay2);
       } else if(isPlay2) {
+        console.log('выключить 1, включить плеер2');
         audioInfo.pause();
         playBtnInfo.classList.toggle('play-icon');
         playBtnInfo.classList.toggle('pause-icon');
@@ -182,8 +191,8 @@ function fillTrackTime(audio, curDur, totalDur, playR) {
 
   let duration = audio.duration;
   let currentTime = audio.currentTime;
-  console.log('duration', duration);
-  console.log('currentTime', currentTime);
+  // console.log('duration', duration);
+  // console.log('currentTime', currentTime);
 
   let progress = (currentTime / duration) * playR.max;
   playR.value = progress ? progress : 0;
@@ -203,6 +212,7 @@ function showTrackProgress() {
     audioMain.currentTime = (progress / 1000) * audioMain.duration;
     console.log(progress);
   });
+  setTimeout(showTrackProgress, 1000);
 }
 
 function setDefaultTime() {

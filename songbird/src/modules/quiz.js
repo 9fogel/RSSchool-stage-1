@@ -47,8 +47,8 @@ export function loadGame(score) {
   setDefaultState(score);
   createAnswersList(level);
   setCorrectAnswer();
-  initPlayer();
-  playPlayer();
+  // initPlayer();
+  // playPlayer();
 }
 
 function createAnswersList(level) {
@@ -81,7 +81,8 @@ function setDefaultBird() {
 
   // //TODO: add audio - birds[level][randomArr[level]].audio;
   soundMainUrl = birds[level][randomArr[level]].audio;
-
+  initPlayer();
+  playPlayer();
   birdDesc.innerHTML = '<p>Послушайте плеер.</p><p>Выберите птицу из списка.</p></br><p>За правильный ответ с первой попытки начисляется 6 баллов.</p><p>За каждую последующую попытку на 1 балл меньше.</p>';
   players[1].style.display = 'none';
   birdImgs[1].style.display = 'none';
@@ -189,7 +190,7 @@ function setCorrectGameState() {
 function handleNext() {
   level++;
   loadGame(score);
-  initPlayer();
+  // initPlayer();
   playPlayer();
 }
 
