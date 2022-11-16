@@ -8,6 +8,8 @@ html {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   min-width: 360px;
   min-height: 100vh;
   font-family: 'Noto Serif', serif;
@@ -16,6 +18,18 @@ body {
   color: $light-green;
   background-image: url('img/songbird-bg.jpg');
   background-size: cover;
+
+  @media (max-width: 1200px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 886px ) {
+    background-image: url('img/songbird-bg-tablet.jpg');
+  }
+
+  // @media (max-width: 680px) {
+
+  // }
 }
 
 ul {
@@ -72,6 +86,20 @@ h1, h2, h3, p {
 .container {
   max-width: 1080px;
   margin: 0 auto;
+
+  @media (max-width: 1200px) {
+    width: 648px;
+  }
+
+  @media (max-width: 680px) {
+    width: 328px;
+  }
+}
+
+.main {
+  flex: 1 1 auto;
+  overflow-y: hidden;
+  // min-height: calc(100% - $header-height - $footer-height);
 }
 
 .button {
@@ -82,4 +110,8 @@ h1, h2, h3, p {
   background-color: $orange;
   border: none;
   border-radius: $border-radius;
+
+  @media (max-width: 1200px) {
+    font-size: 16px;
+  }
 }
