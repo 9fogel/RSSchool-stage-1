@@ -188,6 +188,7 @@ function setCorrectGameState() {
 function handleNext() {
   level++;
   loadGame(score);
+  initPlayer();
   playPlayer();
 }
 

@@ -6,10 +6,33 @@ const infoPlayBtns = document.querySelectorAll('.info-play-button');
 const soundMuteBtn = document.querySelector('.sound-mute');
 const soundRangeInput = document.querySelector('.sound-range');
 
+const currentDuration = document.querySelector('.current-duration');
+const totalDuration = document.querySelector('.total-duration');
+const currentDurationInfo = document.querySelector('.info-current-duration');
+const totalDurationInfo = document.querySelector('.info-total-duration');
+const playRange = document.querySelector('.play-range');
+const playRangeInfo = document.querySelector('.info-play-range');
+
 export let isPlay = false;
 
 let audioMain;
 let audioInfo;
+
+function showTrackProgress() {
+    audioMain.addEventListener('timeupdate', fillTrackTime(audioMain, currentDuration, totalDuration, playRange));
+  playRange.addEventListener('change', () => {
+    let progress = playRange.value;
+    audioMain.currentTime = (progress / 1000) * audioMain.duration;
+    console.log(progress);
+  });
+}
+
+function setDefaultTime() {
+  playRange.value = 0;
+  audioMain.currentTime = 0;
+  currentDuration.textContent = '00:00'
+  totalDuration.textContent = '00:00'
+}
 
 export function initPlayer() {
   // console.log('audioMainURL', soundMainUrl);
@@ -26,11 +49,16 @@ export function initPlayer() {
 
   const nextBtn = document.querySelector('.next-button');
   nextBtn.addEventListener('click', loadPlayer);
+  nextBtn.addEventListener('click', setDefaultTime);
 
 //sound level (mute)
   soundRangeInput.addEventListener('input', () => {
-    let soundValue = soundRangeInput.value;
-    audioMain.volume = soundValue / 100;
+    if (localStorage.getItem('volume')) {
+      audioMain.value = localStorage.getItem('volume');
+    } else {
+      let soundValue = soundRangeInput.value;
+      audioMain.volume = soundValue / 100;
+    }
   });
 
   soundMuteBtn.addEventListener('click', () => {
@@ -55,9 +83,12 @@ export function initPlayer() {
   });
 }
 
+
 export function playPlayer() {
-  console.log(`is Play ${isPlay}`, 'play player')
+
+  console.log(`is Play ${isPlay}`, 'play player');
   function play() {
+    showTrackProgress();
     if(!isPlay) {
       audioMain.play();
       if(audioInfo) {
@@ -120,6 +151,7 @@ export function initPlayerInfo() {
 
   function playInfoSound() {
       console.log('включить плеер2');
+      // fillTrackTime(audioInfo, currentDurationInfo, totalDurationInfo, playRangeInfo);
       if(!isPlay) {
         audioInfo.play();
         audioMain.pause();
@@ -154,3 +186,21 @@ export function initPlayerInfo() {
 
 //   }
 // });
+
+function fillTrackTime(audio, curDur, totalDur, playR) {
+
+  let duration = audio.duration;
+  let currentTime = audio.currentTime;
+  console.log('duration', duration);
+  console.log('currentTime', currentTime);
+
+  let progress = (currentTime / duration) * playR.max;
+  playR.value = progress ? progress : 0;
+  let curMin = Math.floor(currentTime / 60) || '0';
+  let curSec = Math.floor(currentTime % 60) || '00';
+  let durMin = Math.floor(duration / 60) || '0';
+  let durSec = Math.floor(duration % 60) || '00';
+
+  curDur.textContent = `${curMin}:${String(curSec).padStart(2, 0)}`;
+  totalDur.textContent = `${durMin}:${String(durSec).padStart(2, 0)}`;
+}
