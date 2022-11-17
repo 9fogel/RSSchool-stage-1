@@ -240,3 +240,29 @@ function handleClickSound(guess) {
     wrongClickSound.play();
   }
 }
+
+export function resizeWindow() {
+  let isLevelCut = false;
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 680 && !isLevelCut) {
+      for (let i = 2; i < levelNavItems.length; i++) {
+        //TODO: взять контент из объекта с переводом сайта
+        //TODO: вернуть полное название для >680 (взять из объекта для перевода)
+        console.log(levelNavItems[i].textContent.slice(0, levelNavItems[i].textContent.length - 6));
+        levelNavItems[i].textContent = levelNavItems[i].textContent.slice(0, levelNavItems[i].textContent.length - 6);
+        isLevelCut = true;
+      }
+    }
+  });
+
+  window.addEventListener('load', () => {
+    if (window.innerWidth <= 680 && !isLevelCut) {
+      for (let i = 2; i < levelNavItems.length; i++) {
+        //TODO: взять контент из объекта с переводом сайта
+        console.log(levelNavItems[i].textContent.slice(0, levelNavItems[i].textContent.length - 6));
+        levelNavItems[i].textContent = levelNavItems[i].textContent.slice(0, levelNavItems[i].textContent.length - 6);
+        isLevelCut = true;
+      }
+    }
+  });
+}

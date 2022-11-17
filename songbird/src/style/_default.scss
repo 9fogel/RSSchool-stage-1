@@ -27,9 +27,12 @@ body {
     background-image: url('img/songbird-bg-tablet.jpg');
   }
 
-  // @media (max-width: 680px) {
-
-  // }
+  @media (max-width: 680px) {
+    // margin-bottom: 0;
+    // padding-bottom: 0;
+    justify-content: space-between;
+    background-position: 50% 50%;
+  }
 }
 
 ul {
@@ -100,6 +103,12 @@ h1, h2, h3, p {
   }
 }
 
+.desktop {
+  @media (max-width: 680px) {
+    display: none;
+  }
+}
+
 .hidden {
   display: none;
 }
@@ -134,5 +143,9 @@ h1, h2, h3, p {
 
   @media (max-width: 1200px) {
     font-size: 16px;
+  }
+
+  @media (max-width: 680px) {
+    padding: 12px 52px;
   }
 }

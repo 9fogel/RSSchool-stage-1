@@ -6,7 +6,7 @@ import birdsDataEn from './modules/birdsEn';
 import birdsDataRu from './modules/birdsRu';
 
 import { changePage, startGame, openBurgerMenu } from './modules/nav';
-import { loadGame, handleClick, score, soundMainUrl, soundInfoUrl } from './modules/quiz';
+import { loadGame, handleClick, score, soundMainUrl, soundInfoUrl, resizeWindow } from './modules/quiz';
 
 import code from './img/code.png';
 // const imgWrap = document.querySelector('.img');
@@ -24,6 +24,7 @@ export function createElem (tag, class1, parent, content = '') {
 }
 
 openBurgerMenu();
+resizeWindow();
 changePage();
 startGame();
 loadGame(score);
