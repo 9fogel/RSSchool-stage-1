@@ -306,16 +306,16 @@
   cursor: pointer;
   background-image: url('img/play-hover.svg');
   background-color: transparent;
-  transition: ease-in-out .3s;
   box-shadow: none;
+  transition: ease-in-out .3s;
 }
 
 .pause-icon:hover {
   cursor: pointer;
   background-image: url('img/play-hover.svg');
   background-color: transparent;
-  transition: ease-in-out .3s;
   box-shadow: none;
+  transition: ease-in-out .3s;
 }
 
 // .play-icon:active {
@@ -933,6 +933,7 @@ label:hover{
   }
 }
 
+
 @media (max-width: 886px ) {
 
   .footer {
@@ -944,6 +945,123 @@ label:hover{
   }
 }
 
-@media (max-width: 680px) {
 
+@media (max-width: 680px) {
+  .header {
+    height: 40px;
+  }
+  .logo {
+    position: absolute;
+    left: 20px;
+    margin: 0 10px;
+  }
+
+  .logo-text {
+    font-size: 25px;
+    line-height: 30px;
+    color: #FA6E1C;
+  }
+
+  .logo-image {
+    height: 30px;
+  }
+
+  .burger {
+    display: block;
+    position: absolute;
+    right: 20px;
+    width: 24px;
+    height: 12px;
+    margin: 14px 10px;
+    background-color: transparent;
+    background-image: url('img/burger.svg');
+    background-repeat: no-repeat;
+    box-shadow: none;
+    border: none;
+    outline: none;
+  }
+
+  .burger:hover {
+    cursor: pointer;
+    background-image: url('img/burger-hover.svg');
+    background-color: transparent;
+    box-shadow: none;
+    transition: ease-in-out .3s;
+  }
+
+  .nav-close {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 16px;
+    height: 16px;
+    background-color: transparent;
+    background-image: url('img/close.svg');
+    background-repeat: no-repeat;
+    border: none;
+    box-shadow: none;
+    border: none;
+    outline: none;
+  }
+
+  .nav-close:hover {
+    cursor: pointer;
+    background-image: url('img/close-hover.svg');
+    background-color: transparent;
+    box-shadow: none;
+    transition: ease-in-out .3s;
+  }
+
+  .navigation {
+    position: fixed;
+    flex-direction: column;
+    justify-content: flex-start;
+    z-index: 5;
+    top: 0;
+    right: -240px;
+    padding-top: 80px;
+    padding-left: 16px;
+    width: 240px;
+    color: $green;
+    background-color: $light-green;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .navigation-active {
+    transform: translateX(-240px);
+    border-bottom-left-radius: $border-radius;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    margin-right: 0;
+    margin-bottom: 6px;
+    gap: 6px;
+    padding-right: 0;
+  }
+
+  .nav-item {
+    align-self: flex-start;
+  }
+
+  .nav-link {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .nav-link:hover,
+  .link-active {
+  color: $orange;
+  transition: ease-in-out .3s;
+  }
+
+  .nav-link:active {
+    color: $orange;
+  }
+
+  .link-active {
+    color: $orange;
+    border-bottom: 2px solid $orange;
+  }
 }

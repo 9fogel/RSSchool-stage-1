@@ -5,7 +5,7 @@ import './index.scss';
 import birdsDataEn from './modules/birdsEn';
 import birdsDataRu from './modules/birdsRu';
 
-import { changePage, startGame } from './modules/nav';
+import { changePage, startGame, openBurgerMenu } from './modules/nav';
 import { loadGame, handleClick, score, soundMainUrl, soundInfoUrl } from './modules/quiz';
 
 import code from './img/code.png';
@@ -23,6 +23,7 @@ export function createElem (tag, class1, parent, content = '') {
   return elem;
 }
 
+openBurgerMenu();
 changePage();
 startGame();
 loadGame(score);

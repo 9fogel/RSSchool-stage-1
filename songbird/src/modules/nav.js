@@ -7,6 +7,33 @@ let navList = document.querySelector('.nav-list');
 let navLinks = document.querySelectorAll('.nav-link');
 let pages = document.querySelectorAll('.page');
 
+let navigation = document.querySelector('.navigation');
+let burgerMenu = document.querySelector('.burger');
+let closeMenu = document.querySelector('.nav-close');
+let wrapper = document.querySelector('.wrapper');
+
+export function openBurgerMenu() {
+  burgerMenu.addEventListener('click', () => {
+    navigation.classList.add('navigation-active');
+    wrapper.classList.add('wrapper-active');
+  });
+
+  closeMenu.addEventListener('click', () => {
+    navigation.classList.remove('navigation-active');
+    wrapper.classList.remove('wrapper-active');
+  });
+
+  navList.addEventListener('click', () => {
+    navigation.classList.remove('navigation-active');
+    wrapper.classList.remove('wrapper-active');
+  });
+
+  wrapper.addEventListener('click', () => {
+    navigation.classList.remove('navigation-active');
+    wrapper.classList.toggle('wrapper-active');
+  });
+}
+
 export function changePage() {
   navLinks.forEach((link, index) => {
     link.addEventListener('click', () => {
