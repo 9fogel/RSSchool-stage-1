@@ -26,7 +26,8 @@ const content = {
     },
     resultsPage: {
       congrats: 'Congrats!',
-      resultsText: 'You passed the game and got ${score} points out of 30',
+      resultsText1: 'You passed the game and got ',
+      resultsText2: ' points out of 30',
       // resultsText: `You passed the game and got ${score} points out of 30`,
       resultsBtn: 'Restart',
     },
@@ -58,7 +59,9 @@ const content = {
     },
     resultsPage: {
       congrats: 'Поздравляем!',
-      resultsText: 'Вы прошли игру и набрали ${score} баллов из 30 возможных',
+      resultsText1: 'Вы прошли игру и набрали ',
+      resultsText2: ' баллов из 30 возможных',
+      // resultsText: 'Вы прошли игру и набрали ${score} баллов из 30 возможных',
       // resultsText: ``Вы прошли игру и набрали ${score} из 30 возможных баллов``,
       resultsBtn: 'Попробовать ещё раз',
     },

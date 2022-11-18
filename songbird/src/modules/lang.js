@@ -1,11 +1,9 @@
 
-
 import birdsDataEn from './birdsEn';
 import birdsDataRu from './birdsRu';
 import contentEn from './contentEn';
 import contentRu from './contentRu';
 import content from './content';
-// import { score } from './quiz';
 
 //settings
 let settings = document.querySelector('.settings');
@@ -17,6 +15,8 @@ let radioRu = document.querySelector('.russian-lang');
 let langTitle = document.querySelector('.lang-title');
 let langLabels = document.querySelectorAll('label');
 
+let navLinks = document.querySelectorAll('.nav-link');
+
 function showSettings() {
   settingsMenu.classList.toggle('settings-menu-visible');
 }
@@ -25,24 +25,27 @@ settings.addEventListener('click', showSettings);
 
 //lang choise
 
-// let lang;
 export let birds;
-// export let contentTrans = content;
 export let lang = 'ru';
 export let contentTrans;
 
 
 if (lang === 'ru') {
-  // content = contentRu;
   birds = birdsDataRu;
 } else {
-  // content = contentEn;
   birds = birdsDataEn;
 }
 
 export function changeLang() {
   languages.forEach((language, index) => {
     language.onclick = function () {
+      if (navLinks[0].classList.contains('link-active')) {
+        document.location.reload();
+      }
+      if (navLinks[1].classList.contains('link-active')) {
+        alert('If you change the language game will be reloaded and progress will not be saved');
+          document.location.reload();
+      }
       radioBtns.forEach((radio) => {
         if (radio.hasAttribute('checked')) {
           radio.removeAttribute('checked');
@@ -61,51 +64,12 @@ export function changeLang() {
         console.log('langLang', lang);
         birds = birdsDataEn;
       }
-      // if (lang === 'ru') {
-      //   console.log('translate to russian');
-      //   content = contentRu;
-      //   birds = birdsDataRu;
-      //   // translateToRu();
-      // }
-      // if (lang === 'en') {
-      //   console.log('translate to english');
-      //   content = contentEn;
-      //   birds = birdsDataEn;
-      //   // translateToEn();
-      // }
     }
   });
 }
 
 changeLang();
 
-// languages.forEach((language, index) => {
-//   language.onclick = function () {
-//     radioBtns.forEach((radio) => {
-//       if (radio.hasAttribute('checked')) {
-//         radio.removeAttribute('checked');
-//         radio.classList.remove('checked');
-//       }
-//     });
-//     radioBtns[index].setAttribute('checked', 'checked');
-//     radioBtns[index].classList.add('checked');
-//     lang = radioBtns[index].value;
-//     setLocalStorageSettings();
-//     getLocalStorageSettings();
-//     // if (lang === 'ru') {
-//     //   console.log('translate to russian');
-//     //   content = contentRu;
-//     //   birds = birdsDataRu;
-//     //   // translateToRu();
-//     // }
-//     // if (lang === 'en') {
-//     //   console.log('translate to english');
-//     //   content = contentEn;
-//     //   birds = birdsDataEn;
-//     //   // translateToEn();
-//     // }
-//   }
-// });
 
 window.addEventListener('beforeunload', setLocalStorageSettings);
 window.addEventListener('load', getLocalStorageSettings);
@@ -125,11 +89,6 @@ export function getLocalStorageSettings() {
     radioEn.classList.remove('checked');
     radioRu.setAttribute('checked', 'checked');
     radioEn.removeAttribute('checked');
-    // langTitle.textContent = 'Выберите язык';
-    // langLabels[0].textContent = 'Английский';
-    // langLabels[1].textContent = 'Русский';
-    // content = contentRu;
-    // birds = birdsDataRu;
     translateToRu();
   }
   if(lang === 'en') {
@@ -137,16 +96,11 @@ export function getLocalStorageSettings() {
     radioEn.classList.add('checked');
     radioEn.setAttribute('checked', 'checked');
     radioRu.removeAttribute('checked');
-    // langTitle.textContent = 'Language';
-    // langLabels[0].textContent = 'English';
-    // langLabels[1].textContent = 'Russian';
-    // content = contentEn;
-    // birds = birdsDataEn;
     translateToEn();
   }
 }
 
-let navLinks = document.querySelectorAll('.nav-link');
+// let navLinks = document.querySelectorAll('.nav-link');
 let introTitle = document.querySelector('.intro-title');
 let introText1 = document.querySelectorAll('.intro-text')[0];
 let introText2 = document.querySelectorAll('.intro-text')[1];
@@ -155,6 +109,9 @@ let scoreText = document.querySelector('.score');
 let levelItems = document.querySelectorAll('.level-item');
 let playerDesc = document.querySelectorAll('.bird-desc');
 let nextBtns = document.querySelectorAll('.next-button');
+let congrats = document.querySelector('.congrats-text');
+let resultsText = document.querySelector('.results-text');
+let resultsBtn = document.querySelector('.results-button');
 
 function translateToRu() {
   contentTrans = content.ru;
@@ -187,7 +144,6 @@ function replaceWithTranslation() {
   introText2.textContent = contentTrans.aboutPage.text2;
   startBtn.textContent = contentTrans.aboutPage.startBtn;
 
-  // scoreText.textContent = contentTrans.quizPage.score;
   levelItems[0].textContent = contentTrans.quizPage.level1;
   levelItems[1].textContent = contentTrans.quizPage.level2;
   levelItems[2].textContent = contentTrans.quizPage.level3;
@@ -197,4 +153,8 @@ function replaceWithTranslation() {
   playerDesc.innerHTML = contentTrans.quizPage.playerDesc;
   nextBtns[0].textContent = contentTrans.quizPage.nextBtn;
   nextBtns[1].textContent = contentTrans.quizPage.nextBtn;
+
+  congrats.textContent = contentTrans.resultsPage.congrats;
+  // resultsText.textContent = contentTrans.resultsPage.resultsText;
+  resultsBtn.textContent = contentTrans.resultsPage.resultsBtn;
 }

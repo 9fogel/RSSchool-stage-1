@@ -7,6 +7,7 @@ import content from './content';
 import correctSound from '../sound/sound-correct.mp3';
 import wrongSound from '../sound/sound-wrong.mp3';
 
+import { languages } from '../../src/index';
 import { birds, lang, changeLang, getLocalStorageSettings } from './lang';
 import { getRandomArr } from './random';
 // import { audioMain, audioInfo } from './player';
@@ -52,6 +53,7 @@ export function loadGame(score) {
   getLocalStorageSettings();
   checkLang();
   changeLang();
+  // document.location.reload();
   // console.log(randomArr);
   // console.log('score2', score);
   setDefaultState(score);
@@ -245,7 +247,8 @@ function finishGame() {
   nextBtns[1].removeEventListener('click', handleNext);
   nextBtns[0].addEventListener('click', showResults);
   nextBtns[1].addEventListener('click', showResults);
-  resultsText.textContent = `Вы прошли игру и набрали ${score} из 30 возможных баллов`;
+  resultsText.textContent = contentTrans.resultsPage.resultsText1 + `${score}` + contentTrans.resultsPage.resultsText2;
+  // resultsText.textContent = `Вы прошли игру и набрали ${score} из 30 возможных баллов`;
   playAgainBtn.classList.remove('hidden');
   if (score === maxScore) {
     playAgainBtn.classList.add('hidden');
