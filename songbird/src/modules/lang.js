@@ -1,11 +1,200 @@
+
+
 import birdsDataEn from './birdsEn';
 import birdsDataRu from './birdsRu';
+import contentEn from './contentEn';
+import contentRu from './contentRu';
+import content from './content';
+// import { score } from './quiz';
 
-let lang = 'ru';
+//settings
+let settings = document.querySelector('.settings');
+let settingsMenu = document.querySelector('.settings-menu');
+let languages = document.querySelectorAll('.lang');
+let radioBtns = document.querySelectorAll('.custom-radio');
+let radioEn = document.querySelector('.english-lang');
+let radioRu = document.querySelector('.russian-lang');
+let langTitle = document.querySelector('.lang-title');
+let langLabels = document.querySelectorAll('label');
 
+function showSettings() {
+  settingsMenu.classList.toggle('settings-menu-visible');
+}
+
+settings.addEventListener('click', showSettings);
+
+//lang choise
+
+// let lang;
 export let birds;
+// export let contentTrans = content;
+export let lang = 'ru';
+export let contentTrans;
+
+
 if (lang === 'ru') {
+  // content = contentRu;
   birds = birdsDataRu;
 } else {
+  // content = contentEn;
   birds = birdsDataEn;
+}
+
+export function changeLang() {
+  languages.forEach((language, index) => {
+    language.onclick = function () {
+      radioBtns.forEach((radio) => {
+        if (radio.hasAttribute('checked')) {
+          radio.removeAttribute('checked');
+          radio.classList.remove('checked');
+        }
+      });
+      radioBtns[index].setAttribute('checked', 'checked');
+      radioBtns[index].classList.add('checked');
+      lang = radioBtns[index].value;
+      setLocalStorageSettings();
+      getLocalStorageSettings();
+      if (lang === 'ru') {
+        console.log('langLang', lang);
+        birds = birdsDataRu;
+      } else {
+        console.log('langLang', lang);
+        birds = birdsDataEn;
+      }
+      // if (lang === 'ru') {
+      //   console.log('translate to russian');
+      //   content = contentRu;
+      //   birds = birdsDataRu;
+      //   // translateToRu();
+      // }
+      // if (lang === 'en') {
+      //   console.log('translate to english');
+      //   content = contentEn;
+      //   birds = birdsDataEn;
+      //   // translateToEn();
+      // }
+    }
+  });
+}
+
+changeLang();
+
+// languages.forEach((language, index) => {
+//   language.onclick = function () {
+//     radioBtns.forEach((radio) => {
+//       if (radio.hasAttribute('checked')) {
+//         radio.removeAttribute('checked');
+//         radio.classList.remove('checked');
+//       }
+//     });
+//     radioBtns[index].setAttribute('checked', 'checked');
+//     radioBtns[index].classList.add('checked');
+//     lang = radioBtns[index].value;
+//     setLocalStorageSettings();
+//     getLocalStorageSettings();
+//     // if (lang === 'ru') {
+//     //   console.log('translate to russian');
+//     //   content = contentRu;
+//     //   birds = birdsDataRu;
+//     //   // translateToRu();
+//     // }
+//     // if (lang === 'en') {
+//     //   console.log('translate to english');
+//     //   content = contentEn;
+//     //   birds = birdsDataEn;
+//     //   // translateToEn();
+//     // }
+//   }
+// });
+
+window.addEventListener('beforeunload', setLocalStorageSettings);
+window.addEventListener('load', getLocalStorageSettings);
+
+function setLocalStorageSettings() {
+  localStorage.setItem('settings', lang);
+}
+
+export function getLocalStorageSettings() {
+  if(localStorage.getItem('settings')) {
+    lang = localStorage.getItem('settings');
+  } else {
+    lang = 'ru';
+  }
+  if(lang === 'ru') {
+    radioRu.classList.add('checked');
+    radioEn.classList.remove('checked');
+    radioRu.setAttribute('checked', 'checked');
+    radioEn.removeAttribute('checked');
+    // langTitle.textContent = 'Выберите язык';
+    // langLabels[0].textContent = 'Английский';
+    // langLabels[1].textContent = 'Русский';
+    // content = contentRu;
+    // birds = birdsDataRu;
+    translateToRu();
+  }
+  if(lang === 'en') {
+    radioRu.classList.remove('checked');
+    radioEn.classList.add('checked');
+    radioEn.setAttribute('checked', 'checked');
+    radioRu.removeAttribute('checked');
+    // langTitle.textContent = 'Language';
+    // langLabels[0].textContent = 'English';
+    // langLabels[1].textContent = 'Russian';
+    // content = contentEn;
+    // birds = birdsDataEn;
+    translateToEn();
+  }
+}
+
+let navLinks = document.querySelectorAll('.nav-link');
+let introTitle = document.querySelector('.intro-title');
+let introText1 = document.querySelectorAll('.intro-text')[0];
+let introText2 = document.querySelectorAll('.intro-text')[1];
+let startBtn = document.querySelector('.intro-button');
+let scoreText = document.querySelector('.score');
+let levelItems = document.querySelectorAll('.level-item');
+let playerDesc = document.querySelectorAll('.bird-desc');
+let nextBtns = document.querySelectorAll('.next-button');
+
+function translateToRu() {
+  contentTrans = content.ru;
+  birds = birdsDataRu;
+  langTitle.textContent = 'Выберите язык';
+  langLabels[0].textContent = 'Английский';
+  langLabels[1].textContent = 'Русский';
+  replaceWithTranslation('ru');
+}
+
+function translateToEn() {
+  contentTrans = content.en;
+  birds = birdsDataEn;
+  langTitle.textContent = 'Language';
+  langLabels[0].textContent = 'English';
+  langLabels[1].textContent = 'Russian';
+  replaceWithTranslation('en');
+}
+
+function replaceWithTranslation() {
+  navLinks[0].textContent = contentTrans.nav.about;
+  navLinks[1].textContent = contentTrans.nav.quiz;
+  navLinks[2].textContent = contentTrans.nav.gallery;
+  if(navLinks[3]) {
+    navLinks[2].textContent = contentTrans.nav.results;
+  }
+
+  introTitle.textContent = contentTrans.aboutPage.title;
+  introText1.textContent = contentTrans.aboutPage.text1;
+  introText2.textContent = contentTrans.aboutPage.text2;
+  startBtn.textContent = contentTrans.aboutPage.startBtn;
+
+  // scoreText.textContent = contentTrans.quizPage.score;
+  levelItems[0].textContent = contentTrans.quizPage.level1;
+  levelItems[1].textContent = contentTrans.quizPage.level2;
+  levelItems[2].textContent = contentTrans.quizPage.level3;
+  levelItems[3].textContent = contentTrans.quizPage.level4;
+  levelItems[4].textContent = contentTrans.quizPage.level5;
+  levelItems[5].textContent = contentTrans.quizPage.level6;
+  playerDesc.innerHTML = contentTrans.quizPage.playerDesc;
+  nextBtns[0].textContent = contentTrans.quizPage.nextBtn;
+  nextBtns[1].textContent = contentTrans.quizPage.nextBtn;
 }

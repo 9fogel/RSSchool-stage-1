@@ -1,6 +1,9 @@
 // export const mult = (a, b) => a * b;
 // export const sum = async(a, b) => a + b;
 import { createElem } from '../../src/index';
+import { contentTrans, checkLang } from './quiz';
+import { changeLang, getLocalStorageSettings } from './lang';
+import content from './content';
 // import { initPlayer } from './player';
 
 let navList = document.querySelector('.nav-list');
@@ -71,15 +74,22 @@ export function startGame() {
     navLinks[1].classList.add('link-active');
     pages[0].classList.add('hidden');
     pages[1].classList.remove('hidden');
+    getLocalStorageSettings();
+    changeLang();
+    checkLang();
     // initPlayer();
   });
 }
 
 let addLinkItem;
 let resultsNavLink;
+changeLang();
+checkLang();
+
 export function addResultsNav() {
   addLinkItem = createElem('li', 'nav-item', navList, '');
-  resultsNavLink = createElem('a', 'nav-link', addLinkItem, 'Результаты');
+  // resultsNavLink = createElem('a', 'nav-link', addLinkItem, 'Результаты');
+  resultsNavLink = createElem('a', 'nav-link', addLinkItem, contentTrans.nav.results);
   resultsNavLink.setAttribute('href', "#");
 
   resultsNavLink.addEventListener('click', setResultsPageActive);

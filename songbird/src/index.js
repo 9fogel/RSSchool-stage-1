@@ -5,6 +5,7 @@ import './index.scss';
 import birdsDataEn from './modules/birdsEn';
 import birdsDataRu from './modules/birdsRu';
 
+import { showSettings } from './modules/lang';
 import { changePage, startGame, openBurgerMenu } from './modules/nav';
 import { loadGame, handleClick, score, soundMainUrl, soundInfoUrl, resizeWindow } from './modules/quiz';
 

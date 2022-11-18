@@ -1,10 +1,13 @@
 import birdsDataEn from './birdsEn';
 import birdsDataRu from './birdsRu';
+import contentEn from './contentEn';
+import contentRu from './contentRu';
+import content from './content';
 
 import correctSound from '../sound/sound-correct.mp3';
 import wrongSound from '../sound/sound-wrong.mp3';
 
-import { birds } from './lang';
+import { birds, lang, changeLang, getLocalStorageSettings } from './lang';
 import { getRandomArr } from './random';
 // import { audioMain, audioInfo } from './player';
 import { addResultsNav, setResultsPageActive, restartGame } from './nav';
@@ -22,7 +25,7 @@ let maxScore = 30;
 let points = 5;
 let scoreWrap = document.querySelector('.score');
 let levelNavItems = document.querySelectorAll('.level-item');
-let nextBtn = document.querySelector('.next-button');
+let nextBtns = document.querySelectorAll('.next-button');
 let playAgainBtn = document.querySelector('.results-button');
 
 // let birds;
@@ -41,7 +44,14 @@ let resultsText = document.querySelector('.results-text');
 let answerState = false;
 let gameFinished = false
 
+export let contentTrans;
+
+
+
 export function loadGame(score) {
+  getLocalStorageSettings();
+  checkLang();
+  changeLang();
   // console.log(randomArr);
   // console.log('score2', score);
   setDefaultState(score);
@@ -51,16 +61,37 @@ export function loadGame(score) {
   // playPlayer();
 }
 
+export function checkLang() {
+  if(lang === 'ru') {
+  contentTrans = content.ru;
+  } else {
+  contentTrans = content.en;
+  }
+  console.log('langQuiz', lang);
+}
+
+
 function createAnswersList(level) {
+  getLocalStorageSettings();
+  changeLang();
+  checkLang();
   answers.forEach((answer, index) => {
     answer.textContent = birds[level][index].name;
   });
 }
 
 function setDefaultState(score) {
+  //
+  getLocalStorageSettings();
+  changeLang();
+  checkLang();
   correctAnswer = birds[level][randomArr[level]].name;
-  scoreWrap.textContent = `Ваши очки: ${score}`;
-  nextBtn.setAttribute('disabled', 'disabled');
+  console.log(lang, contentTrans);
+  // scoreWrap.textContent = `Ваши очки: ${score}`;
+  scoreWrap.textContent = `${contentTrans.quizPage.score}${score}`;
+  nextBtns[0].setAttribute('disabled', 'disabled');
+  nextBtns[1].setAttribute('disabled', 'disabled');
+
   setDefaultBird();
   levelNavItems.forEach((levelItem) => {
     levelItem.classList.remove('level-active');
@@ -83,7 +114,8 @@ function setDefaultBird() {
   soundMainUrl = birds[level][randomArr[level]].audio;
   initPlayer();
   playPlayer();
-  birdDesc.innerHTML = '<p>Послушайте плеер.</p><p>Выберите птицу из списка.</p></br><p>За правильный ответ с первой попытки начисляется 6 баллов.</p><p>За каждую последующую попытку на 1 балл меньше.</p>';
+  birdDesc.innerHTML = contentTrans.quizPage.playerDesc;
+  // birdDesc.innerHTML = '<p>Послушайте плеер.</p><p>Выберите птицу из списка.</p></br><p>За правильный ответ с первой попытки начисляется 6 баллов.</p><p>За каждую последующую попытку на 1 балл меньше.</p>';
   players[1].style.display = 'none';
   birdImgs[1].style.display = 'none';
 }
@@ -177,11 +209,13 @@ function showBirdInfo(index) {
 }
 
 function setCorrectGameState() {
-  nextBtn.removeAttribute('disabled');
+  nextBtns[0].removeAttribute('disabled');
+  nextBtns[1].removeAttribute('disabled');
   if (!answerState) {
     // console.log('score3', score);
     score += points;
-    scoreWrap.textContent = `Ваши очки: ${score}`;
+    // scoreWrap.textContent = `Ваши очки: ${score}`;
+    scoreWrap.textContent = `${contentTrans.quizPage.score}${score}`;
     points = 5;
   }
   answerState = true;
@@ -194,7 +228,8 @@ function handleNext() {
   playPlayer();
 }
 
-nextBtn.addEventListener('click', handleNext);
+nextBtns[0].addEventListener('click', handleNext);
+nextBtns[1].addEventListener('click', handleNext);
 
 function showResults() {
   console.log('go to results page');
@@ -204,9 +239,12 @@ function showResults() {
 
 function finishGame() {
   gameFinished = true;
-  nextBtn.textContent = 'Посмотреть результаты';
-  nextBtn.removeEventListener('click', handleNext);
-  nextBtn.addEventListener('click', showResults);
+  nextBtns[0].textContent = contentTrans.quizPage.showResultsBtn;
+  nextBtns[1].textContent = contentTrans.quizPage.showResultsBtn;
+  nextBtns[0].removeEventListener('click', handleNext);
+  nextBtns[1].removeEventListener('click', handleNext);
+  nextBtns[0].addEventListener('click', showResults);
+  nextBtns[1].addEventListener('click', showResults);
   resultsText.textContent = `Вы прошли игру и набрали ${score} из 30 возможных баллов`;
   playAgainBtn.classList.remove('hidden');
   if (score === maxScore) {
@@ -219,12 +257,15 @@ function playAgain() {
   console.log('restart game');
   score = 0;
   level = 0;
-  nextBtn.removeEventListener('click', showResults);
-  nextBtn.addEventListener('click', handleNext);
+  nextBtns[0].removeEventListener('click', showResults);
+  nextBtns[1].removeEventListener('click', showResults);
+  nextBtns[0].addEventListener('click', handleNext);
+  nextBtns[1].addEventListener('click', handleNext);
   gameFinished = false;
   randomArr.length = 0;
   randomArr = getRandomArr();
-  nextBtn.textContent = 'Следующий уровень';
+  nextBtns[0].textContent = 'Следующий уровень';
+  nextBtns[1].textContent = 'Следующий уровень';
   loadGame(score);
 }
 
