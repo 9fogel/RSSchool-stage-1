@@ -1,7 +1,8 @@
 import { createElem, languages } from '../../src/index';
 import { contentTrans, checkLang } from './quiz';
 import { lang, changeLang, getLocalStorageSettings } from './lang';
-import content from './content';
+import { pausePlayer, pausePlayerInfo } from './player';
+// import content from './content';
 
 let navList = document.querySelector('.nav-list');
 let navLinks = document.querySelectorAll('.nav-link');
@@ -39,6 +40,8 @@ export function changePage() {
     link.addEventListener('click', () => {
       document.querySelector('.link-active').classList.remove('link-active');
       link.classList.add('link-active');
+      pausePlayer();
+      pausePlayerInfo();
       pages.forEach((page) => {
         page.classList.add('hidden');
       });
@@ -53,6 +56,8 @@ function returnToAboutPage() {
   let logo = document.querySelector('.logo');
   logo.addEventListener('click', () => {
   console.log('logo');
+  pausePlayer();
+  pausePlayerInfo();
   navLinks.forEach((link) => {
     link.classList.remove('link-active');
   });

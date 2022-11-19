@@ -50,15 +50,19 @@ export function initPlayerInfo() {
 }
 
 export function pausePlayer() {
-  audioMain.pause();
-  playBtn.classList.remove('pause-icon');
-  isPlay1 = false;
+  if(audioMain) {
+    audioMain.pause();
+    playBtn.classList.remove('pause-icon');
+    isPlay1 = false;
+  }
 }
 
-function pausePlayerInfo() {
-  audioInfo.pause();
-  playBtnInfo.classList.remove('pause-icon');
-  isPlay2 = false;
+export function pausePlayerInfo() {
+  if(audioInfo) {
+    audioInfo.pause();
+    playBtnInfo.classList.remove('pause-icon');
+    isPlay2 = false;
+  }
 }
 
 function loadPlayer() {
