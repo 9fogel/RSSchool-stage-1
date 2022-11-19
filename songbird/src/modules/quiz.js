@@ -289,20 +289,29 @@ export function resizeWindow() {
   let isLevelCut = false;
   window.addEventListener('resize', () => {
     if (window.innerWidth <= 680 && !isLevelCut) {
-      for (let i = 2; i < levelNavItems.length; i++) {
-        //TODO: взять контент из объекта с переводом сайта
+      if(lang === 'ru') {
+        for (let i = 2; i < levelNavItems.length; i++) {
         //TODO: вернуть полное название для >680 (взять из объекта для перевода)
         console.log(levelNavItems[i].textContent.slice(0, levelNavItems[i].textContent.length - 6));
         levelNavItems[i].textContent = levelNavItems[i].textContent.slice(0, levelNavItems[i].textContent.length - 6);
         isLevelCut = true;
+        }
       }
-    }
-  });
+    } else if (window.innerWidth > 680 && isLevelCut) {
+      if(lang === 'ru') {
+          levelNavItems[2].textContent = contentTrans.quizPage.level3;
+          levelNavItems[3].textContent = contentTrans.quizPage.level4;
+          levelNavItems[4].textContent = contentTrans.quizPage.level5;
+          levelNavItems[5].textContent = contentTrans.quizPage.level6;
+          isLevelCut = false;
+        }
+      }
+    });
+  // });
 
   window.addEventListener('load', () => {
     if (window.innerWidth <= 680 && !isLevelCut) {
       for (let i = 2; i < levelNavItems.length; i++) {
-        //TODO: взять контент из объекта с переводом сайта
         console.log(levelNavItems[i].textContent.slice(0, levelNavItems[i].textContent.length - 6));
         levelNavItems[i].textContent = levelNavItems[i].textContent.slice(0, levelNavItems[i].textContent.length - 6);
         isLevelCut = true;
