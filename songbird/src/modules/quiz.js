@@ -1,18 +1,10 @@
-import birdsDataEn from './birdsEn';
-import birdsDataRu from './birdsRu';
-// import contentEn from './contentEn';
-// import contentRu from './contentRu';
 import content from './content';
-
 import correctSound from '../sound/sound-correct.mp3';
 import wrongSound from '../sound/sound-wrong.mp3';
 
-import { languages } from '../../src/index';
 import { birds, lang, changeLang, getLocalStorageSettings } from './lang';
 import { getRandomArr } from './random';
 import { addResultsNav, setResultsPageActive, restartGame } from './nav';
-
-// import { initPlayer, initPlayerInfo, playPlayer, pausePlayer } from './player';
 import { initPlayer, initPlayerInfo, pausePlayer } from './player';
 
 export let score;
@@ -29,7 +21,6 @@ let levelNavItems = document.querySelectorAll('.level-item');
 let nextBtns = document.querySelectorAll('.next-button');
 let playAgainBtn = document.querySelector('.results-button');
 
-// let birds;
 let birdNames = document.querySelectorAll('.bird-name');
 let birdNameLatin = document.querySelector('.bird-name-latin');
 let players = document.querySelectorAll('.player');
@@ -43,19 +34,16 @@ let correctAnswer = birds[level][randomArr[level]].name;
 let resultsText = document.querySelector('.results-text');
 
 let answerState = false;
-let gameFinished = false
+let gameFinished = false;
+
 
 export let contentTrans;
-
-
 
 export function loadGame(score) {
   getLocalStorageSettings();
   checkLang();
   changeLang();
   // document.location.reload();
-  // console.log(randomArr);
-  // console.log('score2', score);
   setDefaultState(score);
   createAnswersList(level);
   setCorrectAnswer();
@@ -80,13 +68,10 @@ function createAnswersList(level) {
 }
 
 function setDefaultState(score) {
-  //
   getLocalStorageSettings();
   changeLang();
   checkLang();
   correctAnswer = birds[level][randomArr[level]].name;
-  // console.log(lang, contentTrans);
-  // scoreWrap.textContent = `Ваши очки: ${score}`;
   scoreWrap.textContent = `${contentTrans.quizPage.score}${score}`;
   nextBtns[0].setAttribute('disabled', 'disabled');
   nextBtns[1].setAttribute('disabled', 'disabled');
@@ -110,7 +95,6 @@ function setDefaultBird() {
   birdNameLatin.style.display = 'none';
   soundMainUrl = birds[level][randomArr[level]].audio;
   initPlayer();
-  // playPlayer();//TODO: раскомментить, чтобы играло
   birdDesc.innerHTML = contentTrans.quizPage.playerDesc;
   players[1].style.display = 'none';
   birdImgs[1].style.display = 'none';
@@ -275,7 +259,6 @@ export function resizeWindow() {
     if (window.innerWidth <= 680 && !isLevelCut) {
       if(lang === 'ru') {
         for (let i = 2; i < levelNavItems.length; i++) {
-        //TODO: вернуть полное название для >680 (взять из объекта для перевода)
         console.log(levelNavItems[i].textContent.slice(0, levelNavItems[i].textContent.length - 6));
         levelNavItems[i].textContent = levelNavItems[i].textContent.slice(0, levelNavItems[i].textContent.length - 6);
         isLevelCut = true;

@@ -1,8 +1,6 @@
 
 import birdsDataEn from './birdsEn';
 import birdsDataRu from './birdsRu';
-// import contentEn from './contentEn';
-// import contentRu from './contentRu';
 import content from './content';
 
 //settings
@@ -24,7 +22,6 @@ function showSettings() {
 settings.addEventListener('click', showSettings);
 
 //lang choise
-
 export let birds;
 export let lang = 'ru';
 export let contentTrans;
@@ -100,7 +97,6 @@ export function getLocalStorageSettings() {
   }
 }
 
-// let navLinks = document.querySelectorAll('.nav-link');
 let introTitle = document.querySelector('.intro-title');
 let introText1 = document.querySelectorAll('.intro-text')[0];
 let introText2 = document.querySelectorAll('.intro-text')[1];

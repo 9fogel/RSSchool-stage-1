@@ -1,5 +1,3 @@
-// export const mult = (a, b) => a * b;
-// export const sum = async(a, b) => a + b;
 import { createElem, languages } from '../../src/index';
 import { contentTrans, checkLang } from './quiz';
 import { lang, changeLang, getLocalStorageSettings } from './lang';
