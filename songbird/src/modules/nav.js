@@ -2,7 +2,7 @@
 // export const sum = async(a, b) => a + b;
 import { createElem, languages } from '../../src/index';
 import { contentTrans, checkLang } from './quiz';
-import { changeLang, getLocalStorageSettings } from './lang';
+import { lang, changeLang, getLocalStorageSettings } from './lang';
 import content from './content';
 
 let navList = document.querySelector('.nav-list');
@@ -87,7 +87,13 @@ checkLang();
 export function addResultsNav() {
   addLinkItem = createElem('li', 'nav-item', navList, '');
   // resultsNavLink = createElem('a', 'nav-link', addLinkItem, 'Результаты');
-  resultsNavLink = createElem('a', 'nav-link', addLinkItem, contentTrans.nav.results);
+  let resultsLinkText;
+  if(localStorage.getItem('settings') === 'ru' || lang === 'ru') {
+    resultsLinkText = 'Результаты';
+  } else {
+    resultsLinkText = 'Results';
+  }
+  resultsNavLink = createElem('a', 'nav-link', addLinkItem, resultsLinkText);
   resultsNavLink.setAttribute('href', "#");
 
   resultsNavLink.addEventListener('click', setResultsPageActive);
