@@ -72,12 +72,12 @@ function loadPlayerInfo() {
 const answerList = document.querySelector('.answer-list');
 answerList.addEventListener('click', loadPlayerInfo);
 
-function setDefaultTime(audio) {
-  playRange.value = 0;
-  audio.currentTime = 0;
-  currentDuration.textContent = '00:00'
-  totalDuration.textContent = '00:00'
-}
+// function setDefaultTime(audio) {
+//   playRange.value = 0;
+//   audio.currentTime = 0;
+//   currentDuration.textContent = '00:00'
+//   totalDuration.textContent = '00:00'
+// }
 
 const nextBtn = document.querySelector('.next-button');
 nextBtn.addEventListener('click', loadPlayer);

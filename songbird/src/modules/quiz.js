@@ -67,7 +67,6 @@ export function checkLang() {
   } else {
   contentTrans = content.en;
   }
-  // console.log('langQuiz', lang);
 }
 
 
@@ -158,7 +157,6 @@ export function handleClick() {
 
     answerItem.addEventListener('click', () => {
       if(answers[index].textContent === correctAnswer) {
-        // console.log('correct!', level);
         handleClickSound('correct');
         pausePlayer();
         answerIcons[index].classList.add('correct-answer');
@@ -170,7 +168,6 @@ export function handleClick() {
           finishGame();
         }
       } else {
-        // console.log('wrong!');
         if (!answerState) {
           answerIcons[index].classList.add('wrong-answer');
           handleClickSound('wrong');
@@ -211,8 +208,6 @@ function setCorrectGameState() {
 function handleNext() {
   level++;
   loadGame(score);
-  // initPlayer();
-  // playPlayer();//TODO: раскомментить, чтобы играло
 }
 
 nextBtns[0].addEventListener('click', handleNext);
@@ -226,8 +221,13 @@ function showResults() {
 
 function finishGame() {
   gameFinished = true;
-  nextBtns[0].textContent = contentTrans.quizPage.showResultsBtn;
-  nextBtns[1].textContent = contentTrans.quizPage.showResultsBtn;
+  if(localStorage.getItem('settings') === 'ru' || lang === 'ru') {
+    nextBtns[0].textContent = 'Посмотреть результаты';
+    nextBtns[1].textContent = 'Посмотреть результаты';
+  } else {
+    nextBtns[0].textContent = 'Show Results';
+    nextBtns[1].textContent = 'Show Results';
+  }
   nextBtns[0].removeEventListener('click', handleNext);
   nextBtns[1].removeEventListener('click', handleNext);
   nextBtns[0].addEventListener('click', showResults);
