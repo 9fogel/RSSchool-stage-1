@@ -1,7 +1,7 @@
 import birdsDataEn from './birdsEn';
 import birdsDataRu from './birdsRu';
-import contentEn from './contentEn';
-import contentRu from './contentRu';
+// import contentEn from './contentEn';
+// import contentRu from './contentRu';
 import content from './content';
 
 import correctSound from '../sound/sound-correct.mp3';

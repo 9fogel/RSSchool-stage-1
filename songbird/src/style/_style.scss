@@ -287,6 +287,7 @@
   width: 40px;
   height: 40px;
   background-size: 40px 40px;
+  background-image: url('img/play.svg');
   background-position: center center;
   background-repeat: no-repeat;
   background-color: transparent;
@@ -295,15 +296,16 @@
   box-shadow: none;
 }
 
-.play-icon {
-  background-image: url('img/play.svg');
-}
+// .play-icon {
+//   background-image: url('img/play.svg');
+// }
 
 .pause-icon {
   background-image: url('img/pause.svg');
 }
 
-.play-icon:hover {
+.play-button:hover,
+.info-play-button:hover {
   cursor: pointer;
   background-image: url('img/play-hover.svg');
   background-color: transparent;
@@ -311,9 +313,17 @@
   transition: ease-in-out .3s;
 }
 
+// .play-icon:hover {
+//   cursor: pointer;
+//   background-image: url('img/play-hover.svg');
+//   background-color: transparent;
+//   box-shadow: none;
+//   transition: ease-in-out .3s;
+// }
+
 .pause-icon:hover {
   cursor: pointer;
-  background-image: url('img/play-hover.svg');
+  background-image: url('img/pause-hover.svg');
   background-color: transparent;
   box-shadow: none;
   transition: ease-in-out .3s;
