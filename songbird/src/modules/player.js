@@ -32,7 +32,7 @@ export function initPlayer() {
   console.log(audioMain);
   isPlay1 = false;
   playBtn.classList.remove('pause-icon');
-  audioMain.volume = localStorage.getItem('volume') || 0.3;
+  audioMain.volume = localStorage.getItem('9fogelVolume') || 0.3;
   soundRangeInput.value = audioMain.volume * 100;
   setVolume();
 }
@@ -46,7 +46,7 @@ export function initPlayerInfo() {
   console.log(audioInfo);
   isPlay2 = false;
   playBtnInfo.classList.remove('pause-icon');
-  audioInfo.volume = localStorage.getItem('volume') || 0.3;
+  audioInfo.volume = localStorage.getItem('9fogelVolume') || 0.3;
 }
 
 export function pausePlayer() {
@@ -72,18 +72,19 @@ function loadPlayerInfo() {
 const answerList = document.querySelector('.answer-list');
 answerList.addEventListener('click', loadPlayerInfo);
 
-// function setDefaultTime(audio) {
-//   playRange.value = 0;
-//   audio.currentTime = 0;
-//   currentDuration.textContent = '00:00'
-//   totalDuration.textContent = '00:00'
-// }
+function setDefaultTime() {
+  playRange.value = 0;
+  audioMain.currentTime = 0;
+  currentDuration.textContent = '0:00'
+  totalDuration.textContent = '0:00'
+}
 
 const nextBtn = document.querySelector('.next-button');
 nextBtn.addEventListener('click', loadPlayer);
 
   function play() {
     showTrackProgress();
+    // setDefaultTime();
     if(!isPlay1 && !isPlay2) {
       audioMain.play();
       isPlay1 = true;
@@ -176,7 +177,7 @@ function setVolume() {
 
 soundMuteBtn.addEventListener('click', () => {
   if (audioMain.volume) {//если у аудио есть громкость
-    localStorage.setItem('volume', audioMain.volume);
+    localStorage.setItem('9fogelVolume', audioMain.volume);
     audioMain.volume = 0;
     if(audioInfo) {
       audioInfo.volume = 0;
@@ -185,7 +186,7 @@ soundMuteBtn.addEventListener('click', () => {
     soundMuteBtn.classList.add('sound-off');//убрать ховер как с answeritems
     soundRangeInput.value = 0;
     } else {
-      audioMain.volume = localStorage.getItem('volume');
+      audioMain.volume = localStorage.getItem('9fogelVolume');
       if(audioInfo) {
         audioInfo.volume = audioMain.volume;
       }

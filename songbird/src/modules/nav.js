@@ -88,7 +88,7 @@ export function addResultsNav() {
   addLinkItem = createElem('li', 'nav-item', navList, '');
   // resultsNavLink = createElem('a', 'nav-link', addLinkItem, 'Результаты');
   let resultsLinkText;
-  if(localStorage.getItem('settings') === 'ru' || lang === 'ru') {
+  if(localStorage.getItem('9fogelSettings') === 'ru' || lang === 'ru') {
     resultsLinkText = 'Результаты';
   } else {
     resultsLinkText = 'Results';

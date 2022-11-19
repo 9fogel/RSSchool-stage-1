@@ -75,12 +75,12 @@ window.addEventListener('beforeunload', setLocalStorageSettings);
 window.addEventListener('load', getLocalStorageSettings);
 
 function setLocalStorageSettings() {
-  localStorage.setItem('settings', lang);
+  localStorage.setItem('9fogelSettings', lang);
 }
 
 export function getLocalStorageSettings() {
-  if(localStorage.getItem('settings')) {
-    lang = localStorage.getItem('settings');
+  if(localStorage.getItem('9fogelSettings')) {
+    lang = localStorage.getItem('9fogelSettings');
   } else {
     lang = 'ru';
   }

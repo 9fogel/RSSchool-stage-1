@@ -221,7 +221,7 @@ function showResults() {
 
 function finishGame() {
   gameFinished = true;
-  if(localStorage.getItem('settings') === 'ru' || lang === 'ru') {
+  if(localStorage.getItem('9fogelSettings') === 'ru' || lang === 'ru') {
     nextBtns[0].textContent = 'Посмотреть результаты';
     nextBtns[1].textContent = 'Посмотреть результаты';
   } else {
