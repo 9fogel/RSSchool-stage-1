@@ -4,7 +4,6 @@ import { createElem, languages } from '../../src/index';
 import { contentTrans, checkLang } from './quiz';
 import { changeLang, getLocalStorageSettings } from './lang';
 import content from './content';
-// import { initPlayer } from './player';
 
 let navList = document.querySelector('.nav-list');
 let navLinks = document.querySelectorAll('.nav-link');
@@ -77,7 +76,6 @@ export function startGame() {
     getLocalStorageSettings();
     changeLang();
     checkLang();
-    // initPlayer();
   });
 }
 

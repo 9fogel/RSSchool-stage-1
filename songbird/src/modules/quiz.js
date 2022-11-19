@@ -10,10 +10,10 @@ import wrongSound from '../sound/sound-wrong.mp3';
 import { languages } from '../../src/index';
 import { birds, lang, changeLang, getLocalStorageSettings } from './lang';
 import { getRandomArr } from './random';
-// import { audioMain, audioInfo } from './player';
 import { addResultsNav, setResultsPageActive, restartGame } from './nav';
 
-import { isPlay, initPlayer, initPlayerInfo, playPlayer, pausePlayer, playPlayerInfo } from './player';
+// import { initPlayer, initPlayerInfo, playPlayer, pausePlayer } from './player';
+import { initPlayer, initPlayerInfo, pausePlayer } from './player';
 
 export let score;
 export let soundMainUrl;
@@ -59,8 +59,6 @@ export function loadGame(score) {
   setDefaultState(score);
   createAnswersList(level);
   setCorrectAnswer();
-  // initPlayer();
-  // playPlayer();
 }
 
 export function checkLang() {
@@ -69,7 +67,7 @@ export function checkLang() {
   } else {
   contentTrans = content.en;
   }
-  console.log('langQuiz', lang);
+  // console.log('langQuiz', lang);
 }
 
 
@@ -88,7 +86,7 @@ function setDefaultState(score) {
   changeLang();
   checkLang();
   correctAnswer = birds[level][randomArr[level]].name;
-  console.log(lang, contentTrans);
+  // console.log(lang, contentTrans);
   // scoreWrap.textContent = `Ваши очки: ${score}`;
   scoreWrap.textContent = `${contentTrans.quizPage.score}${score}`;
   nextBtns[0].setAttribute('disabled', 'disabled');
@@ -111,13 +109,10 @@ function setDefaultBird() {
   birdNames[0].textContent = '**********';
   birdNames[1].style.display = 'none';
   birdNameLatin.style.display = 'none';
-
-  // //TODO: add audio - birds[level][randomArr[level]].audio;
   soundMainUrl = birds[level][randomArr[level]].audio;
   initPlayer();
-  playPlayer();
+  // playPlayer();//TODO: раскомментить, чтобы играло
   birdDesc.innerHTML = contentTrans.quizPage.playerDesc;
-  // birdDesc.innerHTML = '<p>Послушайте плеер.</p><p>Выберите птицу из списка.</p></br><p>За правильный ответ с первой попытки начисляется 6 баллов.</p><p>За каждую последующую попытку на 1 балл меньше.</p>';
   players[1].style.display = 'none';
   birdImgs[1].style.display = 'none';
 }
@@ -128,10 +123,6 @@ function createCorrectBirdCard(level) {
   });
   birdNameLatin.textContent = birds[level][randomArr[level]].species;
   birdDesc.textContent = birds[level][randomArr[level]].description;
-
-  // //TODO: add audio - birds[level][randomArr[level]].audio;
-  // soundMainUrl = birds[level][randomArr[level]].audio;
-
   birdImgs.forEach((img) => {
     img.style.backgroundImage = `url(${birds[level][randomArr[level]].image})`;
   });
@@ -167,7 +158,7 @@ export function handleClick() {
 
     answerItem.addEventListener('click', () => {
       if(answers[index].textContent === correctAnswer) {
-        console.log('correct!', level);
+        // console.log('correct!', level);
         handleClickSound('correct');
         pausePlayer();
         answerIcons[index].classList.add('correct-answer');
@@ -179,7 +170,7 @@ export function handleClick() {
           finishGame();
         }
       } else {
-        console.log('wrong!');
+        // console.log('wrong!');
         if (!answerState) {
           answerIcons[index].classList.add('wrong-answer');
           handleClickSound('wrong');
@@ -198,12 +189,8 @@ function showBirdInfo(index) {
   birdNames[1].textContent = birds[level][index].name;
   birdNameLatin.textContent = birds[level][index].species;
   birdDesc.textContent = birds[level][index].description;
-
-  //TODO: add audio - birds[level][index].audio;
   soundInfoUrl = birds[level][index].audio;
   initPlayerInfo();
-  playPlayerInfo();
-
   birdNames[1].style.display = 'block';
   birdNameLatin.style.display = 'block';
   players[1].style.display = 'block';
@@ -214,9 +201,7 @@ function setCorrectGameState() {
   nextBtns[0].removeAttribute('disabled');
   nextBtns[1].removeAttribute('disabled');
   if (!answerState) {
-    // console.log('score3', score);
     score += points;
-    // scoreWrap.textContent = `Ваши очки: ${score}`;
     scoreWrap.textContent = `${contentTrans.quizPage.score}${score}`;
     points = 5;
   }
@@ -227,7 +212,7 @@ function handleNext() {
   level++;
   loadGame(score);
   // initPlayer();
-  playPlayer();
+  // playPlayer();//TODO: раскомментить, чтобы играло
 }
 
 nextBtns[0].addEventListener('click', handleNext);
@@ -248,7 +233,6 @@ function finishGame() {
   nextBtns[0].addEventListener('click', showResults);
   nextBtns[1].addEventListener('click', showResults);
   resultsText.textContent = contentTrans.resultsPage.resultsText1 + `${score}` + contentTrans.resultsPage.resultsText2;
-  // resultsText.textContent = `Вы прошли игру и набрали ${score} из 30 возможных баллов`;
   playAgainBtn.classList.remove('hidden');
   if (score === maxScore) {
     playAgainBtn.classList.add('hidden');
@@ -307,7 +291,6 @@ export function resizeWindow() {
         }
       }
     });
-  // });
 
   window.addEventListener('load', () => {
     if (window.innerWidth <= 680 && !isLevelCut) {
