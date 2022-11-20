@@ -1,0 +1,708 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  color: #000000;
+  text-align: center;
+  background-color: #c9f8c9;
+}
+
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 40px;
+  min-height: 100px;
+  background-color: bisque;
+}
+
+.button {
+  padding: 10px 20px;
+}
+
+.shuffle-btn:hover,
+.mute-btn:hover {
+  cursor: pointer;
+}
+
+.main {
+  width: 100%;
+  height: 650px;
+  background-color: pink;
+}
+
+.info {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  padding-top: 20px;
+  padding-bottom: 8px;
+}
+
+.play-field {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  /* overflow-y: hidden; */
+  /* overflow-x: hidden; */
+  margin: 0 auto;
+  width: 600px;
+  height: 600px;
+  background-color: gray;
+  border: 1px solid #000000;
+}
+
+.cell {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  user-select: none;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+}
+
+/* size 3 */
+@keyframes move-right3 {
+  from {left: 0px}
+  to {left: 200px}
+}
+
+.transition-right3 {
+  animation-name: move-right3;
+  animation-duration: 0.5s;
+}
+
+@keyframes move-left3 {
+  from {left: 0px}
+  to {left: -200px}
+}
+
+.transition-left3 {
+  animation-name: move-left3;
+  animation-duration: 0.5s;
+}
+
+@keyframes move-down3 {
+  from {top: 0px}
+  to {top: 200px}
+}
+
+.transition-down3 {
+  animation-name: move-down3;
+  animation-duration: 0.5s;
+}
+
+@keyframes move-up3 {
+  from {top: 0px}
+  to {top: -200px}
+}
+
+.transition-up3 {
+  animation-name: move-up3;
+  animation-duration: 0.5s;
+}
+
+/* size 4 */
+@keyframes move-right4 {
+  from {left: 0px}
+  to {left: 150px}
+}
+
+.transition-right4 {
+  animation-name: move-right4;
+  animation-duration: 0.5s;
+}
+
+@keyframes move-left4 {
+  from {left: 0px}
+  to {left: -150px}
+}
+
+.transition-left4 {
+  animation-name: move-left4;
+  animation-duration: 0.5s;
+}
+
+@keyframes move-down4 {
+  from {top: 0px}
+  to {top: 150px}
+}
+
+.transition-down4 {
+  animation-name: move-down4;
+  animation-duration: 0.5s;
+}
+
+@keyframes move-up4 {
+  from {top: 0px}
+  to {top: -150px}
+}
+
+.transition-up4 {
+  animation-name: move-up4;
+  animation-duration: 0.5s;
+}
+
+/* size 5 */
+@keyframes move-right5 {
+  from {left: 0px}
+  to {left: 120px}
+}
+
+.transition-right5 {
+  animation-name: move-right5;
+  animation-duration: 0.5s;
+}
+
+@keyframes move-left5 {
+  from {left: 0px}
+  to {left: -120px}
+}
+
+.transition-left5 {
+  animation-name: move-left5;
+  animation-duration: 0.5s;
+}
+
+@keyframes move-down5 {
+  from {top: 0px}
+  to {top: 120px}
+}
+
+.transition-down5 {
+  animation-name: move-down5;
+  animation-duration: 0.5s;
+}
+
+@keyframes move-up5 {
+  from {top: 0px}
+  to {top: -120px}
+}
+
+.transition-up5 {
+  animation-name: move-up5;
+  animation-duration: 0.5s;
+}
+
+/* size 6 */
+@keyframes move-right6 {
+  from {left: 0px}
+  to {left: 100px}
+}
+
+.transition-right6 {
+  animation-name: move-right6;
+  animation-duration: 0.5s;
+}
+
+@keyframes move-left6 {
+  from {left: 0px}
+  to {left: -100px}
+}
+
+.transition-left6 {
+  animation-name: move-left6;
+  animation-duration: 0.5s;
+}
+
+@keyframes move-down6 {
+  from {top: 0px}
+  to {top: 100px}
+}
+
+.transition-down6 {
+  animation-name: move-down6;
+  animation-duration: 0.5s;
+}
+
+@keyframes move-up6 {
+  from {top: 0px}
+  to {top: -100px}
+}
+
+.transition-up6 {
+  animation-name: move-up6;
+  animation-duration: 0.5s;
+}
+
+/* size 7 */
+@keyframes move-right7 {
+  from {left: 0px}
+  to {left: 84px}
+}
+
+.transition-right7 {
+  animation-name: move-right7;
+  animation-duration: 0.5s;
+}
+
+@keyframes move-left7 {
+  from {left: 0px}
+  to {left: -84px}
+}
+
+.transition-left7 {
+  animation-name: move-left7;
+  animation-duration: 0.5s;
+}
+
+@keyframes move-down7 {
+  from {top: 0px}
+  to {top: 84px}
+}
+
+.transition-down7 {
+  animation-name: move-down7;
+  animation-duration: 0.5s;
+}
+
+@keyframes move-up7 {
+  from {top: 0px}
+  to {top: -84px}
+}
+
+/* size 8 */
+@keyframes move-right8 {
+  from {left: 0px}
+  to {left: 75px}
+}
+
+.transition-right8 {
+  animation-name: move-right8;
+  animation-duration: 0.5s;
+}
+
+@keyframes move-left8 {
+  from {left: 0px}
+  to {left: -75px}
+}
+
+.transition-left8 {
+  animation-name: move-left8;
+  animation-duration: 0.5s;
+}
+
+@keyframes move-down8 {
+  from {top: 0px}
+  to {top: 75px}
+}
+
+.transition-down8 {
+  animation-name: move-down8;
+  animation-duration: 0.5s;
+}
+
+@keyframes move-up8 {
+  from {top: 0px}
+  to {top: -75px}
+}
+
+.transition-up8 {
+  animation-name: move-up8;
+  animation-duration: 0.5s;
+}
+
+.empty-cell {
+  color: gray;
+  background-color: transparent;
+  border: none;
+}
+
+.clickable {
+  /* background-color: yellow; */
+}
+
+.clickable:hover {
+  cursor: pointer;
+  font-weight: bold;
+  background-color: yellow;
+  box-shadow: 0 10px 15px rgb(87, 86, 86);
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  min-height: 100px;
+  background-color: bisque;
+}
+
+.wrapper {
+  display: flex;
+  justify-items: center;
+  gap: 40px;
+}
+
+.inputWrapper {
+  display: flex;
+  gap: 4px;
+}
+
+input+label:hover {
+  cursor: pointer;
+}
+
+.win-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0, 0.8);
+  transition: all 0.3s ease-in-out;
+}
+
+.win-wrapper:hover {
+  cursor: pointer;
+}
+
+.win-wrapper-hidden {
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.win-popup {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  /* transform: translateY(-50%); */
+  align-self: center;
+  transition: all 0.3s ease-in-out;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  /* height: 100%; */
+  margin: 0 auto;
+  font-size: 30px;
+  font-weight: medium;
+  padding: 60px 45px;
+  background: linear-gradient(177.09deg, #FFFFFF 6.15%, bisque 202.69%);
+  box-shadow: 0px 4px 4px 0px #00000040;
+  border-radius: 16px;
+}
+
+.win-popup-hidden {
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 1280px) {
+  .container {
+    max-width: 700px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  .container {
+    max-width: 300px;
+  }
+
+  .header {
+    flex-wrap: wrap;
+    gap: 20px;
+    min-height: 50px;
+  }
+
+  .main {
+    width: 100%;
+    height: 350px;
+    background-color: pink;
+  }
+
+  .info {
+    gap: 20px;
+  }
+
+  .play-field {
+    width: 280px;
+    height: 280px;
+  }
+
+  .cell {
+    font-size: 20px;
+  }
+
+  /* size 3 */
+  @keyframes move-right3 {
+    from {left: 0px}
+    to {left: 92px}
+  }
+
+  .transition-right3 {
+    animation-name: move-right3;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes move-left3 {
+    from {left: 0px}
+    to {left: -92px}
+  }
+
+  .transition-left3 {
+    animation-name: move-left3;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes move-down3 {
+    from {top: 0px}
+    to {top: 92px}
+  }
+
+  .transition-down3 {
+    animation-name: move-down3;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes move-up3 {
+    from {top: 0px}
+    to {top: -92px}
+  }
+
+  .transition-up3 {
+    animation-name: move-up3;
+    animation-duration: 0.5s;
+  }
+
+  /* size 4 */
+  @keyframes move-right4 {
+    from {left: 0px}
+    to {left: 69px}
+  }
+
+  .transition-right4 {
+    animation-name: move-right4;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes move-left4 {
+    from {left: 0px}
+    to {left: -69px}
+  }
+
+  .transition-left4 {
+    animation-name: move-left4;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes move-down4 {
+    from {top: 0px}
+    to {top: 69px}
+  }
+
+  .transition-down4 {
+    animation-name: move-down4;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes move-up4 {
+    from {top: 0px}
+    to {top: -69px}
+  }
+
+  .transition-up4 {
+    animation-name: move-up4;
+    animation-duration: 0.5s;
+  }
+
+  /* size 5 */
+  @keyframes move-right5 {
+    from {left: 0px}
+    to {left: 55.5px}
+  }
+
+  .transition-right5 {
+    animation-name: move-right5;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes move-left5 {
+    from {left: 0px}
+    to {left: -55.5px}
+  }
+
+  .transition-left5 {
+    animation-name: move-left5;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes move-down5 {
+    from {top: 0px}
+    to {top: 55.5px}
+  }
+
+  .transition-down5 {
+    animation-name: move-down5;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes move-up5 {
+    from {top: 0px}
+    to {top: -55.5px}
+  }
+
+  .transition-up5 {
+    animation-name: move-up5;
+    animation-duration: 0.5s;
+  }
+
+  /* size 6 */
+  @keyframes move-right6 {
+    from {left: 0px}
+    to {left: 46.5px}
+  }
+
+  .transition-right6 {
+    animation-name: move-right6;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes move-left6 {
+    from {left: 0px}
+    to {left: -46.5px}
+  }
+
+  .transition-left6 {
+    animation-name: move-left6;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes move-down6 {
+    from {top: 0px}
+    to {top: 46.5px}
+  }
+
+  .transition-down6 {
+    animation-name: move-down6;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes move-up6 {
+    from {top: 0px}
+    to {top: -46.5px}
+  }
+
+  .transition-up6 {
+    animation-name: move-up6;
+    animation-duration: 0.5s;
+  }
+
+  /* size 7 */
+  @keyframes move-right7 {
+    from {left: 0px}
+    to {left: 39px}
+  }
+
+  .transition-right7 {
+    animation-name: move-right7;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes move-left7 {
+    from {left: 0px}
+    to {left: -39px}
+  }
+
+  .transition-left7 {
+    animation-name: move-left7;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes move-down7 {
+    from {top: 0px}
+    to {top: 39px}
+  }
+
+  .transition-down7 {
+    animation-name: move-down7;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes move-up7 {
+    from {top: 0px}
+    to {top: -39px}
+  }
+
+  /* size 8 */
+  @keyframes move-right8 {
+    from {left: 0px}
+    to {left: 34.5px}
+  }
+
+  .transition-right8 {
+    animation-name: move-right8;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes move-left8 {
+    from {left: 0px}
+    to {left: -34.5px}
+  }
+
+  .transition-left8 {
+    animation-name: move-left8;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes move-down8 {
+    from {top: 0px}
+    to {top: 34.5px}
+  }
+
+  .transition-down8 {
+    animation-name: move-down8;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes move-up8 {
+    from {top: 0px}
+    to {top: -34.5px}
+  }
+
+  .transition-up8 {
+    animation-name: move-up8;
+    animation-duration: 0.5s;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-height: 80px;
+  }
+
+  .win-popup {
+    padding: 40px 25px;
+    font-size: 16px;
+    font-weight: medium;
+    line-height: 140%;
+  }
+
+}
