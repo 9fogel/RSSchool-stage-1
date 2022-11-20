@@ -20,10 +20,10 @@ module.exports = {
   // entry: [path.resolve(__dirname, 'src', 'index.js')],
   output: {
     path: path.resolve(__dirname, 'dist', 'songbird'),
-    clean: true,//clear dist folder every time
-    // clean: {
-    //   keep: /\.git/,//output.clean: true будет затирать внутри папки информацию о том что это worktree (файл .git) и возникнут проблемы.
-    // },
+    // clean: true,//clear dist folder every time
+    clean: {
+      keep: /\.git/,//output.clean: true будет затирать внутри папки информацию о том что это worktree (файл .git) и возникнут проблемы.
+    },
     filename: '[name].[contenthash].js',//we can use our own naming (f.e 'main.js')
     assetModuleFilename: 'assets/[hash][ext]',// or 'assets/[name][ext]' to save initial names
   },
