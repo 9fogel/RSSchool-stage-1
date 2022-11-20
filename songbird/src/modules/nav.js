@@ -55,7 +55,6 @@ export function changePage() {
 function returnToAboutPage() {
   let logo = document.querySelector('.logo');
   logo.addEventListener('click', () => {
-  console.log('logo');
   pausePlayer();
   pausePlayerInfo();
   navLinks.forEach((link) => {

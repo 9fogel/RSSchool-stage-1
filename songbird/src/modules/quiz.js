@@ -2,7 +2,7 @@ import content from './content';
 import correctSound from '../sound/sound-correct.mp3';
 import wrongSound from '../sound/sound-wrong.mp3';
 
-import { birds, lang, changeLang, getLocalStorageSettings } from './lang';
+import { birds, lang, changeLang, getLocalStorageSettings, disableLangChoise, enableLangChoise } from './lang';
 import { getRandomArr } from './random';
 import { addResultsNav, setResultsPageActive, restartGame } from './nav';
 import { initPlayer, initPlayerInfo, pausePlayer } from './player';
@@ -12,7 +12,7 @@ export let soundMainUrl;
 export let soundInfoUrl;
 
 let randomArr = getRandomArr();
-let level = 0;
+export let level = 0;
 score = 0;
 let maxScore = 30;
 let points = 5;
@@ -29,12 +29,13 @@ let birdImgs = document.querySelectorAll('.bird-image');
 
 let answers = document.querySelectorAll('.answer-text');
 let answerIcons = document.querySelectorAll('.answer-circle');
-let correctAnswer = birds[level][randomArr[level]].name;
+export let correctAnswer = birds[level][randomArr[level]].name;
 
 let resultsText = document.querySelector('.results-text');
 
-let answerState = false;
+export let answerState = false;
 export let gameFinished = false;
+export let isDefaultState = true;
 
 
 export let contentTrans;
@@ -42,7 +43,7 @@ export let contentTrans;
 export function loadGame(score) {
   getLocalStorageSettings();
   checkLang();
-  changeLang();
+  // changeLang();
   // document.location.reload();
   setDefaultState(score);
   createAnswersList(level);
@@ -57,21 +58,27 @@ export function checkLang() {
   }
 }
 
+export function setMainAnswer(level) {
+  correctAnswer = birds[level][randomArr[level]].name;
+}
 
-function createAnswersList(level) {
+
+export function createAnswersList(level) {
   getLocalStorageSettings();
-  changeLang();
+  // changeLang();
   checkLang();
   answers.forEach((answer, index) => {
     answer.textContent = birds[level][index].name;
   });
+  setMainAnswer(level);
+  // correctAnswer = birds[level][randomArr[level]].name;
 }
 
 function setDefaultState(score) {
   getLocalStorageSettings();
-  changeLang();
+  // changeLang();
   checkLang();
-  correctAnswer = birds[level][randomArr[level]].name;
+  // correctAnswer = birds[level][randomArr[level]].name;
   scoreWrap.textContent = `${contentTrans.quizPage.score}${score}`;
   nextBtns[0].setAttribute('disabled', 'disabled');
   nextBtns[1].setAttribute('disabled', 'disabled');
@@ -86,6 +93,7 @@ function setDefaultState(score) {
     answerIcon.classList.remove('correct-answer');
   });
   answerState = false;
+  isDefaultState = true;
 }
 
 function setDefaultBird() {
@@ -115,7 +123,7 @@ function createCorrectBirdCard(level) {
   birdImgs[1].style.display = 'block';
 }
 
-function setCorrectAnswer() {
+export function setCorrectAnswer() {
   answers.forEach((answer) => {
     if(answer.textContent === correctAnswer) {
       console.log('correct', answer.textContent);
@@ -140,6 +148,7 @@ export function handleClick() {
     });
 
     answerItem.addEventListener('click', () => {
+      isDefaultState = false;
       if(answers[index].textContent === correctAnswer) {
         handleClickSound('correct');
         pausePlayer();
@@ -165,7 +174,8 @@ export function handleClick() {
   });
 }
 
-function showBirdInfo(index) {
+export function showBirdInfo(index) {
+  console.log('index', index);
   birdImgs[1].style.backgroundImage = `url(${birds[level][index].image})`;
   birdNames[1].textContent = birds[level][index].name;
   birdNameLatin.textContent = birds[level][index].species;
@@ -187,11 +197,13 @@ function setCorrectGameState() {
     points = 5;
   }
   answerState = true;
+  disableLangChoise();
 }
 
 function handleNext() {
   level++;
   loadGame(score);
+  enableLangChoise();
 }
 
 nextBtns[0].addEventListener('click', handleNext);
@@ -201,10 +213,12 @@ function showResults() {
   console.log('go to results page');
   addResultsNav();
   setResultsPageActive();
+  enableLangChoise();
 }
 
 function finishGame() {
   gameFinished = true;
+  disableLangChoise();
   if(localStorage.getItem('9fogelSettings') === 'ru' || lang === 'ru') {
     nextBtns[0].textContent = 'Посмотреть результаты';
     nextBtns[1].textContent = 'Посмотреть результаты';
@@ -216,6 +230,7 @@ function finishGame() {
   nextBtns[1].removeEventListener('click', handleNext);
   nextBtns[0].addEventListener('click', showResults);
   nextBtns[1].addEventListener('click', showResults);
+  // gameFinished = true;
   resultsText.textContent = contentTrans.resultsPage.resultsText1 + `${score}` + contentTrans.resultsPage.resultsText2;
   playAgainBtn.classList.remove('hidden');
   if (score === maxScore) {

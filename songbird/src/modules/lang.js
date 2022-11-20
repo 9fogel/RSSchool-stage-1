@@ -2,7 +2,7 @@
 import birdsDataEn from './birdsEn';
 import birdsDataRu from './birdsRu';
 import content from './content';
-import { gameFinished, score } from './quiz';
+import { gameFinished, isDefaultState, loadGame, createAnswersList, level, setMainAnswer, setCorrectAnswer, answerState, score } from './quiz';
 
 //settings
 let settings = document.querySelector('.settings');
@@ -14,6 +14,8 @@ let radioRu = document.querySelector('.russian-lang');
 let langTitle = document.querySelector('.lang-title');
 let langLabels = document.querySelectorAll('label');
 
+let langChoise = document.querySelector('.language-choise');
+let scoreWrap = document.querySelector('.score');
 let navLinks = document.querySelectorAll('.nav-link');
 
 function showSettings() {
@@ -22,11 +24,20 @@ function showSettings() {
 
 settings.addEventListener('click', showSettings);
 
+export function disableLangChoise() {
+  settings.classList.add('hidden');
+  settingsMenu.classList.add('hidden');
+}
+
+export function enableLangChoise() {
+  settings.classList.remove('hidden');
+  settingsMenu.classList.remove('hidden');
+}
+
 //lang choise
 export let birds;
 export let lang = 'ru';
 export let contentTrans;
-
 
 if (lang === 'ru') {
   birds = birdsDataRu;
@@ -34,48 +45,95 @@ if (lang === 'ru') {
   birds = birdsDataEn;
 }
 
-export function changeLang() {
-  languages.forEach((language, index) => {
-    language.onclick = function () {
-
-      if (navLinks[0].classList.contains('link-active')) {
-        document.location.reload();
-      }
-      if (navLinks[1].classList.contains('link-active')) {
-        alert('If you change the language game will be reloaded and progress will not be saved');
-        document.location.reload();
-      }
-      if(gameFinished) {
-        let navLinksUpd = document.querySelectorAll('.nav-link');
-        let resultText = document.querySelector('.results-text');
-        if(localStorage.getItem('9fogelSettings') === 'ru' || lang === 'ru') {
-              navLinksUpd[3].textContent = 'Результаты';
-              resultText.textContent = `Вы прошли игру и набрали ${score} баллов из 30 возможных`;
-            } else {
-              navLinksUpd[3].textContent = 'Results';
-              resultText.textContent = `You passed the game and got ${score} points out of 30`;
-            }
-      }
-      radioBtns.forEach((radio) => {
-        if (radio.hasAttribute('checked')) {
-          radio.removeAttribute('checked');
-          radio.classList.remove('checked');
-        }
-      });
-      radioBtns[index].setAttribute('checked', 'checked');
-      radioBtns[index].classList.add('checked');
-      lang = radioBtns[index].value;
-      setLocalStorageSettings();
-      getLocalStorageSettings();
-      if (lang === 'ru') {
-        console.log('langLang', lang);
-        birds = birdsDataRu;
-      } else {
-        console.log('langLang', lang);
-        birds = birdsDataEn;
-      }
+let idx;
+function defineIndexClicked() {
+  let birdName = document.querySelectorAll('.bird-name')[1];
+  let birdsTr;
+  if (lang === 'ru') {
+    birdsTr = birdsDataRu;
+  } else {
+    birdsTr = birdsDataEn;
+  }
+  birdsTr[level].forEach((bird) => {
+    if(bird.name === birdName.textContent) {
+      idx = bird.id - 1;
+      return idx;
     }
   });
+  return idx;
+}
+
+function showBirdInfoTrans() {
+  let birdNames = document.querySelectorAll('.bird-name');
+  let birdNameLatin = document.querySelector('.bird-name-latin');
+  let players = document.querySelectorAll('.player');
+  let birdDesc = document.querySelector('.bird-desc');
+  let birdImgs = document.querySelectorAll('.bird-image');
+  birdImgs[1].style.backgroundImage = `url(${birds[level][idx].image})`;
+  birdNames[1].textContent = birds[level][idx].name;
+  birdNameLatin.textContent = birds[level][idx].species;
+  birdDesc.textContent = birds[level][idx].description;
+  birdNames[1].style.display = 'block';
+  birdNameLatin.style.display = 'block';
+  players[1].style.display = 'block';
+  birdImgs[1].style.display = 'block';
+}
+
+export function changeLang() {
+langChoise.addEventListener('click', (event) => {
+  languages.forEach((lang) => {
+    lang.onclick = function() {
+      event.stopPropagation();
+    }
+  });
+
+  if(isDefaultState) {
+    loadGame(score);
+  } else {
+    createAnswersList(level);
+    setCorrectAnswer();
+    setMainAnswer(level);
+    defineIndexClicked();
+    console.log('before showing bird', idx);
+    showBirdInfoTrans();
+    if (lang === 'ru') {
+      scoreWrap.textContent = `Ваши очки: ${score}`;
+    } else {
+      scoreWrap.textContent = `Score: ${score}`;
+    }
+  }
+
+  if(gameFinished) {
+    let navLinksUpd = document.querySelectorAll('.nav-link');
+    let resultText = document.querySelector('.results-text');
+    if(localStorage.getItem('9fogelSettings') === 'ru' || lang === 'ru') {
+          navLinksUpd[3].textContent = 'Результаты';
+          resultText.textContent = `Вы прошли игру и набрали ${score} баллов из 30 возможных`;
+        } else {
+          navLinksUpd[3].textContent = 'Results';
+          resultText.textContent = `You passed the game and got ${score} points out of 30`;
+        }
+  }
+
+  radioBtns.forEach((radio) => {
+    if (radio.hasAttribute('checked')) {
+      radio.removeAttribute('checked');
+      radio.classList.remove('checked');
+    }
+  });
+  lang = event.target.value;
+  event.target.setAttribute('checked', 'checked');
+  event.target.classList.add('checked');
+  setLocalStorageSettings();
+  getLocalStorageSettings();
+  if (lang === 'ru') {
+    console.log('langLang', lang);
+    birds = birdsDataRu;
+  } else {
+    console.log('langLang', lang);
+    birds = birdsDataEn;
+  }
+});
 }
 
 changeLang();
@@ -100,6 +158,7 @@ export function getLocalStorageSettings() {
     radioRu.setAttribute('checked', 'checked');
     radioEn.removeAttribute('checked');
     translateToRu();
+    birds = birdsDataRu;
   }
   if(lang === 'en') {
     radioRu.classList.remove('checked');
@@ -107,6 +166,7 @@ export function getLocalStorageSettings() {
     radioEn.setAttribute('checked', 'checked');
     radioRu.removeAttribute('checked');
     translateToEn();
+    birds = birdsDataEn;
   }
 }
 

@@ -29,7 +29,7 @@ export function initPlayer() {
     isPlay2 = false;
   }
   audioMain = new Audio(soundMainUrl);
-  // console.log(audioMain);
+  console.log(audioMain);
   isPlay1 = false;
   playBtn.classList.remove('pause-icon');
   audioMain.volume = localStorage.getItem('9fogelVolume') || 0.3;
