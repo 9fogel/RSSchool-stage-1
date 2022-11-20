@@ -2,6 +2,7 @@
 import birdsDataEn from './birdsEn';
 import birdsDataRu from './birdsRu';
 import content from './content';
+import { gameFinished, score } from './quiz';
 
 //settings
 let settings = document.querySelector('.settings');
@@ -36,12 +37,24 @@ if (lang === 'ru') {
 export function changeLang() {
   languages.forEach((language, index) => {
     language.onclick = function () {
+
       if (navLinks[0].classList.contains('link-active')) {
         document.location.reload();
       }
       if (navLinks[1].classList.contains('link-active')) {
         alert('If you change the language game will be reloaded and progress will not be saved');
-          document.location.reload();
+        document.location.reload();
+      }
+      if(gameFinished) {
+        let navLinksUpd = document.querySelectorAll('.nav-link');
+        let resultText = document.querySelector('.results-text');
+        if(localStorage.getItem('9fogelSettings') === 'ru' || lang === 'ru') {
+              navLinksUpd[3].textContent = 'Результаты';
+              resultText.textContent = `Вы прошли игру и набрали ${score} баллов из 30 возможных`;
+            } else {
+              navLinksUpd[3].textContent = 'Results';
+              resultText.textContent = `You passed the game and got ${score} points out of 30`;
+            }
       }
       radioBtns.forEach((radio) => {
         if (radio.hasAttribute('checked')) {

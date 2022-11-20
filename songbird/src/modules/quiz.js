@@ -34,7 +34,7 @@ let correctAnswer = birds[level][randomArr[level]].name;
 let resultsText = document.querySelector('.results-text');
 
 let answerState = false;
-let gameFinished = false;
+export let gameFinished = false;
 
 
 export let contentTrans;
