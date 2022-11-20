@@ -94,7 +94,6 @@ langChoise.addEventListener('click', (event) => {
     setCorrectAnswer();
     setMainAnswer(level);
     defineIndexClicked();
-    console.log('before showing bird', idx);
     showBirdInfoTrans();
     if (lang === 'ru') {
       scoreWrap.textContent = `Ваши очки: ${score}`;
@@ -127,10 +126,8 @@ langChoise.addEventListener('click', (event) => {
   setLocalStorageSettings();
   getLocalStorageSettings();
   if (lang === 'ru') {
-    console.log('langLang', lang);
     birds = birdsDataRu;
   } else {
-    console.log('langLang', lang);
     birds = birdsDataEn;
   }
 });

@@ -175,7 +175,6 @@ export function handleClick() {
 }
 
 export function showBirdInfo(index) {
-  console.log('index', index);
   birdImgs[1].style.backgroundImage = `url(${birds[level][index].image})`;
   birdNames[1].textContent = birds[level][index].name;
   birdNameLatin.textContent = birds[level][index].species;
@@ -210,7 +209,6 @@ nextBtns[0].addEventListener('click', handleNext);
 nextBtns[1].addEventListener('click', handleNext);
 
 function showResults() {
-  console.log('go to results page');
   addResultsNav();
   setResultsPageActive();
   enableLangChoise();
@@ -240,7 +238,6 @@ function finishGame() {
 
 function playAgain() {
   restartGame();
-  console.log('restart game');
   score = 0;
   level = 0;
   nextBtns[0].removeEventListener('click', showResults);
@@ -274,7 +271,7 @@ export function resizeWindow() {
     if (window.innerWidth <= 680 && !isLevelCut) {
       if(lang === 'ru') {
         for (let i = 2; i < levelNavItems.length; i++) {
-        console.log(levelNavItems[i].textContent.slice(0, levelNavItems[i].textContent.length - 6));
+        // console.log(levelNavItems[i].textContent.slice(0, levelNavItems[i].textContent.length - 6));
         levelNavItems[i].textContent = levelNavItems[i].textContent.slice(0, levelNavItems[i].textContent.length - 6);
         isLevelCut = true;
         }
@@ -293,7 +290,7 @@ export function resizeWindow() {
   window.addEventListener('load', () => {
     if (window.innerWidth <= 680 && !isLevelCut) {
       for (let i = 2; i < levelNavItems.length; i++) {
-        console.log(levelNavItems[i].textContent.slice(0, levelNavItems[i].textContent.length - 6));
+        // console.log(levelNavItems[i].textContent.slice(0, levelNavItems[i].textContent.length - 6));
         levelNavItems[i].textContent = levelNavItems[i].textContent.slice(0, levelNavItems[i].textContent.length - 6);
         isLevelCut = true;
       }
