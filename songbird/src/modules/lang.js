@@ -2,7 +2,7 @@
 import birdsDataEn from './birdsEn';
 import birdsDataRu from './birdsRu';
 import content from './content';
-import { gameFinished, isDefaultState, loadGame, createAnswersList, level, setMainAnswer, setCorrectAnswer, answerState, score } from './quiz';
+import { gameFinished, isDefaultState, isLevelCut, cutLevelBirdsRu, loadGame, createAnswersList, level, setMainAnswer, setCorrectAnswer, answerState, score } from './quiz';
 
 //settings
 let settings = document.querySelector('.settings');
@@ -197,6 +197,7 @@ function translateToEn() {
   replaceWithTranslation('en');
 }
 
+export let isLevelCutLang = false;
 function replaceWithTranslation() {
   navLinks[0].textContent = contentTrans.nav.about;
   navLinks[1].textContent = contentTrans.nav.quiz;
@@ -213,9 +214,18 @@ function replaceWithTranslation() {
   levelItems[0].textContent = contentTrans.quizPage.level1;
   levelItems[1].textContent = contentTrans.quizPage.level2;
   levelItems[2].textContent = contentTrans.quizPage.level3;
+
   levelItems[3].textContent = contentTrans.quizPage.level4;
   levelItems[4].textContent = contentTrans.quizPage.level5;
   levelItems[5].textContent = contentTrans.quizPage.level6;
+  if (window.innerWidth <= 680 && !isLevelCut && lang === 'ru') {
+    // cutLevelBirdsRu();
+    levelItems[2].textContent = contentTrans.quizPage.level3Cut;
+    levelItems[3].textContent = contentTrans.quizPage.level4Cut;
+    levelItems[4].textContent = contentTrans.quizPage.level5Cut;
+    levelItems[5].textContent = contentTrans.quizPage.level6Cut;
+    isLevelCutLang = true;
+  }
   playerDesc.innerHTML = contentTrans.quizPage.playerDesc;
   nextBtns[0].textContent = contentTrans.quizPage.nextBtn;
   nextBtns[1].textContent = contentTrans.quizPage.nextBtn;

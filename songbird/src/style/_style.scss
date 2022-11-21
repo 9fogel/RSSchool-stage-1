@@ -250,6 +250,7 @@
   background-size: cover;
   background-position: center center;
   border-radius: $border-radius;
+  transition: background-image ease-in-out .3s;
 }
 
 .bird-wrapper {
@@ -1182,12 +1183,29 @@ label:hover{
     width: 40%;
   }
 
+  .sound-on:hover {
+    background-image: url('img/sound-on-icon.svg');
+  }
+
+  .sound-off:hover {
+    background-image: url('img/sound-muted-icon.svg');
+  }
+
   .answer-wrapper {
     // display: grid;
     grid-template-columns: 1fr;
     row-gap: 16px;
     // gap: 24px;
     // margin-bottom: 28px;
+  }
+
+  .bird-name-latin {
+    max-height: 17px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
   }
 
   .next-button {
@@ -1197,7 +1215,7 @@ label:hover{
   .info-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 14px;
+    grid-gap: 8px;
     margin-bottom: 16px;
   }
 
@@ -1207,7 +1225,7 @@ label:hover{
   }
 
   .info {
-    height: 278px;
+    height: 290px;
     padding: 8px 8px 8px 8px;
   }
 

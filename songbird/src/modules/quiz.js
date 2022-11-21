@@ -2,7 +2,7 @@ import content from './content';
 import correctSound from '../sound/sound-correct.mp3';
 import wrongSound from '../sound/sound-wrong.mp3';
 
-import { birds, lang, changeLang, getLocalStorageSettings, disableLangChoise, enableLangChoise } from './lang';
+import { birds, lang, isLevelCutLang, getLocalStorageSettings, disableLangChoise, enableLangChoise } from './lang';
 import { getRandomArr } from './random';
 import { addResultsNav, setResultsPageActive, restartGame } from './nav';
 import { initPlayer, initPlayerInfo, pausePlayer } from './player';
@@ -96,8 +96,8 @@ function setDefaultState(score) {
   isDefaultState = true;
 }
 
-function setDefaultBird() {
-  birdImgs[0].style.backgroundImage = `url("./assets/images/guess-bird-bg.jpg")`;
+async function setDefaultBird() {
+  birdImgs[0].style.backgroundImage = await `url("./assets/images/guess-bird-bg.jpg")`;
   birdNames[0].textContent = '**********';
   birdNames[1].style.display = 'none';
   birdNameLatin.style.display = 'none';
@@ -151,7 +151,9 @@ export function handleClick() {
       isDefaultState = false;
       if(answers[index].textContent === correctAnswer) {
         handleClickSound('correct');
-        pausePlayer();
+        if(!answerState) {
+          pausePlayer();
+        }
         answerIcons[index].classList.add('correct-answer');
         answerItems[index].classList.remove('item-hovered');
         answerItems[index].style.cursor = 'default';
@@ -258,17 +260,18 @@ function handleClickSound(guess) {
   const correctClickSound = new Audio(correctSound);
   const wrongClickSound = new Audio(wrongSound);
 
-  if (guess === 'correct') {
+  if (guess === 'correct' && !answerState) {
     correctClickSound.play();
-  } else {
+  } else if (guess !== 'correct' && !answerState) {
     wrongClickSound.play();
   }
 }
 
+export let isLevelCut = false;
 export function resizeWindow() {
-  let isLevelCut = false;
+  // let isLevelCut = false;
   window.addEventListener('resize', () => {
-    if (window.innerWidth <= 680 && !isLevelCut) {
+    if (window.innerWidth <= 680 && !isLevelCut && !isLevelCutLang) {
       if(lang === 'ru') {
         for (let i = 2; i < levelNavItems.length; i++) {
         // console.log(levelNavItems[i].textContent.slice(0, levelNavItems[i].textContent.length - 6));
@@ -276,7 +279,7 @@ export function resizeWindow() {
         isLevelCut = true;
         }
       }
-    } else if (window.innerWidth > 680 && isLevelCut) {
+    } else if ((window.innerWidth > 680 && isLevelCut) || (window.innerWidth > 680 && isLevelCutLang)) {
       if(lang === 'ru') {
           levelNavItems[2].textContent = contentTrans.quizPage.level3;
           levelNavItems[3].textContent = contentTrans.quizPage.level4;
@@ -287,13 +290,29 @@ export function resizeWindow() {
       }
     });
 
-  window.addEventListener('load', () => {
-    if (window.innerWidth <= 680 && !isLevelCut) {
-      for (let i = 2; i < levelNavItems.length; i++) {
-        // console.log(levelNavItems[i].textContent.slice(0, levelNavItems[i].textContent.length - 6));
-        levelNavItems[i].textContent = levelNavItems[i].textContent.slice(0, levelNavItems[i].textContent.length - 6);
-        isLevelCut = true;
-      }
-    }
-  });
+  // window.addEventListener('load', () => {
+  //   if (window.matchMedia("(max-width: 680px)").matches && !isLevelCut) {
+  //   // if (window.innerWidth <= 680 && !isLevelCut) {
+  //     if(lang === 'ru') {
+  //       for (let i = 2; i < levelNavItems.length; i++) {
+  //       // console.log(levelNavItems[i].textContent.slice(0, levelNavItems[i].textContent.length - 6));
+  //       levelNavItems[i].textContent = levelNavItems[i].textContent.slice(0, levelNavItems[i].textContent.length - 6);
+  //         // isLevelCut = true;
+  //       }
+  //     }
+  //   }
+  // });
+}
+
+export function cutLevelBirdsRu() {
+  console.log(window.innerWidth <= 680);
+  console.log(!isLevelCut);
+  console.log(lang === 'ru');
+
+  let levelItems = document.querySelectorAll('.level-item');
+  levelItems[2].textContent = contentTrans.quizPage.level3Cut;
+  levelItems[3].textContent = contentTrans.quizPage.level4Cut;
+  levelItems[4].textContent = contentTrans.quizPage.level5Cut;
+  levelItems[5].textContent = contentTrans.quizPage.level6Cut;
+    isLevelCut = true;
 }
