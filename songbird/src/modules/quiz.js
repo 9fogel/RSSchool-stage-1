@@ -93,7 +93,6 @@ function setDefaultState(score) {
     answerIcon.classList.remove('wrong-answer');
     answerIcon.classList.remove('correct-answer');
   });
-  //TODO: for answerItems classList.remove('clicked')
   answerItems.forEach((answerItem) => {
     answerItem.classList.remove('clicked');
   });
@@ -140,7 +139,6 @@ export function setCorrectAnswer() {
 }
 
 export function handleClick() {
-  // let answerItems = document.querySelectorAll('.answer-item');
 
   answerItems.forEach((answerItem, index) => {
     answerItem.addEventListener('mouseover', () => {
