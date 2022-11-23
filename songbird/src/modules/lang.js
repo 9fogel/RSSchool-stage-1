@@ -120,9 +120,16 @@ langChoise.addEventListener('click', (event) => {
       radio.classList.remove('checked');
     }
   });
-  lang = event.target.value;
-  event.target.setAttribute('checked', 'checked');
-  event.target.classList.add('checked');
+  if (event.target.value) {
+    lang = event.target.value;
+    event.target.setAttribute('checked', 'checked');
+    event.target.classList.add('checked');
+  // } else {
+    // lang = 'ru';
+    // radioRu.setAttribute('checked', 'checked');
+    // radioRu.classList.add('checked');
+  }
+
   setLocalStorageSettings();
   getLocalStorageSettings();
   if (lang === 'ru') {
@@ -130,7 +137,7 @@ langChoise.addEventListener('click', (event) => {
   } else {
     birds = birdsDataEn;
   }
-});
+  });
 }
 
 changeLang();
