@@ -27,6 +27,7 @@ let players = document.querySelectorAll('.player');
 let birdDesc = document.querySelector('.bird-desc');
 let birdImgs = document.querySelectorAll('.bird-image');
 
+let answerItems = document.querySelectorAll('.answer-item');
 let answers = document.querySelectorAll('.answer-text');
 let answerIcons = document.querySelectorAll('.answer-circle');
 export let correctAnswer = birds[level][randomArr[level]].name;
@@ -92,6 +93,10 @@ function setDefaultState(score) {
     answerIcon.classList.remove('wrong-answer');
     answerIcon.classList.remove('correct-answer');
   });
+  //TODO: for answerItems classList.remove('clicked')
+  answerItems.forEach((answerItem) => {
+    answerItem.classList.remove('clicked');
+  });
   answerState = false;
   isDefaultState = true;
 }
@@ -135,7 +140,7 @@ export function setCorrectAnswer() {
 }
 
 export function handleClick() {
-  let answerItems = document.querySelectorAll('.answer-item');
+  // let answerItems = document.querySelectorAll('.answer-item');
 
   answerItems.forEach((answerItem, index) => {
     answerItem.addEventListener('mouseover', () => {
@@ -165,8 +170,13 @@ export function handleClick() {
       } else {
         if (!answerState) {
           answerIcons[index].classList.add('wrong-answer');
+
           handleClickSound('wrong');
-          points--;
+          if(!answerItem.classList.contains('clicked')) {
+            points--;
+            answerItem.classList.add('clicked');
+          }
+          // points--;
         }
         answerItems[index].classList.remove('item-hovered');
         answerItems[index].style.cursor = 'default';
