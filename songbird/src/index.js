@@ -4,6 +4,7 @@ import './index.scss';
 
 import { changePage, startGame, openBurgerMenu } from './modules/nav';
 import { loadGame, handleClick, score, resizeWindow } from './modules/quiz';
+import { showBirdCards } from './modules/gallery';
 
 export function createElem (tag, class1, parent, content = '') {
   const elem = document.createElement(`${tag}`);

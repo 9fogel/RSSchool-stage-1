@@ -129,15 +129,15 @@ function playInfo() {
     }
   }
   audioInfo.addEventListener('ended', () => {//когда доиграет до конца трека
-  playBtnInfo.classList.remove('pause-icon');
-  isPlay2 = false;
+    playBtnInfo.classList.remove('pause-icon');
+    isPlay2 = false;
   });
 }
 
 playBtnInfo.addEventListener('click', playInfo);
 
 
-function fillTrackTime(audio, curDur, totalDur, playR) {
+export function fillTrackTime(audio, curDur, totalDur, playR) {
   let duration = audio.duration;
   let currentTime = audio.currentTime;
 
@@ -155,18 +155,18 @@ function fillTrackTime(audio, curDur, totalDur, playR) {
 function showTrackProgress() {
   audioMain.addEventListener('timeupdate', fillTrackTime(audioMain, currentDuration, totalDuration, playRange));
   playRange.addEventListener('change', () => {
-  let progress = playRange.value;
-  audioMain.currentTime = (progress / 1000) * audioMain.duration;
-  });
+    let progress = playRange.value;
+    audioMain.currentTime = (progress / 1000) * audioMain.duration;
+    });
   setTimeout(showTrackProgress, 1000);
 }
 
 function showTrackProgressInfo() {
   audioInfo.addEventListener('timeupdate', fillTrackTime(audioInfo, currentDurationInfo, totalDurationInfo, playRangeInfo));
   playRangeInfo.addEventListener('change', () => {
-  let progress = playRangeInfo.value;
-  audioInfo.currentTime = (progress / 1000) * audioInfo.duration;
-  });
+    let progress = playRangeInfo.value;
+    audioInfo.currentTime = (progress / 1000) * audioInfo.duration;
+    });
   setTimeout(showTrackProgressInfo, 1000);
 }
 
