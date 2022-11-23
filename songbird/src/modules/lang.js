@@ -233,6 +233,9 @@ function replaceWithTranslation() {
     levelItems[5].textContent = contentTrans.quizPage.level6Cut;
     isLevelCutLang = true;
   }
+  // if (window.innerWidth > 680 && lang === 'ru') {
+  //   isLevelCutLang = false;
+  // }
   playerDesc.innerHTML = contentTrans.quizPage.playerDesc;
   nextBtns[0].textContent = contentTrans.quizPage.nextBtn;
   nextBtns[1].textContent = contentTrans.quizPage.nextBtn;
@@ -241,3 +244,9 @@ function replaceWithTranslation() {
   // resultsText.textContent = contentTrans.resultsPage.resultsText;
   resultsBtn.textContent = contentTrans.resultsPage.resultsBtn;
 }
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 680 && lang === 'ru') {
+    isLevelCutLang = false;
+  }
+});

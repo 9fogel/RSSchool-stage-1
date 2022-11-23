@@ -271,6 +271,11 @@ export let isLevelCut = false;
 export function resizeWindow() {
   // let isLevelCut = false;
   window.addEventListener('resize', () => {
+    // console.log('lang', lang);
+    // console.log('isLevelCut', isLevelCut);
+    // console.log('isLevelCutLang', isLevelCutLang);
+    levelNavItems[4].style.overflow = 'hidden';
+    levelNavItems[5].style.overflow = 'hidden';
     if (window.innerWidth <= 680 && !isLevelCut && !isLevelCutLang) {
       if(lang === 'ru') {
         for (let i = 2; i < levelNavItems.length; i++) {
