@@ -109,10 +109,12 @@ function generateCard(id) {
 
 function closeCard() {
   audioGallery.removeEventListener('timeupdate', fillTrackTime);
+  clearTimeout(timer);
   document.querySelector('.card-popup').remove();
   popupWrapper.classList.remove('popup-wrapper-active');
   // document.body.style.overflow = 'unset';
   galleryWrapper.addEventListener('click', clickCard);
+  clearTimeout(timer);
 }
 
 popupWrapper.addEventListener('click', () => {
