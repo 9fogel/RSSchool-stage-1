@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    // "module": "es6",
+    "strict": true,
+    "target": "es5",
+    "allowJs": true,
+    "sourceMap": true,                                /* Create source map files for emitted JavaScript files. */
+  },
+  // "files": ["src/index.ts"],
+  "include": ["src/**/*.ts"],
+}
