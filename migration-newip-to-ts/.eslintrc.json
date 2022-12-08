@@ -13,18 +13,24 @@
     ],
     "parserOptions": {
         "ecmaVersion": 2020,
-        "sourceType": "module"
-        // "project": "./tsconfig.json"
+        "sourceType": "module",
+        "project": "./tsconfig.json"
     },
     "env": {
         "es6": true,
         "browser": true,
         "node": true
     },
+    "root": true,
     "rules": {
         "no-debugger": "off",
         "no-console": 0,
         "class-methods-use-this": "off",
-        "@typescript-eslint/no-explicit-any": "error"
-    }
+        "@typescript-eslint/no-explicit-any": "error",
+        "prettier/prettier": [
+            "error",
+            { "endOfLine": "auto" }
+        ]
+    },
+    "ignorePatterns": ["**/*.js", "dist/"]
 }

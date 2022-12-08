@@ -25,7 +25,7 @@ const baseConfig = {
       filename: '[name].[contenthash].css',
     }),
     new EslintPlugin({
-      extensions: 'ts'
+      extensions: 'ts',
     }),
     new CleanWebpackPlugin(),
   ],
@@ -47,7 +47,7 @@ const baseConfig = {
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-        type: "asset",
+        type: 'asset',
       },
     ],
   },
