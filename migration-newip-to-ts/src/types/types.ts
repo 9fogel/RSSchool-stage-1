@@ -31,3 +31,9 @@ export interface ISourcesData {
   language: string;
   country: string;
 }
+
+export interface IOptions {
+  apiKey?: string;
+  sources?: string;
+}
+//TODO: переделать IOptions в type c Partial<Type>?
