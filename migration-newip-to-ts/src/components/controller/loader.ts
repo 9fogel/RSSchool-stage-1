@@ -1,6 +1,6 @@
 import { ISourceRes, IOptions } from '../../types/types';
 
-enum Endpoint {
+export enum Endpoint {
   Sources = 'sources',
   Everything = 'everything',
 }
