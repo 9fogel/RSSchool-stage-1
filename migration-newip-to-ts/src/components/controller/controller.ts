@@ -3,7 +3,7 @@ import { ISourceRes, IResponse } from '../../types/types';
 import { Endpoint } from './loader';
 
 class AppController extends AppLoader {
-  getSources(callback: (data?: ISourceRes) => void): void {
+  public getSources(callback: (data?: ISourceRes) => void): void {
     super.getResp(
       {
         endpoint: Endpoint.Sources,
@@ -14,7 +14,7 @@ class AppController extends AppLoader {
     // console.log('callback AppController', callback);
   }
 
-  getNews(e: Event, callback: (data?: IResponse) => void) {
+  public getNews(e: Event, callback: (data?: IResponse) => void) {
     // console.log('callback getNews', callback);
     let target: EventTarget | null = e.target;
     const newsContainer: EventTarget | null = e.currentTarget;

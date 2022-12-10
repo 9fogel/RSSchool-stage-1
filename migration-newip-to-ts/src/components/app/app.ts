@@ -3,14 +3,15 @@ import { AppView } from '../view/appView';
 import { ISourceRes, IResponse } from '../../types/types';
 
 class App {
-  controller: AppController;
-  view: AppView;
+  private controller: AppController;
+  private view: AppView;
+
   constructor() {
     this.controller = new AppController();
     this.view = new AppView();
   }
 
-  start(): void {
+  public start(): void {
     const sources: HTMLElement | null = document.querySelector('.sources');
     // console.log('app start', data);
 
