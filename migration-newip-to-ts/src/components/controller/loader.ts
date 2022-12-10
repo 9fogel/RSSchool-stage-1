@@ -6,7 +6,7 @@ export enum Endpoint {
 }
 
 class Loader {
-  baseLink: string;
+  readonly baseLink: string;
   options: IOptions;
   constructor(baseLink: string, options: IOptions) {
     this.baseLink = baseLink;
