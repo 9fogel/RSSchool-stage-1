@@ -16,3 +16,18 @@ export interface IArticle {
 }
 
 export type SourceT = { id: string; name: string };
+
+export interface ISourceRes {
+  status: string;
+  sources: Array<ISourcesData>;
+}
+
+export interface ISourcesData {
+  id: string;
+  name: string;
+  description: string;
+  url: string;
+  category: string;
+  language: string;
+  country: string;
+}
