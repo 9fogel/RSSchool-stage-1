@@ -26,8 +26,10 @@
     right: 0;
     bottom: 0;
     left: 0;
+    background-image: url('../../../img/news_placeholder.jpg');
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     transition: transform 0.2s;
 }
 
