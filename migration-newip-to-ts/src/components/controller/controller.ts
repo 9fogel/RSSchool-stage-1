@@ -23,8 +23,11 @@ class AppController extends AppLoader {
       if (target instanceof HTMLElement && target) {
         if (target.classList.contains('source__item')) {
           const sourceId: string | null = target.getAttribute('data-source-id');
+          const searchForm: HTMLFormElement | null = document.querySelector('.search-form');
 
-          if (newsContainer instanceof HTMLElement && newsContainer && sourceId) {
+          if (newsContainer instanceof HTMLElement && newsContainer && sourceId && searchForm) {
+            const searchValue = String(searchForm.search.value);
+            // console.log('getNews', searchValue);
             if (newsContainer.getAttribute('data-source') !== sourceId) {
               newsContainer.setAttribute('data-source', sourceId);
               super.getResp(
@@ -33,6 +36,7 @@ class AppController extends AppLoader {
                   // endpoint: 'everything',
                   options: {
                     sources: sourceId,
+                    q: searchValue,
                   },
                 },
                 callback,

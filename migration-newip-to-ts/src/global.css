@@ -96,3 +96,51 @@ footer .copyright:before {
     font-size: 28px;
   }
 }
+
+
+/* search */
+.form-search {
+  width: 100%;
+  max-width: 30%;
+}
+
+.search-label {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 44px;
+}
+
+.search-input {
+  padding-left: 20px;
+  padding-right: 50px;
+  width: 100%;
+  height: 100%;
+  font-family: inherit;
+  font-size: 100%;
+  color: #E6E6E6;
+  background-color: transparent;
+  border: 1px solid #E6E6E6;
+  border-radius: 22px;
+}
+
+.search-input[type="search" i]::-webkit-search-cancel-button {
+  display: none;
+}
+
+.search-submit {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  color: #E6E6E6;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  width: 22px;
+  height: 22px;
+}
+
+.search-submit:hover {
+  cursor: pointer;
+  color: #69db7e;
+}

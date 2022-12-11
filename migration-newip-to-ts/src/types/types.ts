@@ -6,7 +6,7 @@ export interface IResponse {
 
 export interface IArticle {
   source: SourceT;
-  author: string;
+  author?: string;
   title: string;
   description: string;
   url: string;
@@ -15,7 +15,7 @@ export interface IArticle {
   content: string;
 }
 
-export type SourceT = { id: string; name: string };
+export type SourceT = { id?: string; name: string };
 
 export interface ISourceRes {
   status: string;
@@ -34,6 +34,7 @@ export interface ISourcesData {
 
 export interface IOptions {
   apiKey?: string;
+  q?: string; //property for search functionality
   sources?: string;
 }
 //TODO: переделать IOptions в type c Partial<Type>?

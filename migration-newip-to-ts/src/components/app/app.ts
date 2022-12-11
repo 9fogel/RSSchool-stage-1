@@ -16,6 +16,7 @@ class App {
 
   public start(): void {
     const sources: HTMLElement | null = document.querySelector('.sources');
+    const searchForm: HTMLFormElement | null = document.querySelector('.search-form');
     // console.log('app start', data);
 
     if (sources) {
@@ -23,6 +24,14 @@ class App {
         this.controller.getNews(e, (data: IResponse | undefined) => this.view.drawNews(data)),
       );
       this.controller.getSources((data: ISourceRes | undefined) => this.view.drawSources(data));
+    }
+
+    if (searchForm) {
+      searchForm.addEventListener('submit', (e: Event): void => {
+        // console.log(searchForm.search.value);
+        e.preventDefault();
+        this.controller.getNews(e, (data: IResponse | undefined) => this.view.drawNews(data));
+      });
     }
 
     if (window.innerWidth <= 800) {
