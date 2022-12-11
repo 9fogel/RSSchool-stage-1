@@ -7,7 +7,7 @@
   position: absolute;
   top: 60px;
   right: 0;
-  margin-right: 30px;
+  margin-right: 34px;
   width: 35px;
   height: 32px;
   background-color: transparent;
@@ -20,5 +20,11 @@
 
   .burger:hover {
     cursor: pointer;
+  }
+}
+
+@media (max-width: 436px) {
+  .burger {
+    top: 42px;
   }
 }

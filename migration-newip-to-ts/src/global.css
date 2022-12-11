@@ -89,3 +89,10 @@ footer .copyright:before {
     width: 90%;
   }
 }
+
+@media (max-width: 436px) {
+  header h1 {
+    padding-bottom: 0;
+    font-size: 28px;
+  }
+}
