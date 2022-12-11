@@ -1,39 +1,39 @@
 .sources {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    margin-right: auto;
-    width: 300px;
-    height: 100vh;
-    overflow: auto;
-    font: 300 1em 'Fira Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  margin-right: auto;
+  width: 300px;
+  height: 100vh;
+  overflow: auto;
+  font: 300 1em 'Fira Sans', sans-serif;
 }
 
 .sources::-webkit-scrollbar {
-    width: 4px; /* width for vertical scroll */
-    background-color: #143861;
+  width: 4px; /* width for vertical scroll */
+  background-color: #143861;
 }
 
 .sources::-webkit-scrollbar-thumb {
-    background-color: #843465;
-    border-radius: 9em;
-    box-shadow: inset 1px 1px 10px #f3faf7;
+  background-color: #843465;
+  border-radius: 9em;
+  box-shadow: inset 1px 1px 10px #f3faf7;
 }
 
 .sources::-webkit-scrollbar-thumb:hover {
-    background-color: #253861;
+  background-color: #253861;
 }
 
 .source__item {
-    background: none;
-    border: 2px solid #30c5ff;
-    font: inherit;
-    line-height: 1;
-    margin: 0.5em;
-    padding: 1em 2em;
-    color: #70d6ff;
-    transition: 0.25s;
-    cursor: pointer;
+  background: none;
+  border: 2px solid #30c5ff;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+  color: #70d6ff;
+  transition: 0.25s;
+  cursor: pointer;
 }
 
 .source__item:hover,
