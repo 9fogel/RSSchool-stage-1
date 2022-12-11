@@ -1,3 +1,11 @@
+.news {
+    margin: 0 auto;
+}
+
+.news-hidden {
+    display: none;
+}
+
 .news__item {
     display: flex;
     flex-direction: column;

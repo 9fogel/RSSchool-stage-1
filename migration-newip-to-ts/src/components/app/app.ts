@@ -1,14 +1,17 @@
 import AppController from '../controller/controller';
 import { AppView } from '../view/appView';
 import { ISourceRes, IResponse } from '../../types/types';
+import BurgerMenu from '../view/burger/burger';
 
 class App {
   private controller: AppController;
   private view: AppView;
+  private burger: BurgerMenu;
 
   constructor() {
     this.controller = new AppController();
     this.view = new AppView();
+    this.burger = new BurgerMenu();
   }
 
   public start(): void {
@@ -21,6 +24,16 @@ class App {
       );
       this.controller.getSources((data: ISourceRes | undefined) => this.view.drawSources(data));
     }
+
+    if (window.innerWidth <= 800) {
+      this.burger.manageBurger();
+    }
+
+    window.addEventListener('resize', (): void => {
+      if (window.innerWidth <= 800) {
+        this.burger.manageBurger();
+      }
+    });
   }
 }
 
