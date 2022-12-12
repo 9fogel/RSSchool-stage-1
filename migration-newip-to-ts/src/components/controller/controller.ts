@@ -7,7 +7,6 @@ class AppController extends AppLoader {
     super.getResp(
       {
         endpoint: Endpoint.Sources,
-        // endpoint: 'sources',
       },
       callback,
     );
@@ -33,7 +32,6 @@ class AppController extends AppLoader {
               super.getResp(
                 {
                   endpoint: Endpoint.Everything,
-                  // endpoint: 'everything',
                   options: {
                     sources: sourceId,
                     q: searchValue,

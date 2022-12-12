@@ -1,6 +1,5 @@
 import './news.css';
 import { IArticle } from '../../../types/types';
-// import { image } from '../../../img/news_placeholder.png';
 
 class News {
   public draw(data: Array<IArticle>): void {
