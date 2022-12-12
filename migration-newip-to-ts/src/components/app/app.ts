@@ -16,7 +16,8 @@ class App {
 
   public start(): void {
     const sources: HTMLElement | null = document.querySelector('.sources');
-    const searchForm: HTMLFormElement | null = document.querySelector('.search-form');
+    // const searchForm: HTMLFormElement | null = document.querySelector('.search-form');
+    const searchInput: HTMLInputElement | null = document.querySelector('.search-input');
     // console.log('app start', data);
 
     if (sources) {
@@ -26,13 +27,19 @@ class App {
       this.controller.getSources((data: ISourceRes | undefined) => this.view.drawSources(data));
     }
 
-    if (searchForm) {
-      searchForm.addEventListener('submit', (e: Event): void => {
-        // console.log(searchForm.search.value);
-        e.preventDefault();
+    if (searchInput) {
+      searchInput.addEventListener('change', (e: Event): void => {
         this.controller.getNews(e, (data: IResponse | undefined) => this.view.drawNews(data));
       });
     }
+
+    // if (searchForm) {
+    //   searchForm.addEventListener('submit', (e: Event): void => {
+    //     // console.log(searchForm.search.value);
+    //     e.preventDefault();
+    //     this.controller.getNews(e, (data: IResponse | undefined) => this.view.drawNews(data));
+    //   });
+    // }
 
     this.burger.manageBurger();
   }

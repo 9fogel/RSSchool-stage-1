@@ -128,11 +128,15 @@ footer .copyright:before {
   border-radius: 22px;
 }
 
-.search-input[type="search" i]::-webkit-search-cancel-button {
+.search-input:focus {
+  outline-color: #69db7e;;
+}
+
+.search-input::-webkit-search-cancel-button {
   display: none;
 }
 
-.search-submit {
+.search-icon {
   position: absolute;
   right: 20px;
   top: 50%;
@@ -144,7 +148,7 @@ footer .copyright:before {
   height: 22px;
 }
 
-.search-submit:hover {
+/* .search-submit:hover {
   cursor: pointer;
   color: #69db7e;
-}
+} */

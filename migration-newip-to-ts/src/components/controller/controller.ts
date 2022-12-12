@@ -22,10 +22,13 @@ class AppController extends AppLoader {
       if (target instanceof HTMLElement && target) {
         if (target.classList.contains('source__item')) {
           const sourceId: string | null = target.getAttribute('data-source-id');
-          const searchForm: HTMLFormElement | null = document.querySelector('.search-form');
+          // const searchForm: HTMLFormElement | null = document.querySelector('.search-form');
+          const searchInput: HTMLInputElement | null = document.querySelector('.search-input');
 
-          if (newsContainer instanceof HTMLElement && newsContainer && sourceId && searchForm) {
-            const searchValue = String(searchForm.search.value);
+          // if (newsContainer instanceof HTMLElement && newsContainer && sourceId && searchForm) {
+          if (newsContainer instanceof HTMLElement && newsContainer && sourceId && searchInput) {
+            const searchValue = String(searchInput.value);
+            // const searchValue = String(searchForm.search.value);
             // console.log('getNews', searchValue);
             if (newsContainer.getAttribute('data-source') !== sourceId) {
               newsContainer.setAttribute('data-source', sourceId);
