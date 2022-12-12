@@ -25,7 +25,8 @@ class Loader {
     // console.log('options', options); // {}, после клика {sources: 'abc-news'}
   }
 
-  private errorHandler(res: Response): Response | never {
+  private errorHandler<T extends Response>(res: T): T {
+    // private errorHandler(res: Response): Response | never {
     if (!res.ok) {
       if (res.status === 401 || res.status === 404)
         console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
