@@ -27,7 +27,12 @@ const baseConfig = {
     new EslintPlugin({
       extensions: 'ts',
     }),
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: [
+        '**/*',
+        '!.git',
+      ],
+    }),
   ],
   module: {
     rules: [
