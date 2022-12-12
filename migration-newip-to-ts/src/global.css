@@ -132,6 +132,10 @@ footer .copyright:before {
   outline-color: #69db7e;;
 }
 
+.search-input {
+  color-scheme: dark;
+}
+
 .search-input::-webkit-search-cancel-button {
   display: none;
 }

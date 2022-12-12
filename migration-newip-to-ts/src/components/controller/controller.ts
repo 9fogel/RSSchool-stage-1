@@ -30,19 +30,19 @@ class AppController extends AppLoader {
             const searchValue = String(searchInput.value);
             // const searchValue = String(searchForm.search.value);
             // console.log('getNews', searchValue);
-            if (newsContainer.getAttribute('data-source') !== sourceId) {
-              newsContainer.setAttribute('data-source', sourceId);
-              super.getResp(
-                {
-                  endpoint: Endpoint.Everything,
-                  options: {
-                    sources: sourceId,
-                    q: searchValue,
-                  },
+            // if (newsContainer.getAttribute('data-source') !== sourceId) { //changed original logic to enable correct search
+            newsContainer.setAttribute('data-source', sourceId);
+            super.getResp(
+              {
+                endpoint: Endpoint.Everything,
+                options: {
+                  sources: sourceId,
+                  q: searchValue,
                 },
-                callback,
-              );
-            }
+              },
+              callback,
+            );
+            // }
           }
           return;
         }
