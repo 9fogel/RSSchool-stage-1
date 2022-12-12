@@ -10,7 +10,7 @@ const baseConfig = {
   mode: 'development',
   output: {
     // filename: 'bundle.js', //do we need this?
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist', 'migration-newip-to-ts'),
   },
   // devServer: {
   //   port: 3000,
