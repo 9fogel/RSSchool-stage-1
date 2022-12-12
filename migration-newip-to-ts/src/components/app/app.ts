@@ -34,15 +34,7 @@ class App {
       });
     }
 
-    if (window.innerWidth <= 800) {
-      this.burger.manageBurger();
-    }
-
-    window.addEventListener('resize', (): void => {
-      if (window.innerWidth <= 800) {
-        this.burger.manageBurger();
-      }
-    });
+    this.burger.manageBurger();
   }
 }
 

@@ -104,6 +104,10 @@ footer .copyright:before {
   max-width: 30%;
 }
 
+.form-search-hidden {
+  display: none;
+}
+
 .search-label {
   position: relative;
   width: 100%;
