@@ -1,11 +1,13 @@
+/**is used in app.ts, controller.ts, appView.ts, appView-i.ts */
 export interface IResponse {
   status: string;
   totalResults: number;
   articles: Array<IArticle>;
 }
 
+/**is used in appView.ts, news.ts, news-i.ts */
 export interface IArticle {
-  source: SourceT;
+  source: TSource;
   author?: string;
   title: string;
   description: string;
@@ -15,13 +17,15 @@ export interface IArticle {
   content: string;
 }
 
-export type SourceT = { id?: string; name: string };
+type TSource = { id?: string; name: string };
 
+/**is used in loader.ts, appView.ts, appView-i.ts */
 export interface ISourceRes {
   status: string;
   sources: Array<ISourcesData>;
 }
 
+/**is used in appView.ts, sources.ts */
 export interface ISourcesData {
   id: string;
   name: string;
@@ -31,10 +35,3 @@ export interface ISourcesData {
   language: string;
   country: string;
 }
-
-export interface IOptions {
-  apiKey?: string;
-  q?: string; //property for search functionality
-  sources?: string;
-}
-//TODO: переделать IOptions в type c Partial<Type>?

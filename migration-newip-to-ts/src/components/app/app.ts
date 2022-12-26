@@ -1,12 +1,13 @@
 import AppController from '../controller/controller';
 import { AppView } from '../view/appView';
 import { ISourceRes, IResponse } from '../../types/types';
+import { IApp } from './app-i';
 import BurgerMenu from '../view/burger/burger';
 
-class App {
-  private controller: AppController;
-  private view: AppView;
-  private burger: BurgerMenu;
+class App implements IApp {
+  private readonly controller: AppController;
+  private readonly view: AppView;
+  private readonly burger: BurgerMenu;
 
   constructor() {
     this.controller = new AppController();
@@ -16,9 +17,7 @@ class App {
 
   public start(): void {
     const sources: HTMLElement | null = document.querySelector('.sources');
-    // const searchForm: HTMLFormElement | null = document.querySelector('.search-form');
     const searchInput: HTMLInputElement | null = document.querySelector('.search-input');
-    // console.log('app start', data);
 
     if (sources) {
       sources.addEventListener('click', (e: Event): void =>
@@ -32,14 +31,6 @@ class App {
         this.controller.getNews(e, (data: IResponse | undefined) => this.view.drawNews(data));
       });
     }
-
-    // if (searchForm) {
-    //   searchForm.addEventListener('submit', (e: Event): void => {
-    //     // console.log(searchForm.search.value);
-    //     e.preventDefault();
-    //     this.controller.getNews(e, (data: IResponse | undefined) => this.view.drawNews(data));
-    //   });
-    // }
 
     this.burger.manageBurger();
   }

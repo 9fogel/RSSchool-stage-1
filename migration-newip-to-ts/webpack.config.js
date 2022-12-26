@@ -1,5 +1,5 @@
 const path = require("path");
-const { merge } = require('webpack-merge');//added again
+const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const EslintPlugin = require('eslint-webpack-plugin');
@@ -9,14 +9,8 @@ const baseConfig = {
   entry: path.resolve(__dirname, 'src', 'index.ts'),
   mode: 'development',
   output: {
-    // filename: 'bundle.js', //do we need this?
     path: path.resolve(__dirname, 'dist', 'migration-newip-to-ts'),
   },
-  // devServer: {
-  //   port: 3000,
-  //   open: true,
-  //   // host: "localhost",
-  // },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src', 'index.html'),
