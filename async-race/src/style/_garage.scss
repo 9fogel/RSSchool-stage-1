@@ -1,6 +1,156 @@
-.test-img {
+.edit-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.edit-car {
+  display: flex;
+  gap: 8px;
+}
+
+.garage-input {
+  padding: 9px 8px;
+  line-height: 24px;
+  color: $black;
+  color-scheme: dark;
+  background-color: $light-green;
+  border: none;
+  border-radius: $border-radius;
+}
+
+.garage-input:focus {
+  outline-color: $bright-green;
+}
+
+.color-input {
+  padding: 2px;
+  height: 44px;
+}
+
+.color-input:hover {
+  cursor: pointer;
+}
+
+.create-btn {
+  width: 140px;
+  background-color: $light-green;
+}
+
+.create-btn:hover {
+  background-color: $bright-green;
+}
+
+.race-wrapper {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.generate-btn {
+  background-color: $light-green;
+}
+
+.generate-btn:hover {
+  background-color: $bright-green;
+}
+
+.page-title {
+  margin-bottom: 24px;
+}
+
+.cars-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.car-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-bottom: 4px dashed $white;
+
+  & button {
+    padding: 2px 16px;
+    font-size: 14px;
+  }
+}
+
+.car-header {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.car-name {
+  font-weight: 600;
+}
+
+.car-body {
+  position: relative;
+  display: flex;
+  gap: 24px;
+}
+
+.car-drive-controls {
+  & button {
+    padding: 2px;
+    width: 40px;
+    border: 2px solid $bright-green;
+    color: $bright-green;
+  }
+}
+
+button.drive-btn {
+  background-color: #3B5F4F;
+}
+
+button.drive-btn:hover {
+  color: $dark-green;
+  background: transparent;
+  border: 2px solid $dark-green;
+}
+
+button.stop-btn {
+  color: $red;
+  background: $red-bg;
+  border: 2px solid $red;
+}
+
+button.stop-btn:hover {
+  color: $red-hover;
+  background: transparent;
+  border: 2px solid $red-hover;
+}
+
+.car-image {
   width: 100px;
   height: 60px;
-  background-image: url('img/car-icon.svg');
-  background-size: cover;
+}
+
+.finish {
+  position: absolute;
+  right: 10%;
+  width: 60px;
+  height: 60px;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  & button {
+    padding: 2px;
+    width: 80px;
+    font-size: 12px;
+    background-color: $light-green;
+  }
+
+  & button:hover {
+    background-color: $bright-green;
+  }
 }

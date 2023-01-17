@@ -26,26 +26,34 @@ ul {
 
 button {
   cursor: pointer;
-  padding: 8px 36px;
-  font-size: 20px;
+  padding: 4px 36px;
+  font-size: 18px;
   font-weight: 600;
-  line-height: 28px;
+  line-height: 24px;
   color: $black;
   background-color: $bright-green;
   border: none;
-  // border-radius: $border-radius;
-  // box-shadow: $shadow;
+  border-radius: $border-radius;
+  box-shadow: $shadow;
 }
 
 button:hover {
-  // background-color: $yellow;
+  background-color: $dark-green;
   transition: ease-in-out .3s;
 }
 
 button:disabled {
   cursor: default;
-  // background-color: $gray;
+  color: #3a3a47;
+  background-color: $disabled-bg;
+
+  border: $disabled-border;
   box-shadow: none;
+}
+
+button:disabled:hover {
+  cursor: default;
+  background-color: $disabled-bg;
 }
 
 button:active {
