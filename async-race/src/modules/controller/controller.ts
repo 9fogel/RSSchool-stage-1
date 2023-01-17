@@ -31,7 +31,8 @@ class Controller {
     const winnersWrap: HTMLElement | null = document.querySelector('.winners-wrapper');
     if (garageWrap && winnersWrap) {
       if (event.target instanceof HTMLLIElement) {
-        if (event.target.innerText === 'Garage') {
+        console.log(event.target);
+        if (event.target.innerText.toLowerCase() === 'garage') {
           winnersWrap.classList.add('hidden');
           garageWrap.classList.remove('hidden');
         } else {
