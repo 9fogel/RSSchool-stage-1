@@ -1,17 +1,100 @@
 //general styles here
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-  background-color: aqua;
-
-}
-
-h1 {
-  color: green;
-}
-
-.test-img {
-  width: 100px;
-  height: 60px;
-  background-image: url('img/car-icon.svg');
+  min-height: 100vh;
+  font-family: 'Inter', serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: $white;
+  background-image: url('img/bg.jpg');
   background-size: cover;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  padding: 12px 36px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  color: $black;
+  background-color: $bright-green;
+  border: none;
+  // border-radius: $border-radius;
+  // box-shadow: $shadow;
+}
+
+button:hover {
+  // background-color: $yellow;
+  transition: ease-in-out .3s;
+}
+
+button:disabled {
+  cursor: default;
+  // background-color: $gray;
+  box-shadow: none;
+}
+
+button:active {
+  // background-color: $yellow;
+  box-shadow: none;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.container {
+  padding: 0 24px;
+  // max-width: 1080px;
+  // margin: 0 auto;
+
+  // @media (max-width: 1200px) {
+  //   width: 648px;
+  // }
+
+  // @media (max-width: 680px) {
+  //   width: 328px;
+  // }
+}
+
+.header {
+  margin-top: 16px;
+  margin-bottom: 32px;
+}
+
+.nav-list {
+  display: flex;
+  gap: 36px;
+}
+
+.nav-item {
+  padding: 8px 16px;
+  font-weight: 600;
+}
+
+.nav-item:hover {
+  cursor: pointer;
+}
+
+.nav-item-active {
+  color: $bright-green;
+  border-bottom: 2px solid $bright-green;
 }

@@ -7,8 +7,44 @@
   <title>Async Race</title>
 </head>
 <body>
+  <header class="header container">
+    <nav class="navigation">
+      <ul class="nav-list">
+        <li class="nav-item nav-item-active">Garage</li>
+        <li class="nav-item">Winners</li>
+      </ul>
+    </nav>
+  </header>
+  <main class="main container">
+    <h1 class="hidden">Async race</h1>
+    <div class="garage-wrapper">
+      <div class="edit-wrapper">
+        <div class="edit-car">
+          <input type="text" name="create-input" id="create-name">
+          <input type="color" name="color-input" id="create-color">
+          <button class="create-btn">Create</button>
+        </div>
+        <div class="edit-car">
+          <input type="text" name="create-input" id="update-name">
+          <input type="color" name="color-input" id="update-color">
+          <button class="create-btn">Update</button>
+        </div>
+      </div>
 
-  <h1>Async race</h1>
+      <div class="race-wrapper">
+        <button class="race-btn">Race</button>
+        <button class="reset-btn">Reset</button>
+        <button class="generate-btn">Generate cars</button>
+      </div>
+    </div>
+
+    <div class="winners-wrapper hidden">
+      <h2>Winners</h2>
+    </div>
+
+  </main>
+
+
   <div class="test-img"></div>
 
 </body>
