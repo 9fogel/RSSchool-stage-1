@@ -60,6 +60,13 @@ class GarageController {
     });
 
     buttons.updateBtn?.addEventListener('click', this.updateCar);
+
+    const removeBtns: NodeListOf<HTMLElement> = document.querySelectorAll('.remove-btn');
+    removeBtns.forEach((button: HTMLElement) => {
+      button.addEventListener('click', (event) => {
+        this.deleteCar(event);
+      });
+    });
   }
 
   private rememberId(event: Event): string {
@@ -145,6 +152,20 @@ class GarageController {
     const headers = { 'Content-Type': 'application/json' };
 
     await this.model.updateCar(baseUrl, path, id, method, body, headers);
+    this.garage.clearGaragePage();
+    this.run();
+  };
+
+  private deleteCar = async (event: Event) => {
+    console.log('delete');
+    const id = this.rememberId(event);
+    console.log('remove', id);
+
+    const baseUrl = 'http://127.0.0.1:3000';
+    const path = Path.Garage;
+    const method = 'DELETE';
+
+    await this.model.deleteCar(baseUrl, path, id, method);
     this.garage.clearGaragePage();
     this.run();
   };

@@ -26,7 +26,6 @@ class Model {
       body,
       headers,
     });
-    // await response.json();
     const result: Response = await response.json();
 
     return result;
@@ -49,10 +48,17 @@ class Model {
 
     return result;
   }
+
+  // eslint-disable-next-line max-len
+  public async deleteCar(baseUrl: string, path: Path, id: string, method: string): Promise<Response> {
+    const response: Response = await fetch(`${baseUrl}${path}/${id}`, {
+      method,
+    });
+
+    const result: Response = await response.json();
+
+    return result;
+  }
 }
-
-//   getCarById() {}
-
-//   deleteCar() {}
 
 export default Model;
