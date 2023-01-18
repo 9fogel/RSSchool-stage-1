@@ -8,7 +8,7 @@ class App {
     this.controller = new Controller();
   }
 
-  start() {
+  public start(): void {
     this.controller.run();
     // this.controller.getCars();
   }

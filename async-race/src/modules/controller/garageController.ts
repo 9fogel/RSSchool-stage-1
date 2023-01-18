@@ -156,7 +156,7 @@ class GarageController {
     this.run();
   };
 
-  private deleteCar = async (event: Event) => {
+  private deleteCar = async (event: Event): Promise<void> => {
     console.log('delete');
     const id = this.rememberId(event);
     console.log('remove', id);
