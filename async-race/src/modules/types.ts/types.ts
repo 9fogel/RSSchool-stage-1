@@ -3,6 +3,10 @@ export enum Path {
   Winners = '/winners',
 }
 
-// export default Path;
-
 export type Tbuttons = { [key: string]: HTMLButtonElement | null };
+
+export interface ICar {
+  name: string;
+  color: string;
+  id: number;
+}

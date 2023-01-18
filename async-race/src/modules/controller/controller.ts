@@ -3,30 +3,14 @@ import View from '../view/appView';
 import { Path, Tbuttons } from '../types.ts/types';
 
 class Controller {
-  // private readonly baseUrl: string;
-
-  // private readonly path: Path;
   private readonly view: View;
 
   private readonly model: Model;
 
   constructor() {
-    // this.baseUrl = 'http://127.0.0.1:3000';
-    // this.path = Path.Garage;
     this.view = new View();
     this.model = new Model();
     console.log('constructor', this.model);
-  }
-
-  public listenNav(): void {
-    const navBtns: NodeListOf<HTMLElement> = document.querySelectorAll('.nav-item');
-    navBtns.forEach((link: HTMLElement) => {
-      link.addEventListener('click', (event: MouseEvent) => {
-        this.changeView(event);
-        document.querySelector('.nav-item-active')?.classList.remove('nav-item-active');
-        link.classList.add('nav-item-active');
-      });
-    });
   }
 
   private changeView(event: Event): void {
@@ -54,6 +38,17 @@ class Controller {
     }
   }
 
+  public listenNav(): void {
+    const navBtns: NodeListOf<HTMLElement> = document.querySelectorAll('.nav-item');
+    navBtns.forEach((link: HTMLElement) => {
+      link.addEventListener('click', (event: MouseEvent) => {
+        this.changeView(event);
+        document.querySelector('.nav-item-active')?.classList.remove('nav-item-active');
+        link.classList.add('nav-item-active');
+      });
+    });
+  }
+
   public listenButtons() {
     const buttons: Tbuttons = {
       createBtn: document.querySelector('.create-btn'),
@@ -63,24 +58,25 @@ class Controller {
       generateBtn: document.querySelector('.generate-btn'),
     };
 
-    if (buttons.createBtn) {
-      buttons.createBtn.addEventListener('click', this.model.createCar);
-    }
+    buttons.createBtn?.addEventListener('click', this.model.createCar);
   }
 
-  // public getCars = async () => {
-  public getCars = () => {
+  public getCars = async () => {
     const baseUrl = 'http://127.0.0.1:3000';
     const path = Path.Garage;
 
-    // const response = await fetch(`${baseUrl}${path}`);
-    // const data = await response.json();
-    // console.log(data);
+    const limit = 7;
+    let currentPage = 1;
+    const page: HTMLSpanElement | null = document.querySelector('.current-page');
+    if (HTMLSpanElement && page?.textContent) {
+      currentPage = +page.textContent;
+    }
 
-    // console.log(baseUrl, path);
-    // console.log('this', this);
-    // console.log('model', this.model);
-    this.model.getGarage(baseUrl, path);
+    const { cars, total } = await this.model.getGarage(baseUrl, path, currentPage, limit);
+    console.log(cars);
+    console.log(total);
+
+    return total;
   };
 
   public createCar = () => {
@@ -91,7 +87,7 @@ class Controller {
     this.model.updateCar();
   };
 
-  public run() {
+  public async run() {
     this.view.render();
     this.listenNav();
     this.listenButtons();

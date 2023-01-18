@@ -9,6 +9,7 @@ class App {
 
   start() {
     this.controller.run();
+    this.controller.getCars();
   }
 }
 

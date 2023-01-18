@@ -70,6 +70,16 @@ class Garage {
     return carTrack;
   }
 
+  private renderPagination() {
+    const pagination = `<div class="pagination">
+    ${this.renderButton('previous')}
+    <p>Page <span class="current-page">1</span></p>
+    ${this.renderButton('next')}
+  </div>`;
+
+    return pagination;
+  }
+
   private renderMain(): string {
     const mainContent = `<div class="garage-wrapper">
     ${this.renderHeader()}
@@ -87,11 +97,7 @@ class Garage {
       </ul>
     </div>
 
-    <div class="pagination">
-      ${this.renderButton('previous')}
-      <p>Page <span class="current-page">1</span></p>
-      ${this.renderButton('next')}
-    </div>
+    ${this.renderPagination()}
   </div>`;
 
     return mainContent;

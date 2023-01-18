@@ -1,29 +1,17 @@
-import { Path } from '../types.ts/types';
+import { Path, ICar } from '../types.ts/types';
 
 class Model {
-  // private readonly baseUrl: string;
+  public async getGarage(
+    baseUrl: string,
+    path: Path,
+    page?: number,
+    limit?: number,
+  ): Promise<{ cars: Promise<ICar>; total: string | null }> {
+    const response: Response = await fetch(`${baseUrl}${path}?_page=${page}&_limit=${limit}`);
+    const cars: Promise<ICar> = await response.json();
+    const total: string | null = response.headers.get('X-Total-Count');
 
-  // private readonly path: Path;
-
-  // constructor() {
-  //   console.log('model');
-  // }
-
-  // constructor(baseUrl: string, path: Path) {
-  //   this.baseUrl = baseUrl;
-  //   this.path = path;
-  // }
-
-  public async getGarage(baseUrl: string, path: Path) {
-    console.log('model get garage', baseUrl, path);
-    // const data = fetch(`${baseUrl}${path}`);
-    // const data = fetch(`${this.baseUrl}${this.path}`);
-    // console.log(data);
-
-    const response = await fetch(`${baseUrl}${path}`);
-    const data = await response.json();
-    console.log(data); // object
-    console.log(typeof data);
+    return { cars, total };
   }
 
   public createCar() {
