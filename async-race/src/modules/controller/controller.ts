@@ -1,6 +1,7 @@
 import View from '../view/appView';
 import GarageController from './garageController';
 import WinnersController from './winnersControler';
+import State from '../state/state';
 
 class Controller {
   private readonly view: View;
@@ -20,7 +21,6 @@ class Controller {
     this.listenNav();
     this.garage.run();
     this.winners.run();
-    console.log('run controller');
   }
 
   private listenNav(): void {
@@ -52,9 +52,11 @@ class Controller {
         if (event.target.innerText.toLowerCase() === 'garage') {
           winnersWrap.classList.add('hidden');
           garageWrap.classList.remove('hidden');
+          State.savedState.page = 'garage';
         } else {
           garageWrap.classList.add('hidden');
           winnersWrap.classList.remove('hidden');
+          State.savedState.page = 'winners';
         }
       }
     }

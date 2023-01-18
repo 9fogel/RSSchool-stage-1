@@ -11,4 +11,9 @@ export interface ICar {
   id: number;
 }
 
-export type TState = { [key: string]: number | string | Array<ICar> };
+export interface ISavedState {
+  pageNum: number;
+  cars: Array<ICar | undefined>;
+  totalCars: number;
+  page: string;
+}

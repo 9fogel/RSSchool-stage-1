@@ -1,7 +1,7 @@
-import { TState } from '../types.ts/types';
+import { ISavedState } from '../types.ts/types';
 
 class State {
-  static savedState: TState = {
+  static savedState: ISavedState = {
     pageNum: 1,
     cars: [],
     totalCars: 0,

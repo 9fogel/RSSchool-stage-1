@@ -9,7 +9,6 @@ class WinnersController {
   constructor() {
     this.winners = new Winners();
     this.model = new Model();
-    console.log('constructor', this.model);
   }
 
   public run() {

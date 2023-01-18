@@ -1,6 +1,5 @@
 class Winners {
   public render() {
-    console.log('render winners');
     const main: HTMLElement | null = document.querySelector('.main');
     if (main) {
       main.innerHTML += this.renderMain();
