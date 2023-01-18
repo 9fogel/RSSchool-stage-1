@@ -7,7 +7,7 @@ class Winners {
   }
 
   private renderMain() {
-    const mainContent = `<div class="winners-wrapper">
+    const mainContent = `<div class="winners-wrapper hidden">
     <h2 class="page-title">Winners</h2>
   </div>`;
 

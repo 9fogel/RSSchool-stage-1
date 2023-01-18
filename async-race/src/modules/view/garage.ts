@@ -52,7 +52,7 @@ class Garage {
   private renderCarTracks(cars: Array<ICar | undefined>): string {
     const tracks = cars
       .map(
-        (car) => `<li class="car-item">
+        (car) => `<li class="car-item" id="${car?.id}">
     <div class="car-header">
       <div class="car-selection">
         ${this.renderButton('select')}

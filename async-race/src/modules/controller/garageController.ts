@@ -16,9 +16,10 @@ class GarageController {
   public async run(): Promise<void> {
     await this.getCars();
     this.garage.render();
+    this.listenButtons();
   }
 
-  public listenButtons(): void {
+  private listenButtons(): void {
     const buttons: Tbuttons = {
       createBtn: document.querySelector('.create-btn'),
       updateBtn: document.querySelector('.update-btn'),
@@ -30,16 +31,16 @@ class GarageController {
     buttons.createBtn?.addEventListener('click', this.model.createCar);
   }
 
-  public getCars = async () => {
+  public getCars = async (): Promise<void> => {
     const baseUrl = 'http://127.0.0.1:3000';
     const path = Path.Garage;
 
     const limit = 7;
-    let currentPage = 1;
-    const page: HTMLSpanElement | null = document.querySelector('.current-page');
-    if (HTMLSpanElement && page?.textContent) {
-      currentPage = +page.textContent;
-    }
+    const currentPage = State.savedState.pageNum;
+    // const page: HTMLSpanElement | null = document.querySelector('.current-page');
+    // if (HTMLSpanElement && page?.textContent) {
+    //   currentPage = +page.textContent;
+    // }
 
     const { cars, total } = await this.model.getGarage(baseUrl, path, currentPage, limit);
 
@@ -50,13 +51,13 @@ class GarageController {
     }
   };
 
-  public createCar = () => {
-    this.model.createCar();
-  };
+  // public createCar = () => {
+  //   this.model.createCar();
+  // };
 
-  public updateCar = () => {
-    this.model.updateCar();
-  };
+  // public updateCar = () => {
+  //   this.model.updateCar();
+  // };
 }
 
 export default GarageController;

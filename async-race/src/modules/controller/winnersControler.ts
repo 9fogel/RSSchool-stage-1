@@ -11,7 +11,7 @@ class WinnersController {
     this.model = new Model();
   }
 
-  public run() {
+  public run(): void {
     // this.getWinners();
     this.winners.render();
   }
