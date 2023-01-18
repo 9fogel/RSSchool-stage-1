@@ -9,6 +9,14 @@ class Garage {
     }
   }
 
+  public clearGaragePage() {
+    const main: HTMLElement | null = document.querySelector('.main');
+    const garageWrap: HTMLElement | null = document.querySelector('.garage-wrapper');
+    if (main && garageWrap) {
+      main.removeChild(garageWrap);
+    }
+  }
+
   private renderCarEditControls(action: string): string {
     const editControl = `<div class="edit-car">
     <input class="garage-input" type="text" name="${action}-input" id="${action}-name">

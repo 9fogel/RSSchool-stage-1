@@ -14,8 +14,20 @@ class Model {
     return { cars, total };
   }
 
-  public createCar() {
-    console.log('create');
+  public async createCar(
+    baseUrl: string,
+    path: Path,
+    method: string,
+    body: string,
+    headers: { [key: string]: string },
+  ): Promise<void> {
+    const response: Response = await fetch(`${baseUrl}${path}`, {
+      method,
+      body,
+      headers,
+    });
+    const result = await response.json();
+    return result;
   }
 
   public updateCar() {
@@ -23,14 +35,8 @@ class Model {
   }
 }
 
-//   getCars() {}
-
 //   getCarById() {}
 
-//   updateCar() {}
-
 //   deleteCar() {}
-
-//   createcar() {}
 
 export default Model;

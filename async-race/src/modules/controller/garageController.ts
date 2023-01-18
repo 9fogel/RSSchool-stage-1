@@ -28,10 +28,10 @@ class GarageController {
       generateBtn: document.querySelector('.generate-btn'),
     };
 
-    buttons.createBtn?.addEventListener('click', this.model.createCar);
+    buttons.createBtn?.addEventListener('click', this.createCar);
   }
 
-  public getCars = async (): Promise<void> => {
+  private getCars = async (): Promise<void> => {
     const baseUrl = 'http://127.0.0.1:3000';
     const path = Path.Garage;
 
@@ -51,13 +51,34 @@ class GarageController {
     }
   };
 
-  // public createCar = () => {
-  //   this.model.createCar();
-  // };
+  private createCar = async (): Promise<void> => {
+    const nameInput: HTMLInputElement | null = document.querySelector('#create-name');
+    let carName = '';
+    if (nameInput) {
+      console.log('set name');
+      carName = nameInput.value;
+    }
 
-  // public updateCar = () => {
-  //   this.model.updateCar();
-  // };
+    const colorInput: HTMLInputElement | null = document.querySelector('#create-color');
+    let carColor = '#55ff5c';
+    if (colorInput) {
+      console.log('set color');
+      carColor = colorInput.value;
+    }
+
+    const bodyData = { name: carName, color: carColor };
+    console.log(bodyData);
+
+    const baseUrl = 'http://127.0.0.1:3000';
+    const path = Path.Garage;
+    const body = JSON.stringify(bodyData);
+    const method = 'POST';
+    const headers = { 'Content-Type': 'application/json' };
+
+    await this.model.createCar(baseUrl, path, method, body, headers);
+    this.garage.clearGaragePage();
+    this.run();
+  };
 }
 
 export default GarageController;
