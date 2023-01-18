@@ -33,12 +33,15 @@
   cursor: pointer;
 }
 
-.create-btn {
+.edit-btn {
   width: 140px;
+  // color: $dark-green;
+  // background-color: #3B5F4F;
+  // border: 2px solid $dark-green;
   background-color: $light-green;
 }
 
-.create-btn:hover {
+.edit-btn:hover {
   background-color: $bright-green;
 }
 

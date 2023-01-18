@@ -30,19 +30,27 @@ class Controller {
   }
 
   private changeView(event: Event): void {
-    const garageWrap: HTMLElement | null = document.querySelector('.garage-wrapper');
-    const winnersWrap: HTMLElement | null = document.querySelector('.winners-wrapper');
-    if (garageWrap && winnersWrap) {
-      if (event.target instanceof HTMLLIElement) {
-        console.log(event.target);
-        if (event.target.innerText.toLowerCase() === 'garage') {
-          winnersWrap.classList.add('hidden');
-          garageWrap.classList.remove('hidden');
-        } else {
-          garageWrap.classList.add('hidden');
-          winnersWrap.classList.remove('hidden');
-        }
+    if (event.target instanceof HTMLLIElement) {
+      console.log(event.target);
+      if (event.target.innerText.toLowerCase() === 'garage') {
+        this.view.garage.render();
+      } else {
+        this.view.winners.render();
       }
+
+      // const garageWrap: HTMLElement | null = document.querySelector('.garage-wrapper');
+      // const winnersWrap: HTMLElement | null = document.querySelector('.winners-wrapper');
+      // if (garageWrap && winnersWrap) {
+      //   if (event.target instanceof HTMLLIElement) {
+      //     console.log(event.target);
+      //     if (event.target.innerText.toLowerCase() === 'garage') {
+      //       winnersWrap.classList.add('hidden');
+      //       garageWrap.classList.remove('hidden');
+      //     } else {
+      //       garageWrap.classList.add('hidden');
+      //       winnersWrap.classList.remove('hidden');
+      //     }
+      //   }
     }
   }
 
