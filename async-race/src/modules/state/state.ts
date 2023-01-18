@@ -6,6 +6,7 @@ class State {
     cars: [],
     totalCars: 0,
     page: 'garage',
+    id: '',
   };
 }
 

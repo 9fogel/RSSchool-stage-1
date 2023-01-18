@@ -45,9 +45,8 @@ button:hover {
 
 button:disabled {
   cursor: default;
-  color: #3a3a47;
+  color: $disabled-color;
   background-color: $disabled-bg;
-
   border: $disabled-border;
   box-shadow: none;
 }

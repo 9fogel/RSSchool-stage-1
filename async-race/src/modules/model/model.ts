@@ -20,13 +20,14 @@ class Model {
     method: string,
     body: string,
     headers: { [key: string]: string },
-  ): Promise<void> {
+  ): Promise<Response> {
     const response: Response = await fetch(`${baseUrl}${path}`, {
       method,
       body,
       headers,
     });
-    const result = await response.json();
+    // await response.json();
+    const result: Response = await response.json();
 
     return result;
   }
@@ -38,13 +39,13 @@ class Model {
     method: string,
     body: string,
     headers: { [key: string]: string },
-  ) {
+  ): Promise<Response> {
     const response: Response = await fetch(`${baseUrl}${path}/${id}`, {
       method,
       body,
       headers,
     });
-    const result = await response.json();
+    const result: Response = await response.json();
 
     return result;
   }

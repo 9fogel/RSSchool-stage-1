@@ -15,12 +15,16 @@
   line-height: 24px;
   color: $black;
   color-scheme: dark;
-  background-color: $light-green;
-  border: none;
+  // background-color: $light-green;
+  // border: none;
+  color: $bright-green;
+  background-color: transparent;
+  border: 2px solid $bright-green;
   border-radius: $border-radius;
 }
 
 .garage-input:focus {
+  background-color: #3B5F4F;
   outline-color: $bright-green;
 }
 
@@ -33,16 +37,26 @@
   cursor: pointer;
 }
 
+.garage-input:disabled,
+.color-input:disabled {
+  cursor: default;
+  color: $disabled-color;
+  background-color: $disabled-bg;
+  border: $disabled-border;
+}
+
 .edit-btn {
   width: 140px;
-  // color: $dark-green;
+  color: $dark-green;
   // background-color: #3B5F4F;
-  // border: 2px solid $dark-green;
-  background-color: $light-green;
+  background-color: transparent;
+  border: 2px solid $dark-green;
+  // background-color: $light-green;
 }
 
 .edit-btn:hover {
-  background-color: $bright-green;
+  background-color: #3B5F4F;
+  // background-color: $bright-green;
 }
 
 .race-wrapper {
@@ -102,8 +116,8 @@
   & button {
     padding: 2px;
     width: 40px;
-    border: 2px solid $bright-green;
     color: $bright-green;
+    border: 2px solid $bright-green;
   }
 }
 

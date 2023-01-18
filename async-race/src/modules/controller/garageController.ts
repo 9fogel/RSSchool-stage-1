@@ -1,7 +1,7 @@
 import Model from '../model/model';
 import Garage from '../view/garage';
 import State from '../state/state';
-import { Path, Tbuttons } from '../types.ts/types';
+import { Path, TButtons, TDisabled } from '../types.ts/types';
 
 class GarageController {
   private readonly garage: Garage;
@@ -16,11 +16,32 @@ class GarageController {
   public async run(): Promise<void> {
     await this.getCars();
     this.garage.render();
+    this.disableUpdate();
     this.listenButtons();
   }
 
+  private disableUpdate(): void {
+    const disabledElems: TDisabled = {
+      updateBtn: document.querySelector('.update-btn'),
+      updateInput: document.querySelector('#update-name'),
+      updateColor: document.querySelector('#update-color'),
+    };
+
+    Object.values(disabledElems).forEach((elem) => elem?.setAttribute('disabled', 'disabled'));
+  }
+
+  private enableUpdate(): void {
+    const disabledElems: TDisabled = {
+      updateBtn: document.querySelector('.update-btn'),
+      updateInput: document.querySelector('#update-name'),
+      updateColor: document.querySelector('#update-color'),
+    };
+
+    Object.values(disabledElems).forEach((elem) => elem?.removeAttribute('disabled'));
+  }
+
   private listenButtons(): void {
-    const buttons: Tbuttons = {
+    const buttons: TButtons = {
       createBtn: document.querySelector('.create-btn'),
       updateBtn: document.querySelector('.update-btn'),
       raceBtn: document.querySelector('.race-btn'),
@@ -31,7 +52,27 @@ class GarageController {
     buttons.createBtn?.addEventListener('click', this.createCar);
 
     const selectBtns: NodeListOf<HTMLElement> = document.querySelectorAll('.select-btn');
-    selectBtns.forEach((button: HTMLElement) => button.addEventListener('click', (event) => this.updateCar(event)));
+    selectBtns.forEach((button: HTMLElement) => {
+      button.addEventListener('click', (event) => {
+        this.enableUpdate();
+        this.rememberId(event);
+      });
+    });
+
+    buttons.updateBtn?.addEventListener('click', this.updateCar);
+  }
+
+  private rememberId(event: Event): string {
+    let id = '';
+    if (event.target instanceof HTMLElement) {
+      if (event.target.closest('.car-item')?.id) {
+        id = event.target.closest('.car-item')?.id ?? '';
+      }
+    }
+
+    State.savedState.id = id;
+
+    return id;
   }
 
   private getCars = async (): Promise<void> => {
@@ -80,17 +121,8 @@ class GarageController {
     this.run();
   };
 
-  private updateCar = async (event: Event) => {
-    console.log('update');
-
-    let id = '';
-    if (event.target instanceof HTMLElement) {
-      if (event.target.closest('.car-item')?.id) {
-        id = event.target.closest('.car-item')?.id ?? '';
-      }
-    }
-
-    console.log('id', id);
+  private updateCar = async (): Promise<void> => {
+    const { id } = State.savedState;
 
     const nameInput: HTMLInputElement | null = document.querySelector('#update-name');
     let carName = '';
@@ -105,7 +137,6 @@ class GarageController {
     }
 
     const bodyData = { name: carName, color: carColor };
-    console.log(bodyData);
 
     const baseUrl = 'http://127.0.0.1:3000';
     const path = Path.Garage;

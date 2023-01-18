@@ -3,7 +3,9 @@ export enum Path {
   Winners = '/winners',
 }
 
-export type Tbuttons = { [key: string]: HTMLButtonElement | null };
+export type TButtons = { [key: string]: HTMLButtonElement | null };
+
+export type TDisabled = { [key: string]: HTMLElement | null };
 
 export interface ICar {
   name: string;
@@ -16,4 +18,5 @@ export interface ISavedState {
   cars: Array<ICar | undefined>;
   totalCars: number;
   page: string;
+  id: string;
 }
