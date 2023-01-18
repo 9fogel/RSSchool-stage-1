@@ -17,6 +17,7 @@ class GarageController {
     await this.getCars();
     this.garage.render();
     this.disableUpdate();
+    this.disableBtns();
     this.listenButtons();
   }
 
@@ -38,6 +39,14 @@ class GarageController {
     };
 
     Object.values(disabledElems).forEach((elem) => elem?.removeAttribute('disabled'));
+  }
+
+  private disableBtns(): void {
+    const resetBtn = document.querySelector('.reset-btn');
+    resetBtn?.setAttribute('disabled', 'disabled');
+
+    const stopBtns: NodeListOf<HTMLElement> | null = document.querySelectorAll('.stop-btn');
+    stopBtns?.forEach((button: HTMLElement) => button?.setAttribute('disabled', 'disabled'));
   }
 
   private listenButtons(): void {
