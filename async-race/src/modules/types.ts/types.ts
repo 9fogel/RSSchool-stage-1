@@ -10,3 +10,5 @@ export interface ICar {
   color: string;
   id: number;
 }
+
+export type TState = { [key: string]: number | string | Array<ICar> };

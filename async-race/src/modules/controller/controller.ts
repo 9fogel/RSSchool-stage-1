@@ -1,44 +1,29 @@
-import Model from '../model/model';
 import View from '../view/appView';
-import { Path, Tbuttons } from '../types.ts/types';
+import GarageController from './garageController';
+import WinnersController from './winnersControler';
 
 class Controller {
   private readonly view: View;
 
-  private readonly model: Model;
+  private readonly garage: GarageController;
+
+  private readonly winners: WinnersController;
 
   constructor() {
     this.view = new View();
-    this.model = new Model();
-    console.log('constructor', this.model);
+    this.garage = new GarageController();
+    this.winners = new WinnersController();
   }
 
-  private changeView(event: Event): void {
-    if (event.target instanceof HTMLLIElement) {
-      console.log(event.target);
-      if (event.target.innerText.toLowerCase() === 'garage') {
-        this.view.garage.render();
-      } else {
-        this.view.winners.render();
-      }
-
-      // const garageWrap: HTMLElement | null = document.querySelector('.garage-wrapper');
-      // const winnersWrap: HTMLElement | null = document.querySelector('.winners-wrapper');
-      // if (garageWrap && winnersWrap) {
-      //   if (event.target instanceof HTMLLIElement) {
-      //     console.log(event.target);
-      //     if (event.target.innerText.toLowerCase() === 'garage') {
-      //       winnersWrap.classList.add('hidden');
-      //       garageWrap.classList.remove('hidden');
-      //     } else {
-      //       garageWrap.classList.add('hidden');
-      //       winnersWrap.classList.remove('hidden');
-      //     }
-      //   }
-    }
+  public run(): void {
+    this.view.render();
+    this.listenNav();
+    this.garage.run();
+    this.winners.run();
+    console.log('run controller');
   }
 
-  public listenNav(): void {
+  private listenNav(): void {
     const navBtns: NodeListOf<HTMLElement> = document.querySelectorAll('.nav-item');
     navBtns.forEach((link: HTMLElement) => {
       link.addEventListener('click', (event: MouseEvent) => {
@@ -49,48 +34,30 @@ class Controller {
     });
   }
 
-  public listenButtons() {
-    const buttons: Tbuttons = {
-      createBtn: document.querySelector('.create-btn'),
-      updateBtn: document.querySelector('.update-btn'),
-      raceBtn: document.querySelector('.race-btn'),
-      resetBtn: document.querySelector('.reset-btn'),
-      generateBtn: document.querySelector('.generate-btn'),
-    };
+  private changeView(event: Event): void {
+    // if (event.target instanceof HTMLLIElement) {
+    //   // console.log(event.target);
+    //   if (event.target.innerText.toLowerCase() === 'garage') {
+    //     // this.view.garage.render();
+    //     console.log('switch to Garage');
+    //   } else {
+    //     // this.view.winners.render();
+    //     console.log('switch to Winners');
+    //   }
 
-    buttons.createBtn?.addEventListener('click', this.model.createCar);
-  }
-
-  public getCars = async () => {
-    const baseUrl = 'http://127.0.0.1:3000';
-    const path = Path.Garage;
-
-    const limit = 7;
-    let currentPage = 1;
-    const page: HTMLSpanElement | null = document.querySelector('.current-page');
-    if (HTMLSpanElement && page?.textContent) {
-      currentPage = +page.textContent;
+    const garageWrap: HTMLElement | null = document.querySelector('.garage-wrapper');
+    const winnersWrap: HTMLElement | null = document.querySelector('.winners-wrapper');
+    if (garageWrap && winnersWrap) {
+      if (event.target instanceof HTMLLIElement) {
+        if (event.target.innerText.toLowerCase() === 'garage') {
+          winnersWrap.classList.add('hidden');
+          garageWrap.classList.remove('hidden');
+        } else {
+          garageWrap.classList.add('hidden');
+          winnersWrap.classList.remove('hidden');
+        }
+      }
     }
-
-    const { cars, total } = await this.model.getGarage(baseUrl, path, currentPage, limit);
-    console.log(cars);
-    console.log(total);
-
-    return total;
-  };
-
-  public createCar = () => {
-    this.model.createCar();
-  };
-
-  public updateCar = () => {
-    this.model.updateCar();
-  };
-
-  public async run() {
-    this.view.render();
-    this.listenNav();
-    this.listenButtons();
   }
 }
 

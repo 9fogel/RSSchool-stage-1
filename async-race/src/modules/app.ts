@@ -1,3 +1,4 @@
+// import Controller from './controller/garageController';
 import Controller from './controller/controller';
 
 class App {
@@ -9,7 +10,7 @@ class App {
 
   start() {
     this.controller.run();
-    this.controller.getCars();
+    // this.controller.getCars();
   }
 }
 

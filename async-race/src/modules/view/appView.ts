@@ -1,21 +1,7 @@
-import Garage from './garage';
-import Winners from './winners';
-
 class View {
-  public readonly garage: Garage;
-
-  public readonly winners: Winners;
-
-  constructor() {
-    this.garage = new Garage();
-    this.winners = new Winners();
-  }
-
   public render(): void {
     this.renderHeader();
     this.renderMain();
-    this.garage.render();
-    // this.winners.render();
   }
 
   private renderHeader(): void {

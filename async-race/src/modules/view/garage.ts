@@ -1,8 +1,10 @@
+// import { ICar } from '../types.ts/types';
+
 class Garage {
   public render() {
     const main: HTMLElement | null = document.querySelector('.main');
     if (main) {
-      main.innerHTML = this.renderMain();
+      main.innerHTML += this.renderMain();
     }
   }
 
@@ -31,7 +33,7 @@ class Garage {
     return raceControl;
   }
 
-  private renderCarImage() {
+  private renderCarImage(): string {
     const carImage = `<div class="car-image test-img">
     <svg xmlns="http://www.w3.org/2000/svg" width="100" height="60" fill="none">
       <path fill="currentColor" d="M93.346 30.607c1.012 0 1.828.967 1.876 2.175-.93-.647-2.032-1.11-3.228-1.486.34-.419.822-.689 1.352-.689ZM42.378 44.46c2.976 0 5.394 2.4 5.394 5.344 0 2.948-2.418 5.344-5.394 5.344-2.994 0-5.428-2.396-5.428-5.344.002-2.944 2.434-5.344 5.428-5.344Zm-.01 7.6a2.264 2.264 0 0 0 2.264-2.256 2.256 2.256 0 0 0-2.264-2.26 2.261 2.261 0 0 0-2.278 2.26c0 1.237 1.018 2.256 2.278 2.256ZM82.554 44.963c2.97 0 5.39 2.4 5.39 5.344 0 2.948-2.42 5.344-5.39 5.344a5.408 5.408 0 0 1-3.858-1.583 5.264 5.264 0 0 1-1.576-3.761c0-1.425.558-2.763 1.572-3.765a5.426 5.426 0 0 1 3.862-1.579Zm-.012 7.6a2.261 2.261 0 0 0 2.262-2.256 2.254 2.254 0 0 0-2.262-2.251 2.257 2.257 0 0 0-2.276 2.251 2.266 2.266 0 0 0 2.276 2.256Z"/>
@@ -46,7 +48,7 @@ class Garage {
     return carImage;
   }
 
-  private renderCarTrack() {
+  public renderCarTrack(): string {
     const carTrack = `<li class="car-item">
     <div class="car-header">
       <div class="car-selection">
@@ -70,7 +72,7 @@ class Garage {
     return carTrack;
   }
 
-  private renderPagination() {
+  private renderPagination(): string {
     const pagination = `<div class="pagination">
     ${this.renderButton('previous')}
     <p>Page <span class="current-page">1</span></p>

@@ -3,7 +3,7 @@ class Winners {
     console.log('render winners');
     const main: HTMLElement | null = document.querySelector('.main');
     if (main) {
-      main.innerHTML = this.renderMain();
+      main.innerHTML += this.renderMain();
     }
   }
 

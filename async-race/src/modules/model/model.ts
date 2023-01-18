@@ -6,9 +6,9 @@ class Model {
     path: Path,
     page?: number,
     limit?: number,
-  ): Promise<{ cars: Promise<ICar>; total: string | null }> {
+  ): Promise<{ cars: Promise<ICar[]>; total: string | null }> {
     const response: Response = await fetch(`${baseUrl}${path}?_page=${page}&_limit=${limit}`);
-    const cars: Promise<ICar> = await response.json();
+    const cars: Promise<ICar[]> = await response.json();
     const total: string | null = response.headers.get('X-Total-Count');
 
     return { cars, total };
