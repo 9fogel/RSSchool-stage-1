@@ -1,16 +1,19 @@
 import Model from '../model/model';
+import View from '../view/appView';
 import { Path, Tbuttons } from '../types.ts/types';
 
 class Controller {
   // private readonly baseUrl: string;
 
   // private readonly path: Path;
+  private readonly view: View;
 
   private readonly model: Model;
 
   constructor() {
     // this.baseUrl = 'http://127.0.0.1:3000';
     // this.path = Path.Garage;
+    this.view = new View();
     this.model = new Model();
     console.log('constructor', this.model);
   }
@@ -79,6 +82,12 @@ class Controller {
   public updateCar = () => {
     this.model.updateCar();
   };
+
+  public run() {
+    this.view.render();
+    this.listenNav();
+    this.listenButtons();
+  }
 }
 
 export default Controller;
