@@ -2,14 +2,14 @@ import { ICar, ISavedState } from '../types.ts/types';
 import State from '../state/state';
 
 class Garage {
-  public render() {
+  public render(): void {
     const main: HTMLElement | null = document.querySelector('.main');
     if (main) {
       main.innerHTML += this.renderMain(State.savedState);
     }
   }
 
-  public clearGaragePage() {
+  public clearGaragePage(): void {
     const main: HTMLElement | null = document.querySelector('.main');
     const garageWrap: HTMLElement | null = document.querySelector('.garage-wrapper');
     if (main && garageWrap) {

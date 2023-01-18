@@ -27,11 +27,26 @@ class Model {
       headers,
     });
     const result = await response.json();
+
     return result;
   }
 
-  public updateCar() {
-    console.log('update');
+  public async updateCar(
+    baseUrl: string,
+    path: Path,
+    id: string,
+    method: string,
+    body: string,
+    headers: { [key: string]: string },
+  ) {
+    const response: Response = await fetch(`${baseUrl}${path}/${id}`, {
+      method,
+      body,
+      headers,
+    });
+    const result = await response.json();
+
+    return result;
   }
 }
 

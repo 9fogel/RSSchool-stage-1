@@ -29,6 +29,9 @@ class GarageController {
     };
 
     buttons.createBtn?.addEventListener('click', this.createCar);
+
+    const selectBtns: NodeListOf<HTMLElement> = document.querySelectorAll('.select-btn');
+    selectBtns.forEach((button: HTMLElement) => button.addEventListener('click', (event) => this.updateCar(event)));
   }
 
   private getCars = async (): Promise<void> => {
@@ -55,14 +58,49 @@ class GarageController {
     const nameInput: HTMLInputElement | null = document.querySelector('#create-name');
     let carName = '';
     if (nameInput) {
-      console.log('set name');
       carName = nameInput.value;
     }
 
     const colorInput: HTMLInputElement | null = document.querySelector('#create-color');
     let carColor = '#55ff5c';
     if (colorInput) {
-      console.log('set color');
+      carColor = colorInput.value;
+    }
+
+    const bodyData = { name: carName, color: carColor };
+
+    const baseUrl = 'http://127.0.0.1:3000';
+    const path = Path.Garage;
+    const body = JSON.stringify(bodyData);
+    const method = 'POST';
+    const headers = { 'Content-Type': 'application/json' };
+
+    await this.model.createCar(baseUrl, path, method, body, headers);
+    this.garage.clearGaragePage();
+    this.run();
+  };
+
+  private updateCar = async (event: Event) => {
+    console.log('update');
+
+    let id = '';
+    if (event.target instanceof HTMLElement) {
+      if (event.target.closest('.car-item')?.id) {
+        id = event.target.closest('.car-item')?.id ?? '';
+      }
+    }
+
+    console.log('id', id);
+
+    const nameInput: HTMLInputElement | null = document.querySelector('#update-name');
+    let carName = '';
+    if (nameInput) {
+      carName = nameInput.value;
+    }
+
+    const colorInput: HTMLInputElement | null = document.querySelector('#update-color');
+    let carColor = '#55ff5c';
+    if (colorInput) {
       carColor = colorInput.value;
     }
 
@@ -72,10 +110,10 @@ class GarageController {
     const baseUrl = 'http://127.0.0.1:3000';
     const path = Path.Garage;
     const body = JSON.stringify(bodyData);
-    const method = 'POST';
+    const method = 'PUT';
     const headers = { 'Content-Type': 'application/json' };
 
-    await this.model.createCar(baseUrl, path, method, body, headers);
+    await this.model.updateCar(baseUrl, path, id, method, body, headers);
     this.garage.clearGaragePage();
     this.run();
   };
