@@ -38,6 +38,17 @@ class GarageController {
       updateColor: document.querySelector('#update-color'),
     };
 
+    const carData = State.savedState.cars[+State.savedState.id - 1];
+    if (carData) {
+      const { name, color } = carData;
+      if (disabledElems.updateInput instanceof HTMLInputElement) {
+        disabledElems.updateInput.value = name;
+      }
+      if (disabledElems.updateColor instanceof HTMLInputElement) {
+        disabledElems.updateColor.value = color;
+      }
+    }
+
     Object.values(disabledElems).forEach((elem) => elem?.removeAttribute('disabled'));
   }
 
@@ -49,26 +60,37 @@ class GarageController {
     stopBtns?.forEach((button: HTMLElement) => button?.setAttribute('disabled', 'disabled'));
   }
 
-  private listenButtons(): void {
+  private listenEditBtns(): void {
     const buttons: TButtons = {
       createBtn: document.querySelector('.create-btn'),
       updateBtn: document.querySelector('.update-btn'),
+    };
+
+    buttons.createBtn?.addEventListener('click', this.createCar);
+    buttons.updateBtn?.addEventListener('click', this.updateCar);
+  }
+
+  private listenRaceBtns(): void {
+    const buttons: TButtons = {
       raceBtn: document.querySelector('.race-btn'),
       resetBtn: document.querySelector('.reset-btn'),
       generateBtn: document.querySelector('.generate-btn'),
     };
 
-    buttons.createBtn?.addEventListener('click', this.createCar);
+    console.log(buttons);
+  }
+
+  private listenButtons(): void {
+    this.listenEditBtns();
+    this.listenRaceBtns();
 
     const selectBtns: NodeListOf<HTMLElement> = document.querySelectorAll('.select-btn');
     selectBtns.forEach((button: HTMLElement) => {
       button.addEventListener('click', (event) => {
-        this.enableUpdate();
         this.rememberId(event);
+        this.enableUpdate();
       });
     });
-
-    buttons.updateBtn?.addEventListener('click', this.updateCar);
 
     const removeBtns: NodeListOf<HTMLElement> = document.querySelectorAll('.remove-btn');
     removeBtns.forEach((button: HTMLElement) => {
@@ -166,9 +188,7 @@ class GarageController {
   };
 
   private deleteCar = async (event: Event): Promise<void> => {
-    console.log('delete');
     const id = this.rememberId(event);
-    console.log('remove', id);
 
     const baseUrl = 'http://127.0.0.1:3000';
     const path = Path.Garage;
