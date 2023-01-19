@@ -1,4 +1,4 @@
-import { Path, ICar } from '../types.ts/types';
+import { Path, ICar, ISwitch } from '../types.ts/types';
 
 class Model {
   public async getGarage(
@@ -20,13 +20,13 @@ class Model {
     method: string,
     body: string,
     headers: { [key: string]: string },
-  ): Promise<Response> {
+  ): Promise<ICar> {
     const response: Response = await fetch(`${baseUrl}${path}`, {
       method,
       body,
       headers,
     });
-    const result: Response = await response.json();
+    const result: ICar = await response.json();
 
     return result;
   }
@@ -38,24 +38,22 @@ class Model {
     method: string,
     body: string,
     headers: { [key: string]: string },
-  ): Promise<Response> {
+  ): Promise<ICar> {
     const response: Response = await fetch(`${baseUrl}${path}/${id}`, {
       method,
       body,
       headers,
     });
-    const result: Response = await response.json();
+    const result: ICar = await response.json();
 
     return result;
   }
 
-  // eslint-disable-next-line max-len
-  public async deleteCar(baseUrl: string, path: Path, id: string, method: string): Promise<Response> {
+  public async deleteCar(baseUrl: string, path: Path, id: string, method: string): Promise<object> {
     const response: Response = await fetch(`${baseUrl}${path}/${id}`, {
       method,
     });
-
-    const result: Response = await response.json();
+    const result: object = await response.json();
 
     return result;
   }
@@ -67,41 +65,33 @@ class Model {
     status: string,
     method: string,
   ): Promise<{ velocity: number; distance: number }> {
-    const response: Response = await fetch(`${baseUrl}${path}?id=${id}&status=${status}`, {
+    const response: Response = await fetch(`${baseUrl}${path}?id=${+id}&status=${status}&speed=0`, {
       method,
     });
-
-    const result = await response.json();
-
+    const result: { [key: string]: number } = await response.json();
     const { velocity, distance }: { [key: string]: number } = result;
 
     return { velocity, distance };
   }
 
-  // eslint-disable-next-line max-len
-  public async switchEngine(baseUrl: string, path: Path, id: string, status: string, method: string) {
+  public async switchEngine(
+    baseUrl: string,
+    path: Path,
+    id: string,
+    status: string,
+    method: string,
+  ): Promise<ISwitch> {
     const response: Response = await fetch(`${baseUrl}${path}?id=${id}&status=${status}`, {
       method,
     });
 
-    const result = await response.json();
-    console.log(result);
-
+    if (response.status === 500) {
+      const result: ISwitch = { success: false };
+      return result;
+    }
+    const result: ISwitch = await response.json();
     return result;
   }
-
-  // public async stopCar(baseUrl: string, path: Path, id: string, status: string, method: string) {
-  //   const response: Response = await fetch(`${baseUrl}${path}?id=${id}&status=${status}`, {
-  //     method,
-  //   });
-
-  //   const result = await response.json();
-  //   console.log(result);
-
-  //   // const { velocity, distance }: { [key: string]: number } = result;
-
-  //   // return { velocity, distance };
-  // }
 }
 
 export default Model;

@@ -243,8 +243,7 @@ class GarageController {
     this.run();
   };
 
-  private startCar = async (event: Event) => {
-    console.log('start');
+  private startCar = async (event: Event): Promise<void> => {
     const id = this.rememberId(event);
     this.handleStopBtn(id, 'enable');
     this.handleDriveBtn(id, 'disable');
@@ -255,38 +254,38 @@ class GarageController {
     const method = 'PATCH';
 
     const { velocity, distance } = await this.model.startStopCar(baseUrl, path, id, status, method);
-    // console.log(await this.model.startStopCar(baseUrl, path, id, status, method));
 
     const duration = distance / velocity;
     Animation.start(id, duration);
     await this.switchEngine(id);
-
-    // const duration = velocity / distance;
-    // Animation.start(id, duration);
   };
 
-  private switchEngine = async (id: string) => {
+  private switchEngine = async (id: string): Promise<void> => {
     const baseUrl = 'http://127.0.0.1:3000';
     const path = Path.Engine;
     const status = 'drive';
     const method = 'PATCH';
 
-    console.log(await this.model.switchEngine(baseUrl, path, id, status, method));
+    const result = await this.model.switchEngine(baseUrl, path, id, status, method);
+    console.log(result.success);
+    if (!result.success) {
+      cancelAnimationFrame(Animation.animationFrameId);
+    }
   };
 
-  private stopCar = async (event: Event) => {
-    console.log('start');
-
+  private stopCar = async (event: Event): Promise<void> => {
     const id = this.rememberId(event);
-    this.handleDriveBtn(id, 'enable');
-    this.handleStopBtn(id, 'disable');
-
     const baseUrl = 'http://127.0.0.1:3000';
     const path = Path.Engine;
-    const status = 'stoped';
+    const status = 'stopped';
     const method = 'PATCH';
 
-    console.log(await this.model.startStopCar(baseUrl, path, id, status, method));
+    await this.model.startStopCar(baseUrl, path, id, status, method);
+    // cancelAnimationFrame(Animation.animationFrameId);
+
+    this.handleDriveBtn(id, 'enable');
+    this.handleStopBtn(id, 'disable');
+    cancelAnimationFrame(Animation.animationFrameId);
   };
 }
 

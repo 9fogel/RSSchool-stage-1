@@ -21,3 +21,5 @@ export interface ISavedState {
   page: string;
   id: string;
 }
+
+export type ISwitch = { [key: string]: boolean };
