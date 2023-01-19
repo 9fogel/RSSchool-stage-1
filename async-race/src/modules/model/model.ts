@@ -59,6 +59,49 @@ class Model {
 
     return result;
   }
+
+  public async startStopCar(
+    baseUrl: string,
+    path: Path,
+    id: string,
+    status: string,
+    method: string,
+  ): Promise<{ velocity: number; distance: number }> {
+    const response: Response = await fetch(`${baseUrl}${path}?id=${id}&status=${status}`, {
+      method,
+    });
+
+    const result = await response.json();
+
+    const { velocity, distance }: { [key: string]: number } = result;
+
+    return { velocity, distance };
+  }
+
+  // eslint-disable-next-line max-len
+  public async switchEngine(baseUrl: string, path: Path, id: string, status: string, method: string) {
+    const response: Response = await fetch(`${baseUrl}${path}?id=${id}&status=${status}`, {
+      method,
+    });
+
+    const result = await response.json();
+    console.log(result);
+
+    return result;
+  }
+
+  // public async stopCar(baseUrl: string, path: Path, id: string, status: string, method: string) {
+  //   const response: Response = await fetch(`${baseUrl}${path}?id=${id}&status=${status}`, {
+  //     method,
+  //   });
+
+  //   const result = await response.json();
+  //   console.log(result);
+
+  //   // const { velocity, distance }: { [key: string]: number } = result;
+
+  //   // return { velocity, distance };
+  // }
 }
 
 export default Model;

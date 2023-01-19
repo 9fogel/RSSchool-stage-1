@@ -1,6 +1,7 @@
 import Model from '../model/model';
 import Garage from '../view/garage';
 import State from '../state/state';
+import Animation from '../utils/animation';
 import { Path, TButtons, TDisabled } from '../types.ts/types';
 
 class GarageController {
@@ -60,6 +61,30 @@ class GarageController {
     stopBtns?.forEach((button: HTMLElement) => button?.setAttribute('disabled', 'disabled'));
   }
 
+  private handleStopBtn(id: string, action: string): void {
+    const stopBtns: NodeListOf<HTMLElement> | null = document.querySelectorAll('.stop-btn');
+    const btnIndex = +id - 1;
+
+    if (action === 'enable') {
+      stopBtns[btnIndex]?.removeAttribute('disabled');
+    }
+    if (action === 'disable') {
+      stopBtns[btnIndex]?.setAttribute('disabled', 'disabled');
+    }
+  }
+
+  private handleDriveBtn(id: string, action: string): void {
+    const driveBtns: NodeListOf<HTMLElement> | null = document.querySelectorAll('.drive-btn');
+    const btnIndex = +id - 1;
+
+    if (action === 'enable') {
+      driveBtns[btnIndex]?.removeAttribute('disabled');
+    }
+    if (action === 'disable') {
+      driveBtns[btnIndex]?.setAttribute('disabled', 'disabled');
+    }
+  }
+
   private listenEditBtns(): void {
     const buttons: TButtons = {
       createBtn: document.querySelector('.create-btn'),
@@ -70,31 +95,50 @@ class GarageController {
     buttons.updateBtn?.addEventListener('click', this.updateCar);
   }
 
-  private listenRaceBtns(): void {
-    const buttons: TButtons = {
-      raceBtn: document.querySelector('.race-btn'),
-      resetBtn: document.querySelector('.reset-btn'),
-      generateBtn: document.querySelector('.generate-btn'),
-    };
+  // private listenRaceBtns(): void {
+  //   const buttons: TButtons = {
+  //     raceBtn: document.querySelector('.race-btn'),
+  //     resetBtn: document.querySelector('.reset-btn'),
+  //     generateBtn: document.querySelector('.generate-btn'),
+  //   };
 
-    console.log(buttons);
+  //   console.log(buttons);
+  // }
+
+  private listenDriveControls(): void {
+    const driveBtns: NodeListOf<HTMLElement> | null = document.querySelectorAll('.drive-btn');
+    driveBtns?.forEach((button: HTMLElement) => {
+      button?.addEventListener('click', (event) => {
+        // this.rememberId(event);
+        this.startCar(event);
+      });
+    });
+
+    const stopBtns: NodeListOf<HTMLElement> | null = document.querySelectorAll('.stop-btn');
+    stopBtns?.forEach((button: HTMLElement) => {
+      button?.addEventListener('click', (event) => {
+        // this.rememberId(event);
+        this.stopCar(event);
+      });
+    });
   }
 
   private listenButtons(): void {
     this.listenEditBtns();
-    this.listenRaceBtns();
+    // this.listenRaceBtns();
+    this.listenDriveControls();
 
-    const selectBtns: NodeListOf<HTMLElement> = document.querySelectorAll('.select-btn');
-    selectBtns.forEach((button: HTMLElement) => {
-      button.addEventListener('click', (event) => {
+    const selectBtns: NodeListOf<HTMLElement> | null = document.querySelectorAll('.select-btn');
+    selectBtns?.forEach((button: HTMLElement) => {
+      button?.addEventListener('click', (event) => {
         this.rememberId(event);
         this.enableUpdate();
       });
     });
 
-    const removeBtns: NodeListOf<HTMLElement> = document.querySelectorAll('.remove-btn');
-    removeBtns.forEach((button: HTMLElement) => {
-      button.addEventListener('click', (event) => {
+    const removeBtns: NodeListOf<HTMLElement> | null = document.querySelectorAll('.remove-btn');
+    removeBtns?.forEach((button: HTMLElement) => {
+      button?.addEventListener('click', (event) => {
         this.deleteCar(event);
       });
     });
@@ -197,6 +241,52 @@ class GarageController {
     await this.model.deleteCar(baseUrl, path, id, method);
     this.garage.clearGaragePage();
     this.run();
+  };
+
+  private startCar = async (event: Event) => {
+    console.log('start');
+    const id = this.rememberId(event);
+    this.handleStopBtn(id, 'enable');
+    this.handleDriveBtn(id, 'disable');
+
+    const baseUrl = 'http://127.0.0.1:3000';
+    const path = Path.Engine;
+    const status = 'started';
+    const method = 'PATCH';
+
+    const { velocity, distance } = await this.model.startStopCar(baseUrl, path, id, status, method);
+    // console.log(await this.model.startStopCar(baseUrl, path, id, status, method));
+
+    const duration = distance / velocity;
+    Animation.start(id, duration);
+    await this.switchEngine(id);
+
+    // const duration = velocity / distance;
+    // Animation.start(id, duration);
+  };
+
+  private switchEngine = async (id: string) => {
+    const baseUrl = 'http://127.0.0.1:3000';
+    const path = Path.Engine;
+    const status = 'drive';
+    const method = 'PATCH';
+
+    console.log(await this.model.switchEngine(baseUrl, path, id, status, method));
+  };
+
+  private stopCar = async (event: Event) => {
+    console.log('start');
+
+    const id = this.rememberId(event);
+    this.handleDriveBtn(id, 'enable');
+    this.handleStopBtn(id, 'disable');
+
+    const baseUrl = 'http://127.0.0.1:3000';
+    const path = Path.Engine;
+    const status = 'stoped';
+    const method = 'PATCH';
+
+    console.log(await this.model.startStopCar(baseUrl, path, id, status, method));
   };
 }
 

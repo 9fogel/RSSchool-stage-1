@@ -167,6 +167,14 @@ button.drive-btn:hover {
   border: 2px solid $dark-green;
 }
 
+button.drive-btn:disabled {
+  cursor: default;
+  color: $disabled-color;
+  background-color: $disabled-bg;
+  border: $disabled-border;
+  box-shadow: none;
+}
+
 button.stop-btn {
   color: $red;
   background: $red-bg;

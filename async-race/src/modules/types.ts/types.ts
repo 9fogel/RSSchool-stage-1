@@ -1,5 +1,6 @@
 export enum Path {
   Garage = '/garage',
+  Engine = '/engine',
   Winners = '/winners',
 }
 
