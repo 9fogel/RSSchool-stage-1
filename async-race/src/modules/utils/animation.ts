@@ -1,6 +1,6 @@
-class Animation {
-  static animationFrameId = 0;
+import State from '../state/state';
 
+class Animation {
   public static start(carId: string, duration: number): void {
     const carTrack = document.getElementById(`car-item-${carId}`);
 
@@ -32,29 +32,11 @@ class Animation {
 
         if (currentX < distance) {
           const animationId = requestAnimationFrame(move);
-          this.animationFrameId = animationId;
-          // console.log('anim id', animationId, carId);
+          State.savedState.animation[carId] = animationId;
         }
       };
       move();
     }
-    // let currentX = animatedCar.offsetLeft;
-    // const durationSec = duration / 1000;
-    // const framesPerSec = 60;
-    // const framesCount = durationSec * framesPerSec;
-    // const dX = (distance - currentX) / framesCount;
-
-    // const move = () => {
-    //   currentX += dX;
-    //   animatedCar.style.transform = `translateX(${currentX}px)`;
-
-    //   if (currentX < distance) {
-    //     const animationId = requestAnimationFrame(move);
-    //     this.animationFrameId = animationId;
-    //     // console.log('anim id', animationId, carId);
-    //   }
-    // };
-    // move();
   }
 }
 

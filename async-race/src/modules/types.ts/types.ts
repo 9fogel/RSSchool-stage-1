@@ -20,6 +20,7 @@ export interface ISavedState {
   totalCars: number;
   page: string;
   id: string;
+  animation: { [key: string]: number };
 }
 
 export type ISwitch = { [key: string]: boolean };

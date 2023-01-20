@@ -266,7 +266,7 @@ class GarageController {
     const result = await this.model.switchEngine(baseUrl, path, id, status, method);
     console.log(result.success);
     if (!result.success) {
-      cancelAnimationFrame(Animation.animationFrameId);
+      cancelAnimationFrame(State.savedState.animation[id]);
     }
   };
 
@@ -278,11 +278,10 @@ class GarageController {
     const method = 'PATCH';
 
     await this.model.startStopCar(baseUrl, path, id, status, method);
-    // cancelAnimationFrame(Animation.animationFrameId);
 
     this.handleDriveBtn(id, 'enable');
     this.handleStopBtn(id, 'disable');
-    cancelAnimationFrame(Animation.animationFrameId);
+    cancelAnimationFrame(State.savedState.animation[id]);
     this.garage.setCarInitialPosition(id);
   };
 }

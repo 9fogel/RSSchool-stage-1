@@ -7,6 +7,7 @@ class State {
     totalCars: 0,
     page: 'garage',
     id: '',
+    animation: {},
   };
 }
 
