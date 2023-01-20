@@ -67,6 +67,10 @@
   & button {
     padding: 4px 34px;
   }
+
+  & button.race-btn:disabled {
+    width: 111px;
+  }
 }
 
 .reset-btn {

@@ -4,9 +4,9 @@ export enum Path {
   Winners = '/winners',
 }
 
-export type TButtons = { [key: string]: HTMLButtonElement | null };
+// export type TButtons = { [key: string]: HTMLButtonElement | null };
 
-export type TDisabled = { [key: string]: HTMLElement | null };
+// export type TDisabled = { [key: string]: HTMLElement | null };
 
 export interface ICar {
   name: string;
