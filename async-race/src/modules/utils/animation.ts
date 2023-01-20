@@ -17,26 +17,44 @@ class Animation {
   }
 
   static animate(carId: string, distance: number, duration: number): void {
-    const carIcons: NodeListOf<HTMLDivElement> = document.querySelectorAll('.car-image');
-    const animatedCar: HTMLDivElement = carIcons[+carId - 1];
+    const animatedCar: HTMLElement | null = document.getElementById(`car-image-${carId}`);
 
-    let currentX = animatedCar.offsetLeft;
-    const durationSec = duration / 1000;
-    const framesPerSec = 60;
-    const framesCount = durationSec * framesPerSec;
-    const dX = (distance - currentX) / framesCount;
+    if (animatedCar) {
+      let currentX = animatedCar.offsetLeft;
+      const durationSec = duration / 1000;
+      const framesPerSec = 60;
+      const framesCount = durationSec * framesPerSec;
+      const dX = (distance - currentX) / framesCount;
 
-    const move = () => {
-      currentX += dX;
-      animatedCar.style.transform = `translateX(${currentX}px)`;
+      const move = () => {
+        currentX += dX;
+        animatedCar.style.transform = `translateX(${currentX}px)`;
 
-      if (currentX < distance) {
-        const animationId = requestAnimationFrame(move);
-        this.animationFrameId = animationId;
-        // console.log('anim id', animationId, carId);
-      }
-    };
-    move();
+        if (currentX < distance) {
+          const animationId = requestAnimationFrame(move);
+          this.animationFrameId = animationId;
+          // console.log('anim id', animationId, carId);
+        }
+      };
+      move();
+    }
+    // let currentX = animatedCar.offsetLeft;
+    // const durationSec = duration / 1000;
+    // const framesPerSec = 60;
+    // const framesCount = durationSec * framesPerSec;
+    // const dX = (distance - currentX) / framesCount;
+
+    // const move = () => {
+    //   currentX += dX;
+    //   animatedCar.style.transform = `translateX(${currentX}px)`;
+
+    //   if (currentX < distance) {
+    //     const animationId = requestAnimationFrame(move);
+    //     this.animationFrameId = animationId;
+    //     // console.log('anim id', animationId, carId);
+    //   }
+    // };
+    // move();
   }
 }
 

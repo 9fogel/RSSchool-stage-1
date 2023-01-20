@@ -17,10 +17,14 @@ class Garage {
     }
   }
 
-  public setCarInitialPosition(carId: string) {
-    console.log(carId);
-    // const stoppedCar = document.querySelector()
-    // style="transform: translateX(0);"
+  public setCarInitialPosition(id: string) {
+    console.log(id);
+    const initialPosition = 0;
+    const stoppedCar: HTMLElement | null = document.getElementById(`car-image-${id}`);
+    console.log(stoppedCar);
+    if (stoppedCar) {
+      stoppedCar.style.transform = `translateX(${initialPosition})`;
+    }
   }
 
   private renderCarEditControls(action: string): string {

@@ -283,7 +283,7 @@ class GarageController {
     this.handleDriveBtn(id, 'enable');
     this.handleStopBtn(id, 'disable');
     cancelAnimationFrame(Animation.animationFrameId);
-    this.garage.setCarInitialPosition(id); // TODO: вернуть машинку на 0
+    this.garage.setCarInitialPosition(id);
   };
 }
 
