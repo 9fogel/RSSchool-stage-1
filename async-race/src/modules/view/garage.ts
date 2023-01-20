@@ -105,6 +105,14 @@ class Garage {
     return pagination;
   }
 
+  private renderWinnerPopUp(): string {
+    const winnerPopup = `<div class="winner-popup hidden">
+    <div class="winner-text"></div>
+  </div>`;
+
+    return winnerPopup;
+  }
+
   private renderMain(savedState: ISavedState): string {
     const mainContent = `<div class="garage-wrapper">
     ${this.renderHeader()}
@@ -114,6 +122,7 @@ class Garage {
       <button class="generate-btn" disabled>Generate cars</button>
     </div>
 
+    ${this.renderWinnerPopUp()}
     <div class="cars-wrapper">
       <h2 class="page-title">Garage<span class="total-cars"> (${savedState.totalCars})</span></h2>
       <ul class="cars-list">
@@ -122,8 +131,8 @@ class Garage {
     </div>
 
     ${this.renderPagination(savedState.pageNum)}
-  </div>`;
 
+  </div>`;
     return mainContent;
   }
 }

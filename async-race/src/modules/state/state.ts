@@ -8,6 +8,8 @@ class State {
     page: 'garage',
     id: '',
     animation: {},
+    race: false,
+    winnerFound: false,
   };
 }
 

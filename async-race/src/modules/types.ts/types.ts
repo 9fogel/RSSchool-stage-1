@@ -21,6 +21,8 @@ export interface ISavedState {
   page: string;
   id: string;
   animation: { [key: string]: number };
+  race: boolean;
+  winnerFound: boolean;
 }
 
 export type ISwitch = { [key: string]: boolean };

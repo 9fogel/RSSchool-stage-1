@@ -92,6 +92,22 @@
   background-color: $bright-green;
 }
 
+.winner-popup {
+  position: absolute;
+  width: 30%;
+  height: 200px;
+  left: 50%;
+  top: 10%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.winner-text {
+  margin: 20px auto;
+  font-size: 36px;
+  color: $bright-green;
+}
+
 .page-title {
   margin-bottom: 24px;
 }

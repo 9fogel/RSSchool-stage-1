@@ -61,7 +61,6 @@ class GarageController {
 
   private enableBtn(action: string) {
     const btn = document.querySelector(`.${action}-btn`);
-    console.log(btn);
     btn?.removeAttribute('disabled');
   }
 
@@ -289,6 +288,14 @@ class GarageController {
     if (!result.success) {
       cancelAnimationFrame(State.savedState.animation[id]);
     }
+    if (result.success && State.savedState.race && !State.savedState.winnerFound) {
+      const winnerCar = State.savedState.cars.filter((car) => car?.id === +id)[0];
+      if (winnerCar) {
+        this.showWinnerPopup(winnerCar.name, id);
+        setTimeout(() => this.hideWinnerPopup(), 5000);
+      }
+      State.savedState.winnerFound = true;
+    }
   };
 
   private stopCar = async (event: Event): Promise<void> => {
@@ -306,20 +313,17 @@ class GarageController {
     this.garage.setCarInitialPosition(id);
   };
 
-  private raceAll = async () => {
-    console.log('race all');
+  private raceAll = async (): Promise<void> => {
+    State.savedState.race = true;
     this.disableBtn('race');
     this.enableBtn('reset');
-    console.log(State.savedState.cars);
-    const raceIDs = State.savedState.cars.map((car) => car?.id.toString());
-    // const startPromises = State.savedState.cars.map((car) => this.startCar(car));
-    console.log(raceIDs);
 
     const baseUrl = 'http://127.0.0.1:3000';
     const path = Path.Engine;
     const status = 'started';
     const method = 'PATCH';
 
+    const raceIDs = State.savedState.cars.map((car) => car?.id.toString());
     const startPromises = raceIDs.map(async (id) => {
       if (!id) {
         throw new Error('no id');
@@ -332,12 +336,10 @@ class GarageController {
         method,
       );
       return { velocity, distance };
-      // return this.model.startStopCar(baseUrl, path, id, status, method);
     });
 
     const durationArr = (await Promise.all(startPromises)).map((el) => el.distance / el.velocity);
     console.log(durationArr);
-    // console.log((await Promise.all(startPromises)).map((el) => el.distance / el.velocity));
 
     raceIDs.forEach((id, index) => {
       if (id) {
@@ -348,12 +350,40 @@ class GarageController {
     });
   };
 
-  private resetRace = async () => {
-    console.log('reset race');
+  private resetRace = async (): Promise<void> => {
+    State.savedState.race = false;
+    State.savedState.winnerFound = false;
     this.disableBtn('reset');
     this.enableBtn('race');
-    // TODO: активировать все кнопки drive
+    const raceIDs = State.savedState.cars.map((car) => car?.id.toString());
+    raceIDs.forEach((id) => {
+      if (id) {
+        this.garage.setCarInitialPosition(id);
+        this.handleDriveBtn(id, 'enable');
+        // TODO: дописать функционал из stopCar? для остановки по кнопке до финиша
+      }
+    });
   };
+
+  private showWinnerPopup(name: string, id: string): void {
+    const winnerPopup = document.querySelector('.winner-popup');
+    const winnerText = document.querySelector('.winner-text');
+
+    if (winnerPopup && winnerText) {
+      winnerPopup.classList.remove('hidden');
+      winnerText.textContent = `Car ${name} (id ${id}) won the race!`;
+    }
+  }
+
+  private hideWinnerPopup(): void {
+    const winnerPopup = document.querySelector('.winner-popup');
+    const winnerText = document.querySelector('.winner-text');
+
+    if (winnerPopup && winnerText) {
+      winnerPopup.classList.add('hidden');
+      winnerText.textContent = '';
+    }
+  }
 }
 
 export default GarageController;
