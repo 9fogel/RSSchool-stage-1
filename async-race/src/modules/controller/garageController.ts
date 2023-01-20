@@ -39,7 +39,7 @@ class GarageController {
       updateColor: document.querySelector('#update-color'),
     };
 
-    const carData = State.savedState.cars[+State.savedState.id - 1];
+    const carData = State.savedState.cars.filter((car) => car?.id === +State.savedState.id)[0];
     if (carData) {
       const { name, color } = carData;
       if (disabledElems.updateInput instanceof HTMLInputElement) {
@@ -62,26 +62,24 @@ class GarageController {
   }
 
   private handleStopBtn(id: string, action: string): void {
-    const stopBtns: NodeListOf<HTMLElement> | null = document.querySelectorAll('.stop-btn');
-    const btnIndex = +id - 1;
+    const stopBtn: HTMLElement | null = document.getElementById(`stop-btn-${id}`);
 
     if (action === 'enable') {
-      stopBtns[btnIndex]?.removeAttribute('disabled');
+      stopBtn?.removeAttribute('disabled');
     }
     if (action === 'disable') {
-      stopBtns[btnIndex]?.setAttribute('disabled', 'disabled');
+      stopBtn?.setAttribute('disabled', 'disabled');
     }
   }
 
   private handleDriveBtn(id: string, action: string): void {
-    const driveBtns: NodeListOf<HTMLElement> | null = document.querySelectorAll('.drive-btn');
-    const btnIndex = +id - 1;
+    const driveBtn: HTMLElement | null = document.getElementById(`drive-btn-${id}`);
 
     if (action === 'enable') {
-      driveBtns[btnIndex]?.removeAttribute('disabled');
+      driveBtn?.removeAttribute('disabled');
     }
     if (action === 'disable') {
-      driveBtns[btnIndex]?.setAttribute('disabled', 'disabled');
+      driveBtn?.setAttribute('disabled', 'disabled');
     }
   }
 
@@ -109,7 +107,6 @@ class GarageController {
     const driveBtns: NodeListOf<HTMLElement> | null = document.querySelectorAll('.drive-btn');
     driveBtns?.forEach((button: HTMLElement) => {
       button?.addEventListener('click', (event) => {
-        // this.rememberId(event);
         this.startCar(event);
       });
     });
@@ -117,7 +114,6 @@ class GarageController {
     const stopBtns: NodeListOf<HTMLElement> | null = document.querySelectorAll('.stop-btn');
     stopBtns?.forEach((button: HTMLElement) => {
       button?.addEventListener('click', (event) => {
-        // this.rememberId(event);
         this.stopCar(event);
       });
     });
@@ -147,9 +143,8 @@ class GarageController {
   private rememberId(event: Event): string {
     let id = '';
     if (event.target instanceof HTMLElement) {
-      if (event.target.closest('.car-item')?.id) {
-        id = event.target.closest('.car-item')?.id ?? '';
-      }
+      const idArr = event.target.id.split('-');
+      id = idArr[idArr.length - 1];
     }
 
     State.savedState.id = id;
@@ -256,8 +251,10 @@ class GarageController {
     const { velocity, distance } = await this.model.startStopCar(baseUrl, path, id, status, method);
 
     const duration = distance / velocity;
+    // Animation.start(id, duration);
+    // await this.switchEngine(id);
+    this.switchEngine(id);
     Animation.start(id, duration);
-    await this.switchEngine(id);
   };
 
   private switchEngine = async (id: string): Promise<void> => {
@@ -286,6 +283,7 @@ class GarageController {
     this.handleDriveBtn(id, 'enable');
     this.handleStopBtn(id, 'disable');
     cancelAnimationFrame(Animation.animationFrameId);
+    this.garage.setCarInitialPosition(id); // TODO: вернуть машинку на 0
   };
 }
 
