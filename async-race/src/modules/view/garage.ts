@@ -94,15 +94,16 @@ class Garage {
     return tracks;
   }
 
-  private renderPagination(pageNum: number): string {
-    const pagination = `<div class="pagination">
-    ${this.renderButton('previous')}
-    <p>Page <span class="current-page">${pageNum}</span></p>
-    ${this.renderButton('next')}
-  </div>`;
+  // private renderPagination(pageNumGarage: number): string {
+  //   const pagination = `<div class="pagination">
+  //   ${this.renderButton('previous')}
+  //   <p>Page <span class="current-page">${pageNumGarage}</span>/
+  // <span class="total-pages">TOTAL</span></p>
+  //   ${this.renderButton('next')}
+  // </div>`;
 
-    return pagination;
-  }
+  //   return pagination;
+  // }
 
   private renderWinnerPopUp(): string {
     const winnerPopup = `<div class="winner-popup hidden">
@@ -128,11 +129,9 @@ class Garage {
         ${this.renderCarTracks(savedState.cars)}
       </ul>
     </div>
-
-    ${this.renderPagination(savedState.pageNum)}
-
   </div>`;
     return mainContent;
+    // ${this.renderPagination(savedState.pageNumGarage)}
   }
 }
 

@@ -1,7 +1,8 @@
-import { ICar } from '../types.ts/types';
+import { ICar, IWinner } from '../types.ts/types';
 
 export interface ISavedState {
-  pageNum: number;
+  pageNumGarage: number;
+  pageLimitGarage: number;
   cars: Array<ICar | undefined>;
   totalCars: number;
   page: string;
@@ -10,4 +11,8 @@ export interface ISavedState {
   race: boolean;
   winnerFound: boolean;
   controller: { [key: string]: AbortController };
+  pageNumWinners: number;
+  pageLimitWinners: 10;
+  winners: Array<IWinner | undefined>;
+  totalWinners: number;
 }

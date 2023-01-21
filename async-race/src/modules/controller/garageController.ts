@@ -2,7 +2,7 @@ import Model from '../model/model';
 import Garage from '../view/garage';
 import State from '../state/state';
 import Animation from '../utils/animation';
-import { TButtons, TDisabled } from './controller-i';
+import { TButtons, TElements } from './controller-i';
 import { Path } from '../types.ts/types';
 
 class GarageController {
@@ -24,7 +24,7 @@ class GarageController {
   }
 
   private disableUpdate(): void {
-    const disabledElems: TDisabled = {
+    const disabledElems: TElements = {
       updateBtn: document.querySelector('.update-btn'),
       updateInput: document.querySelector('#update-name'),
       updateColor: document.querySelector('#update-color'),
@@ -34,7 +34,7 @@ class GarageController {
   }
 
   private enableUpdate(): void {
-    const disabledElems: TDisabled = {
+    const disabledElems: TElements = {
       updateBtn: document.querySelector('.update-btn'),
       updateInput: document.querySelector('#update-name'),
       updateColor: document.querySelector('#update-color'),
@@ -163,12 +163,41 @@ class GarageController {
     return id;
   }
 
-  private getCars = async (): Promise<void> => {
+  // private handlePagination(page: number) {
+  //   const pagination: TElements = {
+  //     previousBtn: document.querySelector('.previous-btn'),
+  //     curPage: document.querySelector('.current-page'),
+  //     totalPages: document.querySelector('.total-pages'),
+  //     nextBtn: document.querySelector('.next-btn'),
+  //   };
+  //   console.log(pagination.previousBtn);
+
+  //   if (page > 1) {
+  //     pagination.previousBtn?.removeAttribute('disabled');
+  //   } else {
+  //     pagination.previousBtn?.setAttribute('disabled', 'disabled');
+  //   }
+
+  //   const totalCarsGarage = State.savedState.pageNumGarage * State.savedState.pageLimitGarage;
+  //   console.log('totalCarsGarage', totalCarsGarage);
+  //   console.log(pagination.nextBtn);
+  //   console.log('State.savedState.totalCars', State.savedState.totalCars);
+
+  //   if (totalCarsGarage < State.savedState.totalCars) {
+  //     pagination.nextBtn?.removeAttribute('disabled');
+  //   } else {
+  //     pagination.nextBtn?.setAttribute('disabled', 'disabled');
+  //   }
+  // }
+
+  public getCars = async (): Promise<void> => {
     const baseUrl = 'http://127.0.0.1:3000';
     const path = Path.Garage;
 
-    const limit = 7;
-    const currentPage = State.savedState.pageNum;
+    const limit = State.savedState.pageLimitGarage;
+    const currentPage = State.savedState.pageNumGarage;
+
+    // this.handlePagination(currentPage);
     // const page: HTMLSpanElement | null = document.querySelector('.current-page');
     // if (HTMLSpanElement && page?.textContent) {
     //   currentPage = +page.textContent;
@@ -181,6 +210,8 @@ class GarageController {
     if (total) {
       State.savedState.totalCars = +total;
     }
+
+    // this.handlePagination(currentPage);
   };
 
   private createCar = async (): Promise<void> => {

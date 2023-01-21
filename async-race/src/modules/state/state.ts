@@ -2,7 +2,8 @@ import { ISavedState } from './state-i';
 
 class State {
   static savedState: ISavedState = {
-    pageNum: 1,
+    pageNumGarage: 1,
+    pageLimitGarage: 7,
     cars: [],
     totalCars: 0,
     page: 'garage',
@@ -11,6 +12,10 @@ class State {
     race: false,
     winnerFound: false,
     controller: {},
+    pageNumWinners: 1,
+    pageLimitWinners: 10,
+    winners: [],
+    totalWinners: 0,
   };
 }
 

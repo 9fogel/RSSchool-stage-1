@@ -246,4 +246,12 @@ button.stop-btn:disabled {
     background-color: #3B5F4F;
     // background-color: $bright-green;
   }
+
+  & button:disabled {
+    cursor: default;
+    color: $disabled-color;
+    background-color: $disabled-bg;
+    border: $disabled-border;
+    box-shadow: none;
+  }
 }
