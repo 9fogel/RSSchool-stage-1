@@ -1,4 +1,3 @@
-// import Controller from './controller/garageController';
 import Controller from './controller/controller';
 
 class App {
@@ -9,8 +8,14 @@ class App {
   }
 
   public start(): void {
-    this.controller.run();
-    // this.controller.getCars();
+    try {
+      this.controller.run();
+    } catch (err) {
+      if (err instanceof Error) {
+        console.log('Error', err.toString());
+      }
+    }
+    // this.controller.run();
   }
 }
 

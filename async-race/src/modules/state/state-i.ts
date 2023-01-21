@@ -9,4 +9,5 @@ export interface ISavedState {
   animation: { [key: string]: number };
   race: boolean;
   winnerFound: boolean;
+  controller: { [key: string]: AbortController };
 }

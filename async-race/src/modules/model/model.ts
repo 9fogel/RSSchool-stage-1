@@ -81,10 +81,15 @@ class Model {
     id: string,
     status: string,
     method: string,
+    signal: AbortSignal,
   ): Promise<ISwitch> {
     const response: Response = await fetch(`${baseUrl}${path}?id=${id}&status=${status}`, {
       method,
+      signal,
     });
+    if (!response.ok && response.status !== 500) {
+      console.log('Error', response);
+    }
 
     if (response.status === 500) {
       const result: ISwitch = { success: false };

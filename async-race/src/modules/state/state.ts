@@ -10,6 +10,7 @@ class State {
     animation: {},
     race: false,
     winnerFound: false,
+    controller: {},
   };
 }
 

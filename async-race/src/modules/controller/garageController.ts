@@ -272,7 +272,7 @@ class GarageController {
       const duration = distance / velocity;
       // Animation.start(id, duration);
       // await this.switchEngine(id);
-      this.switchEngine(id);
+      this.switchEngine(id).catch(console.log);
       Animation.start(id, duration);
     }
   };
@@ -283,7 +283,11 @@ class GarageController {
     const status = 'drive';
     const method = 'PATCH';
 
-    const result = await this.model.switchEngine(baseUrl, path, id, status, method);
+    const controller = new AbortController();
+    const { signal } = controller;
+    State.savedState.controller[id] = controller;
+
+    const result = await this.model.switchEngine(baseUrl, path, id, status, method, signal);
     console.log(result.success);
     if (!result.success) {
       cancelAnimationFrame(State.savedState.animation[id]);
@@ -306,6 +310,7 @@ class GarageController {
     const method = 'PATCH';
 
     await this.model.startStopCar(baseUrl, path, id, status, method);
+    State.savedState.controller[id].abort();
 
     this.handleDriveBtn(id, 'enable');
     this.handleStopBtn(id, 'disable');
