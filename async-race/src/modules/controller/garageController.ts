@@ -349,7 +349,7 @@ class GarageController {
     raceIDs.forEach((id, index) => {
       if (id) {
         this.handleDriveBtn(id, 'disable');
-        this.switchEngine(id);
+        this.switchEngine(id).catch(console.log);
         Animation.start(id, durationArr[index]);
       }
     });
@@ -368,6 +368,7 @@ class GarageController {
           const method = 'PATCH';
 
           await this.model.startStopCar(baseUrl, path, id, status, method);
+          State.savedState.controller[id].abort();
           cancelAnimationFrame(State.savedState.animation[id]);
         }
         this.garage.setCarInitialPosition(id);
