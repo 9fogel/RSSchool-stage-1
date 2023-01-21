@@ -351,18 +351,26 @@ class GarageController {
   };
 
   private resetRace = async (): Promise<void> => {
-    State.savedState.race = false;
-    State.savedState.winnerFound = false;
     this.disableBtn('reset');
     this.enableBtn('race');
     const raceIDs = State.savedState.cars.map((car) => car?.id.toString());
-    raceIDs.forEach((id) => {
+    raceIDs.forEach(async (id) => {
       if (id) {
+        if (State.savedState.race) {
+          const baseUrl = 'http://127.0.0.1:3000';
+          const path = Path.Engine;
+          const status = 'stopped';
+          const method = 'PATCH';
+
+          await this.model.startStopCar(baseUrl, path, id, status, method);
+          cancelAnimationFrame(State.savedState.animation[id]);
+        }
         this.garage.setCarInitialPosition(id);
         this.handleDriveBtn(id, 'enable');
-        // TODO: дописать функционал из stopCar? для остановки по кнопке до финиша
       }
     });
+    State.savedState.race = false;
+    State.savedState.winnerFound = false;
   };
 
   private showWinnerPopup(name: string, id: string): void {
