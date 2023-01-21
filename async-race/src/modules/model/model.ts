@@ -1,4 +1,5 @@
-import { Path, ICar, ISwitch } from '../types.ts/types';
+import { ISwitch } from './model-i';
+import { Path, ICar } from '../types.ts/types';
 
 class Model {
   public async getGarage(

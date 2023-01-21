@@ -1,4 +1,4 @@
-import { ISavedState } from '../types.ts/types';
+import { ISavedState } from './state-i';
 
 class State {
   static savedState: ISavedState = {

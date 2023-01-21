@@ -1,4 +1,5 @@
-import { ICar, ISavedState } from '../types.ts/types';
+import { ICar } from '../types.ts/types';
+import { ISavedState } from '../state/state-i';
 import State from '../state/state';
 
 class Garage {
@@ -18,10 +19,8 @@ class Garage {
   }
 
   public setCarInitialPosition(id: string) {
-    console.log(id);
     const initialPosition = 0;
     const stoppedCar: HTMLElement | null = document.getElementById(`car-image-${id}`);
-    console.log(stoppedCar);
     if (stoppedCar) {
       stoppedCar.style.transform = `translateX(${initialPosition})`;
     }
