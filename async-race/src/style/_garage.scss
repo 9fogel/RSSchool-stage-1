@@ -28,6 +28,14 @@
   outline-color: $bright-green;
 }
 
+.garage-input[type=text] {
+
+  @media (max-width: 600px) {
+    width: 232px;
+  }
+
+}
+
 .color-input {
   padding: 2px;
   height: 44px;
@@ -48,15 +56,16 @@
 .edit-btn {
   width: 140px;
   color: $dark-green;
-  // background-color: #3B5F4F;
   background-color: transparent;
   border: 2px solid $dark-green;
-  // background-color: $light-green;
+
+  @media (max-width: 600px) {
+    width: 126px;
+  }
 }
 
 .edit-btn:hover {
   background-color: #3B5F4F;
-  // background-color: $bright-green;
 }
 
 .race-wrapper {
@@ -85,6 +94,18 @@
 
 .generate-btn {
   margin-left: 4px;
+
+  @media (max-width: 600px) {
+    margin-left: 0;
+  }
+}
+
+.generate-btn:disabled {
+  margin-left: 0;
+
+  @media (max-width: 600px) {
+    padding: 4px 31px;
+  }
 }
 
 .generate-btn:hover {
@@ -96,20 +117,33 @@
   width: 40%;
   height: 200px;
   left: 50%;
-  // top: 10%;
   top: 150px;
   transform: translateX(-50%);
   text-align: center;
 
-  // @media (max-width: 1200px) {
-  //   top: 150px;
-  // }
+  @media (max-width: 720px) {
+    width: 50%;
+  }
+
+  @media (max-width: 600px) {
+    left: 70%;
+    top: 170px;
+  }
 }
 
 .winner-text {
   margin: 20px auto;
   font-size: 36px;
   color: $bright-green;
+
+  @media (max-width: 1000px) {
+    font-size: 24px;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 16px;
+    font-weight: 600;
+  }
 }
 
 .page-title {
@@ -168,6 +202,14 @@ button.remove-btn:hover {
   position: relative;
   display: flex;
   gap: 24px;
+
+  @media (max-width: 720px) {
+    gap: 12px;
+  }
+
+  @media (max-width: 600px) {
+    gap: 6px;
+  }
 }
 
 .car-drive-controls {
@@ -229,6 +271,10 @@ button.stop-btn:disabled {
   right: 10%;
   width: 60px;
   height: 60px;
+
+  @media (max-width: 600px) {
+    right: 15%;
+  }
 }
 
 .pagination {
