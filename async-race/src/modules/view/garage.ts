@@ -1,8 +1,9 @@
 import { ICar } from '../types.ts/types';
 import { ISavedState } from '../state/state-i';
 import State from '../state/state';
+import { IGarage } from './view-i';
 
-class Garage {
+class Garage implements IGarage {
   public render(): void {
     const main: HTMLElement | null = document.querySelector('.main');
     if (main) {
@@ -18,7 +19,7 @@ class Garage {
     }
   }
 
-  public setCarInitialPosition(id: string) {
+  public setCarInitialPosition(id: string): void {
     const initialPosition = 0;
     const stoppedCar: HTMLElement | null = document.getElementById(`car-image-${id}`);
     if (stoppedCar) {

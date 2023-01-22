@@ -2,9 +2,9 @@ import State from '../state/state';
 import View from '../view/appView';
 import GarageController from './garageController';
 import WinnersController from './winnersControler';
-import { TElements } from './controller-i';
+import { TElements, IPagination } from './controller-i';
 
-class Pagination {
+class Pagination implements IPagination {
   private readonly view: View;
 
   private readonly garage: GarageController;

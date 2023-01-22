@@ -1,4 +1,6 @@
-class Winners {
+import { IWinners } from './view-i';
+
+class Winners implements IWinners {
   public render(): void {
     const main: HTMLElement | null = document.querySelector('.main');
     if (main) {

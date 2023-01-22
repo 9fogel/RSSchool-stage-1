@@ -1,7 +1,8 @@
 import Winners from '../view/winners';
 import Model from '../model/model';
+import { IWinnersController } from './controller-i';
 
-class WinnersController {
+class WinnersController implements IWinnersController {
   private readonly winners: Winners;
 
   private readonly model: Model;

@@ -1,4 +1,4 @@
-import { ICarMakeModel } from '../types.ts/types';
+import { ICarMakeModel } from './utils-i';
 
 class Randomizer {
   public static generateCarsData(): Array<{ [key: string]: string }> {

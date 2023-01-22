@@ -1,6 +1,7 @@
 import State from '../state/state';
+import { IView } from './view-i';
 
-class View {
+class View implements IView {
   public render(): void {
     this.renderHeader();
     this.renderMain();
@@ -29,7 +30,7 @@ class View {
     return pagination;
   }
 
-  public renderFooter(pageSelected: string): void {
+  private renderFooter(pageSelected: string): void {
     // const { body } = document;
     // const paginationWrap: HTMLElement | null = document.querySelector('.pagination');
     // if (body && paginationWrap) {
