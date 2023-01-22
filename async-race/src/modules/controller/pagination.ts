@@ -31,38 +31,23 @@ class Pagination implements IPagination {
     const pagination: TElements = {
       previousBtn: document.querySelector('.previous-btn'),
       curPage: document.querySelector('.current-page'),
-      totalPages: document.querySelector('.total-pages'),
       nextBtn: document.querySelector('.next-btn'),
     };
-
-    if (pagination.curPage && pagination.totalPages) {
-      let maxItems;
-      let totalItems;
+    if (pagination.curPage) {
       if (page === 'garage') {
         pagination.curPage.textContent = State.savedState.pageNumGarage.toString();
-        const totalPages = Math.ceil(State.savedState.totalCars / State.savedState.pageLimitGarage);
-        pagination.totalPages.textContent = (totalPages || 1).toString();
-        maxItems = State.savedState.pageNumGarage * State.savedState.pageLimitGarage;
-        totalItems = State.savedState.totalCars;
       } else {
         pagination.curPage.textContent = State.savedState.pageNumWinners.toString();
-        const totalPages = Math.ceil(
-          State.savedState.totalWinners / State.savedState.pageLimitWinners,
-        );
-        pagination.totalPages.textContent = (totalPages || 1).toString();
-        maxItems = State.savedState.pageNumWinners * State.savedState.pageLimitWinners;
-        totalItems = State.savedState.totalWinners;
       }
-
-      if (+pagination.curPage.textContent > 1) {
+      if (State.savedState.pageNumGarage > 1) {
         pagination.previousBtn?.removeAttribute('disabled');
       } else {
         pagination.previousBtn?.setAttribute('disabled', 'disabled');
       }
-      if (maxItems < totalItems) {
-        pagination.nextBtn?.removeAttribute('disabled');
-      } else {
+      if (State.isLastPage(page)) {
         pagination.nextBtn?.setAttribute('disabled', 'disabled');
+      } else {
+        pagination.nextBtn?.removeAttribute('disabled');
       }
     }
 

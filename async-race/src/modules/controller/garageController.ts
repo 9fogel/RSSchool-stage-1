@@ -168,34 +168,6 @@ class GarageController {
     console.log('maxPages', maxPages);
   }
 
-  // private async updatePagination() {
-  //   const pagination: TElements = {
-  //     previousBtn: document.querySelector('.previous-btn'),
-  //     curPage: document.querySelector('.current-page'),
-  //     totalPages: document.querySelector('.total-pages'),
-  //     nextBtn: document.querySelector('.next-btn'),
-  //   };
-
-  //   if (pagination.curPage?.textContent && pagination.totalPages?.textContent) {
-  //     const maxItems = +pagination.curPage.textContent * State.savedState.pageLimitGarage;
-  //     console.log('maxItems', maxItems);
-  //     console.log('State.savedState.totalCars', State.savedState.totalCars);
-  //     if (maxItems < State.savedState.totalCars) {
-  //       pagination.nextBtn?.removeAttribute('disabled');
-  //     }
-  //     // if (maxItems === State.savedState.totalCars) {
-  //     //   pagination.nextBtn?.setAttribute('disabled', 'disabled');
-  //     // }
-  //     if (maxItems > State.savedState.totalCars) {
-  //       const newPageNum = Math.ceil(maxItems / State.savedState.totalCars);
-  //       pagination.curPage.textContent = newPageNum.toString();
-  //       State.savedState.pageNumGarage = newPageNum;
-  //       pagination.totalPages.textContent = newPageNum.toString();
-  //       await this.getCars();
-  //     }
-  //   }
-  // }
-
   private rememberId(event?: Event): string {
     let id = '';
     if (event?.target instanceof HTMLElement) {
@@ -247,10 +219,11 @@ class GarageController {
 
     await this.model.createCar(baseUrl, path, method, body, headers);
     this.garage.clearGaragePage();
-    // this.view.renderFooter('garage');
     this.run();
     // await this.run();
-    // this.updatePagination();
+    if (!State.isLastPage('garage')) {
+      this.enableBtn('next');
+    }
   };
 
   private updateCar = async (): Promise<void> => {
@@ -290,13 +263,16 @@ class GarageController {
 
     await this.model.deleteCar(baseUrl, path, id, method);
     this.garage.clearGaragePage();
-    // this.updatePagination();
-    // await this.run();
     this.run();
+    // await this.run();
+    if (!State.isLastPage('garage')) {
+      this.enableBtn('next');
+    } else {
+      this.disableBtn('next');
+    }
   };
 
   private startCar = async (event?: Event, carId?: number): Promise<void> => {
-    // const id = event ? this.rememberId(event) : carId?.toString();
     const id = this.rememberId(event) ?? carId?.toString();
     if (id) {
       this.handleStopBtn(id, 'enable');
@@ -380,10 +356,6 @@ class GarageController {
     // await this.run();
     this.run();
     this.enableBtn('next');
-    console.log(State.savedState.race);
-    console.log(State.savedState.winnerFound);
-    // TODO: update pagination(total pages);
-    // this.updateTotalPages(); //doesn't work correctly - remove total-pages?
 
     return generatePromises;
   };
@@ -393,6 +365,8 @@ class GarageController {
     this.disableBtn('race');
     this.disableBtn('generate');
     this.enableBtn('reset');
+    this.disableBtn('previous');
+    this.disableBtn('next');
 
     const baseUrl = 'http://127.0.0.1:3000';
     const path = Path.Engine;
@@ -411,6 +385,7 @@ class GarageController {
         status,
         method,
       );
+
       return { velocity, distance };
     });
 
@@ -430,6 +405,12 @@ class GarageController {
     this.disableBtn('reset');
     this.enableBtn('race');
     this.enableBtn('generate');
+    if (State.savedState.pageNumGarage !== 1) {
+      this.enableBtn('previous');
+    }
+    if (!State.isLastPage('garage')) {
+      this.enableBtn('next');
+    }
     const raceIDs = State.savedState.cars.map((car) => car?.id.toString());
     raceIDs.forEach(async (id) => {
       if (id) {
@@ -438,7 +419,6 @@ class GarageController {
           const path = Path.Engine;
           const status = 'stopped';
           const method = 'PATCH';
-
           await this.model.startStopCar(baseUrl, path, id, status, method);
           State.savedState.controller[id].abort();
           cancelAnimationFrame(State.savedState.animation[id]);
