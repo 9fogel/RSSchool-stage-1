@@ -11,6 +11,7 @@ export interface ISavedState {
   race: boolean;
   winnerFound: boolean;
   controller: { [key: string]: AbortController };
+  duration: { [key: string]: number };
   pageNumWinners: number;
   pageLimitWinners: 10;
   winners: Array<IWinner | undefined>;

@@ -12,6 +12,7 @@ class State {
     race: false,
     winnerFound: false,
     controller: {},
+    duration: {},
     pageNumWinners: 1,
     pageLimitWinners: 10,
     winners: [],
