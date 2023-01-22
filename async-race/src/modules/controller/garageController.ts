@@ -5,6 +5,7 @@ import Animation from '../utils/animation';
 import { TButtons, TElements } from './controller-i';
 import { Path } from '../types.ts/types';
 import View from '../view/appView';
+import Randomizer from '../utils/random';
 
 class GarageController {
   private readonly garage: Garage;
@@ -117,6 +118,7 @@ class GarageController {
 
     buttons.raceBtn?.addEventListener('click', this.raceAll);
     buttons.resetBtn?.addEventListener('click', this.resetRace);
+    buttons.generateBtn?.addEventListener('click', this.generateCars);
   }
 
   private listenDriveControls(): void {
@@ -154,6 +156,16 @@ class GarageController {
         this.deleteCar(event);
       });
     });
+  }
+
+  private updateTotalPages() {
+    const totalPages = document.querySelector('total-pages');
+    const maxPages = Math.ceil(State.savedState.totalCars / State.savedState.pageLimitGarage);
+    if (totalPages?.textContent) {
+      totalPages.textContent = maxPages.toString();
+    }
+    console.log('totalPages', totalPages);
+    console.log('maxPages', maxPages);
   }
 
   // private async updatePagination() {
@@ -350,6 +362,28 @@ class GarageController {
     this.handleStopBtn(id, 'disable');
     cancelAnimationFrame(State.savedState.animation[id]);
     this.garage.setCarInitialPosition(id);
+  };
+
+  private generateCars = async (): Promise<Promise<void>[]> => {
+    const dataArr = Randomizer.generateCarsData();
+
+    const baseUrl = 'http://127.0.0.1:3000';
+    const path = Path.Garage;
+    const method = 'POST';
+    const headers = { 'Content-Type': 'application/json' };
+    const generatePromises: Promise<void>[] = dataArr.map(async (car) => {
+      const body = JSON.stringify(car);
+      await this.model.createCar(baseUrl, path, method, body, headers);
+    });
+
+    this.garage.clearGaragePage();
+    await this.run();
+    this.enableBtn('next');
+    console.log(State.savedState.totalCars);
+    // TODO: update pagination(total pages);
+    // this.updateTotalPages(); //doesn't work correctly - remove total-pages?
+
+    return generatePromises;
   };
 
   private raceAll = async (): Promise<void> => {

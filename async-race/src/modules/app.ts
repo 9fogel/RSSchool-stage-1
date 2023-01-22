@@ -15,7 +15,6 @@ class App {
         console.log('Error', err.toString());
       }
     }
-    // this.controller.run();
   }
 }
 

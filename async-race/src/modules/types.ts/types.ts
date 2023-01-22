@@ -15,3 +15,5 @@ export interface IWinner {
   wins: number;
   time: number;
 }
+
+export type ICarMakeModel = { [key: string]: Array<string> };

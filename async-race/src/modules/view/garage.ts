@@ -119,7 +119,7 @@ class Garage {
     <div class="race-wrapper">
       ${this.renderButton('race')}
       ${this.renderButton('reset')}
-      <button class="generate-btn" disabled>Generate cars</button>
+      <button class="generate-btn">Generate cars</button>
     </div>
 
     ${this.renderWinnerPopUp()}
