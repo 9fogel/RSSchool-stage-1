@@ -16,6 +16,7 @@ class GarageController {
   }
 
   public async run(): Promise<void> {
+    this.garage.clearGaragePage();
     await this.getCars();
     this.garage.render();
     this.disableUpdate();
@@ -163,45 +164,12 @@ class GarageController {
     return id;
   }
 
-  // private handlePagination(page: number) {
-  //   const pagination: TElements = {
-  //     previousBtn: document.querySelector('.previous-btn'),
-  //     curPage: document.querySelector('.current-page'),
-  //     totalPages: document.querySelector('.total-pages'),
-  //     nextBtn: document.querySelector('.next-btn'),
-  //   };
-  //   console.log(pagination.previousBtn);
-
-  //   if (page > 1) {
-  //     pagination.previousBtn?.removeAttribute('disabled');
-  //   } else {
-  //     pagination.previousBtn?.setAttribute('disabled', 'disabled');
-  //   }
-
-  //   const totalCarsGarage = State.savedState.pageNumGarage * State.savedState.pageLimitGarage;
-  //   console.log('totalCarsGarage', totalCarsGarage);
-  //   console.log(pagination.nextBtn);
-  //   console.log('State.savedState.totalCars', State.savedState.totalCars);
-
-  //   if (totalCarsGarage < State.savedState.totalCars) {
-  //     pagination.nextBtn?.removeAttribute('disabled');
-  //   } else {
-  //     pagination.nextBtn?.setAttribute('disabled', 'disabled');
-  //   }
-  // }
-
   public getCars = async (): Promise<void> => {
     const baseUrl = 'http://127.0.0.1:3000';
     const path = Path.Garage;
 
     const limit = State.savedState.pageLimitGarage;
     const currentPage = State.savedState.pageNumGarage;
-
-    // this.handlePagination(currentPage);
-    // const page: HTMLSpanElement | null = document.querySelector('.current-page');
-    // if (HTMLSpanElement && page?.textContent) {
-    //   currentPage = +page.textContent;
-    // }
 
     const { cars, total } = await this.model.getGarage(baseUrl, path, currentPage, limit);
 
@@ -210,8 +178,6 @@ class GarageController {
     if (total) {
       State.savedState.totalCars = +total;
     }
-
-    // this.handlePagination(currentPage);
   };
 
   private createCar = async (): Promise<void> => {
