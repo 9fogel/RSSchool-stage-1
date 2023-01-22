@@ -30,19 +30,11 @@ class View {
   }
 
   public renderFooter(pageSelected: string): void {
-    // let currentPage;
-    // let totalPages;
-    // if (pageSelected === 'garage') {
-    //   currentPage = State.savedState.pageNumGarage;
-    //   totalPages = State.savedState.totalCars
-    //     ? Math.ceil(State.savedState.totalCars / State.savedState.pageLimitGarage)
-    //     : 1;
-    // }
-    // if (pageSelected === 'winners') {
-    //   currentPage = State.savedState.pageNumWinners;
-    //   totalPages = State.savedState.totalWinners
-    //     ? Math.ceil(State.savedState.totalWinners / State.savedState.pageLimitWinners)
-    //     : 1;
+    // const { body } = document;
+    // const paginationWrap: HTMLElement | null = document.querySelector('.pagination');
+    // if (body && paginationWrap) {
+    //   console.log('old footer deleted');
+    //   body.removeChild(paginationWrap);
     // }
     const footer = `<footer class="pagination container">
     ${this.renderPagination(pageSelected)}

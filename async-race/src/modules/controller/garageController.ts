@@ -4,15 +4,19 @@ import State from '../state/state';
 import Animation from '../utils/animation';
 import { TButtons, TElements } from './controller-i';
 import { Path } from '../types.ts/types';
+import View from '../view/appView';
 
 class GarageController {
   private readonly garage: Garage;
 
   private readonly model: Model;
 
+  private readonly view: View;
+
   constructor() {
     this.garage = new Garage();
     this.model = new Model();
+    this.view = new View();
   }
 
   public async run(): Promise<void> {
@@ -152,6 +156,34 @@ class GarageController {
     });
   }
 
+  // private async updatePagination() {
+  //   const pagination: TElements = {
+  //     previousBtn: document.querySelector('.previous-btn'),
+  //     curPage: document.querySelector('.current-page'),
+  //     totalPages: document.querySelector('.total-pages'),
+  //     nextBtn: document.querySelector('.next-btn'),
+  //   };
+
+  //   if (pagination.curPage?.textContent && pagination.totalPages?.textContent) {
+  //     const maxItems = +pagination.curPage.textContent * State.savedState.pageLimitGarage;
+  //     console.log('maxItems', maxItems);
+  //     console.log('State.savedState.totalCars', State.savedState.totalCars);
+  //     if (maxItems < State.savedState.totalCars) {
+  //       pagination.nextBtn?.removeAttribute('disabled');
+  //     }
+  //     // if (maxItems === State.savedState.totalCars) {
+  //     //   pagination.nextBtn?.setAttribute('disabled', 'disabled');
+  //     // }
+  //     if (maxItems > State.savedState.totalCars) {
+  //       const newPageNum = Math.ceil(maxItems / State.savedState.totalCars);
+  //       pagination.curPage.textContent = newPageNum.toString();
+  //       State.savedState.pageNumGarage = newPageNum;
+  //       pagination.totalPages.textContent = newPageNum.toString();
+  //       await this.getCars();
+  //     }
+  //   }
+  // }
+
   private rememberId(event?: Event): string {
     let id = '';
     if (event?.target instanceof HTMLElement) {
@@ -203,7 +235,10 @@ class GarageController {
 
     await this.model.createCar(baseUrl, path, method, body, headers);
     this.garage.clearGaragePage();
+    // this.view.renderFooter('garage');
     this.run();
+    // await this.run();
+    // this.updatePagination();
   };
 
   private updateCar = async (): Promise<void> => {
@@ -243,6 +278,8 @@ class GarageController {
 
     await this.model.deleteCar(baseUrl, path, id, method);
     this.garage.clearGaragePage();
+    // this.updatePagination();
+    // await this.run();
     this.run();
   };
 

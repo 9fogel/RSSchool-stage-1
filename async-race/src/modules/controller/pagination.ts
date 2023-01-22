@@ -17,7 +17,7 @@ class Pagination {
     this.winners = new WinnersController();
   }
 
-  public refreshPagination(page: string) {
+  public refreshPagination(page: string): void {
     const pagination = document.querySelector('.pagination');
     if (pagination) {
       pagination.innerHTML = '';
@@ -26,7 +26,7 @@ class Pagination {
     this.handlePagination(page);
   }
 
-  private async handlePagination(page: string) {
+  private async handlePagination(page: string): Promise<void> {
     await this.garage.getCars();
     const pagination: TElements = {
       previousBtn: document.querySelector('.previous-btn'),
@@ -74,30 +74,28 @@ class Pagination {
     });
   }
 
-  private switchToNextPage(page: string) {
+  private async switchToNextPage(page: string): Promise<void> {
     if (page === 'garage') {
       State.savedState.pageNumGarage += 1;
-      this.garage.run();
+      await this.garage.run();
       this.refreshPagination(page);
     } else {
       State.savedState.pageNumWinners += 1;
-      this.winners.run();
+      await this.winners.run();
       this.refreshPagination(page);
     }
-    // this.run();
   }
 
-  private switchToPreviousPage(page: string) {
+  private async switchToPreviousPage(page: string): Promise<void> {
     if (page === 'garage') {
       State.savedState.pageNumGarage -= 1;
-      this.garage.run();
+      await this.garage.run();
       this.refreshPagination(page);
     } else {
       State.savedState.pageNumWinners -= 1;
-      this.winners.run();
+      await this.winners.run();
       this.refreshPagination(page);
     }
-    // this.run();
   }
 }
 
