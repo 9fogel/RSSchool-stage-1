@@ -83,18 +83,27 @@
   background-color: transparent;
 }
 
+.generate-btn {
+  margin-left: 4px;
+}
+
 .generate-btn:hover {
-  background-color: $bright-green;
+  background-color: $dark-green;
 }
 
 .winner-popup {
   position: absolute;
-  width: 30%;
+  width: 40%;
   height: 200px;
   left: 50%;
-  top: 10%;
+  // top: 10%;
+  top: 150px;
   transform: translateX(-50%);
   text-align: center;
+
+  // @media (max-width: 1200px) {
+  //   top: 150px;
+  // }
 }
 
 .winner-text {

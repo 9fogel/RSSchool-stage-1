@@ -377,9 +377,11 @@ class GarageController {
     });
 
     this.garage.clearGaragePage();
-    await this.run();
+    // await this.run();
+    this.run();
     this.enableBtn('next');
-    console.log(State.savedState.totalCars);
+    console.log(State.savedState.race);
+    console.log(State.savedState.winnerFound);
     // TODO: update pagination(total pages);
     // this.updateTotalPages(); //doesn't work correctly - remove total-pages?
 
@@ -389,6 +391,7 @@ class GarageController {
   private raceAll = async (): Promise<void> => {
     State.savedState.race = true;
     this.disableBtn('race');
+    this.disableBtn('generate');
     this.enableBtn('reset');
 
     const baseUrl = 'http://127.0.0.1:3000';
@@ -426,6 +429,7 @@ class GarageController {
   private resetRace = async (): Promise<void> => {
     this.disableBtn('reset');
     this.enableBtn('race');
+    this.enableBtn('generate');
     const raceIDs = State.savedState.cars.map((car) => car?.id.toString());
     raceIDs.forEach(async (id) => {
       if (id) {
