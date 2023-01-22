@@ -29,10 +29,10 @@ const baseConfig = {
       extensions: 'ts',
     }),
     new CleanWebpackPlugin({
-      // cleanOnceBeforeBuildPatterns: [ //TODO: раскомментить перед деплоем
-      //   '**/*',
-      //   '!.git',
-      // ],
+      cleanOnceBeforeBuildPatterns: [ //TODO: раскомментить перед деплоем
+        '**/*',
+        '!.git',
+      ],
     }),
   ],
   module: {
