@@ -10,7 +10,7 @@ const baseConfig = {
   entry: path.resolve(__dirname, 'src', 'index.ts'),
   mode: 'development',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist', 'async-race'),
     // assetModuleFilename: 'assets/[hash][ext]',// or 'assets/[name][ext]' to save initial names
   },
   // devServer: {
