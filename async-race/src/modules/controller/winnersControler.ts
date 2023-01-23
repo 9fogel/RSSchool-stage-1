@@ -56,7 +56,9 @@ class WinnersController implements IWinnersController {
     let winsCount = (await this.hasWonBefore(id)).wins;
 
     if (winsCount) {
+      console.log('existing winner');
       winsCount += 1;
+      this.updateWinner(id, winsCount, timeSec);
       // TODO: update existing winner
     } else {
       console.log('first win');
@@ -74,8 +76,6 @@ class WinnersController implements IWinnersController {
     }
 
     State.savedState.winnersFullDetails[id] = [name, color, winsCount, timeSec];
-    console.log(State.savedState.winnersFullDetails);
-    console.log(State.savedState);
   };
 
   private hasWonBefore = async (id: string): Promise<IWinner> => {
@@ -87,8 +87,23 @@ class WinnersController implements IWinnersController {
     return result;
   };
 
-  // private updateWinner(id: string) {
-  //   console.log('update id', id);
+  private updateWinner = async (carId: string, winsCount: number, timeSec: number) => {
+    // console.log('update', carId, winsCount, timeSec);
+    const bodyData = { wins: winsCount, time: timeSec };
+
+    const baseUrl = 'http://127.0.0.1:3000';
+    const path = Path.Winners;
+    const body = JSON.stringify(bodyData);
+    const method = 'PUT';
+    const headers = { 'Content-Type': 'application/json' };
+    const id = carId;
+
+    await this.model.updateWinner(baseUrl, path, method, body, headers, id);
+    console.log('winner updated');
+  };
+
+  // private deleteWinner(id: string) {
+  //   console.log('delete from winners as well', id);
   // }
 }
 
