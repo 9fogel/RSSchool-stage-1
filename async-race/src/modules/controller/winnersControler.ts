@@ -52,16 +52,17 @@ class WinnersController implements IWinnersController {
     const timeMs = State.savedState.duration[id];
     const timeSec = timeMs / 1000;
 
-    let winsCount = (await this.hasWonBefore(id)).wins;
+    let { wins, time } = await this.hasWonBefore(id);
 
-    if (winsCount) {
+    if (wins) {
       console.log('existing winner');
-      winsCount += 1;
-      this.updateWinner(id, winsCount, timeSec);
+      wins += 1;
+      time = time < timeSec ? time : timeSec;
+      this.updateWinner(id, wins, time);
     } else {
       console.log('first win');
-      winsCount = 1;
-      const bodyData = { id: carId, wins: winsCount, time: timeSec };
+      wins = 1;
+      const bodyData = { id: carId, wins, time: timeSec };
 
       const baseUrl = 'http://127.0.0.1:3000';
       const path = Path.Winners;
@@ -73,7 +74,16 @@ class WinnersController implements IWinnersController {
       console.log('winner created');
     }
 
-    State.savedState.winnersFullDetails[id] = [name, color, winsCount, timeSec];
+    State.savedState.winnersFullDetails[id] = [name, color, wins, timeSec];
+  };
+
+  public deleteWinner = async (id: string): Promise<void> => {
+    const baseUrl = 'http://127.0.0.1:3000';
+    const path = Path.Winners;
+    const method = 'DELETE';
+    await this.model.deleteWinner(baseUrl, path, id, method);
+    delete State.savedState.winnersFullDetails[id];
+    console.log('deleted from winners as well');
   };
 
   private hasWonBefore = async (id: string): Promise<IWinner> => {
@@ -85,9 +95,12 @@ class WinnersController implements IWinnersController {
     return result;
   };
 
-  private updateWinner = async (carId: string, winsCount: number, timeSec: number) => {
+  private updateWinner = async (
+    carId: string,
+    winsCount: number,
+    timeSec: number,
+  ): Promise<void> => {
     const bodyData = { wins: winsCount, time: timeSec };
-    // TODO: update best time only
 
     const baseUrl = 'http://127.0.0.1:3000';
     const path = Path.Winners;
@@ -98,15 +111,6 @@ class WinnersController implements IWinnersController {
 
     await this.model.updateWinner(baseUrl, path, method, body, headers, id);
     console.log('winner updated');
-  };
-
-  public deleteWinner = async (id: string) => {
-    const baseUrl = 'http://127.0.0.1:3000';
-    const path = Path.Winners;
-    const method = 'DELETE';
-    await this.model.deleteWinner(baseUrl, path, id, method);
-    delete State.savedState.winnersFullDetails[id];
-    console.log('deleted from winners as well');
   };
 }
 

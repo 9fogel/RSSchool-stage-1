@@ -15,4 +15,5 @@ export interface IWinnersController {
   rerenderWinners(): void;
   getWinners: () => Promise<void>;
   createWinner: (id: string, name: string, color: string) => Promise<void>;
+  deleteWinner: (id: string) => Promise<void>;
 }
