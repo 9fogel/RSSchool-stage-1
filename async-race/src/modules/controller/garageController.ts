@@ -256,7 +256,7 @@ class GarageController {
     const method = 'DELETE';
 
     await this.model.deleteCar(baseUrl, path, id, method);
-    // TODO: удалять из виннеров тоже
+    await this.winnersController.deleteWinner(id);
     this.garage.clearGaragePage();
     this.run();
     // await this.run();

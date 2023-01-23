@@ -2,7 +2,6 @@ import Winners from '../view/winners';
 import Model from '../model/model';
 import { IWinnersController } from './controller-i';
 import { IWinner, Path } from '../types.ts/types';
-// import { Path } from '../types.ts/types';
 import State from '../state/state';
 import Match from '../utils/matchCarWinner';
 
@@ -42,7 +41,6 @@ class WinnersController implements IWinnersController {
 
     const winnersArr = [...(await winners)];
     State.savedState.winners = winnersArr;
-    // console.log(State.savedState.winners);
     Match.createCarWinnerMatch();
     if (total) {
       State.savedState.totalWinners = +total;
@@ -102,9 +100,14 @@ class WinnersController implements IWinnersController {
     console.log('winner updated');
   };
 
-  // private deleteWinner(id: string) {
-  //   console.log('delete from winners as well', id);
-  // }
+  public deleteWinner = async (id: string) => {
+    const baseUrl = 'http://127.0.0.1:3000';
+    const path = Path.Winners;
+    const method = 'DELETE';
+    await this.model.deleteWinner(baseUrl, path, id, method);
+    delete State.savedState.winnersFullDetails[id];
+    console.log('deleted from winners as well');
+  };
 }
 
 export default WinnersController;

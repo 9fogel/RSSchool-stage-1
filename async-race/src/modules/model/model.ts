@@ -160,6 +160,20 @@ class Model implements IModel {
 
     return result;
   }
+
+  public async deleteWinner(
+    baseUrl: string,
+    path: Path,
+    id: string,
+    method: string,
+  ): Promise<object> {
+    const response: Response = await fetch(`${baseUrl}${path}/${id}`, {
+      method,
+    });
+    const result: object = await response.json();
+
+    return result;
+  }
 }
 
 export default Model;
