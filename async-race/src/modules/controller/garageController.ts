@@ -141,7 +141,7 @@ class GarageController {
     });
   }
 
-  private listenButtons(): void {
+  public listenButtons(): void {
     this.listenEditBtns();
     this.listenRaceBtns();
     this.listenDriveControls();
@@ -161,16 +161,6 @@ class GarageController {
       });
     });
   }
-
-  // private updateTotalPages() {
-  //   const totalPages = document.querySelector('total-pages');
-  //   const maxPages = Math.ceil(State.savedState.totalCars / State.savedState.pageLimitGarage);
-  //   if (totalPages?.textContent) {
-  //     totalPages.textContent = maxPages.toString();
-  //   }
-  //   console.log('totalPages', totalPages);
-  //   console.log('maxPages', maxPages);
-  // }
 
   private rememberId(event?: Event): string {
     let id = '';
@@ -459,42 +449,9 @@ class GarageController {
     }
   }
 
-  // private hasWonBefore(id: string): false | Array<IWinner | undefined> {
-  //   const winnerArr = State.savedState.winners.filter((winner) => winner?.id === +id);
-  //   if (winnerArr.length === 0) {
-  //     return false;
-  //   }
-  //   return winnerArr;
-  // }
-
   private redirectToWinners(id: string) {
     this.winnersController.createWinner(id);
   }
-
-  // private createWinner = async (id: string): Promise<void> => {
-  //   const carId = +id;
-  //   const timeMs = State.savedState.duration[id];
-  //   const timeSec = timeMs / 1000;
-  //   let winsCount;
-
-  //   if (this.hasWonBefore(id)) {
-  //     const array = this.hasWonBefore(id) as Array<IWinner>;
-  //     winsCount = array[0].wins;
-  //   } else {
-  //     winsCount = 1;
-  //   }
-
-  //   const bodyData = { id: carId, wins: winsCount, time: timeSec };
-  //   console.log(bodyData);
-
-  //   const baseUrl = 'http://127.0.0.1:3000';
-  //   const path = Path.Winners;
-  //   const body = JSON.stringify(bodyData);
-  //   const method = 'POST';
-  //   const headers = { 'Content-Type': 'application/json' };
-
-  //   await this.model.createWinner(baseUrl, path, method, body, headers);
-  // };
 }
 
 export default GarageController;

@@ -15,8 +15,8 @@ class WinnersController implements IWinnersController {
     this.model = new Model();
   }
 
-  public run(): void {
-    this.getWinners();
+  public async run(): Promise<void> {
+    // await this.getWinners();
     this.winners.render();
   }
 

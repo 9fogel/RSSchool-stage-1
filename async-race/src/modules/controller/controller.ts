@@ -23,13 +23,14 @@ class Controller implements IController {
     this.pagination = new Pagination();
   }
 
-  public run(): void {
+  public async run(): Promise<void> {
     this.view.render();
     this.listenNav();
+    await this.garage.getCars();
+    await this.winners.getWinners();
     this.garage.run();
     this.winners.run();
     this.pagination.refreshPagination(State.savedState.page);
-    // this.refreshPagination(State.savedState.page);
   }
 
   private listenNav(): void {
@@ -43,83 +44,7 @@ class Controller implements IController {
     });
   }
 
-  // private refreshPagination(page: string) {
-  //   const pagination = document.querySelector('.pagination');
-  //   if (pagination) {
-  //     pagination.innerHTML = '';
-  //     pagination.innerHTML = this.view.renderPagination(page);
-  //   }
-  //   this.handlePagination(page);
-  // }
-
-  // private async handlePagination(page: string) {
-  //   await this.garage.getCars();
-  //   const pagination: TElements = {
-  //     previousBtn: document.querySelector('.previous-btn'),
-  //     curPage: document.querySelector('.current-page'),
-  //     totalPages: document.querySelector('.total-pages'),
-  //     nextBtn: document.querySelector('.next-btn'),
-  //   };
-
-  //   if (pagination.curPage && pagination.totalPages) {
-  //     let maxItems;
-  //     let totalItems;
-  //     if (page === 'garage') {
-  //       pagination.curPage.textContent = State.savedState.pageNumGarage.toString();
-  //       const totalPages = Math.ceil(State.savedState.totalCars
-  // / State.savedState.pageLimitGarage);
-  //       pagination.totalPages.textContent = (totalPages || 1).toString();
-  //       maxItems = State.savedState.pageNumGarage * State.savedState.pageLimitGarage;
-  //       totalItems = State.savedState.totalCars;
-  //     } else {
-  //       pagination.curPage.textContent = State.savedState.pageNumWinners.toString();
-  //       const totalPages = Math.ceil(
-  //         State.savedState.totalWinners / State.savedState.pageLimitWinners,
-  //       );
-  //       pagination.totalPages.textContent = (totalPages || 1).toString();
-  //       maxItems = State.savedState.pageNumWinners * State.savedState.pageLimitWinners;
-  //       totalItems = State.savedState.totalWinners;
-  //     }
-
-  //     if (+pagination.curPage.textContent > 1) {
-  //       pagination.previousBtn?.removeAttribute('disabled');
-  //     } else {
-  //       pagination.previousBtn?.setAttribute('disabled', 'disabled');
-  //     }
-  //     if (maxItems < totalItems) {
-  //       pagination.nextBtn?.removeAttribute('disabled');
-  //     } else {
-  //       pagination.nextBtn?.setAttribute('disabled', 'disabled');
-  //     }
-  //   }
-
-  //   pagination.nextBtn?.addEventListener('click', () => {
-  //     this.switchToNextPage(page);
-  //   });
-  //   pagination.previousBtn?.addEventListener('click', () => {
-  //     this.switchToPreviousPage(page);
-  //   });
-  // }
-
-  // private switchToNextPage(page: string) {
-  //   if (page === 'garage') {
-  //     State.savedState.pageNumGarage += 1;
-  //   } else {
-  //     State.savedState.pageNumWinners += 1;
-  //   }
-  //   this.run();
-  // }
-
-  // private switchToPreviousPage(page: string) {
-  //   if (page === 'garage') {
-  //     State.savedState.pageNumGarage -= 1;
-  //   } else {
-  //     State.savedState.pageNumWinners -= 1;
-  //   }
-  //   this.run();
-  // }
-
-  private changeView(event: Event): void {
+  private async changeView(event: Event): Promise<void> {
     const garageWrap: HTMLElement | null = document.querySelector('.garage-wrapper');
     const winnersWrap: HTMLElement | null = document.querySelector('.winners-wrapper');
     if (garageWrap && winnersWrap) {
@@ -131,6 +56,8 @@ class Controller implements IController {
           // this.refreshPagination('garage');
           this.pagination.refreshPagination('garage');
         } else {
+          await this.winners.getWinners();
+          // this.winners.run();
           garageWrap.classList.add('hidden');
           winnersWrap.classList.remove('hidden');
           State.savedState.page = 'winners';

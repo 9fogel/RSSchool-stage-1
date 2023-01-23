@@ -95,17 +95,6 @@ class Garage implements IGarage {
     return tracks;
   }
 
-  // private renderPagination(pageNumGarage: number): string {
-  //   const pagination = `<div class="pagination">
-  //   ${this.renderButton('previous')}
-  //   <p>Page <span class="current-page">${pageNumGarage}</span>/
-  // <span class="total-pages">TOTAL</span></p>
-  //   ${this.renderButton('next')}
-  // </div>`;
-
-  //   return pagination;
-  // }
-
   private renderWinnerPopUp(): string {
     const winnerPopup = `<div class="winner-popup hidden">
     <div class="winner-text"></div>
@@ -132,7 +121,6 @@ class Garage implements IGarage {
     </div>
   </div>`;
     return mainContent;
-    // ${this.renderPagination(savedState.pageNumGarage)}
   }
 }
 

@@ -1,17 +1,22 @@
 import { IWinners } from './view-i';
+import { ISavedState } from '../state/state-i';
+import State from '../state/state';
+import { IWinner, ICar } from '../types.ts/types';
 
 class Winners implements IWinners {
   public render(): void {
+    console.log('render winners view');
     const main: HTMLElement | null = document.querySelector('.main');
     if (main) {
-      main.innerHTML += this.renderMain();
+      main.innerHTML += this.renderMain(State.savedState);
+      console.log('winners', State.savedState.winners);
     }
   }
 
-  private renderMain(): string {
+  private renderMain(savedState: ISavedState): string {
     const mainContent = `<div class="winners-wrapper hidden">
     <h2 class="page-title">Winners</h2>
-    ${this.renderTable()}
+    ${this.renderTable(savedState)}
   </div>`;
 
     return mainContent;
@@ -31,86 +36,35 @@ class Winners implements IWinners {
     return carImage;
   }
 
-  private renderTable(): string {
+  private renderRows(winners: Array<IWinner | undefined>, cars: Array<ICar | undefined>): string {
+    const rows = winners
+      .map((winner, index) => {
+        const carMatch = cars.filter((car) => car?.id === winner?.id);
+        console.log('carMatch', cars, carMatch);
+        return `<tr>
+    <th>${index + 1}</th>
+    <th>${this.renderCarImage(carMatch[0]?.color, winner?.id)}</th>
+    <th>${carMatch[0]?.name}, (id ${winner?.id})</th>
+    <th>${winner?.wins}</th>
+    <th>${winner?.time?.toFixed(2)}</th>
+  </tr>`;
+      })
+      .join('');
+
+    return rows;
+  }
+
+  private renderTable(savedState: ISavedState): string {
     const table = `<table class="winners-table">
     <thead>
       <th>№</th>
       <th>Car</th>
       <th>Name</th>
       <th>Wins</th>
-      <th>Time</th>
+      <th>Time, sec</th>
     </thead>
     <tbody>
-      <tr>
-        <th>№</th>
-        <th>${this.renderCarImage('green', 1)}</th>
-        <th>Name</th>
-        <th>Wins</th>
-        <th>Time</th>
-      </tr>
-      <tr>
-        <th>№</th>
-        <th>${this.renderCarImage('green', 1)}</th>
-        <th>Name</th>
-        <th>Wins</th>
-        <th>Time</th>
-      </tr>
-      <tr>
-        <th>№</th>
-        <th>Car</th>
-        <th>Name</th>
-        <th>Wins</th>
-        <th>Time</th>
-      </tr>
-      <tr>
-        <th>№</th>
-        <th>Car</th>
-        <th>Name</th>
-        <th>Wins</th>
-        <th>Time</th>
-      </tr>
-      <tr>
-        <th>№</th>
-        <th>Car</th>
-        <th>Name</th>
-        <th>Wins</th>
-        <th>Time</th>
-      </tr>
-      <tr>
-        <th>№</th>
-        <th>Car</th>
-        <th>Name</th>
-        <th>Wins</th>
-        <th>Time</th>
-      </tr>
-      <tr>
-        <th>№</th>
-        <th>Car</th>
-        <th>Name</th>
-        <th>Wins</th>
-        <th>Time</th>
-      </tr>
-      <tr>
-        <th>№</th>
-        <th>Car</th>
-        <th>Name</th>
-        <th>Wins</th>
-        <th>Time</th>
-      </tr>
-      <tr>
-        <th>№</th>
-        <th>Car</th>
-        <th>Name</th>
-        <th>Wins</th>
-        <th>Time</th>
-      </tr>
-      <tr>
-        <th>№</th>
-        <th>Car</th>
-        <th>Name</th>
-        <th>Wins</th>
-        <th>Time</th>
-      </tr>
+    ${this.renderRows(savedState.winners, savedState.cars)}
     </tbody>
   </table>`;
 
