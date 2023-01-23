@@ -74,6 +74,7 @@ class Pagination implements IPagination {
       State.savedState.pageNumWinners += 1;
       await this.winners.run();
       this.refreshPagination(page);
+      this.winners.rerenderWinners();
     }
   }
 
@@ -86,6 +87,7 @@ class Pagination implements IPagination {
       State.savedState.pageNumWinners -= 1;
       await this.winners.run();
       this.refreshPagination(page);
+      this.winners.rerenderWinners();
     }
   }
 }

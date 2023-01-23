@@ -214,7 +214,6 @@ class GarageController {
     await this.model.createCar(baseUrl, path, method, body, headers);
     this.garage.clearGaragePage();
     this.run();
-    // await this.run();
     if (!State.isLastPage('garage')) {
       this.enableBtn('next');
     }
@@ -259,7 +258,6 @@ class GarageController {
     await this.winnersController.deleteWinner(id);
     this.garage.clearGaragePage();
     this.run();
-    // await this.run();
     if (!State.isLastPage('garage')) {
       this.enableBtn('next');
     } else {
