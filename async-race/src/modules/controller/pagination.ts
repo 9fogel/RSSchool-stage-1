@@ -28,6 +28,7 @@ class Pagination implements IPagination {
 
   private async handlePagination(page: string): Promise<void> {
     await this.garage.getCars();
+    // await this.winners.getWinners();
     const pagination: TElements = {
       previousBtn: document.querySelector('.previous-btn'),
       curPage: document.querySelector('.current-page'),
@@ -40,6 +41,11 @@ class Pagination implements IPagination {
         pagination.curPage.textContent = State.savedState.pageNumWinners.toString();
       }
       if (State.savedState.pageNumGarage > 1) {
+        pagination.previousBtn?.removeAttribute('disabled');
+      } else {
+        pagination.previousBtn?.setAttribute('disabled', 'disabled');
+      }
+      if (State.savedState.pageNumWinners > 1) {
         pagination.previousBtn?.removeAttribute('disabled');
       } else {
         pagination.previousBtn?.setAttribute('disabled', 'disabled');
