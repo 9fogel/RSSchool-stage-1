@@ -16,6 +16,7 @@ class State {
     pageNumWinners: 1,
     pageLimitWinners: 10,
     winners: [],
+    winnersFullDetails: {},
     totalWinners: 0,
   };
 

@@ -4,6 +4,7 @@ import { IWinnersController } from './controller-i';
 import { IWinner, Path } from '../types.ts/types';
 // import { Path } from '../types.ts/types';
 import State from '../state/state';
+import Match from '../utils/matchCarWinner';
 
 class WinnersController implements IWinnersController {
   private readonly winners: Winners;
@@ -41,28 +42,25 @@ class WinnersController implements IWinnersController {
 
     const winnersArr = [...(await winners)];
     State.savedState.winners = winnersArr;
+    Match.createCarWinnerMatch();
     if (total) {
       State.savedState.totalWinners = +total;
     }
   };
 
-  public createWinner = async (id: string): Promise<void> => {
+  public createWinner = async (id: string, name: string, color: string): Promise<void> => {
     const carId = +id;
     const timeMs = State.savedState.duration[id];
     const timeSec = timeMs / 1000;
-    let winsCount;
 
-    if (this.hasWonBefore(id)) {
-      const array = this.hasWonBefore(id) as Array<IWinner>;
-      winsCount = array[0].wins;
-      // TODO: вызвать updateWinner?
+    let winsCount = (await this.hasWonBefore(id)).wins;
+
+    if (winsCount) {
+      winsCount += 1;
+      // TODO: update existing winner
     } else {
+      console.log('first win');
       winsCount = 1;
-    }
-
-    if (!this.hasWonBefore(id)) {
-      winsCount = 1;
-
       const bodyData = { id: carId, wins: winsCount, time: timeSec };
 
       const baseUrl = 'http://127.0.0.1:3000';
@@ -72,17 +70,26 @@ class WinnersController implements IWinnersController {
       const headers = { 'Content-Type': 'application/json' };
 
       await this.model.createWinner(baseUrl, path, method, body, headers);
+      console.log('winner created');
     }
+
+    State.savedState.winnersFullDetails[id] = [name, color, winsCount, timeSec];
+    console.log(State.savedState.winnersFullDetails);
+    console.log(State.savedState);
   };
 
-  private hasWonBefore(id: string): false | Array<IWinner | undefined> {
-    const winnerArr = State.savedState.winners.filter((winner) => winner?.id === +id);
-    if (winnerArr.length === 0) {
-      return false;
-    }
+  private hasWonBefore = async (id: string): Promise<IWinner> => {
+    const baseUrl = 'http://127.0.0.1:3000';
+    const path = Path.Winners;
+    const method = 'GET';
+    const result = await this.model.getWinner(baseUrl, path, method, id);
 
-    return winnerArr;
-  }
+    return result;
+  };
+
+  // private updateWinner(id: string) {
+  //   console.log('update id', id);
+  // }
 }
 
 export default WinnersController;

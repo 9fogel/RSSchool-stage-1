@@ -99,6 +99,33 @@ class Model implements IModel {
     return result;
   }
 
+  public async getWinners(
+    baseUrl: string,
+    path: Path,
+    page?: number,
+    limit?: number,
+  ): Promise<{ winners: Promise<IWinner[]>; total: string | null }> {
+    const response: Response = await fetch(`${baseUrl}${path}?_page=${page}&_limit=${limit}`);
+    const winners: Promise<IWinner[]> = await response.json();
+    const total: string | null = response.headers.get('X-Total-Count');
+
+    return { winners, total };
+  }
+
+  public async getWinner(
+    baseUrl: string,
+    path: Path,
+    method: string,
+    id: string,
+  ): Promise<IWinner> {
+    const response: Response = await fetch(`${baseUrl}${path}/${id}`, {
+      method,
+    });
+    const result: IWinner = await response.json();
+
+    return result;
+  }
+
   public async createWinner(
     baseUrl: string,
     path: Path,
@@ -116,17 +143,22 @@ class Model implements IModel {
     return result;
   }
 
-  public async getWinners(
+  public async updateWinner(
     baseUrl: string,
     path: Path,
-    page?: number,
-    limit?: number,
-  ): Promise<{ winners: Promise<IWinner[]>; total: string | null }> {
-    const response: Response = await fetch(`${baseUrl}${path}?_page=${page}&_limit=${limit}`);
-    const winners: Promise<IWinner[]> = await response.json();
-    const total: string | null = response.headers.get('X-Total-Count');
+    method: string,
+    body: string,
+    headers: { [key: string]: string },
+    id: string,
+  ): Promise<IWinner> {
+    const response: Response = await fetch(`${baseUrl}${path}/${id}`, {
+      method,
+      body,
+      headers,
+    });
+    const result: IWinner = await response.json();
 
-    return { winners, total };
+    return result;
   }
 }
 

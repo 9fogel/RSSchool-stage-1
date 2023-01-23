@@ -15,5 +15,6 @@ export interface ISavedState {
   pageNumWinners: number;
   pageLimitWinners: 10;
   winners: Array<IWinner | undefined>;
+  winnersFullDetails: { [key: string]: Array<string | number> };
   totalWinners: number;
 }

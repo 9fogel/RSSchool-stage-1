@@ -256,6 +256,7 @@ class GarageController {
     const method = 'DELETE';
 
     await this.model.deleteCar(baseUrl, path, id, method);
+    // TODO: удалять из виннеров тоже
     this.garage.clearGaragePage();
     this.run();
     // await this.run();
@@ -310,9 +311,12 @@ class GarageController {
     if (result.success && State.savedState.race && !State.savedState.winnerFound) {
       const winnerCar = State.savedState.cars.filter((car) => car?.id === +id)[0];
       if (winnerCar) {
+        State.savedState.winnersFullDetails[id] = [winnerCar.name, winnerCar.color];
+        console.log(State.savedState.winnersFullDetails);
+
         this.showWinnerPopup(winnerCar.name, id);
         setTimeout(() => this.hideWinnerPopup(), 5000);
-        this.redirectToWinners(id);
+        this.redirectToWinners(id, winnerCar.name, winnerCar.color);
       }
       State.savedState.winnerFound = true;
     }
@@ -445,8 +449,8 @@ class GarageController {
     }
   }
 
-  private redirectToWinners(id: string) {
-    this.winnersController.createWinner(id);
+  private redirectToWinners(id: string, winnerName: string, winnerColor: string) {
+    this.winnersController.createWinner(id, winnerName, winnerColor);
   }
 }
 
