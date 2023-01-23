@@ -20,6 +20,7 @@ class Match {
         }
       }
     });
+    console.log(State.savedState);
   }
 }
 

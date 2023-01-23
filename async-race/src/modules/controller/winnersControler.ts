@@ -42,6 +42,7 @@ class WinnersController implements IWinnersController {
 
     const winnersArr = [...(await winners)];
     State.savedState.winners = winnersArr;
+    // console.log(State.savedState.winners);
     Match.createCarWinnerMatch();
     if (total) {
       State.savedState.totalWinners = +total;
@@ -59,7 +60,6 @@ class WinnersController implements IWinnersController {
       console.log('existing winner');
       winsCount += 1;
       this.updateWinner(id, winsCount, timeSec);
-      // TODO: update existing winner
     } else {
       console.log('first win');
       winsCount = 1;
@@ -88,8 +88,8 @@ class WinnersController implements IWinnersController {
   };
 
   private updateWinner = async (carId: string, winsCount: number, timeSec: number) => {
-    // console.log('update', carId, winsCount, timeSec);
     const bodyData = { wins: winsCount, time: timeSec };
+    // TODO: update best time only
 
     const baseUrl = 'http://127.0.0.1:3000';
     const path = Path.Winners;

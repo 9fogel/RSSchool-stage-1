@@ -1,7 +1,7 @@
 import { IWinners } from './view-i';
 import { ISavedState } from '../state/state-i';
 import State from '../state/state';
-import { IWinner, ICar } from '../types.ts/types';
+import { IWinner } from '../types.ts/types';
 
 class Winners implements IWinners {
   public render(): void {
@@ -42,17 +42,27 @@ class Winners implements IWinners {
     return carImage;
   }
 
-  private renderRows(winners: Array<IWinner | undefined>, cars: Array<ICar | undefined>): string {
+  private renderRows(winners: Array<IWinner | undefined>): string {
+    console.log(State.savedState.winnersFullDetails);
     const rows = winners
       .map((winner, index) => {
-        const carMatch = cars.filter((car) => car?.id === winner?.id);
+        let name;
+        let color;
+        let winsCount;
+        let timeSec;
+        if (winner) {
+          const fullInfo: Array<string | number> = State.savedState.winnersFullDetails[winner.id];
+          if (fullInfo) {
+            [name, color, winsCount, timeSec] = fullInfo;
+          }
+        }
         return `<tr>
-    <th>${index + 1}</th>
-    <th>${this.renderCarImage(carMatch[0]?.color, winner?.id)}</th>
-    <th>${carMatch[0]?.name}, (id ${winner?.id})</th>
-    <th>${winner?.wins}</th>
-    <th>${winner?.time?.toFixed(2)}</th>
-  </tr>`;
+        <th>${index + 1}</th>
+        <th>${this.renderCarImage(color?.toString(), winner?.id)}</th>
+        <th>${name}, (id ${winner?.id})</th>
+        <th>${winsCount}</th>
+        <th>${Number(timeSec).toFixed(2)}</th>
+      </tr>`;
       })
       .join('');
 
@@ -69,7 +79,7 @@ class Winners implements IWinners {
       <th>Time, sec</th>
     </thead>
     <tbody>
-    ${this.renderRows(savedState.winners, savedState.cars)}
+    ${this.renderRows(savedState.winners)}
     </tbody>
   </table>`;
 
