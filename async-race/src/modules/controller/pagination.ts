@@ -37,19 +37,30 @@ class Pagination implements IPagination {
     if (pagination.curPage) {
       if (page === 'garage') {
         pagination.curPage.textContent = State.savedState.pageNumGarage.toString();
+        if (State.savedState.pageNumGarage > 1) {
+          pagination.previousBtn?.removeAttribute('disabled');
+        } else {
+          pagination.previousBtn?.setAttribute('disabled', 'disabled');
+        }
       } else {
         pagination.curPage.textContent = State.savedState.pageNumWinners.toString();
+        if (State.savedState.pageNumWinners > 1) {
+          pagination.previousBtn?.removeAttribute('disabled');
+        } else {
+          pagination.previousBtn?.setAttribute('disabled', 'disabled');
+        }
       }
-      if (State.savedState.pageNumGarage > 1) {
-        pagination.previousBtn?.removeAttribute('disabled');
-      } else {
-        pagination.previousBtn?.setAttribute('disabled', 'disabled');
-      }
-      if (State.savedState.pageNumWinners > 1) {
-        pagination.previousBtn?.removeAttribute('disabled');
-      } else {
-        pagination.previousBtn?.setAttribute('disabled', 'disabled');
-      }
+      // console.log('garage', State.savedState.pageNumGarage);
+      // if (State.savedState.pageNumGarage > 1) {
+      //   pagination.previousBtn?.removeAttribute('disabled');
+      // } else {
+      //   pagination.previousBtn?.setAttribute('disabled', 'disabled');
+      // }
+      // if (State.savedState.pageNumWinners > 1) {
+      //   pagination.previousBtn?.removeAttribute('disabled');
+      // } else {
+      //   pagination.previousBtn?.setAttribute('disabled', 'disabled');
+      // }
       if (State.isLastPage(page)) {
         pagination.nextBtn?.setAttribute('disabled', 'disabled');
       } else {

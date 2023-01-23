@@ -3,9 +3,10 @@ import Garage from '../view/garage';
 import State from '../state/state';
 import Animation from '../utils/animation';
 import { TButtons, TElements } from './controller-i';
-import { IWinner, Path } from '../types.ts/types';
+import { Path } from '../types.ts/types';
 import View from '../view/appView';
 import Randomizer from '../utils/random';
+import WinnersController from './winnersControler';
 
 class GarageController {
   private readonly garage: Garage;
@@ -14,10 +15,13 @@ class GarageController {
 
   private readonly view: View;
 
+  private readonly winnersController: WinnersController;
+
   constructor() {
     this.garage = new Garage();
     this.model = new Model();
     this.view = new View();
+    this.winnersController = new WinnersController();
   }
 
   public async run(): Promise<void> {
@@ -319,7 +323,8 @@ class GarageController {
       if (winnerCar) {
         this.showWinnerPopup(winnerCar.name, id);
         setTimeout(() => this.hideWinnerPopup(), 5000);
-        this.createWinner(id);
+        // this.createWinner(id);
+        this.redirectToWinners(id);
       }
       State.savedState.winnerFound = true;
     }
@@ -454,38 +459,42 @@ class GarageController {
     }
   }
 
-  private hasWonBefore(id: string): false | Array<IWinner | undefined> {
-    const winnerArr = State.savedState.winners.filter((winner) => winner?.id === +id);
-    if (winnerArr.length === 0) {
-      return false;
-    }
-    return winnerArr;
+  // private hasWonBefore(id: string): false | Array<IWinner | undefined> {
+  //   const winnerArr = State.savedState.winners.filter((winner) => winner?.id === +id);
+  //   if (winnerArr.length === 0) {
+  //     return false;
+  //   }
+  //   return winnerArr;
+  // }
+
+  private redirectToWinners(id: string) {
+    this.winnersController.createWinner(id);
   }
 
-  private createWinner = async (id: string): Promise<void> => {
-    const carId = +id;
-    const timeMs = State.savedState.duration[id];
-    const timeSec = timeMs / 1000;
-    let winsCount;
+  // private createWinner = async (id: string): Promise<void> => {
+  //   const carId = +id;
+  //   const timeMs = State.savedState.duration[id];
+  //   const timeSec = timeMs / 1000;
+  //   let winsCount;
 
-    if (this.hasWonBefore(id)) {
-      const array = this.hasWonBefore(id) as Array<IWinner>;
-      winsCount = array[0].wins;
-    } else {
-      winsCount = 1;
-    }
+  //   if (this.hasWonBefore(id)) {
+  //     const array = this.hasWonBefore(id) as Array<IWinner>;
+  //     winsCount = array[0].wins;
+  //   } else {
+  //     winsCount = 1;
+  //   }
 
-    const bodyData = { id: carId, wins: winsCount, time: timeSec };
-    console.log(bodyData);
+  //   const bodyData = { id: carId, wins: winsCount, time: timeSec };
+  //   console.log(bodyData);
 
-    const baseUrl = 'http://127.0.0.1:3000';
-    const path = Path.Winners;
-    const body = JSON.stringify(bodyData);
-    const method = 'POST';
-    const headers = { 'Content-Type': 'application/json' };
+  //   const baseUrl = 'http://127.0.0.1:3000';
+  //   const path = Path.Winners;
+  //   const body = JSON.stringify(bodyData);
+  //   const method = 'POST';
+  //   const headers = { 'Content-Type': 'application/json' };
 
-    await this.model.createWinner(baseUrl, path, method, body, headers);
-  };
+  //   await this.model.createWinner(baseUrl, path, method, body, headers);
+  // };
 }
 
 export default GarageController;
