@@ -15,8 +15,6 @@
   line-height: 24px;
   color: $black;
   color-scheme: dark;
-  // background-color: $light-green;
-  // border: none;
   color: $bright-green;
   background-color: transparent;
   border: 2px solid $bright-green;
@@ -223,12 +221,10 @@ button.remove-btn:hover {
 
 button.drive-btn {
   background: transparent;
-  // background-color: #3B5F4F;
 }
 
 button.drive-btn:hover {
   color: $dark-green;
-  // background: transparent;
   background-color: #3B5F4F;
   border: 2px solid $dark-green;
 }
@@ -286,7 +282,6 @@ button.stop-btn:disabled {
     padding: 0;
     width: 80px;
     font-size: 12px;
-    // background-color: $light-green;
     color: $dark-green;
     background: transparent;
     border: 2px solid $dark-green;
@@ -294,7 +289,6 @@ button.stop-btn:disabled {
 
   & button:hover {
     background-color: #3B5F4F;
-    // background-color: $bright-green;
   }
 
   & button:disabled {

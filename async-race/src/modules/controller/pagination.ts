@@ -28,7 +28,6 @@ class Pagination implements IPagination {
 
   private async handlePagination(page: string): Promise<void> {
     await this.garage.getCars();
-    // await this.winners.getWinners();
     const pagination: TElements = {
       previousBtn: document.querySelector('.previous-btn'),
       curPage: document.querySelector('.current-page'),

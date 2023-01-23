@@ -2,13 +2,13 @@ import Model from '../model/model';
 import Garage from '../view/garage';
 import State from '../state/state';
 import Animation from '../utils/animation';
-import { TButtons, TElements } from './controller-i';
+import { TButtons, TElements, IGarageController } from './controller-i';
 import { Path } from '../types.ts/types';
 import View from '../view/appView';
 import Randomizer from '../utils/random';
 import WinnersController from './winnersControler';
 
-class GarageController {
+class GarageController implements IGarageController {
   private readonly garage: Garage;
 
   private readonly model: Model;
@@ -31,6 +31,27 @@ class GarageController {
     this.disableUpdate();
     this.disableBtns();
     this.listenButtons();
+  }
+
+  public listenButtons(): void {
+    this.listenEditBtns();
+    this.listenRaceBtns();
+    this.listenDriveControls();
+
+    const selectBtns: NodeListOf<HTMLElement> | null = document.querySelectorAll('.select-btn');
+    selectBtns?.forEach((button: HTMLElement) => {
+      button?.addEventListener('click', (event) => {
+        this.rememberId(event);
+        this.enableUpdate();
+      });
+    });
+
+    const removeBtns: NodeListOf<HTMLElement> | null = document.querySelectorAll('.remove-btn');
+    removeBtns?.forEach((button: HTMLElement) => {
+      button?.addEventListener('click', (event) => {
+        this.deleteCar(event);
+      });
+    });
   }
 
   private disableUpdate(): void {
@@ -137,27 +158,6 @@ class GarageController {
     stopBtns?.forEach((button: HTMLElement) => {
       button?.addEventListener('click', (event) => {
         this.stopCar(event);
-      });
-    });
-  }
-
-  public listenButtons(): void {
-    this.listenEditBtns();
-    this.listenRaceBtns();
-    this.listenDriveControls();
-
-    const selectBtns: NodeListOf<HTMLElement> | null = document.querySelectorAll('.select-btn');
-    selectBtns?.forEach((button: HTMLElement) => {
-      button?.addEventListener('click', (event) => {
-        this.rememberId(event);
-        this.enableUpdate();
-      });
-    });
-
-    const removeBtns: NodeListOf<HTMLElement> | null = document.querySelectorAll('.remove-btn');
-    removeBtns?.forEach((button: HTMLElement) => {
-      button?.addEventListener('click', (event) => {
-        this.deleteCar(event);
       });
     });
   }
@@ -285,8 +285,6 @@ class GarageController {
       );
 
       const duration = distance / velocity;
-      // Animation.start(id, duration);
-      // await this.switchEngine(id);
       this.switchEngine(id).catch(console.log);
       Animation.start(id, duration);
     }
@@ -310,7 +308,6 @@ class GarageController {
       const winnerCar = State.savedState.cars.filter((car) => car?.id === +id)[0];
       if (winnerCar) {
         State.savedState.winnersFullDetails[id] = [winnerCar.name, winnerCar.color];
-        console.log(State.savedState.winnersFullDetails);
 
         this.showWinnerPopup(winnerCar.name, id);
         setTimeout(() => this.hideWinnerPopup(), 5000);
@@ -385,7 +382,6 @@ class GarageController {
     });
 
     const durationArr = (await Promise.all(startPromises)).map((el) => el.distance / el.velocity);
-    console.log(durationArr);
 
     raceIDs.forEach((id, index) => {
       if (id) {

@@ -11,13 +11,7 @@ const baseConfig = {
   mode: 'development',
   output: {
     path: path.resolve(__dirname, 'dist', 'async-race'),
-    // assetModuleFilename: 'assets/[hash][ext]',// or 'assets/[name][ext]' to save initial names
   },
-  // devServer: {
-  //     port: 3000,
-  //     open: true,
-  //     host: 'localhost',
-  // },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src', 'index.html'),
@@ -51,10 +45,6 @@ const baseConfig = {
         test: /\.(c|sa|sc)ss$/i,//can handle css/sass/scss files
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
-      // { //TODO: раскомментрить для чистого css
-      //   test: /\.css$/i,
-      //   use: ['style-loader', 'css-loader'],
-      // },
       {
         test: /\.(woff(2)?|eot|ttf|otf)$/i,
         type: 'asset/resource',

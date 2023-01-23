@@ -43,7 +43,6 @@ class Winners implements IWinners {
   }
 
   private renderRows(winners: Array<IWinner | undefined>): string {
-    console.log(State.savedState.winnersFullDetails);
     const rows = winners
       .map((winner, index) => {
         let name;

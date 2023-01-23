@@ -3,8 +3,6 @@ import GarageController from './garageController';
 import WinnersController from './winnersControler';
 import State from '../state/state';
 import { IController } from './controller-i';
-// import { TElements } from './controller-i';
-
 import Pagination from './pagination';
 
 class Controller implements IController {

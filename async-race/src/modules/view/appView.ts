@@ -24,12 +24,6 @@ class View implements IView {
   }
 
   private renderFooter(pageSelected: string): void {
-    // const { body } = document;
-    // const paginationWrap: HTMLElement | null = document.querySelector('.pagination');
-    // if (body && paginationWrap) {
-    //   console.log('old footer deleted');
-    //   body.removeChild(paginationWrap);
-    // }
     const footer = `<footer class="pagination container">
     ${this.renderPagination(pageSelected)}
   </footer>`;

@@ -12,10 +12,6 @@
   }
 }
 
-// .winners-table thead {
-//   height: 44px;
-// }
-
 .winners-table thead th {
   font-weight: 600;
   background-color: $bright-green;
@@ -32,7 +28,6 @@
 
 .winners-table td{
   padding: 5px 10px;
-  // border: 1px solid #eee;
   text-align: left;
 }
 
@@ -43,7 +38,5 @@
 
 .winners-table tbody tr:nth-child(even){
   color: $white;
-  // background-color: $green-bg;
-  // background: linear-gradient(180deg, rgba(39, 150, 70, 0.32) 0%, rgba(39, 150, 70, 0) 100%);;
   background: linear-gradient(179.55deg, rgba(39, 150, 70, 0.8) 0.39%, rgba(39, 150, 70, 0) 113.14%);
 }

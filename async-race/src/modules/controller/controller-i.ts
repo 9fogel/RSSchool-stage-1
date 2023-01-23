@@ -10,6 +10,11 @@ export interface IPagination {
   refreshPagination(page: string): void;
 }
 
+export interface IGarageController {
+  run(): Promise<void>;
+  listenButtons(): void;
+}
+
 export interface IWinnersController {
   run(): void;
   rerenderWinners(): void;
