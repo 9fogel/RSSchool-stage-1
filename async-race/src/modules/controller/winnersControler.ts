@@ -16,8 +16,18 @@ class WinnersController implements IWinnersController {
   }
 
   public async run(): Promise<void> {
-    // await this.getWinners();
     this.winners.render();
+  }
+
+  public rerenderWinners(): void {
+    this.winners.clearWinners();
+    this.winners.render();
+    const garageWrap: HTMLElement | null = document.querySelector('.garage-wrapper');
+    const winnersWrap: HTMLElement | null = document.querySelector('.winners-wrapper');
+    if (garageWrap && winnersWrap) {
+      garageWrap.classList.add('hidden');
+      winnersWrap.classList.remove('hidden');
+    }
   }
 
   public getWinners = async (): Promise<void> => {
@@ -26,7 +36,6 @@ class WinnersController implements IWinnersController {
 
     const limit = State.savedState.pageLimitWinners;
     const currentPage = State.savedState.pageNumWinners;
-    // console.log(await this.model.getWinners(baseUrl, path, currentPage, limit));
 
     const { winners, total } = await this.model.getWinners(baseUrl, path, currentPage, limit);
 
@@ -55,7 +64,6 @@ class WinnersController implements IWinnersController {
       winsCount = 1;
 
       const bodyData = { id: carId, wins: winsCount, time: timeSec };
-      console.log(bodyData);
 
       const baseUrl = 'http://127.0.0.1:3000';
       const path = Path.Winners;

@@ -27,6 +27,26 @@ class Garage implements IGarage {
     }
   }
 
+  private renderMain(savedState: ISavedState): string {
+    const mainContent = `<div class="garage-wrapper">
+    ${this.renderHeader()}
+    <div class="race-wrapper">
+      ${this.renderButton('race')}
+      ${this.renderButton('reset')}
+      <button class="generate-btn">Generate cars</button>
+    </div>
+
+    ${this.renderWinnerPopUp()}
+    <div class="cars-wrapper">
+      <h2 class="page-title">Garage<span class="total-cars"> (${savedState.totalCars})</span></h2>
+      <ul class="cars-list">
+        ${this.renderCarTracks(savedState.cars)}
+      </ul>
+    </div>
+  </div>`;
+    return mainContent;
+  }
+
   private renderCarEditControls(action: string): string {
     const editControl = `<div class="edit-car">
     <input class="garage-input" type="text" name="${action}-input" id="${action}-name">
@@ -101,26 +121,6 @@ class Garage implements IGarage {
   </div>`;
 
     return winnerPopup;
-  }
-
-  private renderMain(savedState: ISavedState): string {
-    const mainContent = `<div class="garage-wrapper">
-    ${this.renderHeader()}
-    <div class="race-wrapper">
-      ${this.renderButton('race')}
-      ${this.renderButton('reset')}
-      <button class="generate-btn">Generate cars</button>
-    </div>
-
-    ${this.renderWinnerPopUp()}
-    <div class="cars-wrapper">
-      <h2 class="page-title">Garage<span class="total-cars"> (${savedState.totalCars})</span></h2>
-      <ul class="cars-list">
-        ${this.renderCarTracks(savedState.cars)}
-      </ul>
-    </div>
-  </div>`;
-    return mainContent;
   }
 }
 

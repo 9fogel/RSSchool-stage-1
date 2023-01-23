@@ -5,11 +5,17 @@ import { IWinner, ICar } from '../types.ts/types';
 
 class Winners implements IWinners {
   public render(): void {
-    console.log('render winners view');
     const main: HTMLElement | null = document.querySelector('.main');
     if (main) {
       main.innerHTML += this.renderMain(State.savedState);
-      console.log('winners', State.savedState.winners);
+    }
+  }
+
+  public clearWinners(): void {
+    const main: HTMLElement | null = document.querySelector('.main');
+    const winnersWrap: HTMLElement | null = document.querySelector('.winners-wrapper');
+    if (main && winnersWrap) {
+      main.removeChild(winnersWrap);
     }
   }
 
@@ -40,7 +46,6 @@ class Winners implements IWinners {
     const rows = winners
       .map((winner, index) => {
         const carMatch = cars.filter((car) => car?.id === winner?.id);
-        console.log('carMatch', cars, carMatch);
         return `<tr>
     <th>${index + 1}</th>
     <th>${this.renderCarImage(carMatch[0]?.color, winner?.id)}</th>

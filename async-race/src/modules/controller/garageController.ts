@@ -304,7 +304,6 @@ class GarageController {
     State.savedState.controller[id] = controller;
 
     const result = await this.model.switchEngine(baseUrl, path, id, status, method, signal);
-    console.log(result.success);
     if (!result.success) {
       cancelAnimationFrame(State.savedState.animation[id]);
     }
@@ -313,7 +312,6 @@ class GarageController {
       if (winnerCar) {
         this.showWinnerPopup(winnerCar.name, id);
         setTimeout(() => this.hideWinnerPopup(), 5000);
-        // this.createWinner(id);
         this.redirectToWinners(id);
       }
       State.savedState.winnerFound = true;
@@ -349,7 +347,6 @@ class GarageController {
     });
 
     this.garage.clearGaragePage();
-    // await this.run();
     this.run();
     this.enableBtn('next');
 
@@ -396,7 +393,6 @@ class GarageController {
         State.savedState.duration[id] = durationArr[index];
       }
     });
-    console.log(State.savedState);
   };
 
   private resetRace = async (): Promise<void> => {

@@ -53,15 +53,14 @@ class Controller implements IController {
           winnersWrap.classList.add('hidden');
           garageWrap.classList.remove('hidden');
           State.savedState.page = 'garage';
-          // this.refreshPagination('garage');
+          this.garage.run();
           this.pagination.refreshPagination('garage');
         } else {
           await this.winners.getWinners();
-          // this.winners.run();
+          this.winners.rerenderWinners();
           garageWrap.classList.add('hidden');
           winnersWrap.classList.remove('hidden');
           State.savedState.page = 'winners';
-          // this.refreshPagination('winners');
           this.pagination.refreshPagination('winners');
         }
       }

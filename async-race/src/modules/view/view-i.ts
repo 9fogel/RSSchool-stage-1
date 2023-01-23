@@ -11,4 +11,5 @@ export interface IGarage {
 
 export interface IWinners {
   render(): void;
+  clearWinners(): void;
 }
