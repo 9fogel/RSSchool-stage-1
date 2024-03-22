@@ -1,0 +1,301 @@
+.edit-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.edit-car {
+  display: flex;
+  gap: 8px;
+}
+
+.garage-input {
+  padding: 9px 8px;
+  line-height: 24px;
+  color: $black;
+  color-scheme: dark;
+  color: $bright-green;
+  background-color: transparent;
+  border: 2px solid $bright-green;
+  border-radius: $border-radius;
+}
+
+.garage-input:focus {
+  background-color: #3B5F4F;
+  outline-color: $bright-green;
+}
+
+.garage-input[type=text] {
+
+  @media (max-width: 600px) {
+    width: 232px;
+  }
+
+}
+
+.color-input {
+  padding: 2px;
+  height: 44px;
+}
+
+.color-input:hover {
+  cursor: pointer;
+}
+
+.garage-input:disabled,
+.color-input:disabled {
+  cursor: default;
+  color: $disabled-color;
+  background-color: $disabled-bg;
+  border: $disabled-border;
+}
+
+.edit-btn {
+  width: 140px;
+  color: $dark-green;
+  background-color: transparent;
+  border: 2px solid $dark-green;
+
+  @media (max-width: 600px) {
+    width: 126px;
+  }
+}
+
+.edit-btn:hover {
+  background-color: #3B5F4F;
+}
+
+.race-wrapper {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 32px;
+
+  & button {
+    padding: 4px 34px;
+  }
+
+  & button.race-btn:disabled {
+    width: 111px;
+  }
+}
+
+.reset-btn {
+  color: $red;
+  background: $red-bg;
+  border: 2px solid $red;
+}
+
+.reset-btn:hover {
+  background-color: transparent;
+}
+
+.generate-btn {
+  margin-left: 4px;
+
+  @media (max-width: 600px) {
+    margin-left: 0;
+  }
+}
+
+.generate-btn:disabled {
+  margin-left: 0;
+
+  @media (max-width: 600px) {
+    padding: 4px 31px;
+  }
+}
+
+.generate-btn:hover {
+  background-color: $dark-green;
+}
+
+.winner-popup {
+  position: absolute;
+  width: 40%;
+  height: 200px;
+  left: 50%;
+  top: 150px;
+  transform: translateX(-50%);
+  text-align: center;
+
+  @media (max-width: 720px) {
+    width: 50%;
+  }
+
+  @media (max-width: 600px) {
+    left: 70%;
+    top: 170px;
+  }
+}
+
+.winner-text {
+  margin: 20px auto;
+  font-size: 36px;
+  color: $bright-green;
+
+  @media (max-width: 1000px) {
+    font-size: 24px;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+
+.page-title {
+  margin-bottom: 24px;
+}
+
+.cars-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.car-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-bottom: 4px dashed $white;
+
+  & button {
+    padding: 2px 16px;
+    font-size: 14px;
+  }
+}
+
+.car-header {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.car-selection {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+button.remove-btn {
+  align-self: center;
+  padding-top: 0;
+  height: 28px;
+  color: $red;
+  background: $red-bg;
+  border: 2px solid $red;
+}
+
+button.remove-btn:hover {
+  background-color: transparent;
+}
+
+.car-name {
+  font-weight: 600;
+}
+
+.car-body {
+  position: relative;
+  display: flex;
+  gap: 24px;
+
+  @media (max-width: 720px) {
+    gap: 12px;
+  }
+
+  @media (max-width: 600px) {
+    gap: 6px;
+  }
+}
+
+.car-drive-controls {
+  & button {
+    padding: 2px;
+    width: 40px;
+    color: $bright-green;
+    border: 2px solid $bright-green;
+  }
+}
+
+button.drive-btn {
+  background: transparent;
+}
+
+button.drive-btn:hover {
+  color: $dark-green;
+  background-color: #3B5F4F;
+  border: 2px solid $dark-green;
+}
+
+button.drive-btn:disabled {
+  cursor: default;
+  color: $disabled-color;
+  background-color: $disabled-bg;
+  border: $disabled-border;
+  box-shadow: none;
+}
+
+button.stop-btn {
+  color: $red;
+  background: $red-bg;
+  border: 2px solid $red;
+}
+
+button.stop-btn:hover {
+  color: $red-hover;
+  background: transparent;
+  border: 2px solid $red-hover;
+}
+
+button.stop-btn:disabled {
+  cursor: default;
+  color: $disabled-color;
+  background-color: $disabled-bg;
+  border: $disabled-border;
+  box-shadow: none;
+}
+
+.car-image {
+  width: 100px;
+  height: 60px;
+}
+
+.finish {
+  position: absolute;
+  right: 10%;
+  width: 60px;
+  height: 60px;
+
+  @media (max-width: 600px) {
+    right: 15%;
+  }
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  & button {
+    padding: 0;
+    width: 80px;
+    font-size: 12px;
+    color: $dark-green;
+    background: transparent;
+    border: 2px solid $dark-green;
+  }
+
+  & button:hover {
+    background-color: #3B5F4F;
+  }
+
+  & button:disabled {
+    cursor: default;
+    color: $disabled-color;
+    background-color: $disabled-bg;
+    border: $disabled-border;
+    box-shadow: none;
+  }
+}

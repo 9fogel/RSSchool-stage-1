@@ -1,0 +1,42 @@
+.winners-table{
+  table-layout: fixed;
+  margin-bottom: 20px;
+  width: 80%;
+  color: $black;
+  border-collapse: collapse;
+
+  & .car-image {
+    margin: 0 auto;
+    width: 50px;
+    height: 30px;
+  }
+}
+
+.winners-table thead th {
+  font-weight: 600;
+  background-color: $bright-green;
+}
+
+.winners-table tbody {
+  background-color: transparent;
+}
+
+.winners-table th {
+  padding: 10px 5px;
+  font-weight: 400;
+}
+
+.winners-table td{
+  padding: 5px 10px;
+  text-align: left;
+}
+
+.winners-table tbody tr:nth-child(odd){
+  color: $bright-green;
+  background-color: transparent;
+}
+
+.winners-table tbody tr:nth-child(even){
+  color: $white;
+  background: linear-gradient(179.55deg, rgba(39, 150, 70, 0.8) 0.39%, rgba(39, 150, 70, 0) 113.14%);
+}

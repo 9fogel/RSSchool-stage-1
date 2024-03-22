@@ -1,0 +1,111 @@
+//general styles here
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Inter', serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: $white;
+  background-image: url('img/bg.jpg');
+  background-size: cover;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  padding: 4px 36px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  text-transform: capitalize;
+  color: $black;
+  background-color: $bright-green;
+  border: none;
+  border-radius: $border-radius;
+  box-shadow: $shadow;
+
+  @media (max-width: 600px) {
+    font-size: 16px;
+  }
+}
+
+button:hover {
+  background-color: $dark-green;
+  transition: ease-in-out .3s;
+}
+
+button:disabled {
+  cursor: default;
+  color: $disabled-color;
+  background-color: $disabled-bg;
+  border: $disabled-border;
+  box-shadow: none;
+}
+
+button:disabled:hover {
+  cursor: default;
+  background-color: $disabled-bg;
+}
+
+button:active {
+  box-shadow: none;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.container {
+  padding: 0 24px;
+}
+
+.header {
+  margin-top: 16px;
+  margin-bottom: 32px;
+}
+
+.nav-list {
+  display: flex;
+  gap: 36px;
+}
+
+.nav-item {
+  padding: 8px 16px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.nav-item:hover {
+  cursor: pointer;
+}
+
+.nav-item-active {
+  color: $bright-green;
+  border-bottom: 2px solid $bright-green;
+}
+
+.main {
+  position: relative;
+  margin-bottom: 32px;
+}
+
+footer {
+  margin-bottom: 32px;
+}
