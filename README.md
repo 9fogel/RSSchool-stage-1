@@ -24,3 +24,10 @@ https://github.com/9fogel/HTML-builder
 ### Self-introduction video:
 
 https://youtu.be/h-rPz3E9ZtI
+
+-----------------
+### Team project:
+Source code: https://github.com/9fogel/AVA-project
+
+Deploy: https://ava-team-rsclone.netlify.app/
+
