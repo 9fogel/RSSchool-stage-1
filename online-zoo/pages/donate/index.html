@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetStory online</title>
+  <link rel="stylesheet" href="../../assets/styles/normalize.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="../../assets/icons/favicon.ico">
+</head>
+<body>
+  <div class="wrapper"></div>
+  <header class="header">
+    <div class="header-content container">
+      <div class="logo">
+        <a href="../main/">
+          <img class="logo-image" src="../../assets/icons/bamboo.svg" alt="bamboo icon">
+          <span class="logo-text">PetStory online</span>
+        </a>
+      </div>
+      <button class="burger tablet"></button>
+      <nav class="navigation">
+        <div class="logo logo-nav">
+          <a href="#">
+            <img class="logo-image" src="../../assets/icons/bamboo-mobile.svg" alt="bamboo icon">
+            <span class="logo-text">PetStory online</span>
+          </a>
+        </div>
+        <button class="nav-close tablet"></button>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="../main/">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="#">Map</a>
+          </li>
+          <li class="nav-item">
+            <a href="#">Zoos</a>
+          </li>
+          <li class="nav-item">
+            <a href="#">Donate</a>
+          </li>
+          <li class="nav-item">
+            <a href="#">Contact us</a>
+          </li>
+          <li class="design nav-item tablet">
+            <a href="https://www.figma.com/file/jfEFwkXVj1WRq7sUHDr8os/PetStory-online" target="_blank">Designed by ©</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="design tablet-hidden">
+        <a href="https://www.figma.com/file/jfEFwkXVj1WRq7sUHDr8os/PetStory-online">Designed by ©</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="intro">
+      <h1 class="main-title visually-hidden">PetStory Online</h1>
+    </section>
+    <section class="donation">
+      <div class="container">
+        <h3 class="section-title donation-title">The zoo has officially reopened but we still need your help!</h3>
+        <p class="donation-text">
+          Even though the Zoo has been able to reopen, we are at a greatly reduced capacity with educational programs and public and private events cancelled or postponed for additional months. We need you now more than ever to help ensure that we overcome these challenges. We have been actively raising funds in the community, and we are grateful for the generosity.  But much more support is still needed, and we need your help! Please consider a gift today – no matter what size – to help us sustain our mission.
+        </p>
+        <h3 class="section-title">Donation Information</h3>
+        <section class="feed-content container">
+          <h2 class="section-big-title feed-title">Pick and feed a friend</h2>
+          <div class="feed-article">
+            <h4 class="section-subtitle feed-subtitle">We know the animals bring you joy, and in these extraordinary times, we’re glad.</h4>
+            <div class="animal-widget">
+              <div class="widget-description">
+                <span class="widget-count">4</span>
+                <span class="widget-comment">Panda diet for the day.</span>
+              </div>
+              <div class="widget-image"></div>
+            </div>
+          <div class="donation-amount">
+            <h5 class="amount-title">Amount</h5>
+            <div class="amout-progress-bar">
+              <ul class="progress-bar-dots-list">
+                <li class="progress-bar-dot-item desktop"></li>
+                <li class="progress-bar-dot-item tablet-hidden"></li>
+                <li class="progress-bar-dot-item tablet-hidden"></li>
+                <li class="progress-bar-dot-item"></li>
+                <li class="progress-bar-dot-item"></li>
+                <li class="progress-bar-dot-item active-dot"></li>
+                <li class="progress-bar-dot-item"></li>
+                <li class="progress-bar-dot-item"></li>
+              </ul>
+              <input class="progress-input" type="range" name="progress-input" id="progress-input">
+            </div>
+            <ol class="progress-amounts-list">
+              <li class="amount-item desktop">$5000</li>
+              <li class="amount-item tablet-hidden">$2000</li>
+              <li class="amount-item tablet-hidden">$1000</li>
+              <li class="amount-item">$500</li>
+              <li class="amount-item">$250</li>
+              <li class="amount-item active-amount">$100</li>
+              <li class="amount-item">$50</li>
+              <li class="amount-item">$25</li>
+            </ol>
+            <input class="another-amount" type="number" placeholder="Another amount" name="another-amount" id="another-amount" value="100" onkeypress="this.value=this.value.substring(0,3);">
+            <div class="radiobuttons">
+              <div class="monthly-radio">
+                <input class="custom-radio" type="radio" name="period" id="monthly">
+                <label for="monthly">Monthly</label>
+              </div>
+              <div class="once-radio">
+                <input class="custom-radio checked" type="radio" name="period" id="once" checked>
+                <label for="once">Once</label>
+              </div>
+            </div>
+            <button class="button button-round feed-btn" type="submit">Feed a friend now</button>
+            <p class="amount-text">Share with your friends on social networks</p>
+          </div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content container">
+      <div class="logo footer-logo">
+        <a href="../main/">
+          <img class="logo-image footer-logo-image" src="../../assets/icons/bamboo.svg" alt="bamboo icon">
+          <span class="logo-text footer-logo-text">PetStory online</span>
+        </a>
+      </div>
+      <a class="button button-rectangle donate-btn" href="../donate/index.html">Donate for volunteers</a>
+      <ul class="socials-list">
+        <li class="socials-item">
+          <a class="socials-link" href="https://www.facebook.com/" target="_blank">
+            <div class="socials-icon facebook"></div>
+            <span>Facebook</span>
+          </a>
+        </li>
+        <li class="socials-item">
+          <a class="socials-link" href="https://www.twitter.com/" target="_blank">
+            <div class="socials-icon"></div>
+            <span>Twitter</span>
+          </a>
+        </li>
+        <li class="socials-item">
+          <a class="socials-link" href="https://www.instagram.com/" target="_blank">
+            <div class="socials-icon"></div>
+            <span>Instagram</span>
+          </a>
+        </li>
+        <li class="socials-item">
+          <a class="socials-link" href="https://www.youtube.com/" target="_blank">
+            <div class="socials-icon"></div>
+            <span>YouTube</span>
+          </a>
+        </li>
+      </ul>
+      <div class="subscribe">
+        <h4 class="section-subtitle subscribe-title">Subscribe to our news</h4>
+        <form class="subscribe-form" action="#" id="subscribe" method="post">
+          <label class="display-none" for="email"></label>
+          <input class="subscribe-input" type="email" placeholder="Enter your email" form="subscribe" id="email" required>
+          <button class="button button-rectangle subscribe-btn">Submit</button>
+        </form>
+      </div>
+      <nav class="navigation-footer">
+        <ul class="nav-list nav-list-footer">
+          <li class="nav-item">
+            <a href="../main/">About</a>
+          </li>
+          <li class="nav-item">
+            <a>Map</a>
+          </li>
+          <li class="nav-item">
+            <a>Zoos</a>
+          </li>
+          <li class="nav-item footer-nav-item">
+            <a>Contact us</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="footer-designed">
+        <a class="footer-design-link" href="https://www.figma.com/file/jfEFwkXVj1WRq7sUHDr8os/PetStory-online" target="_blank">Designed by Alisa Samborskaya<br>©RSSchool & ©Yem Digital 2021</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
